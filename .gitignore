@@ -1,0 +1,20 @@
+# Reserved-name fences — all three, preventively (storage-strategy register #26)
+artifacts/
+media/
+studio/
+
+# Class C — rebuildable from the corpus (storage-strategy §3.3, v6.23)
+index/
+
+# Licensed content never enters this repo (decisions.md D2) — manifests are
+# committed, content is not
+corpus/local/*
+!corpus/local/*.manifest.json
+
+# Secrets — never committed, never echoed
+.env
+
+# Python
+__pycache__/
+.venv/
+*.egg-info/
