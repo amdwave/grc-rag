@@ -20,8 +20,15 @@ Those three package directories are the three import buckets, and
 
 ## Running
 
-Everything runs in WSL2/Ubuntu, under uv. No third-party dependencies:
-fetch and convert are standard library only.
+Everything runs in WSL2/Ubuntu, under uv. Fetch, convert and chunk are
+standard library only; the dependencies belong to the query bucket alone.
+
+The virtualenv lives on ext4, not on `/mnt/d`: torch is ~3 GB of small
+files and imports slowly across the NTFS boundary, the same reason the
+model weights are on ext4 (decisions.md D0). Export this once per shell,
+or `uv` will make a fresh `.venv` in the repo:
+
+    export UV_PROJECT_ENVIRONMENT=$HOME/.venvs/grc-rag
 
     uv sync
     uv run python tests/check-imports.py          # buckets hold
@@ -37,9 +44,17 @@ fetch and convert are standard library only.
         --raw corpus/raw/eu/ai-act/32024R1689.en.html \
         --part recitals --out corpus/eu/ai-act.recitals.md
 
+    # chunk — structural boundaries, never token windows
+    uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md
+    uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md
+
+    # index — dense (BGE-M3) + BM25 into LanceDB under index/ (gitignored)
+    uv run python -m grc_rag.query.index
+
     # verification
     bash tests/rerun-identical.sh                 # byte-identical reruns
     uv run python tests/seqcheck-corpus.py both   # order-sensitive
+    uv run python -m grc_rag.query.index --smoke-only   # both legs answer
 
 The conversion reports (`corpus/eu/*.report.md`) are meant to be read by
 eye, not just exited on: they account for every character in the source

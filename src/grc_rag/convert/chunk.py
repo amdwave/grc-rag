@@ -175,13 +175,12 @@ def label(kind, number, marker):
     "Article 15(4)" for a chunk holding all of Article 15 would be this
     system's fabrication, not the model's.
     """
-    base = {"article": "Article", "annex": "Annex",
-            "recital": "Recital"}.get(kind, "")
+    if kind == "recital":
+        return f"Recital ({number})"       # the form the act itself uses
+    base = {"article": "Article", "annex": "Annex"}.get(kind, "")
     head = f"{base} {number}".strip() if number else ""
     if marker is None:
         return head or "—"
-    if kind == "recital":
-        return f"Recital ({number})"
     return f"{head}({marker})"
 
 

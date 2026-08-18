@@ -186,3 +186,42 @@ Comparing consolidations means comparing `sha256_normalized`. The
 verification that this is the right pair of numbers is in the fetch
 itself: two consecutive fetches differ in `sha256` and agree in
 `sha256_normalized`.
+
+## D6 — Embedding runtime, and the lexical leg verified rather than assumed
+
+**Status:** decided 2026-08-17, during M3.
+
+**Context.** D3 settled *which* embedding model (pinned local BGE-M3) but
+not what runs it, and the architecture brief left one thing explicitly
+open: whether LanceDB can index BGE-M3's sparse output, with instructions
+to **verify at build time** and fall back to LanceDB's own BM25 rather
+than hand-roll a sparse index either way.
+
+**Decision.**
+
+- **sentence-transformers** as the BGE-M3 runtime. FlagEmbedding would
+  add dense + sparse + ColBERT in one call, but the sparse half has
+  nowhere to live (below), so it would buy a heavier dependency tree for
+  an output nothing consumes. Writing pooling and normalisation by hand
+  against `transformers` is exactly the kind of detail that silently
+  produces slightly-wrong vectors.
+- **The lexical leg is LanceDB's native BM25 full-text index**, built
+  over the chunk's `text` column at index time. Verified, not assumed:
+  `python -m grc_rag.query.index --smoke-only` runs an identifier query
+  through the FTS leg and fails if Article 15 does not come back. It
+  does: `Article 15 accuracy robustness cybersecurity` returns
+  `art_15(1)`, `art_15(3)`, `art_15(2)`. A dense-only index would look
+  perfectly healthy at that moment, which is why the check is in the
+  build and not in a README.
+- **Measured at build:** 871 chunks, 1024-dim vectors on `cuda:0`
+  (RTX 3500 Ada, torch 2.13+cu130), `index/` 4.5 MB — Class C, gitignored,
+  rebuilt in about a minute once the weights are cached.
+- **The virtualenv lives on WSL ext4** (`~/.venvs/grc-rag`, 5.1 GB) via
+  `UV_PROJECT_ENVIRONMENT`, not in the repo on `/mnt/d`. Same reasoning
+  D0 applied to the model weights: thousands of small files behind the
+  NTFS boundary are slow to import and belong to no backup class. The
+  repo stays on D:; only the environment moves.
+
+**Not decided here:** rank fusion weights, the reranker's cut-off, and
+the relevance-gate floor. All three are tuned against the eval set in M4,
+after Gate B — tuning them now would be tuning against nothing.

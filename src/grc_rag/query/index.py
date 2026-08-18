@@ -38,6 +38,7 @@ import sys
 from pathlib import Path
 
 import lancedb
+from lancedb.index import FTS
 from sentence_transformers import SentenceTransformer
 
 MODEL = "BAAI/bge-m3"          # pinned by name; weights live in the HF cache
@@ -153,10 +154,21 @@ def main(argv=None):
     print(f"index: {len(rows):,} chunks from {len(CHUNK_FILES)} files")
     rows = embed(rows)
 
-    if TABLE in db.table_names():
-        db.drop_table(TABLE)
+    # Not `if TABLE in db.list_tables()`: that returns a
+    # ListTablesResponse, so the membership test is silently always false
+    # and the create then fails with "table already exists". Asking to
+    # drop it and saying a missing one is fine has no such ambiguity.
+    db.drop_table(TABLE, ignore_missing=True)
     table = db.create_table(TABLE, data=rows)
-    table.create_fts_index("text", replace=True)
+    # Stemming and stop-word removal are left ON: the questions this
+    # corpus answers are phrased in English prose ("what must providers
+    # ensure…"), and the identifiers the lexical leg exists to catch -
+    # "Article 15", "Annex III" - survive both. ascii_folding matters
+    # more than it looks: the act is full of curly quotes and dashes.
+    # Unified API: the first positional argument is the COLUMN when a
+    # config object is passed (it is the distance metric in the legacy
+    # form, which is a trap worth naming rather than rediscovering).
+    table.create_index("text", config=FTS(with_position=True), replace=True)
     print(f"  wrote {a.index_dir}/{TABLE}.lance  (dense {DIM}-dim + BM25 "
           f"full-text on `text`)")
 

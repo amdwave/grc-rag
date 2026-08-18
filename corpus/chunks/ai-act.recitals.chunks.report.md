@@ -25,7 +25,7 @@ Boundaries are the thing to read here. The dump beside this file carries every c
 
 Chunks over 4,000 characters (1) — kept whole because splitting them would cut inside a single provision:
 
-- `ai-act#rct_53` 4,443 — Recital 53
+- `ai-act#rct_53` 4,443 — Recital (53)
 
 ## Coverage
 
