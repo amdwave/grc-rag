@@ -44,11 +44,13 @@ which no output-side count can see.
 
 WHAT THIS DOES NOT DO
 
-  * It does not preserve italics, bold or superscript formatting: the
-    corpus is text for retrieval and diffing. Footnote reference marks
-    are removed from the running text (they would otherwise appear as
-    bare digits mid-sentence) and the footnote texts themselves are
-    emitted in their own section.
+  * It does not preserve italics or bold: the corpus is text for
+    retrieval and diffing. Footnote reference marks are removed from
+    the running text (they would otherwise appear as bare digits
+    mid-sentence) and the footnote texts themselves are emitted in
+    their own section. A superscript that is not a footnote mark is
+    the act's own text and is kept, rendered with a caret - the 10^25
+    FLOP threshold in Article 51(2) is the case that earned the rule.
   * It does not keep the consolidation's amendment markers (`▼B`,
     `►M1◄`) inline. They are editorial apparatus, not the act's words,
     and inline they would poison retrieval. The acts that amended the
@@ -78,7 +80,8 @@ DROP_RULES = {
     "disclaimer": "the 'no legal effect' disclaimer",
     "modifiers-toc": "the 'Amended by' table of amending acts",
     "amendment-marker": "▼B / ►M1◄ consolidation markers",
-    "note-mark": "superscript footnote reference marks",
+    "note-mark": "footnote reference marks (oj-note-tag, or a superscript "
+                 "following an opening parenthesis)",
     "eli-line": "the trailing ELI / ISSN publication lines",
     "oj-masthead": "the Official Journal masthead and issue line",
     "not-this-part": "structure belonging to the other output file",
@@ -198,8 +201,20 @@ def inline(node, drops):
         if n.has("modref") or n.has("arrow"):
             drop(n, "amendment-marker", drops)
             return
-        if n.has("oj-note-tag") or (n.tag == "span" and n.has("superscript")):
+        if n.has("oj-note-tag"):
             drop(n, "note-mark", drops)
+            return
+        if n.tag == "span" and n.has("superscript"):
+            # A superscript is only a footnote mark when it follows an
+            # opening parenthesis - "(1)", "(*2)". Anywhere else it is
+            # the act's own text: dropping it unconditionally turned
+            # Article 51(2)'s 10^25 FLOP threshold into "10".
+            if "".join(parts).rstrip().endswith("("):
+                drop(n, "note-mark", drops)
+                return
+            parts.append("^")
+            for k in n.kids:
+                walk(k)
             return
         for k in n.kids:
             walk(k)
@@ -913,8 +928,9 @@ def report(path, meta, struct, drops, unaccounted, anomalies, md, source):
     a("- Nothing here is order-sensitive. Text shredded into the wrong "
       "order leaves every count above unchanged; `tests/seqcheck-corpus.py` "
       "is the check that sees it.")
-    a("- Formatting (italics, bold, superscripts) is not preserved and is "
-      "not counted as a loss.")
+    a("- Formatting (italics, bold) is not preserved and is not counted "
+      "as a loss. Content superscripts are kept inline as ^N; only "
+      "footnote reference marks are dropped.")
     a("")
     path.write_text("\n".join(L) + "\n", encoding="utf-8")
 

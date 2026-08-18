@@ -34,7 +34,7 @@ A count of what came out cannot see what was left behind. Each text node in the 
 | emitted | 240,722 |
 | dropped: not-this-part — structure belonging to the other output file | 339,198 |
 | dropped: script — <script>/<style> payloads | 119 |
-| dropped: note-mark — superscript footnote reference marks | 99 |
+| dropped: note-mark — footnote reference marks (oj-note-tag, or a superscript following an opening parenthesis) | 99 |
 | dropped: oj-masthead — the Official Journal masthead and issue line | 65 |
 | dropped: reference — the consolidation's running reference line | 0 |
 | **unaccounted** | **0** |
@@ -46,5 +46,5 @@ None.
 ## What this report does not tell you
 
 - Nothing here is order-sensitive. Text shredded into the wrong order leaves every count above unchanged; `tests/seqcheck-corpus.py` is the check that sees it.
-- Formatting (italics, bold, superscripts) is not preserved and is not counted as a loss.
+- Formatting (italics, bold) is not preserved and is not counted as a loss. Content superscripts are kept inline as ^N; only footnote reference marks are dropped.
 

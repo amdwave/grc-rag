@@ -2223,7 +2223,7 @@ EU AI Act › CHAPTER IV — TRANSPARENCY OBLIGATIONS FOR PROVIDERS AND DEPLOYER
 7. The Commission shall encourage and facilitate the drawing up of codes of practice at Union level to facilitate the effective implementation of the obligations regarding the detection, marking and labelling of artificially generated or manipulated content. The Commission, taking utmost account of the opinion of the Board, shall assess whether adherence to those codes of practice is adequate to ensure compliance with the obligations laid down in paragraphs 2 and 4 of this Article, in accordance with the procedure laid down in Article 56(6). If it deems the code of practice to be inadequate, the Commission may adopt an implementing act specifying common rules for the implementation of those obligations in accordance with the examination procedure laid down in Article 98(2).
 
 ==============================================================================
-ai-act#art_51   [Article 51]   1,159 chars
+ai-act#art_51   [Article 51]   1,162 chars
 EU AI Act › CHAPTER V — GENERAL-PURPOSE AI MODELS › SECTION 1 — Classification rules › Article 51 — Classification of general-purpose AI models as general-purpose AI models with systemic risk
 ------------------------------------------------------------------------------
 1. A general-purpose AI model shall be classified as a general-purpose AI model with systemic risk if it meets any of the following conditions:
@@ -2232,7 +2232,7 @@ EU AI Act › CHAPTER V — GENERAL-PURPOSE AI MODELS › SECTION 1 — Classifi
 
    (b) based on a decision of the Commission, ex officio or following a qualified alert from the scientific panel, it has capabilities or an impact equivalent to those set out in point (a) having regard to the criteria set out in Annex XIII.
 
-2. A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10.
+2. A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.
 
 3. The Commission shall adopt delegated acts in accordance with Article 97 to amend the thresholds listed in paragraphs 1 and 2 of this Article, as well as to supplement benchmarks and indicators in light of evolving technological developments, such as algorithmic improvements or increased hardware efficiency, when necessary, for these thresholds to reflect the state of the art.
 

@@ -16,7 +16,7 @@ Read this by eye. In book2rag every real conversion bug was invisible in the tot
 | tables rendered | 6 |
 | source footnotes | 11 |
 | markdown lines | 1677 |
-| characters emitted | 391,581 |
+| characters emitted | 391,584 |
 
 ## Structure checks
 
@@ -38,13 +38,13 @@ A count of what came out cannot see what was left behind. Each text node in the 
 
 | disposition | characters |
 | --- | --- |
-| emitted | 385,692 |
+| emitted | 385,694 |
 | dropped: modifiers-toc — the 'Amended by' table of amending acts | 583 |
 | dropped: disclaimer — the 'no legal effect' disclaimer | 398 |
 | dropped: amendment-marker — ▼B / ►M1◄ consolidation markers | 349 |
 | dropped: script — <script>/<style> payloads | 120 |
-| dropped: note-mark — superscript footnote reference marks | 40 |
 | dropped: reference — the consolidation's running reference line | 38 |
+| dropped: note-mark — footnote reference marks (oj-note-tag, or a superscript following an opening parenthesis) | 38 |
 | **unaccounted** | **0** |
 
 ## Anomalies
@@ -54,5 +54,5 @@ A count of what came out cannot see what was left behind. Each text node in the 
 ## What this report does not tell you
 
 - Nothing here is order-sensitive. Text shredded into the wrong order leaves every count above unchanged; `tests/seqcheck-corpus.py` is the check that sees it.
-- Formatting (italics, bold, superscripts) is not preserved and is not counted as a loss.
+- Formatting (italics, bold) is not preserved and is not counted as a loss. Content superscripts are kept inline as ^N; only footnote reference marks are dropped.
 

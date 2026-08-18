@@ -36,7 +36,7 @@ Chunks over 4,000 characters (4) — kept whole because splitting them would cut
 
 Each chunk body must appear in the source markdown verbatim, in document order, after the previous one ends. That proves nothing was dropped, duplicated or reordered — a bag-of-words check proves none of the three.
 
-- PASS — every body verbatim and in order (633 chunks, 380,379 characters)
+- PASS — every body verbatim and in order (633 chunks, 380,382 characters)
 - PASS — no source paragraph left unclaimed (0)
 
 ## Anomalies
