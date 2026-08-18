@@ -75,13 +75,13 @@ PKG = ROOT / "src" / "grc_rag"
 
 # Every module, named. Add a new file here or the check fails on it.
 FETCH = ["fetch/eurlex.py"]
-CONVERT = ["convert/eurlex_html.py"]
-QUERY = []
+CONVERT = ["convert/eurlex_html.py", "convert/chunk.py"]
+QUERY = ["query/index.py"]
 
 BUCKETS = (("fetch", FETCH), ("convert", CONVERT), ("query", QUERY))
 
 # AGENTS.md's approved list. Adding to it is a conversation, not an edit.
-APPROVED = {"lancedb", "openai", "dotenv", "docling"}
+APPROVED = {"lancedb", "sentence_transformers", "openai", "dotenv", "docling"}
 
 NETWORK = {"socket", "ssl", "http", "urllib", "ftplib", "smtplib", "poplib",
            "imaplib", "telnetlib", "xmlrpc", "webbrowser", "asyncio",

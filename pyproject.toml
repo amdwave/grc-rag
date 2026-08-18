@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "RAG over regulatory primary sources (EU AI Act first)"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "lancedb>=0.37.1",
+    "sentence-transformers>=5.7.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]

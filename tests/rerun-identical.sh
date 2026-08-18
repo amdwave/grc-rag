@@ -25,6 +25,14 @@ run_into() {
         --part enacting --out "$d/ai-act.md" >/dev/null || return 1
     "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_RECITALS" \
         --part recitals --out "$d/ai-act.recitals.md" >/dev/null || return 1
+    # Chunking is in the same bucket and makes the same promise. It runs
+    # from the COMMITTED markdown, not from the fresh conversion above,
+    # so a difference here is the chunker's and not an echo of the
+    # converter's.
+    "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md \
+        --out-dir "$d" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md \
+        --out-dir "$d" >/dev/null || return 1
 }
 
 run_into "$TMP/a" || { echo "rerun: first conversion failed"; exit 2; }
@@ -32,7 +40,10 @@ run_into "$TMP/b" || { echo "rerun: second conversion failed"; exit 2; }
 
 fail=0
 for f in ai-act.md ai-act.report.md ai-act.recitals.md \
-         ai-act.recitals.report.md; do
+         ai-act.recitals.report.md \
+         ai-act.chunks.jsonl ai-act.chunks.txt ai-act.chunks.report.md \
+         ai-act.recitals.chunks.jsonl ai-act.recitals.chunks.txt \
+         ai-act.recitals.chunks.report.md; do
     a=$(sha256sum "$TMP/a/$f" | cut -d' ' -f1)
     b=$(sha256sum "$TMP/b/$f" | cut -d' ' -f1)
     if [ "$a" = "$b" ]; then
@@ -53,6 +64,15 @@ for f in ai-act.md ai-act.recitals.md; do
         echo "  corpus/eu/$f matches a fresh conversion"
     else
         echo "  STALE: corpus/eu/$f differs from a fresh conversion -"
+        echo "         regenerate it and commit the diff"
+        fail=1
+    fi
+done
+for f in ai-act.chunks.jsonl ai-act.recitals.chunks.jsonl; do
+    if cmp -s "$TMP/a/$f" "corpus/chunks/$f"; then
+        echo "  corpus/chunks/$f matches a fresh chunking"
+    else
+        echo "  STALE: corpus/chunks/$f differs from a fresh chunking -"
         echo "         regenerate it and commit the diff"
         fail=1
     fi

@@ -16,7 +16,7 @@ Read this by eye. In book2rag every real conversion bug was invisible in the tot
 | tables rendered | 6 |
 | source footnotes | 11 |
 | markdown lines | 1677 |
-| characters emitted | 391,461 |
+| characters emitted | 391,581 |
 
 ## Structure checks
 

@@ -414,11 +414,45 @@ def table(node, depth, out, drops):
         out.append(pad + "| " + " | ".join(r) + " |")
 
 
+RE_BARE_MARKER = re.compile(r"^\(?(\d+[a-z]*|[a-z]{1,2}|[ivxlc]+)\)?\.?"
+                            r"(\s|$)", re.I)
+
+
 def block(node, drops, depth=0):
-    """Render a node and return its markdown paragraphs, blank-separated."""
-    out = []
+    """Render a node's children, respecting markers that open a level.
+
+    Annexes VII and X print a numbered item as a heading-class element of
+    its own - "1." with a bold caption - and hang its (a), (b), (c) points
+    off the annex as SIBLINGS rather than children. Rendered flat, those
+    points read as top-level items of the annex, and the chunker then
+    minted `anx_X(a)` three times over, once per numbered item, which is
+    how this was found. A bare marker opens a level; the next bare marker
+    or section heading closes it.
+    """
+    out, under = [], 0
     for k in node.kids:
-        render(k, depth, out, drops)
+        if k.has("title-gr-seq-level-1") or k.has("title-gr-seq-level-2") \
+                or k.has("oj-ti-grseq-1"):
+            text = " ".join(x.text for x in texts(k)).strip()
+            if RE_SUBDIVISION.match(text):
+                under = 0                    # a named section resets nesting
+            elif RE_BARE_MARKER.match(text):
+                render(k, depth, out, drops)
+                under = 1
+                continue
+        # A numbered paragraph owns the points that follow it. EUR-Lex
+        # hangs the points of a second subparagraph off the ARTICLE, as
+        # siblings of the paragraph they belong to - Article 6(3)'s (a)
+        # to (d) are marked up that way - and flat rendering turned them
+        # into article-level items the chunker then cited as "Article
+        # 6(a)", a paragraph that does not exist. A citation more precise
+        # than the text supports is this system's fabrication, not the
+        # model's, so the nesting has to be right here.
+        if any(s.tag == "span" and s.has("no-parag") for s in k.kids):
+            render(k, depth, out, drops)
+            under = 1
+            continue
+        render(k, depth + (under if structural(k) else 0), out, drops)
     return [line for line in out if line.strip()]
 
 

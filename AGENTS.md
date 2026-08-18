@@ -22,8 +22,11 @@ anything recorded there.**
   focused libraries are fine. The point is understanding the internals.
 - **Ask before adding any dependency, service, or infrastructure** that was
   not already agreed. Approved so far: LanceDB, BGE-M3 + bge-reranker-v2-m3
-  (HF cache on WSL ext4, never in this repo), openai client, python-dotenv,
-  Docling (ENISA PDFs only), uv.
+  (HF cache on WSL ext4, never in this repo) run through
+  **sentence-transformers**, openai client, python-dotenv, Docling (ENISA
+  PDFs only), uv. The lexical leg is LanceDB's own BM25, not BGE-M3's
+  sparse output (decisions.md D6). Fetch and convert remain stdlib-only —
+  every dependency here belongs to the query bucket.
 - **Everything executes in WSL2/Ubuntu** (`/mnt/d/projects/grc-rag`). Python
   on this machine is WSL-only. Package management: uv.
 - **Three import buckets, enforced by a check that runs before anything
