@@ -304,7 +304,10 @@ out-of-corpus eval questions into in-corpus ones. At that point the eval
 set needs new refusal rows and the floor needs re-measuring — not just a
 re-run.
 
-## Provenance
+## License and provenance
+
+The code is MIT ([LICENSE](LICENSE)). That covers the code only — the
+corpus is not the author's to license.
 
 The corpus is EU primary law reproduced from EUR-Lex, with `celex`,
 `source_url`, `source_sha256` and `version_date` in each file's front
