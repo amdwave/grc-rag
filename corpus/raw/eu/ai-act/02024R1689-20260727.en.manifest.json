@@ -1,0 +1,30 @@
+{
+  "schema": "grc-rag/fetch-manifest/1",
+  "source": "EUR-Lex",
+  "celex": "02024R1689-20260727",
+  "representation": "consolidated-html",
+  "language": "EN",
+  "requested_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1689-20260727",
+  "final_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1689-20260727",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at_utc": "2026-08-17T23:45:23Z",
+  "user_agent": "grc-rag/0.1 (personal research corpus; +https://github.com/amdwave/grc-rag)",
+  "sha256": "dcf7d6c5ba9f6619f545759b9600b8f42dba5dbfc3a45b4f54a21ab30a4c5380",
+  "sha256_normalized": "32df6567c98a006f9c1b0459026b98b41bf19c34838f93766fd36052e093d0fe",
+  "normalization": "data-dtconfig attribute removed (per-response Dynatrace RUM id; it changes on every fetch and is not document text)",
+  "bytes": 853875,
+  "raw_file": "02024R1689-20260727.en.html",
+  "doc_title": "Consolidated TEXT: 32024R1689 — EN — 27.07.2026",
+  "shape_problems": [],
+  "discovery": {
+    "landing_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689",
+    "current_consolidated": "02024R1689-20260727",
+    "consolidated_versions": [
+      "02024R1689-20240712",
+      "02024R1689-20260727"
+    ],
+    "status_line_agrees": true,
+    "doc_title": "Regulation - EU - 2024/1689 - EN - EUR-Lex"
+  }
+}

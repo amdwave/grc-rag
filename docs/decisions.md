@@ -122,3 +122,67 @@ was corrected against these constraints.
 **Trigger to revisit:** DeepSeek pricing/terms change materially (same
 trigger as register #19), or eval quality shows generation is the
 bottleneck — then swap backends through the adapter and re-run the eval.
+
+## D4 — The corpus is two documents, because the recitals are
+
+**Status:** decided 2026-08-17, during M2.
+
+**Context.** The plan said "fetch the AI Act, consolidated, English". At
+fetch time the consolidated representation
+(`02024R1689-20260727`, current after Regulation (EU) 2026/1744) turned
+out to contain **no recitals at all** — EUR-Lex consolidations carry the
+enacting terms and the annexes only. Measured, not assumed: zero `rct_`
+ids and zero occurrences of "whereas" in the consolidated HTML, against
+180 recitals in the original OJ publication. The recitals matter for this
+system: they are what an AI Act question about intent or scope is
+usually answered from.
+
+Three options: drop the recitals; take everything from the original OJ
+text and lose the amendments; or carry both.
+
+**Decision.** Both, as two files with two provenances.
+
+    corpus/eu/ai-act.md            enacting terms + annexes  02024R1689-20260727
+    corpus/eu/ai-act.recitals.md   recitals                  32024R1689
+
+- **One file per source document, never a merged file.** The two have
+  different CELEX ids, different dates and different legal status; a
+  single file would have to carry per-section provenance, and the first
+  time it was wrong a chunk would cite the current law for text that was
+  superseded. Front matter carries `celex`, `source_url`, `source_sha256`
+  and `version_date` per file, so every M3 chunk inherits a provenance
+  that is true for all of it.
+- **Paths are stable across consolidations.** The version lives in the
+  front matter, not the filename, so the next consolidation rewrites
+  `ai-act.md` in place and `git diff` shows exactly what the Commission
+  changed. That is the whole reason the markdown is versioned.
+- Recitals are not amended by amending acts — they belong to the act as
+  adopted — so the recitals file does not go stale when the enacting
+  terms are re-consolidated. The amending act's own recitals are a
+  separate document, and out of scope until there is a reason.
+
+**Cost accepted:** an M3 chunk from the recitals file is dated 2024-07-12
+while its neighbours in the enacting file are dated 2026-07-27. Citation
+rendering has to say which — that is a feature, not a wart.
+
+## D5 — The raw file is committed as served; the manifest carries two hashes
+
+**Status:** decided 2026-08-17, during M2.
+
+**Context.** Two fetches of the same unchanged act produce different
+bytes. Measured: EUR-Lex stamps a per-response Dynatrace RUM id into one
+`<script data-dtconfig="…">` attribute in the head, and nothing else in
+the document differs. A hash that changes on every fetch cannot answer
+the only question a fetch manifest exists to answer — has the source
+changed?
+
+**Decision.** The raw file is committed **exactly as served** — a
+normalised "raw" file is not raw, and provenance is the reason it is in
+git at all (D0). The manifest carries `sha256` of the bytes as served
+**and** `sha256_normalized` of those bytes with the telemetry attribute
+removed, plus a `normalization` field stating the rule in words.
+
+Comparing consolidations means comparing `sha256_normalized`. The
+verification that this is the right pair of numbers is in the fetch
+itself: two consecutive fetches differ in `sha256` and agree in
+`sha256_normalized`.
