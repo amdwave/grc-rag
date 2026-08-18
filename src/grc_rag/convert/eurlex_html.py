@@ -412,14 +412,73 @@ def points(body, depth, out, drops, marker):
     out.extend(lead)
 
 
+def span_of(cell, name):
+    """rowspan/colspan as a positive int; anything unreadable counts as 1."""
+    try:
+        return max(1, int(cell.attrs.get(name, "1")))
+    except (TypeError, ValueError):
+        return 1
+
+
 def table(node, depth, out, drops):
-    """A real table, as a markdown pipe table. Annex XIV is the only one."""
+    """A real table, as a markdown pipe table, with spans expanded.
+
+    rowspan and colspan are honoured rather than ignored. EUR-Lex writes
+    its sector annexes as spanned grids - NIS2 Annex I has a cell
+    spanning 17 rows - and reading each <tr>'s cells in order puts every
+    continuation row in the wrong column, left-shifted by however many
+    columns the spans above it occupy. The AI Act hid this: its only two
+    rowspans are in the 'Amended by' header table, which is dropped
+    before rendering, so the bug sat unexposed until a third instrument.
+
+    NEITHER STANDING CHECK CAN SEE THIS. The coverage table counts
+    characters, and every character is still emitted exactly once; the
+    sequence check compares order, and the order is unchanged. Only the
+    column assignment is wrong. That is a third defect class - structure -
+    and the reason these tables are read by eye at Gate A.
+
+A spanned cell's continuation cells are left EMPTY, and this was
+    not the first choice. Repeating the spanning text into every row it
+    covers gives a retrieval corpus better per-row context - each entity
+    row would carry its own sector and subsector. That version was
+    written, and `seqcheck-corpus.py` failed it with 25 splice runs,
+    correctly: repeated text IS text the source does not have at that
+    point, which is the shape of duplication the check exists to catch.
+    Weakening the instrument to admit a rendering preference is how a
+    check stops being one, so the preference lost. The column ALIGNMENT
+    was the defect; the repetition was taste.
+
+    The context is not actually lost: each chunk carries the annex in its
+    `parent_path`, and the table's header row travels with it.
+    """
     rows = []
+    pending = {}                     # column -> rows it still occupies
     for tr in [r for r in descendants(node) if r.tag == "tr"]:
-        cells = [inline(c, drops).replace("|", "\\|")
-                 for c in tr.kids if c.tag in ("td", "th")]
-        if any(cells):
-            rows.append(cells)
+        cells = [c for c in tr.kids if c.tag in ("td", "th")]
+        row, col, i = [], 0, 0
+        while i < len(cells) or any(k >= col for k in pending):
+            if col in pending:
+                row.append("")
+                if pending[col] <= 1:
+                    del pending[col]
+                else:
+                    pending[col] -= 1
+            elif i < len(cells):
+                cell = cells[i]
+                i += 1
+                text = inline(cell, drops).replace("|", "\\|")
+                rs, cs = span_of(cell, "rowspan"), span_of(cell, "colspan")
+                for j in range(cs):
+                    row.append(text if j == 0 else "")
+                    if rs > 1:
+                        pending[col] = rs - 1
+                    col += 1
+                continue
+            else:
+                row.append("")
+            col += 1
+        if any(c.strip() for c in row):
+            rows.append(row)
     if not rows:
         return
     width = max(len(r) for r in rows)

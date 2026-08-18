@@ -525,3 +525,96 @@ scored. Citation correctness was in fact judged on cited chunk ids plus
 rewritten to the instrument-qualified form, and the eval file was renamed
 `ai-act.eval.jsonl` → `corpus.eval.jsonl` (D9: the eval pair is
 corpus-wide, and the old name described half of what it now holds).
+
+## D12 — NIS2, the rowspan defect, and the third kind of wrong
+
+**Status:** decided 2026-08-18, during M8, after Gate A sign-off.
+
+**Context.** NIS2 (Directive (EU) 2022/2555) was chosen as the third
+instrument on an explicit prediction, recorded at the end of M7: GDPR is a
+sibling Regulation and needed no converter changes at all, so *a Directive
+is where the remaining assumptions will show*.
+
+**D4 generalizes a third time.** The consolidation `02022L2555-20221227`
+carries zero `rct_` ids and zero occurrences of "whereas" against 144
+recitals in the OJ text, so NIS2 is two documents with two provenances
+like the other two. 46 articles, 3 annexes, 9 chapters. Both parts
+converted clean on the first run — 0 unaccounted, 0 anomalies — and the
+independent cross-check held: 138,484 characters dropped as
+`not-this-part` from the OJ document against 139,430 emitted as enacting
+terms from the consolidation, a 946 gap in the same band as GDPR's 755.
+
+**The prediction was right and its reasoning was wrong.** Nothing about
+being a Directive broke anything. A Directive's closing formula is a
+numbered article — Article 46, "Addressees" — rather than the separate
+unnumbered block a Regulation ends with, and the converter handled that by
+correctly minting no formula section. What actually exposed a defect was
+the shape of the annexes, which is incidental to instrument type. A
+Regulation with sector tables would have done the same. Recorded because
+the next instrument should be chosen on the shape of its content, not on
+its legal form.
+
+**The defect: `rowspan` and `colspan` were never implemented.**
+
+| | rowspan attrs | largest | where they sit |
+|---|---|---|---|
+| NIS2 | 20 | 17 rows | Annex I/II sector tables — in the corpus |
+| EU AI Act | 2 | 2 | both inside the dropped "Amended by" header table |
+| GDPR | 0 | — | — |
+
+`table()` read each `<tr>`'s cells in order and padded short rows at the
+END, so every continuation row was left-shifted by however many columns
+the spans above it occupied. In NIS2's Annex I, "— Distribution system
+operators…" — a *Type of entity* — rendered in the *Sector* column. The
+bug is as old as the converter. It survived two instruments because the
+AI Act's only two spans are in apparatus dropped before rendering.
+
+Fixed by filling the grid properly, tracking which columns each span still
+occupies. **`ai-act.md` and `gdpr.md` are byte-identical after the fix**,
+which is the check that it repairs NIS2 without disturbing what was
+already correct.
+
+**A third kind of wrong, which neither standing check can see.** The
+coverage table counts characters and every character was emitted exactly
+once. `seqcheck-corpus.py` compares order and the order was unchanged.
+Only the *column assignment* was wrong. The two instruments this project
+relies on see a multiset and a sequence respectively; a spanned-cell
+misalignment is neither. Structure is a third class, and it is currently
+caught only by a human reading the tables at Gate A.
+
+**The check disagreed with the design, and the design changed.** The first
+fix repeated a spanning cell's text into every row it covered, on the
+argument that a retrieval corpus wants each entity row to carry its own
+sector. `seqcheck` failed it with 25 splice runs — correctly: repeated
+text is text the source does not have at that point, which is exactly the
+duplication shape the check exists to find. Continuation cells are now
+left empty and only the alignment is repaired. The alternative was to
+teach seqcheck about intentional duplication, which is the "tuning the
+instrument until it agrees" failure the check's own comments warn against.
+The context is not lost in practice: each chunk carries the annex in its
+`parent_path` and the header row travels with it.
+
+**Decision: no third standing check, for now.** A structural check that
+fires only on tables is a large amount of machinery for one shape, and the
+project already has the honest alternative — Gate A exists precisely
+because the conversion reports are meant to be read by eye, and this
+defect was found that way, on the first instrument that had it.
+
+**Cost accepted, and stated plainly:** a table misalignment in a future
+instrument will pass every automated check and reach the corpus if nobody
+looks. That is a real hole, not a covered case.
+
+**Trigger to revisit:** a fourth instrument with heavy tables, or any
+table defect that reaches the corpus and is found after Gate A rather than
+at it. Either means eye-reading did not scale, and the check has to be
+built. A cheap first version exists in outline: re-parse each rendered
+markdown table and assert its cell count against the source grid's
+expanded width times height — an independent recomputation, in the spirit
+of seqcheck rather than an assertion by the converter about itself.
+
+**Not done here, deliberately:** NIS2 is converted but not chunked,
+indexed or evaluated, exactly as M6 left GDPR. That is M9, and it fires
+D10's trigger — a third instrument moves both dense-score distributions,
+so the floor must be re-measured rather than assumed, and the eval set
+needs NIS2 questions plus replacements for q17, whose subject is now
+in-corpus.

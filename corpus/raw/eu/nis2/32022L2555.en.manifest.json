@@ -1,0 +1,33 @@
+{
+  "schema": "grc-rag/fetch-manifest/1",
+  "source": "EUR-Lex",
+  "celex": "32022L2555",
+  "representation": "oj-html",
+  "language": "EN",
+  "requested_url": "https://publications.europa.eu/resource/celex/32022L2555",
+  "final_url": "http://publications.europa.eu/resource/cellar/9b84d482-85bd-11ed-9887-01aa75ed71a1.0006.03/DOC_1",
+  "http_status": 200,
+  "content_type": "application/xhtml+xml;charset=UTF-8",
+  "fetched_at_utc": "2026-08-18T15:07:16Z",
+  "user_agent": "grc-rag/0.1 (personal research corpus; +https://github.com/amdwave/grc-rag)",
+  "access_route": "cellar",
+  "sha256": "6ee66d5c419d9a056fb98d94083cacf9b818803bd6b416435718e0d4919cb589",
+  "sha256_normalized": "6ee66d5c419d9a056fb98d94083cacf9b818803bd6b416435718e0d4919cb589",
+  "normalization": "data-dtconfig attribute removed (per-response Dynatrace RUM id; it changes on every fetch and is not document text)",
+  "stated_consolidation": null,
+  "bytes": 702913,
+  "raw_file": "32022L2555.en.html",
+  "doc_title": "L_2022333EN.01008001.xml",
+  "shape_problems": [],
+  "discovery": {
+    "landing_url": null,
+    "discovery_route": "cellar-sparql",
+    "sparql_endpoint": "https://publications.europa.eu/webapi/rdf/sparql",
+    "current_consolidated": "02022L2555-20221227",
+    "consolidated_versions": [
+      "02022L2555-20221227"
+    ],
+    "status_line_agrees": null,
+    "doc_title": null
+  }
+}

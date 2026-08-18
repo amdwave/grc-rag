@@ -22,6 +22,8 @@ RAW_AI_ENACTING=corpus/raw/eu/ai-act/02024R1689-20260727.en.html
 RAW_AI_RECITALS=corpus/raw/eu/ai-act/32024R1689.en.html
 RAW_GDPR_ENACTING=corpus/raw/eu/gdpr/02016R0679-20160504.en.html
 RAW_GDPR_RECITALS=corpus/raw/eu/gdpr/32016R0679.en.html
+RAW_NIS2_ENACTING=corpus/raw/eu/nis2/02022L2555-20221227.en.html
+RAW_NIS2_RECITALS=corpus/raw/eu/nis2/32022L2555.en.html
 
 run_into() {
     local d=$1
@@ -38,15 +40,21 @@ run_into() {
     "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_GDPR_RECITALS" \
         --part recitals --instrument "GDPR" \
         --out "$d/gdpr.recitals.md" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_NIS2_ENACTING" \
+        --part enacting --instrument "NIS2" \
+        --out "$d/nis2.md" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_NIS2_RECITALS" \
+        --part recitals --instrument "NIS2" \
+        --out "$d/nis2.recitals.md" >/dev/null || return 1
     # Chunking is in the same bucket and makes the same promise. It runs
     # from the COMMITTED markdown, not from the fresh conversion above,
     # so a difference here is the chunker's and not an echo of the
     # converter's.
     #
-    # All four documents as of M7. In M6 the GDPR lines were absent on
-    # purpose: it was converted but not chunked, and comparing against
-    # committed chunk files that did not exist would have failed for the
-    # wrong reason.
+    # The AI Act and GDPR as of M7. NIS2 is converted but NOT chunked -
+    # M8 stops at Gate A, exactly as M6 did for GDPR - so its chunk lines
+    # are absent on purpose; comparing against committed chunk files that
+    # do not exist would fail for the wrong reason.
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md \
         --out-dir "$d" >/dev/null || return 1
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md \
@@ -64,6 +72,7 @@ fail=0
 for f in ai-act.md ai-act.report.md ai-act.recitals.md \
          ai-act.recitals.report.md \
          gdpr.md gdpr.report.md gdpr.recitals.md gdpr.recitals.report.md \
+         nis2.md nis2.report.md nis2.recitals.md nis2.recitals.report.md \
          ai-act.chunks.jsonl ai-act.chunks.txt ai-act.chunks.report.md \
          ai-act.recitals.chunks.jsonl ai-act.recitals.chunks.txt \
          ai-act.recitals.chunks.report.md \
@@ -85,7 +94,8 @@ done
 # deterministic and no longer matches the corpus in git means the corpus
 # was not regenerated after the last code change.
 echo
-for f in ai-act.md ai-act.recitals.md gdpr.md gdpr.recitals.md; do
+for f in ai-act.md ai-act.recitals.md gdpr.md gdpr.recitals.md \
+         nis2.md nis2.recitals.md; do
     if cmp -s "$TMP/a/$f" "corpus/eu/$f"; then
         echo "  corpus/eu/$f matches a fresh conversion"
     else

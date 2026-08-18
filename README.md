@@ -3,11 +3,13 @@
 RAG over regulatory primary sources — the actual text of the instruments,
 answered with a citation that can be checked against the article.
 
-Two instruments, end to end: the EU AI Act and the GDPR, **1,349 chunks
-over four source documents**, a 38-question eval the query path is graded
+Two instruments end to end — the EU AI Act and the GDPR, **1,349 chunks
+over four source documents** — a 38-question eval the query path is graded
 against, and three mechanical checks standing between the model and a
-plausible fabrication. *(Every count and result below is as of
-2026-08-18.)*
+plausible fabrication. A third, **NIS2, is fetched and converted** (two
+further documents, 46 articles and 144 recitals) but deliberately not yet
+chunked, indexed or evaluated, so every number below still describes the
+first two. *(Every count and result below is as of 2026-08-18.)*
 
 The second instrument is what makes the citation contract load-bearing
 rather than decorative: **Article 15 is accuracy and robustness in the AI
@@ -165,6 +167,7 @@ it wrong.
 | [D9](docs/decisions.md#d9--gdpr-is-two-documents-too-and-the-converter-was-never-ai-act-specific) | GDPR is two documents too, and the converter was never AI-Act-specific |
 | [D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact) | The gate floor after GDPR: the clean gap was a small-sample artifact |
 | [D11](docs/decisions.md#d11--the-citation-names-the-instrument-and-the-eval-finally-checks-it) | The citation names the instrument, and the eval finally checks it |
+| [D12](docs/decisions.md#d12--nis2-the-rowspan-defect-and-the-third-kind-of-wrong) | NIS2, the rowspan defect, and the third kind of wrong |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -289,6 +292,18 @@ The GDPR half:
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/gdpr.md
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/gdpr.recitals.md
 
+NIS2, converted but not yet chunked:
+
+    uv run python -m grc_rag.fetch.eurlex --celex 32022L2555 \
+        --consolidated --original --expect 02022L2555-20221227 \
+        --out corpus/raw/eu/nis2
+    uv run python -m grc_rag.convert.eurlex_html \
+        --raw corpus/raw/eu/nis2/02022L2555-20221227.en.html \
+        --part enacting --instrument "NIS2" --out corpus/eu/nis2.md
+    uv run python -m grc_rag.convert.eurlex_html \
+        --raw corpus/raw/eu/nis2/32022L2555.en.html \
+        --part recitals --instrument "NIS2" --out corpus/eu/nis2.recitals.md
+
 The fetcher defaults to the Publications Office's Cellar service rather
 than EUR-Lex's human site, which answers automated requests with a bot
 challenge; `--source legal-content` selects the old route, and the two
@@ -323,6 +338,14 @@ them.
   the generator by design and the grounding prompt is what refuses it
   ([D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact)). Of the two errors, only a false refusal is
   silent — that asymmetry is the whole argument.
+- **Nothing automated checks table STRUCTURE.** The coverage table sees a
+  multiset of characters and the sequence check sees their order; a cell
+  landing in the wrong column is neither. NIS2's annexes arrived with
+  `rowspan` up to 17 and the converter had never implemented spans, so
+  entity names rendered under *Sector* — every automated check passed.
+  It was caught by reading the table at Gate A, which is currently the
+  only thing that would catch the next one
+  ([D12](docs/decisions.md#d12--nis2-the-rowspan-defect-and-the-third-kind-of-wrong)).
 - **The verifier checks quotations, not paraphrase.** An unquoted claim
   is held up by the grounding prompt and the cited-id check alone.
   Quoting is what makes a claim mechanically checkable, which is why the

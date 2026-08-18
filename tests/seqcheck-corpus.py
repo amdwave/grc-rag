@@ -73,6 +73,14 @@ PARTS = {
         "raw": "corpus/raw/eu/gdpr/32016R0679.en.html",
         "md": "corpus/eu/gdpr.recitals.md",
     },
+    "nis2:enacting": {
+        "raw": "corpus/raw/eu/nis2/02022L2555-20221227.en.html",
+        "md": "corpus/eu/nis2.md",
+    },
+    "nis2:recitals": {
+        "raw": "corpus/raw/eu/nis2/32022L2555.en.html",
+        "md": "corpus/eu/nis2.recitals.md",
+    },
 }
 
 # The apparatus the converter drops by name. Removed here too, by a
