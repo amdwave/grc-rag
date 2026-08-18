@@ -3,15 +3,17 @@
 RAG over regulatory primary sources — the actual text of the instruments,
 answered with a citation that can be checked against the article.
 
-Phase 1 is the EU AI Act, end to end: **871 chunks over two source
-documents**, a 20-question eval the query path is graded against, and
-three mechanical checks standing between the model and a plausible
-fabrication. *(Counts and eval results below are as of 2026-08-17.)*
+Two instruments, end to end: the EU AI Act and the GDPR, **1,349 chunks
+over four source documents**, a 38-question eval the query path is graded
+against, and three mechanical checks standing between the model and a
+plausible fabrication. *(Every count and result below is as of
+2026-08-18.)*
 
-Phase 2 has started: GDPR is fetched and converted — **two further
-documents, 99 articles and 173 recitals, as of 2026-08-18** — and is
-deliberately not chunked, indexed or evaluated yet. Every number above
-still describes the AI Act alone.
+The second instrument is what makes the citation contract load-bearing
+rather than decorative: **Article 15 is accuracy and robustness in the AI
+Act and the right of access in the GDPR**, so a citation that does not
+name the act is not checkable
+([D11](docs/decisions.md#d11--the-citation-names-the-instrument-and-the-eval-finally-checks-it)).
 
 No LlamaIndex, no LangChain, no RAG framework — plain Python over
 LanceDB, sentence-transformers and an OpenAI-compatible client. That is
@@ -41,7 +43,7 @@ flowchart TD
         direction TB
         R["retrieve<br/>dense + BM25, RRF-fused, top 20"]
         RR["rerank<br/>bge-reranker-v2-m3, keep 5"]
-        G{"GATE<br/>best dense cosine >= 0.62?"}
+        G{"GATE<br/>best dense cosine >= 0.595?"}
         REF["refusal string<br/>no model request is made"]
         GEN["generate<br/>DeepSeek, temperature 0<br/>grounding prompt: the document wins"]
         V["VERIFY<br/>every quoted span verbatim<br/>in a retrieved chunk"]
@@ -72,10 +74,12 @@ answer is a fixed refusal string and **no request is sent**.
 *Prevents:* an out-of-corpus question coming back as a fluent answer
 assembled from the model's training data, wearing citations to whatever
 the retriever happened to return.
-The floor is 0.62, tuned from the eval set's measured in-corpus and
+The floor is 0.595, tuned from the eval set's measured in-corpus and
 out-of-corpus distributions and recorded with them in
-[D7](docs/decisions.md#d7--relevance-gate-floor-062-on-the-dense-cosine-alone);
-an untuned floor is decoration.
+[D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact); an untuned floor is decoration. It is placed
+**below every in-corpus question** rather than midway between the
+clusters, because with two instruments the clusters overlap and only one
+of the two possible errors is silent — see the limitations.
 
 **2. Quotes are verified verbatim against the chunks that were
 retrieved** — not merely against the corpus, which checks the citation
@@ -98,25 +102,34 @@ recital passed off as current consolidated law.
 
 ## What it scores
 
-Twenty questions in six kinds — direct, neighbour-adversary, recital,
-relocated, repealed, unanswerable — authored and signed off **before**
-anything was tuned against them. Question design, schema and the two run
-properties worth knowing are in [eval/README.md](eval/README.md); the
-per-question run is in
-[eval/ai-act.eval.report.md](eval/ai-act.eval.report.md).
+Thirty-eight questions in seven kinds — direct, neighbour-adversary,
+recital, relocated, cross-instrument, repealed, unanswerable — authored
+and signed off **before** anything was tuned against them. Question
+design, schema and the run properties worth knowing are in
+[eval/README.md](eval/README.md); the per-question run is in
+[eval/corpus.eval.report.md](eval/corpus.eval.report.md).
 
 | metric | result | denominator |
 | --- | --- | --- |
-| retrieval hit rate @5 | **14/14** | the 14 answerable questions |
-| citation correctness | **14/14** | same 14, including the right date basis |
-| refusal correctness | **6/6** | 4 refused at the gate, 2 in generation |
+| retrieval hit rate @5 | **27/28** | the 28 answerable questions |
+| citation correctness | **26/28** | same 28, including instrument and date basis |
+| refusal correctness | **10/10** | 4 refused at the gate, 6 in generation |
+| verification clean | **35/38** | every question |
 
-Run 2026-08-17 against `deepseek-chat` at temperature 0. That refusal
-split is load-bearing: out-of-corpus questions must be refused *by the
-gate* with no model call, while questions about provisions the 2026
-consolidation repealed retrieve **well** and must be refused *by the
-generator*. A floor tuned high enough to catch the second group would be
-tuned against the wrong thing.
+Run 2026-08-18 against `deepseek-chat` at temperature 0. That refusal
+split is load-bearing: an out-of-corpus question should be refused *by
+the gate* with no model call, while questions about repealed provisions —
+and, since M7, near-domain questions the dense score cannot separate —
+retrieve **well** and must be refused *by the generator*. A floor tuned
+high enough to catch those would be tuned against the wrong thing.
+
+The four misses are diagnosed rather than rounded off. q22 answered the
+GDPR's lawful bases correctly from Recitals 40 and 46 while the enacting
+Article 6(1) never entered the top five — a real retrieval finding, and
+the answer key was **not** widened afterwards to make it pass. q29 is an
+over-refusal: the right recital was retrieved and the generator declined
+anyway. q28 and q30 are the verifier catching quotes the model elided
+with an ellipsis, which is the verifier working.
 
 **The worked example.** Drafting eval question q01 — before any tuning
 existed — caught a live corpus defect: the converter was treating
@@ -150,6 +163,8 @@ it wrong.
 | [D7](docs/decisions.md#d7--relevance-gate-floor-062-on-the-dense-cosine-alone) | Relevance-gate floor: 0.62 on the dense cosine alone |
 | [D8](docs/decisions.md#d8--fetching-through-cellar-because-eur-lexs-human-site-challenges-robots) | Fetching through Cellar, because EUR-Lex's human site challenges robots |
 | [D9](docs/decisions.md#d9--gdpr-is-two-documents-too-and-the-converter-was-never-ai-act-specific) | GDPR is two documents too, and the converter was never AI-Act-specific |
+| [D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact) | The gate floor after GDPR: the clean gap was a small-sample artifact |
+| [D11](docs/decisions.md#d11--the-citation-names-the-instrument-and-the-eval-finally-checks-it) | The citation names the instrument, and the eval finally checks it |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -260,7 +275,7 @@ every check. This is how it was produced:
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md
 
-Phase 2's GDPR half, converted but not yet chunked:
+The GDPR half:
 
     uv run python -m grc_rag.fetch.eurlex --celex 32016R0679 \
         --consolidated --original --expect 02016R0679-20160504 \
@@ -271,6 +286,8 @@ Phase 2's GDPR half, converted but not yet chunked:
     uv run python -m grc_rag.convert.eurlex_html \
         --raw corpus/raw/eu/gdpr/32016R0679.en.html \
         --part recitals --instrument "GDPR" --out corpus/eu/gdpr.recitals.md
+    uv run python -m grc_rag.convert.chunk --doc corpus/eu/gdpr.md
+    uv run python -m grc_rag.convert.chunk --doc corpus/eu/gdpr.recitals.md
 
 The fetcher defaults to the Publications Office's Cellar service rather
 than EUR-Lex's human site, which answers automated requests with a bot
@@ -294,14 +311,18 @@ invisible in the totals and obvious on sight.
 Stated because a system whose limits are unwritten gets trusted past
 them.
 
-- **One instrument, one language.** The EU AI Act in English, 871 chunks
-  — small enough that retrieval quality here says little about how this
-  behaves at ten instruments.
-- **The gate's floor rests on four out-of-corpus samples**, separated by
-  a real but narrow gap (0.0113). It is permissive at the margin by
-  construction: a near-domain question can clear 0.62 and reach the
-  generator, whose grounding prompt is then the second line of defence
-  ([D7](docs/decisions.md#d7--relevance-gate-floor-062-on-the-dense-cosine-alone)).
+- **Two instruments, one language.** The EU AI Act and the GDPR in
+  English, 1,349 chunks — small enough that retrieval quality here says
+  little about how this behaves at ten instruments.
+- **The gate cannot separate near-domain questions, and no longer
+  pretends to.** With eight out-of-corpus rows instead of four, the
+  in-corpus and out-of-corpus dense-score clusters **overlap**: a Cyber
+  Resilience Act question scored 0.6413, above three genuinely answerable
+  ones. M4's clean gap was a four-sample artifact. The floor now sits
+  below every in-corpus question, so half the out-of-corpus set reaches
+  the generator by design and the grounding prompt is what refuses it
+  ([D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact)). Of the two errors, only a false refusal is
+  silent — that asymmetry is the whole argument.
 - **The verifier checks quotations, not paraphrase.** An unquoted claim
   is held up by the grounding prompt and the cited-id check alone.
   Quoting is what makes a claim mechanically checkable, which is why the
@@ -313,7 +334,7 @@ them.
   refusal across identical runs (eval README). Temperature 0 reduces
   variance; it is not the groundedness guarantee. The verifier and the
   citation contract are.
-- **Twenty questions, one author.** The eval is a regression instrument,
+- **Thirty-eight questions, one author.** The eval is a regression instrument,
   not a benchmark, and it grades retrieval, citation and refusal — not
   whether the answer is good legal analysis.
 - **No CI, no HTTP service, manual commits**, all by design (D1, D2).

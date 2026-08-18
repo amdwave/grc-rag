@@ -34,11 +34,13 @@ THE PIPELINE, and where each guarantee lives
              own [chunk-id] markers strip from both sides; quotes
              extract segment-wise, never by naive left-to-right pairing
              (legal text nests quotes).
-  cite       anchor honesty: the rendered citation is the chunk's own
-             `citation` field plus its date basis. The chunker decided
-             the precision; nothing here re-derives it. A recital cites
-             the act as published (2024), an enacting chunk the
-             consolidation (2026) - saying which is the point (D4).
+  cite       anchor honesty: the rendered citation is the instrument,
+             the chunk's own `citation` field, and its date basis. The
+             chunker decided the precision; nothing here re-derives it.
+             A recital cites the act as published, an enacting chunk the
+             consolidation - saying which is the point (D4). The
+             instrument is named because "Article 15" exists in both the
+             AI Act and GDPR and means different things in each.
 """
 import json
 import os
@@ -57,10 +59,21 @@ TABLE = "chunks"
 REFUSAL = "The corpus does not address this."
 
 # Tuned against the eval set's in-corpus vs out-of-corpus dense-score
-# distributions (docs/decisions.md D7): out-of-corpus max 0.6151,
-# in-corpus min 0.6264, midpoint 0.62. The gap is real but narrow -
-# re-run `cli.py floor` after ANY corpus, chunking or embedder change.
-DEFAULT_FLOOR = 0.62
+# distributions (docs/decisions.md D10, superseding D7). Placed BELOW
+# every in-corpus question (min 0.6039) rather than at a midpoint: with
+# two instruments the clusters overlap, and of the two errors only a
+# false refusal is silent - the user is told the corpus does not cover
+# something it does. Four near-domain out-of-corpus questions therefore
+# reach the generator by design; the grounding prompt is what refuses
+# them. Re-run `cli.py floor` after ANY corpus, chunking or embedder
+# change.
+#
+# 0.595 is the midpoint of the post-reclassification gap
+# (0.5864 .. 0.6039), the same method D7 used. The binding constraint
+# is the one above - below every in-corpus question - and the midpoint
+# is the tie-break within it: 0.60 also satisfied the constraint but
+# left only 0.0039 of margin under the lowest real question.
+DEFAULT_FLOOR = 0.595
 
 GROUNDING_PROMPT = """\
 You are a compliance research assistant answering questions from an
@@ -95,6 +108,7 @@ documents provided below. No outside knowledge, no training-data recall.
 class Source:
     """One retrieved chunk plus the scores that put it there."""
     id: str
+    instrument: str
     citation: str
     parent_path: str
     date_basis: str
@@ -233,14 +247,25 @@ def verify(answer_text, sources, min_len=20):
 # -- citation rendering ------------------------------------------------------
 
 def cite(source):
-    """The chunk's own citation string plus the date claim it can honestly
-    make. `date_basis` decides the wording: the enacting text is current
-    AS OF its consolidation; a recital is the act AS PUBLISHED, and
-    rendering it with the consolidation's date would claim a currency the
-    recitals do not have (D4)."""
+    """The instrument, the chunk's own citation string, and the date claim
+    it can honestly make.
+
+    `date_basis` decides the wording: the enacting text is current AS OF
+    its consolidation; a recital is the act AS PUBLISHED, and rendering
+    it with the consolidation's date would claim a currency the recitals
+    do not have (D4).
+
+    The instrument is named because the corpus stopped being one act.
+    "Article 15" is the right of access in GDPR and accuracy and
+    robustness in the AI Act - both exist, and a citation that does not
+    say which is not checkable against the article, which is the whole
+    contract. Until M7 the two were told apart only by the consolidation
+    date happening to differ, which is an accident rather than a design.
+    """
+    where = f"{source.instrument}, {source.citation}"
     if source.date_basis == "consolidation":
-        return f"{source.citation} (consolidated text as of {source.version_date})"
-    return f"{source.citation} (act as published, {source.version_date})"
+        return f"{where} (consolidated text as of {source.version_date})"
+    return f"{where} (act as published, {source.version_date})"
 
 
 # -- the engine --------------------------------------------------------------
@@ -263,7 +288,8 @@ class Engine:
     # -- retrieval ----------------------------------------------------------
 
     def _source(self, row, dense=0.0):
-        return Source(id=row["id"], citation=row["citation"],
+        return Source(id=row["id"], instrument=row["instrument"],
+                      citation=row["citation"],
                       parent_path=row["parent_path"],
                       date_basis=row["date_basis"],
                       version_date=row["version_date"],

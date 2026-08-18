@@ -8,7 +8,7 @@
     python -m grc_rag.query.cli sentinel            context-integrity round-trip
     python -m grc_rag.query.cli selftest            offline verifier checks
 
-`floor` and `eval` read eval/ai-act.eval.jsonl - a named file, because
+`floor` and `eval` read eval/corpus.eval.jsonl - a named file, because
 this repo does not glob. `.env` supplies DEEPSEEK_API_KEY via dotenv;
 the key is never printed, and no command echoes config that contains it.
 """
@@ -22,8 +22,11 @@ from grc_rag.query.engine import (
     REFUSAL, Answer, Engine, cite, cited_ids, extract_quotes, load_eval,
     normalize, verify)
 
-EVAL_FILE = "eval/ai-act.eval.jsonl"
-EVAL_REPORT = "eval/ai-act.eval.report.md"
+# Corpus-wide, not per-instrument: one eval set spans every act in the
+# index, because the questions that matter most are the ones that could
+# be answered from the wrong one (D9).
+EVAL_FILE = "eval/corpus.eval.jsonl"
+EVAL_REPORT = "eval/corpus.eval.report.md"
 
 SENTINEL = "XYZZY-PLUGH-7439"
 
@@ -134,12 +137,20 @@ def cmd_eval(eng, path, report_path):
 
     Hit@5 is judged on what the model was actually given (the reranked
     keep-set). Citation correctness is judged on the ids the answer text
-    cites: at least one must be an expected chunk, and its rendered
-    citation must carry the expected date basis - a right article under
-    a wrong provenance is not a correct citation here (D4).
+    cites: at least one must be an expected chunk, its rendered citation
+    must carry the expected date basis - a right article under a wrong
+    provenance is not a correct citation here (D4) - and that rendered
+    citation must read as `expected_citation` says.
+
+    That last clause looks redundant beside the id check and is not: the
+    id check passes whatever the renderer prints, so it is blind to the
+    citation contract itself. Until M7 `cite()` emitted "Article 37" for
+    both acts, and "Article 15" names a different provision in each -
+    this check fails on that renderer, which is what makes it a check
+    rather than a restatement.
     """
     qs = load_eval(path)
-    lines = ["# Eval report - EU AI Act (M4)", ""]
+    lines = ["# Eval report - EU AI Act + GDPR", ""]
     hit = cit = ver = 0
     n_ans = 0
     refusal_rows = []
@@ -164,11 +175,12 @@ def cmd_eval(eng, path, report_path):
                     if s and s.id in q["expected_chunk_ids"]]
             basis_ok = any(s.date_basis == q["expected_date_basis"]
                            for s in good)
+            cite_ok = any(q["expected_citation"] in cite(s) for s in good)
             # An answer-question scores only when it was ANSWERED - a
             # refusal with a polite citation is a miss, which the first
             # eval run scored "ok" and thereby hid.
             row["citation"] = (a.mode == "answered" and bool(good)
-                               and basis_ok)
+                               and basis_ok and cite_ok)
             hit += row["hit@5"]
             cit += row["citation"]
             row["ok"] = row["hit@5"] and row["citation"]
@@ -274,7 +286,8 @@ def cmd_selftest(with_models):
     class S:
         def __init__(self, **kw):
             self.__dict__.update(kw)
-    src = S(id="ai-act#art_15(4)", citation="Article 15(4)",
+    src = S(id="ai-act#art_15(4)", instrument="EU AI Act",
+            citation="Article 15(4)",
             parent_path="", date_basis="consolidation",
             version_date="2026-07-27",
             body="High-risk AI systems shall be as resilient as possible "
@@ -311,10 +324,10 @@ def cmd_selftest(with_models):
     check("altered word inside quote still fails",
           [bool(h) for _, h in verb], [False])
     check("consolidation citation", cite(src),
-          "Article 15(4) (consolidated text as of 2026-07-27)")
+          "EU AI Act, Article 15(4) (consolidated text as of 2026-07-27)")
     src.date_basis, src.version_date = "publication", "2024-07-12"
     check("publication citation", cite(src),
-          "Article 15(4) (act as published, 2024-07-12)")
+          "EU AI Act, Article 15(4) (act as published, 2024-07-12)")
     check("cited ids in order",
           cited_ids("see [ai-act#art_1] then [ai-act#rct_24] and "
                     "[ai-act#art_1] again"),

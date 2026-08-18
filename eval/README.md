@@ -1,24 +1,32 @@
-# Eval set — EU AI Act (Phase 1, M4)
+# Eval set — EU AI Act + GDPR
 
-`ai-act.eval.jsonl` is the answer key the query path is graded against — and,
+`corpus.eval.jsonl` is the answer key the query path is graded against — and,
 after ⛔ Gate B sign-off, tuned against. It is data, Class A, git-tracked
-(decisions.md D0). Twenty questions, one JSON object per line.
+(decisions.md D0). Thirty-eight questions, one JSON object per line.
 
-**Status: approved at ⛔ Gate B on 2026-08-17; the gate floor (decisions.md D7)
-was tuned against it afterwards, in that order.**
+One file for the whole corpus, not one per instrument: the questions that
+matter most here are the ones that could be answered from the wrong act, and
+those belong to no single instrument (decisions.md D9).
+
+**Status: twenty questions approved at ⛔ Gate B on 2026-08-17 (floor tuned
+after, as D7); extended to thirty-eight and re-approved at ⛔ Gate B on
+2026-08-18, with the floor re-measured after that (D10). In both cases the
+set was fixed before anything was tuned against it.**
 
 ## Why these questions
 
-Five kinds, per the M4 brief, plus one that the corpus itself forced:
+Five kinds from the M4 brief, one the corpus forced in M4, and one that
+only became possible in M7 when a second act arrived:
 
 | kind | n | what it tests |
 |---|---|---|
-| `direct` | 6 | one clearly correct unit; spread across scope, penalties, transparency, annexes, registration, GPAI |
-| `neighbour_adversary` | 4 | questions whose surface vocabulary points at the wrong neighbouring article — what the lexical leg and reranker exist for |
-| `recital` | 3 | answered by the recitals file, which carries the 2024 as-published provenance while enacting neighbours carry the 2026 consolidation — the provenance-honest-citation test (D4) |
+| `direct` | 12 | one clearly correct unit; across scope, penalties, transparency, annexes, registration, GPAI, and on the GDPR side breach timing, lawful bases, fine tiers, DPIA trigger, transfers, DPO |
+| `neighbour_adversary` | 7 | questions whose surface vocabulary points at the wrong neighbouring article — what the lexical leg and reranker exist for. GDPR's are 18-not-17, 34-not-33, 20-not-15 |
+| `recital` | 5 | answered by a recitals file, which carries the as-published provenance while enacting neighbours carry the consolidation — the provenance-honest-citation test (D4), now run on both acts |
 | `relocated` | 1 | Regulation (EU) 2026/1744 moved a provision (old 10(5) → new 4a); parametric memory answers with the old number, the corpus with the new — corpus must win |
+| `cross_instrument` | 3 | the same subject, or the same article NUMBER, live in both acts. q31 automated decisions (GDPR 22, decoys AI Act 86/14), q32 fundamental-rights assessment (AI Act 27, decoy GDPR 35), q33 right of access (GDPR 15, decoy AI Act 15 — same number, different provision). Retrieving the right act is the test |
 | `repealed` | 2 | provisions the 2026 consolidation no longer contains (Article 10(5) by number, Annex I point 1); the honest output is a refusal or redirect **from the generator**, because retrieval legitimately succeeds |
-| `unanswerable` | 4 | out-of-corpus (NIS2, DORA, GDPR, ISO 42001), all near-domain on purpose; the gate must refuse them on the dense score |
+| `unanswerable` | 8 | out-of-corpus (NIS2, DORA, ePrivacy, Data Act, CRA, ISO 42001, ISO 27001, HIPAA), all near-domain on purpose. Four are caught by the gate; four are not, and refuse at generation instead — see the floor section |
 
 ## Fields
 
@@ -28,7 +36,12 @@ Five kinds, per the M4 brief, plus one that the corpus itself forced:
 - `expected_chunk_ids` — any-of set for retrieval hit@k. Empty for refusals.
 - `expected_citation` — string the rendered citation must contain, at the
   precision the chunk's own `citation` field supports (anchor honesty: never
-  grade for more precision than the chunk carries).
+  grade for more precision than the chunk carries). It names the instrument
+  (`GDPR, Article 15(1)`) because "Article 15" is a different provision in
+  each act. **This field was inert until M7** — the README claimed it was
+  scored and no code read it; it is now checked against the rendered
+  citation, which is what makes the instrument part of the contract testable
+  rather than merely printed.
 - `expected_date_basis` — `consolidation` (current **as of** 2026-07-27) or
   `publication` (the act **as published**, 2024-07-12). A rendered citation
   that shows a date must say which (D4). Recital questions are the live test.
@@ -49,28 +62,58 @@ Five kinds, per the M4 brief, plus one that the corpus itself forced:
 1. **Retrieval hit rate @ k=5** — after rerank: any `expected_chunk_ids`
    member in the top 5. Denominator: the 14 questions with non-empty
    `expected_chunk_ids`.
-2. **Citation correctness** — final answer cites `expected_citation` (and on
-   dated renderings, the right `date_basis`). Same denominator.
+2. **Citation correctness** — the answer cites a chunk id in
+   `expected_chunk_ids`, that chunk's `date_basis` matches, **and** its
+   rendered citation contains `expected_citation`. Same denominator. The
+   third clause is not a restatement of the first: the id check passes
+   whatever the renderer prints, so only this one fails if the renderer
+   stops naming the instrument.
 3. **Refusal correctness** — the 6 `refuse` questions, split by
    `refusal_source`: 4 must refuse at the gate, 2 must pass the gate and
    refuse in generation.
 
-## Floor tuning (step 5)
+## Floor tuning, and what M7 measured
 
-In-corpus distribution: the 14 `answer` questions. Out-of-corpus: the 4
-`gate_expectation: refuse` questions. q19 (GDPR) is deliberately the hardest
-separator — the AI Act text cites Regulation (EU) 2016/679 constantly. If the
-distributions overlap there, record the overlap and the chosen trade-off in
-decisions.md; do not quietly move the floor until q15/q16 start refusing at
-the gate, which would mask the generation-honesty test.
+In-corpus distribution: every `gate_expectation: pass` question. Out-of-corpus:
+every `gate_expectation: refuse` one. Run `python -m grc_rag.query.cli floor`.
 
-## Two run properties, observed during M4
+**M4's clean gap was a four-sample artifact.** With GDPR in the corpus and
+eight out-of-corpus rows instead of four, the clusters **overlap**: the Cyber
+Resilience Act question reached 0.6413, above three genuinely answerable
+questions (lowest in-corpus 0.6039). No threshold separated them. That is the
+honest measure of how well a dense cosine discriminates near-domain questions,
+and D7 predicted it in words ("permissive at the margin") on a sample too
+small to show it.
+
+The trade-off chosen, and why (decisions.md D10): the floor sits **below every
+in-corpus question**, because of the two errors only a false refusal is
+silent — the user is told the corpus does not cover something it does, and
+cannot tell that is wrong. Four near-domain out-of-corpus questions therefore
+reach the generator, whose grounding prompt refuses them. Those four were
+**reclassified to `refusal_source: generation` after the measurement**, on the
+same test q15/q16 use: the corpus genuinely holds material bearing on their
+vocabulary, so retrieval succeeding is legitimate. Each row's `notes` records
+that the relabel came after the score, because the ordering is the weak part
+of the argument and hiding it would be worse than the weakness.
+
+Do not quietly raise the floor until q15/q16 refuse at the gate — that masks
+the generation-honesty test rather than passing it.
+
+## Two run properties, observed during M4 and still true
 
 - **DeepSeek at temperature 0 is not run-to-run deterministic.** Across
   four eval runs with identical settings, individual questions flipped
   between a clean answer and a hedged refusal (q03, q10, q12–q14 each
   did at least once). The metrics in the committed report are one run's
   numbers, not a constant of the system.
+- **The verifier cannot tell a quotation from a mention.** A correct
+  refusal that names the missing term in quotes — q37 answered "none of
+  them mention a \"Statement of Applicability\" or an \"information
+  security management system\"" — is flagged as two unverified quotes.
+  The span is quoted precisely BECAUSE it is absent, which is the one
+  case the verifier's rule cannot express. Read a `verified False` on a
+  refusal row with this in mind; it is a limitation of the check, not a
+  fabrication by the model.
 - **A `verified False` row is not automatically a system failure.** The
   verifier flags every non-verbatim quote; a model that elides the
   middle of a quotation with "..." or adapts a verb to fit its sentence

@@ -51,6 +51,8 @@ TABLE = "chunks"
 CHUNK_FILES = [
     "corpus/chunks/ai-act.chunks.jsonl",
     "corpus/chunks/ai-act.recitals.chunks.jsonl",
+    "corpus/chunks/gdpr.chunks.jsonl",
+    "corpus/chunks/gdpr.recitals.chunks.jsonl",
 ]
 
 # Fields that travel into the table. Anything not named here stays out,
