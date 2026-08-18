@@ -4,7 +4,8 @@
 after ⛔ Gate B sign-off, tuned against. It is data, Class A, git-tracked
 (decisions.md D0). Twenty questions, one JSON object per line.
 
-**Status: DRAFT — awaiting Gate B sign-off. Nothing has been tuned against it.**
+**Status: approved at ⛔ Gate B on 2026-08-17; the gate floor (decisions.md D7)
+was tuned against it afterwards, in that order.**
 
 ## Why these questions
 
