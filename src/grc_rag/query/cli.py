@@ -44,13 +44,20 @@ def render(a, out=sys.stdout):
     for s in a.sources:
         print(f"  [{s.id}] rerank {s.rerank:+.2f} dense {s.dense:.4f}  "
               f"{cite(s)}", file=out)
+    for cid in a.unknown_ids:
+        print(f"FAIL cited id [{cid}] names no retrieved chunk - a "
+              f"fabricated citation, even if the prose is right", file=out)
+    for cid in a.refined_ids:
+        print(f"note cited id [{cid}] is more precise than the retrieved "
+              f"chunk id - treated as its base chunk; the rendered citation "
+              f"stays at the chunk's own anchor", file=out)
     if not a.quotes:
         if a.mode == "answered":
             print("VERIFIER: no quoted span >= 20 chars to check - an answer "
                   "with no verbatim quote is a paraphrase; the grounding "
                   "prompt asks for quotes.", file=out)
-        return 0
-    bad = 0
+        return 1 if a.unknown_ids else 0
+    bad = len(a.unknown_ids)
     for q, hit in a.quotes:
         if hit:
             print(f"OK   [{hit.id}] {q[:60]}…", file=out)
@@ -133,32 +140,46 @@ def cmd_eval(eng, path, report_path):
     """
     qs = load_eval(path)
     lines = ["# Eval report - EU AI Act (M4)", ""]
-    hit = cit = 0
+    hit = cit = ver = 0
     n_ans = 0
     refusal_rows = []
     for q in qs:
         a = eng.answer(q["question"])
         got_ids = [s.id for s in a.sources]
         cited = cited_ids(a.text)
-        row = {"id": q["id"], "kind": q["kind"], "mode": a.mode,
-               "best_dense": a.best_dense, "verified": a.verified}
+        row = {"ok": True}
         if q["expected_behavior"] == "answer":
             n_ans += 1
             row["hit@5"] = any(i in got_ids for i in q["expected_chunk_ids"])
             by_id = {s.id: s for s in a.sources}
-            good = [c for c in cited if c in q["expected_chunk_ids"]]
-            basis_ok = any(by_id[c].date_basis == q["expected_date_basis"]
-                           for c in good if c in by_id)
-            row["citation"] = bool(good) and basis_ok
+
+            def base(c):
+                """A refined id counts as the chunk it extends - the chunk
+                is identifiable and its rendered anchor stays honest."""
+                if c in by_id:
+                    return by_id[c]
+                return next((s for i, s in by_id.items()
+                             if c.startswith(i + "(")), None)
+            good = [s for s in (base(c) for c in cited)
+                    if s and s.id in q["expected_chunk_ids"]]
+            basis_ok = any(s.date_basis == q["expected_date_basis"]
+                           for s in good)
+            # An answer-question scores only when it was ANSWERED - a
+            # refusal with a polite citation is a miss, which the first
+            # eval run scored "ok" and thereby hid.
+            row["citation"] = (a.mode == "answered" and bool(good)
+                               and basis_ok)
             hit += row["hit@5"]
             cit += row["citation"]
+            row["ok"] = row["hit@5"] and row["citation"]
         else:
             want_mode = ("refused-gate" if q["refusal_source"] == "gate"
                          else "refused-generation")
-            row["refusal"] = a.mode == want_mode
+            row["refusal"] = row["ok"] = a.mode == want_mode
             refusal_rows.append(row)
-        mark = ("ok" if row.get("hit@5", row.get("refusal"))
-                and row.get("citation", True) else "MISS")
+        ver += a.verified
+        row["ok"] = row["ok"] and a.verified
+        mark = "ok" if row["ok"] else "MISS"
         print(f"{q['id']}  {q['kind']:<20} {a.mode:<19} "
               f"dense {a.best_dense:.4f}  {mark}")
         lines.append(
@@ -167,6 +188,19 @@ def cmd_eval(eng, path, report_path):
             + (f"hit@5 {row['hit@5']}, citation {row['citation']}, "
                if "hit@5" in row else f"refusal {row['refusal']}, ")
             + f"verified {a.verified}. cited: {', '.join(cited) or '-'}")
+        # Failures carry their evidence: without the answer text and the
+        # failing spans, a MISS row cannot be diagnosed after the fact.
+        for cid in a.unknown_ids:
+            lines.append(f"  - fabricated id cited: `{cid}`")
+        for cid in a.refined_ids:
+            lines.append(f"  - refined id cited (counted as its base "
+                         f"chunk): `{cid}`")
+        for span, hit_src in a.quotes:
+            if hit_src is None:
+                lines.append(f"  - unverified quote (full span): “{span}”")
+        if not row["ok"]:
+            lines.append(f"  - full answer text:\n\n    "
+                         + " ".join(a.text.split()) + "\n")
     r_ok = sum(r["refusal"] for r in refusal_rows)
     summary = [
         "",
@@ -175,6 +209,7 @@ def cmd_eval(eng, path, report_path):
         f"| retrieval hit rate @5 | {hit}/{n_ans} |",
         f"| citation correctness | {cit}/{n_ans} |",
         f"| refusal correctness | {r_ok}/{len(refusal_rows)} |",
+        f"| verification clean | {ver}/{len(qs)} |",
         f"| gate floor | {eng.floor} |",
     ]
     print("\n".join(s.replace("|", " ").strip() for s in summary if s))
@@ -182,8 +217,8 @@ def cmd_eval(eng, path, report_path):
         "\n".join(lines[:2] + summary + [""] + lines[2:]) + "\n",
         encoding="utf-8")
     print(f"\nwrote {report_path}")
-    return 0 if hit == n_ans and cit == n_ans and r_ok == len(refusal_rows) \
-        else 1
+    return 0 if (hit == n_ans and cit == n_ans and ver == len(qs)
+                 and r_ok == len(refusal_rows)) else 1
 
 
 def cmd_sentinel(eng):
@@ -251,6 +286,30 @@ def cmd_selftest(with_models):
     bad = verify('It says "resilience is best achieved through faith" here.',
                  [src])
     check("invented quote fails", [bool(h) for _, h in bad], [False])
+    # The flowing-prose case that produced seven false alarms in the
+    # first eval run: two real quotes in one paragraph must verify
+    # individually via the naive-pair fallback...
+    two = verify('It requires systems "as resilient as possible regarding '
+                 'errors" and mentions "errors, faults or inconsistencies" '
+                 'as well.', [src])
+    check("two real quotes on one line both verify",
+          [bool(h) for _, h in two], [True, True])
+    # ...and an invented quote beside a real one still fails - the
+    # fallback must not let a verified neighbour vouch for it.
+    mixed = verify('It says "as resilient as possible regarding errors" '
+                   'and "resilience is best achieved through faith" too.',
+                   [src])
+    check("invented quote beside a real one still fails",
+          [bool(h) for _, h in mixed], [True, False])
+    # Sentence-final punctuation moved inside the quotation marks is
+    # typography; a changed word inside the quote is not.
+    edge = verify('It says "shall be as resilient as possible regarding '
+                  'errors." here.', [src])
+    check("edge punctuation tolerated", [bool(h) for _, h in edge], [True])
+    verb = verify('It says systems "shall been as resilient as possible '
+                  'regarding errors" here.', [src])
+    check("altered word inside quote still fails",
+          [bool(h) for _, h in verb], [False])
     check("consolidation citation", cite(src),
           "Article 15(4) (consolidated text as of 2026-07-27)")
     src.date_basis, src.version_date = "publication", "2024-07-12"

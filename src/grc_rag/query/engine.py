@@ -68,12 +68,19 @@ indexed corpus of EU regulatory texts. Answer ONLY from the numbered
 documents provided below. No outside knowledge, no training-data recall.
 
 1. Cite every claim to the document supporting it by its chunk id in
-   square brackets, e.g. [ai-act#art_15(4)].
+   square brackets, exactly as printed at the head of the document,
+   e.g. [ai-act#art_15(4)]. NEVER refine or extend an id - if the
+   document is [ai-act#art_49], cite [ai-act#art_49], not
+   [ai-act#art_49(1)]; put paragraph or point detail in your prose.
 2. Quote the decisive language verbatim in double quotes, followed by
    its chunk id.
-3. If the documents do not contain the answer, say exactly:
-   "The corpus does not address this." You may add one sentence saying
-   what the retrieved documents do contain, cited. Do not guess.
+3. Only if NONE of the documents bears on the question, your entire
+   answer is exactly: "The corpus does not address this." - optionally
+   followed by one sentence saying what the retrieved documents do
+   contain, cited. If any document supports an answer - even partially,
+   or in different words than the question uses, or as a rationale
+   stated in a recital - answer from it rather than refusing. Never use
+   that sentence inside an otherwise-substantive answer.
 4. The documents are the law as currently consolidated (recitals: the
    act as published). Where a document contradicts what you believe you
    know, THE DOCUMENT WINS - your training data may predate amendments.
@@ -107,7 +114,9 @@ class Answer:
     best_dense: float = 0.0
     floor: float = None
     quotes: list = field(default_factory=list)    # (span, Source-or-None) pairs
-    verified: bool = True                          # False if any quote unmatched
+    unknown_ids: list = field(default_factory=list)  # cited ids not retrieved
+    refined_ids: list = field(default_factory=list)  # over-precise but real
+    verified: bool = True     # False if any quote unmatched or id unknown
 
     @property
     def refused(self):
@@ -148,9 +157,9 @@ def extract_quotes(answer, min_len=20):
     Not `"([^\"]{20,})"` over the whole answer: legal text nests quoted
     definitions inside quoted provisions, and naive pairing closes on the
     wrong mark and silently re-pairs everything after it (observed in
-    book2rag - an invented quote was eaten as a delimiter). Two separate
-    quotes on one line merge into one unmatchable span: a false alarm,
-    which is the safe direction. The verifier fails loudly or not at all.
+    book2rag - an invented quote was eaten as a delimiter). The outer
+    span alone is not enough either: see verify() for the fallback and
+    the eval run that forced it.
     """
     out = []
     for seg in SEGMENT_RE.split(fold_punct(answer)):
@@ -162,16 +171,62 @@ def extract_quotes(answer, min_len=20):
     return out
 
 
-def verify(answer_text, sources):
+def _naive_pairs(seg, min_len):
+    """Left-to-right quote pairs within one segment - the fallback
+    reading, never the only one."""
+    marks = [m.start() for m in re.finditer('"', seg)]
+    spans = []
+    for a, b in zip(marks[::2], marks[1::2]):
+        span = seg[a + 1:b].strip()
+        if len(span) >= min_len:
+            spans.append(span)
+    return spans
+
+
+def verify(answer_text, sources, min_len=20):
     """Every quoted span must appear verbatim in a RETRIEVED chunk's
     `body` - the act's words with nothing this pipeline added (the
-    parent-path lives in `text`, deliberately not checked against)."""
+    parent-path lives in `text`, deliberately not checked against).
+
+    Per segment, two readings, tried in order. First the OUTERMOST span
+    (first quote mark to last), which is what survives nested quotes.
+    If that fails, the naive left-to-right pairs, and the segment passes
+    only if EVERY pair verifies - one failing pair fails the segment, so
+    an invented quote cannot hide behind a verified neighbour. The
+    fallback exists because models answer in flowing prose with several
+    real quotes per paragraph, and the first eval run returned seven
+    false alarms in twenty questions - false alarms teach people to
+    ignore the verifier, which defeats it.
+    """
     haystacks = [(s, normalize(s.body)) for s in sources]
+
+    def find(span):
+        # Edge punctuation is typography, not content: models close a
+        # quotation with "." where the source sentence runs on with ","
+        # (three of four flags in the fourth eval run). Interior
+        # punctuation still has to match exactly - "pose" for "poses"
+        # was the fourth flag, and it stays a failure.
+        needle = normalize(span).strip(".,;: ")
+        return next((s for s, h in haystacks if needle and needle in h),
+                    None)
+
     results = []
-    for q in extract_quotes(answer_text):
-        needle = normalize(q)
-        hit = next((s for s, h in haystacks if needle and needle in h), None)
-        results.append((q, hit))
+    for seg in SEGMENT_RE.split(fold_punct(answer_text)):
+        first, last = seg.find('"'), seg.rfind('"')
+        if first < 0 or last <= first:
+            continue
+        outer = seg[first + 1:last].strip()
+        if len(outer) < min_len:
+            continue
+        hit = find(outer)
+        if hit is not None:
+            results.append((outer, hit))
+            continue
+        pairs = _naive_pairs(seg, min_len)
+        if pairs:
+            results.extend((p, find(p)) for p in pairs)
+        else:
+            results.append((outer, None))
     return results
 
 
@@ -275,12 +330,34 @@ class Engine:
                           floor=self.floor)
         text = self._generate(question, sources)
         quotes = verify(text, sources)
-        mode = ("refused-generation" if REFUSAL.lower() in text.lower()
+        # A refusal is the whole answer, and it leads (grounding prompt
+        # rule 3). The string appearing later is the model hedging inside
+        # a substantive answer - that is an answer, and counting it as a
+        # refusal hid exactly that defect in the first eval run.
+        mode = ("refused-generation"
+                if REFUSAL.lower() in text.lower()[:len(REFUSAL) + 40]
                 else "answered")
+        # A cited id that names no retrieved chunk is a fabricated
+        # citation even when the prose is right. One shade short of that:
+        # an EXTENSION of a retrieved id ("art_51(2)" for the chunk
+        # "art_51") - the chunk is identifiable and the rendered citation
+        # still comes from the chunk's own field, so the anchor stays
+        # honest; it is warned, not failed. An id with no retrieved
+        # prefix is a fabrication and fails verification. Mechanical
+        # check, not a prompt hope.
+        known = {s.id for s in sources}
+        unknown, refined = [], []
+        for c in cited_ids(text):
+            if c in known:
+                continue
+            (refined if any(c.startswith(k + "(") for k in known)
+             else unknown).append(c)
         return Answer(question=question, mode=mode, text=text,
                       sources=sources, best_dense=best, floor=self.floor,
-                      quotes=quotes,
-                      verified=all(hit is not None for _, hit in quotes))
+                      quotes=quotes, unknown_ids=unknown,
+                      refined_ids=refined,
+                      verified=not unknown
+                      and all(hit is not None for _, hit in quotes))
 
     def dense_score(self, question):
         """Best dense cosine only - what the gate would see. Used by the

@@ -63,10 +63,25 @@ distributions overlap there, record the overlap and the chosen trade-off in
 decisions.md; do not quietly move the floor until q15/q16 start refusing at
 the gate, which would mask the generation-honesty test.
 
-## Known corpus defect this set documents
+## Two run properties, observed during M4
 
-q01 (10^25 FLOPs threshold, Article 51(2)): the converter dropped EUR-Lex's
-`<span class="superscript">25</span>`, so the chunk reads "greater than 10."
-— retrieval and citation are gradable today; the quoted threshold is not,
-until the converter fix is approved and conversion re-run. q01 is the
-regression canary for that fix.
+- **DeepSeek at temperature 0 is not run-to-run deterministic.** Across
+  four eval runs with identical settings, individual questions flipped
+  between a clean answer and a hedged refusal (q03, q10, q12–q14 each
+  did at least once). The metrics in the committed report are one run's
+  numbers, not a constant of the system.
+- **A `verified False` row is not automatically a system failure.** The
+  verifier flags every non-verbatim quote; a model that elides the
+  middle of a quotation with "..." or adapts a verb to fit its sentence
+  is misquoting, and the flag is the system working. Read the report's
+  full-span evidence lines before treating the flag as a defect.
+
+## The corpus defect this set caught, since fixed
+
+Drafting q01 (10^25 FLOPs threshold) exposed a conversion defect: the
+converter dropped EUR-Lex's `<span class="superscript">25</span>` as a
+footnote mark, so Article 51(2) read "greater than 10." Fixed the same
+day (a superscript is a footnote mark only after an opening parenthesis;
+content superscripts render as `^N`), corpus and index rebuilt. q01
+stays in the set as the standing regression canary: if it ever answers
+without "10^25", the converter has regressed.
