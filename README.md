@@ -6,7 +6,12 @@ answered with a citation that can be checked against the article.
 Phase 1 is the EU AI Act, end to end: **871 chunks over two source
 documents**, a 20-question eval the query path is graded against, and
 three mechanical checks standing between the model and a plausible
-fabrication. *(Every count and result below is as of 2026-08-17.)*
+fabrication. *(Counts and eval results below are as of 2026-08-17.)*
+
+Phase 2 has started: GDPR is fetched and converted — **two further
+documents, 99 articles and 173 recitals, as of 2026-08-18** — and is
+deliberately not chunked, indexed or evaluated yet. Every number above
+still describes the AI Act alone.
 
 No LlamaIndex, no LangChain, no RAG framework — plain Python over
 LanceDB, sentence-transformers and an OpenAI-compatible client. That is
@@ -143,6 +148,8 @@ it wrong.
 | [D5](docs/decisions.md#d5--the-raw-file-is-committed-as-served-the-manifest-carries-two-hashes) | The raw file is committed as served; the manifest carries two hashes |
 | [D6](docs/decisions.md#d6--embedding-runtime-and-the-lexical-leg-verified-rather-than-assumed) | Embedding runtime, and the lexical leg verified rather than assumed |
 | [D7](docs/decisions.md#d7--relevance-gate-floor-062-on-the-dense-cosine-alone) | Relevance-gate floor: 0.62 on the dense cosine alone |
+| [D8](docs/decisions.md#d8--fetching-through-cellar-because-eur-lexs-human-site-challenges-robots) | Fetching through Cellar, because EUR-Lex's human site challenges robots |
+| [D9](docs/decisions.md#d9--gdpr-is-two-documents-too-and-the-converter-was-never-ai-act-specific) | GDPR is two documents too, and the converter was never AI-Act-specific |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -219,7 +226,8 @@ rather than an HTTP service
 ### The checks
 
 Four standing checks, each failing differently, plus the query path's own
-selftest. All five pass as of 2026-08-17:
+selftest. All five pass as of 2026-08-18, the conversion checks now
+covering all four documents:
 
     uv run python tests/check-imports.py         # the three buckets hold
     uv run bash tests/probe-check.sh             # …and that check can actually fail
@@ -251,6 +259,26 @@ every check. This is how it was produced:
         --part recitals --out corpus/eu/ai-act.recitals.md
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md
     uv run python -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md
+
+Phase 2's GDPR half, converted but not yet chunked:
+
+    uv run python -m grc_rag.fetch.eurlex --celex 32016R0679 \
+        --consolidated --original --expect 02016R0679-20160504 \
+        --out corpus/raw/eu/gdpr
+    uv run python -m grc_rag.convert.eurlex_html \
+        --raw corpus/raw/eu/gdpr/02016R0679-20160504.en.html \
+        --part enacting --instrument "GDPR" --out corpus/eu/gdpr.md
+    uv run python -m grc_rag.convert.eurlex_html \
+        --raw corpus/raw/eu/gdpr/32016R0679.en.html \
+        --part recitals --instrument "GDPR" --out corpus/eu/gdpr.recitals.md
+
+The fetcher defaults to the Publications Office's Cellar service rather
+than EUR-Lex's human site, which answers automated requests with a bot
+challenge; `--source legal-content` selects the old route, and the two
+serve the same ELI-tagged HTML
+([D8](docs/decisions.md#d8--fetching-through-cellar-because-eur-lexs-human-site-challenges-robots)). Run it without `--expect`
+first and read the consolidated id it discovers — that identifier is
+never taken from memory.
 
 Two documents, because a EUR-Lex consolidation carries the enacting terms
 and annexes but no recitals at all

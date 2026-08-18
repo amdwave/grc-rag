@@ -53,8 +53,9 @@ WHAT THIS DOES NOT DO
     FLOP threshold in Article 51(2) is the case that earned the rule.
   * It does not keep the consolidation's amendment markers (`▼B`,
     `►M1◄`) inline. They are editorial apparatus, not the act's words,
-    and inline they would poison retrieval. The acts that amended the
-    text are recorded in the front matter instead.
+    and inline they would poison retrieval. The acts that modified the
+    text are recorded in the front matter instead, under the relation
+    the source itself states - `amended_by` or `corrected_by`.
   * It does not verify the text against anything. Ordering is checked
     against an independent extraction by `tests/seqcheck-corpus.py`,
     which is deliberately not this code.
@@ -78,8 +79,9 @@ DROP_RULES = {
     "script": "<script>/<style> payloads",
     "reference": "the consolidation's running reference line",
     "disclaimer": "the 'no legal effect' disclaimer",
-    "modifiers-toc": "the 'Amended by' table of amending acts",
-    "amendment-marker": "▼B / ►M1◄ consolidation markers",
+    "modifiers-toc": "the 'Amended by' / 'Corrected by' table of "
+                     "modifying acts",
+    "amendment-marker": "▼B / ►M1◄ / ►C1◄ consolidation markers",
     "note-mark": "footnote reference marks (oj-note-tag, or a superscript "
                  "following an opening parenthesis)",
     "eli-line": "the trailing ELI / ISSN publication lines",
@@ -951,15 +953,48 @@ def front_matter(meta):
     return L
 
 
-def amending_acts(body):
-    """CELEX ids of the acts this consolidation folds in, in page order."""
-    out = []
+RE_CELEX_HREF = re.compile(
+    r"celex[:/](3\d{4}[A-Z]\d{4}(?:R(?:%28|\()\d+(?:%29|\)))?)", re.I)
+RE_RELATION = re.compile(r"(amended|corrected)\s+by", re.I)
+
+
+def modifying_acts(body):
+    """(front-matter key, CELEX ids) for what this consolidation folds in.
+
+    Two assumptions here belonged to the AI Act rather than to EUR-Lex,
+    and both failed silently - which is why they are spelled out:
+
+    * THE HREF SHAPE. legal-content writes `?uri=celex:32026R1744`;
+      Cellar writes `/celex/32016R0679R%2802%29`. Matching only the
+      colon form returned an empty list on the Cellar route, and an
+      empty list is exactly what a genuinely unmodified act produces -
+      so the front matter stated that nothing had been folded in and no
+      check could tell the difference.
+    * THE RELATION. A consolidation is not always an amendment. GDPR's
+      exists because of a corrigendum: its table is headed "Corrected
+      by:" and its markers are ►C1, not ►M1. Filing that under
+      `amended_by` would assert the wrong legal relation about the text.
+
+    The `R(02)` suffix is part of the corrigendum's identifier, not
+    decoration. Truncating it leaves `32016R0679`, which says the act
+    modified itself.
+
+    The base act's own id is in this list, because the ▼B row links to
+    it. That predates GDPR and is left alone deliberately - changing it
+    would rewrite the AI Act's front matter for a cosmetic reason.
+    """
+    key, out = "amended_by", []
     for n in descendants(body):
-        href = n.attrs.get("href", "")
-        m = re.search(r"celex:(3\d{4}[A-Z]\d{4})", href, re.I)
-        if m and m.group(1).upper() not in out:
-            out.append(m.group(1).upper())
-    return out
+        if n.has("hd-modifiers"):
+            m = RE_RELATION.search("".join(t.text for t in texts(n)))
+            if m:
+                key = m.group(1).lower() + "_by"
+        m = RE_CELEX_HREF.search(n.attrs.get("href", ""))
+        if m:
+            celex = m.group(1).replace("%28", "(").replace("%29", ")").upper()
+            if celex not in out:
+                out.append(celex)
+    return key, out
 
 
 RE_OJ_DATE = re.compile(r"^(\d{1,2})\.(\d{1,2})\.(\d{4})$")
@@ -1030,6 +1065,8 @@ def main(argv=None):
 
     celex = src["celex"]
     vdate, basis = document_date(body, celex)
+    relation, modifiers = ((None, None) if a.part != "enacting"
+                           else modifying_acts(body))
     meta = {
         "instrument": a.instrument,
         "title": title or src.get("doc_title") or celex,
@@ -1045,7 +1082,7 @@ def main(argv=None):
         "source_sha256_normalized": src.get("sha256_normalized"),
         "fetched_at_utc": src["fetched_at_utc"],
         "converter": CONVERTER,
-        "amended_by": (amending_acts(body) if a.part == "enacting" else None),
+        **({relation: modifiers} if relation else {"amended_by": None}),
         "emitted_chars": emitted,
     }
 

@@ -16,19 +16,37 @@ TMP="${TMPDIR:-/mnt/d/.staging}/grc-rag-rerun"
 rm -rf "$TMP"; mkdir -p "$TMP/a" "$TMP/b" || exit 2
 trap 'rm -rf "$TMP"' EXIT
 
-RAW_ENACTING=corpus/raw/eu/ai-act/02024R1689-20260727.en.html
-RAW_RECITALS=corpus/raw/eu/ai-act/32024R1689.en.html
+# Named per document, not globbed, and per instrument rather than per
+# part: "RAW_ENACTING" could only ever mean one act's.
+RAW_AI_ENACTING=corpus/raw/eu/ai-act/02024R1689-20260727.en.html
+RAW_AI_RECITALS=corpus/raw/eu/ai-act/32024R1689.en.html
+RAW_GDPR_ENACTING=corpus/raw/eu/gdpr/02016R0679-20160504.en.html
+RAW_GDPR_RECITALS=corpus/raw/eu/gdpr/32016R0679.en.html
 
 run_into() {
     local d=$1
-    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_ENACTING" \
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_AI_ENACTING" \
         --part enacting --out "$d/ai-act.md" >/dev/null || return 1
-    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_RECITALS" \
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_AI_RECITALS" \
         --part recitals --out "$d/ai-act.recitals.md" >/dev/null || return 1
+    # --instrument is not decoration: it lands in the front matter, so
+    # omitting it here would produce a "GDPR" document labelled EU AI Act
+    # and the staleness check below would fail for a confusing reason.
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_GDPR_ENACTING" \
+        --part enacting --instrument "GDPR" \
+        --out "$d/gdpr.md" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.eurlex_html --raw "$RAW_GDPR_RECITALS" \
+        --part recitals --instrument "GDPR" \
+        --out "$d/gdpr.recitals.md" >/dev/null || return 1
     # Chunking is in the same bucket and makes the same promise. It runs
     # from the COMMITTED markdown, not from the fresh conversion above,
     # so a difference here is the chunker's and not an echo of the
     # converter's.
+    #
+    # AI Act only. GDPR is converted but deliberately not chunked yet
+    # (M6 stops at Gate A), and chunking it here would compare against
+    # committed files that do not exist - a failure for the wrong
+    # reason. The GDPR lines land in M7 with the chunks themselves.
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md \
         --out-dir "$d" >/dev/null || return 1
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md \
@@ -41,6 +59,7 @@ run_into "$TMP/b" || { echo "rerun: second conversion failed"; exit 2; }
 fail=0
 for f in ai-act.md ai-act.report.md ai-act.recitals.md \
          ai-act.recitals.report.md \
+         gdpr.md gdpr.report.md gdpr.recitals.md gdpr.recitals.report.md \
          ai-act.chunks.jsonl ai-act.chunks.txt ai-act.chunks.report.md \
          ai-act.recitals.chunks.jsonl ai-act.recitals.chunks.txt \
          ai-act.recitals.chunks.report.md; do
@@ -59,7 +78,7 @@ done
 # deterministic and no longer matches the corpus in git means the corpus
 # was not regenerated after the last code change.
 echo
-for f in ai-act.md ai-act.recitals.md; do
+for f in ai-act.md ai-act.recitals.md gdpr.md gdpr.recitals.md; do
     if cmp -s "$TMP/a/$f" "corpus/eu/$f"; then
         echo "  corpus/eu/$f matches a fresh conversion"
     else

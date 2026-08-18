@@ -39,9 +39,9 @@ A count of what came out cannot see what was left behind. Each text node in the 
 | disposition | characters |
 | --- | --- |
 | emitted | 385,694 |
-| dropped: modifiers-toc — the 'Amended by' table of amending acts | 583 |
+| dropped: modifiers-toc — the 'Amended by' / 'Corrected by' table of modifying acts | 583 |
 | dropped: disclaimer — the 'no legal effect' disclaimer | 398 |
-| dropped: amendment-marker — ▼B / ►M1◄ consolidation markers | 349 |
+| dropped: amendment-marker — ▼B / ►M1◄ / ►C1◄ consolidation markers | 349 |
 | dropped: script — <script>/<style> payloads | 120 |
 | dropped: reference — the consolidation's running reference line | 38 |
 | dropped: note-mark — footnote reference marks (oj-note-tag, or a superscript following an opening parenthesis) | 38 |

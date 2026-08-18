@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Does the corpus carry the source's text IN ORDER? (order-sensitive check)
 
-    python tests/seqcheck-corpus.py enacting
-    python tests/seqcheck-corpus.py recitals
-    python tests/seqcheck-corpus.py both
+    python tests/seqcheck-corpus.py gdpr:enacting   # one document
+    python tests/seqcheck-corpus.py enacting        # that part, every act
+    python tests/seqcheck-corpus.py both            # everything
 
 WHY, IN ONE PARAGRAPH
 
@@ -50,14 +50,28 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SEQCHECK = Path("/mnt/d/ai/extractors/seqcheck.py")
 
+# Keyed <instrument>:<part>. The bare part names this started with were
+# already ambiguous the moment a second act arrived - "enacting" cannot
+# say whose. Rows, not a registry: the four named lists in this repo do
+# not carry the same fields (query/cli.py's eval pair is corpus-wide,
+# not per-document) and they fill up at different milestones, so one
+# table would be an abstraction over things that only look alike.
 PARTS = {
-    "enacting": {
+    "ai-act:enacting": {
         "raw": "corpus/raw/eu/ai-act/02024R1689-20260727.en.html",
         "md": "corpus/eu/ai-act.md",
     },
-    "recitals": {
+    "ai-act:recitals": {
         "raw": "corpus/raw/eu/ai-act/32024R1689.en.html",
         "md": "corpus/eu/ai-act.recitals.md",
+    },
+    "gdpr:enacting": {
+        "raw": "corpus/raw/eu/gdpr/02016R0679-20160504.en.html",
+        "md": "corpus/eu/gdpr.md",
+    },
+    "gdpr:recitals": {
+        "raw": "corpus/raw/eu/gdpr/32016R0679.en.html",
+        "md": "corpus/eu/gdpr.recitals.md",
     },
 }
 
@@ -93,11 +107,27 @@ def strip(fragment):
 
 
 def items_enacting(raw):
-    """The enacting terms, the annexes and the source footnotes."""
+    """The enacting terms, the annexes and the source footnotes.
+
+    The body ends at the earlier of two markers: the page's own scripts,
+    or the close of <body>. legal-content appends fifteen <script> tags
+    of TOC furniture after the last provision, so "<script" was the end
+    of the text there; Cellar appends none, and scoping to "<script"
+    raised ValueError rather than checking anything - the enacting order
+    check simply did not run. Taking the earlier of the two leaves the
+    legal-content scope byte-identical to what it was, which is the
+    point: this widens where the check WORKS, not what it accepts.
+    """
     start = raw.index('<div class="eli-container"')
-    end = raw.index("<script", start)
+    ends = [raw.find(m, start) for m in ("<script", "</body")]
+    found = [e for e in ends if e != -1]
+    if not found:
+        raise SystemExit(
+            "seqcheck: the raw file ends with neither a <script> nor a "
+            "</body> after the eli-container. Look at it before relaxing "
+            "this - an unbounded scope silently checks the wrong text.")
     return [{"where": "html", "label": "enacting", "text": t}
-            for t in strip(raw[start:end])]
+            for t in strip(raw[start:min(found)])]
 
 
 RE_RCT = re.compile(r'<div class="eli-subdivision" id="rct_(\d+)">', re.S)
@@ -148,7 +178,8 @@ def run(part, sq):
     raw = (ROOT / cfg["raw"]).read_text("utf-8")
     md = sq.FRONTMATTER.sub("", (ROOT / cfg["md"]).read_text("utf-8"))
     corpus = sq.Corpus(md)
-    items = items_enacting(raw) if part == "enacting" else items_recitals(raw)
+    items = (items_enacting(raw) if part.endswith(":enacting")
+             else items_recitals(raw))
 
     print(f"### {part}: {cfg['md']} vs an independent regex extraction "
           f"of {Path(cfg['raw']).name}")
@@ -167,7 +198,16 @@ def run(part, sq):
 
 def main():
     which = sys.argv[1] if len(sys.argv) > 1 else "both"
-    parts = list(PARTS) if which == "both" else [which]
+    if which in ("both", "all"):
+        parts = list(PARTS)
+    elif which in ("enacting", "recitals"):
+        parts = [k for k in PARTS if k.endswith(":" + which)]
+    elif which in PARTS:
+        parts = [which]
+    else:
+        sys.exit(f"seqcheck: no such part {which!r}. Known: "
+                 f"{', '.join(PARTS)} - or 'enacting'/'recitals' for that "
+                 f"part of every instrument, or 'both' for all of them.")
     sq = load_seqcheck()
     print(f"seqcheck {SEQCHECK} (window {sq.W} chars)\n")
     splices = 0

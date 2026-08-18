@@ -23,6 +23,27 @@ a consolidated version fetched today stops being downloadable the moment
 the next consolidation replaces it, so it fails the cheap-rebuild test
 that would otherwise keep it out of git.
 
+TWO ACCESS ROUTES, ONE DOCUMENT
+
+EUR-Lex's human site (`legal-content`) sits behind an AWS WAF bot
+challenge: as of 2026-08-18 it answers HTTP 202 and a "verify that
+you're not a robot" page to every request from this tool, which is not
+something to defeat. The Publications Office's Cellar service is the
+machine-facing front door for the same documents and answers plainly.
+Measured before switching: Cellar returns the same ELI spine (identical
+`eli-subdivision` counts on both AI Act representations) and the same
+class vocabulary bar one cosmetic `borderOj`, so the converter cannot
+tell the two apart. `--source legal-content` keeps the old route for the
+day the challenge lifts.
+
+Discovery moves with it. The landing page's two opinions - the status
+line and the `data-celex` - are unreachable, so the pair becomes the
+Cellar SPARQL endpoint (which consolidated ids exist) and the
+consolidated document's own header line ("02016R0679 - EN -
+04.05.2016"). Those are two different services, so a change to either
+shows up as a disagreement rather than as a wrong answer, which was the
+whole point of the original pair.
+
 WHAT THIS DOES NOT DO
 
 No parsing beyond identifier discovery and a shape check on the response.
@@ -36,11 +57,18 @@ import json
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
 BASE = "https://eur-lex.europa.eu/legal-content"
+CELLAR = "https://publications.europa.eu/resource/celex"
+SPARQL = "https://publications.europa.eu/webapi/rdf/sparql"
+# Cellar content-negotiates, and answers 404 to text/html: it serves the
+# document only for application/xhtml+xml. Measured, not guessed.
+ACCEPT = {"cellar": "application/xhtml+xml",
+          "legal-content": "text/html,application/xhtml+xml"}
 TOOL = "grc-rag/0.1"
 UA = f"{TOOL} (personal research corpus; +https://github.com/amdwave/grc-rag)"
 TIMEOUT = 90
@@ -56,6 +84,12 @@ RE_STATUS = re.compile(r"Current consolidated version:\s*"
                        r"(\d{2})/(\d{2})/(\d{4})")
 RE_DATACELEX = re.compile(r'data-celex="(0\d{4}[A-Z]\d{4}-\d{8})"')
 RE_TITLE = re.compile(r"<title>([^<]*)</title>", re.I)
+# A consolidated text states its own identity in its first line:
+# "Consolidated TEXT: 32016R0679 — EN — 04.05.2016   02016R0679 — EN
+# — 04.05.2016 — 000.002". Matched against the tag-stripped document for
+# the same reason the status line is: EUR-Lex splits it across elements.
+RE_CONSOL_SELF = re.compile(r"(0\d{4}[A-Z]\d{4})\s*[—-]\s*[A-Z]{2}\s*"
+                            r"[—-]\s*(\d{2})\.(\d{2})\.(\d{4})")
 RE_TAG = re.compile(r"<[^>]+>")
 
 # EUR-Lex stamps a per-response Dynatrace RUM id into the head of every
@@ -75,11 +109,11 @@ def flatten(html):
     return " ".join(RE_TAG.sub(" ", html).split())
 
 
-def get(url):
+def get(url, accept=ACCEPT["legal-content"]):
     """One GET, returning (bytes, final url, status, content-type)."""
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
-        "Accept": "text/html,application/xhtml+xml",
+        "Accept": accept,
         "Accept-Language": "en",
     })
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
@@ -93,6 +127,61 @@ def landing_url(celex):
 
 def html_url(celex):
     return f"{BASE}/EN/TXT/HTML/?uri=CELEX:{celex}"
+
+
+def cellar_url(celex):
+    return f"{CELLAR}/{celex}"
+
+
+def doc_url(celex, source):
+    return cellar_url(celex) if source == "cellar" else html_url(celex)
+
+
+def consolidated_prefix(base_celex):
+    """`32016R0679` -> `02016R0679`: the sector digit is 0 when consolidated."""
+    return "0" + base_celex[1:]
+
+
+def sparql_consolidated(base_celex):
+    """Which consolidated ids of this act exist, straight from Cellar's RDF.
+
+    This replaces reading them off the landing page. It is the metadata
+    store rather than a rendered page, so it is the sturdier of the two
+    opinions - but it is still only one, and `fetch` checks it against
+    what the document says about itself.
+    """
+    prefix = consolidated_prefix(base_celex)
+    query = ("PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>\n"
+             "SELECT ?celex WHERE {\n"
+             "  ?w cdm:resource_legal_id_celex ?celex .\n"
+             f'  FILTER(STRSTARTS(STR(?celex), "{prefix}"))\n'
+             "} ORDER BY ?celex")
+    url = SPARQL + "?" + urllib.parse.urlencode(
+        {"query": query, "format": "application/sparql-results+json"})
+    body, _, status, _ = get(url, accept="application/sparql-results+json")
+    if status != 200:
+        raise SystemExit(f"eurlex: Cellar SPARQL returned HTTP {status}")
+    rows = json.loads(body)["results"]["bindings"]
+    return sorted({r["celex"]["value"] for r in rows})
+
+
+def discover_cellar(base_celex):
+    """Cellar's half of the discovery pair. Same record shape as `discover`."""
+    ids = sparql_consolidated(base_celex)
+    if not ids:
+        raise SystemExit(
+            f"eurlex: Cellar knows no consolidated version of {base_celex}. "
+            f"Either the act has never been consolidated or the CDM property "
+            f"changed - look at the endpoint before changing this code.")
+    return {
+        "landing_url": None,
+        "discovery_route": "cellar-sparql",
+        "sparql_endpoint": SPARQL,
+        "current_consolidated": max(ids),   # ids sort by their date suffix
+        "consolidated_versions": ids,
+        "status_line_agrees": None,         # checked against the document
+        "doc_title": None,
+    }
 
 
 def discover(base_celex):
@@ -168,11 +257,35 @@ def shape_ok(text, celex):
     return problems
 
 
-def fetch(celex, out_dir, kind, discovery=None):
-    url = html_url(celex)
-    body, final, status, ctype = get(url)
+def stated_consolidation(text):
+    """What the document says its own consolidated id is, or None."""
+    m = RE_CONSOL_SELF.search(flatten(text))
+    if not m:
+        return None
+    base, d, mo, y = m.groups()
+    return f"{base}-{y}{mo}{d}"
+
+
+def fetch(celex, out_dir, kind, discovery=None, source="cellar"):
+    url = doc_url(celex, source)
+    body, final, status, ctype = get(url, accept=ACCEPT[source])
     text = body.decode("utf-8", "replace")
     problems = shape_ok(text, celex)
+
+    # The second opinion. Discovery said this id is current; the document
+    # has to agree that it is that id. Only a consolidated text carries
+    # the line - the OJ representation has no consolidation to state.
+    stated = stated_consolidation(text) if celex.startswith("0") else None
+    if celex.startswith("0"):
+        if stated is None:
+            problems.append(
+                "the document states no consolidated id in its header, so "
+                "discovery has no second opinion to agree with")
+        elif stated != celex:
+            raise SystemExit(
+                f"eurlex: discovery asked for {celex} but the document says "
+                f"it is {stated}. Refusing to save a file whose provenance "
+                f"two sources disagree about.")
     title = RE_TITLE.search(text)
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -191,10 +304,12 @@ def fetch(celex, out_dir, kind, discovery=None):
         "content_type": ctype,
         "fetched_at_utc": stamp,
         "user_agent": UA,
+        "access_route": source,
         "sha256": hashlib.sha256(body).hexdigest(),
         "sha256_normalized": hashlib.sha256(
             RE_TELEMETRY.sub(b"", body)).hexdigest(),
         "normalization": NORMALIZATION,
+        "stated_consolidation": stated,
         "bytes": len(body),
         "raw_file": raw.name,
         "doc_title": title.group(1).strip() if title else None,
@@ -205,7 +320,10 @@ def fetch(celex, out_dir, kind, discovery=None):
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
 
-    print(f"  {kind:<17} {celex}")
+    if stated:
+        print(f"  {kind:<17} {celex}  (document agrees: {stated})")
+    else:
+        print(f"  {kind:<17} {celex}")
     print(f"    {status} {ctype.split(';')[0]}  {len(body):,} bytes  "
           f"sha256 {manifest['sha256'][:16]}…")
     print(f"    {raw}")
@@ -231,21 +349,31 @@ def main(argv=None):
                          " Refuses to fetch anything else.")
     ap.add_argument("--out", default="corpus/raw/eu/ai-act",
                     help="directory for the raw file and its manifest")
+    ap.add_argument("--source", choices=("cellar", "legal-content"),
+                    default="cellar",
+                    help="which EUR-Lex route to fetch through. Default "
+                         "cellar: legal-content is behind a bot challenge "
+                         "(see the module docstring).")
     a = ap.parse_args(argv)
     if not (a.consolidated or a.original):
         ap.error("choose --consolidated, --original, or both")
 
     out = Path(a.out)
-    print(f"EUR-Lex fetch - base act {a.celex}")
+    print(f"EUR-Lex fetch - base act {a.celex}  (route: {a.source})")
     problems = []
     try:
-        disc = discover(a.celex)
+        disc = (discover_cellar(a.celex) if a.source == "cellar"
+                else discover(a.celex))
     except urllib.error.URLError as e:
         raise SystemExit(f"eurlex: cannot reach EUR-Lex: {e}")
-    print(f"  consolidated versions on the page: "
+    where = ("Cellar SPARQL" if a.source == "cellar" else "the landing page")
+    print(f"  consolidated versions per {where}: "
           f"{', '.join(disc['consolidated_versions'])}")
-    print(f"  current: {disc['current_consolidated']}"
-          f"  (status line agrees: {disc['status_line_agrees']})")
+    print(f"  current: {disc['current_consolidated']}")
+    if a.source == "cellar":
+        print("  second opinion: the document's own header, checked at fetch")
+    else:
+        print(f"  status line agrees: {disc['status_line_agrees']}")
     if a.expect and a.expect != disc["current_consolidated"]:
         raise SystemExit(
             f"eurlex: --expect {a.expect} but EUR-Lex now says "
@@ -255,10 +383,10 @@ def main(argv=None):
 
     if a.consolidated:
         _, p = fetch(disc["current_consolidated"], out, "consolidated-html",
-                     disc)
+                     disc, a.source)
         problems += p
     if a.original:
-        _, p = fetch(a.celex, out, "oj-html", disc)
+        _, p = fetch(a.celex, out, "oj-html", disc, a.source)
         problems += p
     return 1 if problems else 0
 

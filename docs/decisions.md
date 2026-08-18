@@ -264,3 +264,139 @@ model shifts both distributions — re-run `cli.py floor` and re-record.
 Adding Phase 2 instruments (GDPR, NIS2, DORA) converts today's
 out-of-corpus questions into in-corpus ones; the eval set needs new
 out-of-corpus rows at that point, not just a re-run.
+
+## D8 — Fetching through Cellar, because EUR-Lex's human site challenges robots
+
+**Status:** decided 2026-08-18, during M6.
+
+**Context.** M6 opened by fetching GDPR and got HTTP 202 and an AWS WAF
+page — "we need to verify that you're not a robot" — from
+`eur-lex.europa.eu/legal-content`. Measured before concluding anything:
+the same challenge came back for the AI Act's own landing page, which
+had fetched cleanly the day before, so this is the host's posture toward
+this client and not something GDPR or the fetcher did. Defeating a bot
+challenge was never on the table.
+
+The identifier discovery in `fetch.eurlex` was the real casualty. Its
+whole design is that a consolidated id is *discovered, never
+remembered*, and the two opinions it reconciled — the "Current
+consolidated version" status line and the `data-celex` attribute — both
+live on the blocked page. Guessing an id that still returns 200 is
+precisely the failure that function exists to prevent.
+
+**Decision.** Fetch through the Publications Office's Cellar service
+(`publications.europa.eu/resource/celex/<id>`, `--source cellar`, now
+the default). `--source legal-content` keeps the old route for the day
+the challenge lifts.
+
+Measured before switching, not assumed — the risk was that Cellar serves
+a *third* HTML skin, which would have confounded every M6 finding with
+"Cellar-specific" noise:
+
+| | legal-content | Cellar |
+|---|---|---|
+| `eli-subdivision`, AI Act consolidated / OJ | 121 / 303 | 121 / 303 |
+| class vocabulary | — | identical but one cosmetic `borderOj` |
+| two consecutive fetches | differ (Dynatrace RUM id) | byte-identical |
+
+So the converter cannot tell the two apart, and the AI Act conversions
+are byte-identical after the switch. Cellar content-negotiates: it
+answers 404 to `text/html` and serves the document only for
+`application/xhtml+xml`.
+
+**Discovery keeps its second opinion**, which is the part that mattered.
+The pair is now the Cellar SPARQL endpoint (which consolidated ids
+exist) and the consolidated document's own header line
+(`02016R0679 — EN — 04.05.2016`). Those are two different services, so a
+change to either surfaces as a disagreement rather than a wrong answer.
+`fetch` refuses to save a file whose id the document contradicts.
+
+**Costs accepted.**
+
+- A new service in the fetch bucket. Still stdlib-only — no dependency.
+- The corpus now has mixed host provenance: the AI Act's committed raw
+  files came from legal-content and are **not** re-fetched, because D5
+  commits the bytes as served and re-fetching to tidy provenance would
+  destroy the thing provenance is for. Every manifest records
+  `access_route`, so which is which is readable rather than inferred.
+- D5's normalization rule is a no-op on this route (no Dynatrace stamp),
+  so `sha256` and `sha256_normalized` are equal here. The rule stays: it
+  is still correct, and it is what makes the two routes comparable.
+
+**Trigger to revisit:** the challenge lifts and `--source legal-content`
+starts working again — at which point this stays the default anyway,
+because a machine interface that does not challenge machines is the
+better dependency.
+
+## D9 — GDPR is two documents too, and the converter was never AI-Act-specific
+
+**Status:** decided 2026-08-18, during M6. *(The M6 brief called this
+entry D8; the fetch-route change above took that number, since the
+register keeps one decision per entry.)*
+
+**Context.** M6's question was how much of `convert/eurlex_html.py` was
+EUR-Lex and how much was the AI Act — unknown until measured, per M5.
+
+**What was measured, not assumed.**
+
+| | recitals | articles | annexes | chapters |
+|---|---|---|---|---|
+| GDPR consolidated `02016R0679-20160504` | 0 | 99 | 0 | 11 |
+| GDPR original OJ `32016R0679` | 173 | 99 | 0 | 11 |
+
+**D4 generalizes.** GDPR's consolidation carries no recitals either —
+zero `rct_` ids, zero occurrences of "whereas" — so the corpus is
+`corpus/eu/gdpr.md` (enacting terms) and `corpus/eu/gdpr.recitals.md`
+(recitals), two provenances, exactly as D4 laid down. GDPR has **no
+annexes**, confirmed against the fetched HTML in both representations
+rather than from recollection.
+
+**One code path, no instrument profile.** The converter needed no
+changes to produce the text: 99 articles and 173 recitals, 0
+unaccounted and 0 anomalies on the first run of each. A cross-check
+independent of the totals: the 191,372 characters dropped as
+`not-this-part` from the OJ document fall within 755 of the 190,617
+emitted as enacting terms from the consolidated document — two separate
+conversions agreeing on the size of the same text. Order is clean too,
+SPLICE 0 in both directions for all four documents.
+
+**What *was* AI-Act-specific was the provenance, and it failed
+silently.** `amending_acts()` matched `celex:<id>`; Cellar writes
+`celex/<id>`. On the Cellar route it therefore matched nothing and
+returned an empty list — which is also exactly what a genuinely
+unmodified act returns, so the front matter asserted that nothing had
+been folded in and no check could see the difference. A re-fetched AI
+Act would have quietly lost `32026R1744`.
+
+Worse, the relation itself was assumed. GDPR's consolidation exists
+because of a **corrigendum**: its table is headed "Corrected by:", its
+markers are `►C1`, and the id is `32016R0679R(02)`. The old pattern
+`3\d{4}[A-Z]\d{4}` truncates that to `32016R0679` — the act modifying
+itself. So `modifying_acts()` now reads the table's own header and emits
+`amended_by` **or** `corrected_by`, and two drop rules were renamed to
+describe what they actually remove. The AI Act's markdown is
+byte-identical after the fix; only its report changed, by two lines.
+
+**Four rows, not one registry.** The four named lists do not hold the
+same fact: `query/cli.py`'s `EVAL_FILE`/`EVAL_REPORT` is corpus-wide,
+not per-document, so a registry would replace three of four while adding
+a Python-to-bash consumer for `rerun-identical.sh`. They also fill at
+different milestones — `seqcheck-corpus.py` (now keyed
+`<instrument>:<part>`, since a bare `enacting` cannot say whose) and
+`rerun-identical.sh` cover GDPR today; `CHUNK_FILES` and the eval pair
+stay AI-Act-only until M7 puts chunks behind them. A registry earns its
+keep when NIS2 lands and a Directive tests whether the per-document
+fields are even stable.
+
+**Cost accepted.** `part: enacting terms and annexes` is the converter's
+fixed label and now appears on a document with no annexes. The base
+act's own CELEX remains in the modifier list (`corrected_by` includes
+`32016R0679`), which predates GDPR; changing it would rewrite the AI
+Act's front matter for a cosmetic reason.
+
+**Known defect, deliberately not fixed here.** Source footnotes render
+as `( )` — the number is dropped as a `note-mark` inside its own
+footnote text. This is Phase 1 debt, present in the AI Act corpus since
+M2, not something GDPR introduced. Fixing it rewrites the AI Act
+markdown and ripples into chunks and the eval, so it belongs to its own
+decision rather than smuggled into M6.
