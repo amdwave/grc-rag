@@ -76,7 +76,7 @@ PKG = ROOT / "src" / "grc_rag"
 # Every module, named. Add a new file here or the check fails on it.
 FETCH = ["fetch/eurlex.py"]
 CONVERT = ["convert/eurlex_html.py", "convert/chunk.py"]
-QUERY = ["query/index.py"]
+QUERY = ["query/index.py", "query/engine.py", "query/cli.py"]
 
 BUCKETS = (("fetch", FETCH), ("convert", CONVERT), ("query", QUERY))
 

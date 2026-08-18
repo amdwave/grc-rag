@@ -225,3 +225,42 @@ than hand-roll a sparse index either way.
 **Not decided here:** rank fusion weights, the reranker's cut-off, and
 the relevance-gate floor. All three are tuned against the eval set in M4,
 after Gate B — tuning them now would be tuning against nothing.
+
+## D7 — Relevance-gate floor: 0.62 on the dense cosine alone
+
+**Status:** decided 2026-08-17, during M4, after Gate B sign-off.
+
+**Context.** The gate refuses before any model call when retrieval says
+the corpus is not about the question. It reads the best dense cosine
+alone — never the fused rank and never BM25, which scores high on any
+question sharing common words (brief; book2rag's earned rule). The floor
+is only meaningful against the model that produced the vectors (BGE-M3,
+D6), tuned from the approved eval set's distributions, measured by
+`python -m grc_rag.query.cli floor`.
+
+**Measured** (20 questions, best dense cosine per question):
+
+| cluster | n | range |
+|---|---|---|
+| out-of-corpus (`gate_expectation: refuse`) | 4 | 0.4918 – 0.6151 |
+| in-corpus (`gate_expectation: pass`) | 16 | 0.6264 – 0.8020 |
+
+Clean gap 0.6151 → 0.6264; **floor 0.62**, the midpoint.
+
+- The hardest out-of-corpus case was ISO/IEC 42001 (0.6151), not the
+  GDPR question the eval README predicted (0.5669) — management-system
+  vocabulary sits closer to Article 17's than GDPR's does to anything.
+- q15/q16 (repealed provisions) score 0.6379 and 0.6967 — above the
+  floor **by design**: their refusal belongs to the generator, and a
+  floor high enough to catch them would be mistuned (eval README).
+
+**Cost accepted.** The gap is real but narrow (0.011) and rests on four
+out-of-corpus samples. The floor is permissive at the margin: a
+near-domain out-of-corpus question can score above 0.62 and reach the
+generator, whose grounding prompt is the second line of defence.
+
+**Trigger to revisit:** any change to the corpus, chunking, or embedding
+model shifts both distributions — re-run `cli.py floor` and re-record.
+Adding Phase 2 instruments (GDPR, NIS2, DORA) converts today's
+out-of-corpus questions into in-corpus ones; the eval set needs new
+out-of-corpus rows at that point, not just a re-run.
