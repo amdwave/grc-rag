@@ -263,6 +263,11 @@ def make(meta, kind, number, marker, anchor, path, blocks, chapeau, stem):
         "celex": meta.get("celex"),
         "source_url": meta.get("source_url"),
         "version_date": meta.get("version_date"),
+        # Consolidated text is current AS OF its consolidation date; the
+        # recitals are the act AS PUBLISHED. A citation that shows a date
+        # without saying which of the two it is claims a currency the
+        # recitals file does not have.
+        "date_basis": meta.get("date_basis"),
         "language": meta.get("language", "en"),
         "chars": len(body),
         "offset": blocks[0][1],

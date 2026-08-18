@@ -4,6 +4,8 @@ title: REGULATION (EU) 2024/1689 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL o
 part: recitals
 celex: 32024R1689
 representation: oj-html
+version_date: 2024-07-12
+date_basis: publication
 language: en
 source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689
 source_sha256: 9ecb211bca305629bc5adcc26bfe3c7c6ad7b74ad51377df6123542306c804fc

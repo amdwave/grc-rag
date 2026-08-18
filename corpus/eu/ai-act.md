@@ -5,6 +5,7 @@ part: enacting terms and annexes
 celex: 02024R1689-20260727
 representation: consolidated-html
 version_date: 2026-07-27
+date_basis: consolidation
 language: en
 source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1689-20260727
 source_sha256: dcf7d6c5ba9f6619f545759b9600b8f42dba5dbfc3a45b4f54a21ab30a4c5380

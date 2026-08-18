@@ -946,6 +946,41 @@ def amending_acts(body):
     return out
 
 
+RE_OJ_DATE = re.compile(r"^(\d{1,2})\.(\d{1,2})\.(\d{4})$")
+
+
+def document_date(body, celex):
+    """(date, what the date means) - never None, or the run stops.
+
+    A consolidated CELEX carries its date in the identifier itself. The
+    OJ publication does not, and nothing filled the field for the
+    recitals document: every recital chunk went out with
+    `version_date: null`, which is invisible until a citation has to say
+    what the text is current as of. So the two bases are read
+    differently and both are named, rather than one being silently
+    absent.
+
+    The date is read WITHOUT marking the element as emitted - the
+    masthead is dropped by name a moment later, and claiming it as
+    emitted here would be the same accounting lie that lost Annex X's
+    title.
+    """
+    if "-" in celex:
+        d = celex.split("-")[1]
+        return f"{d[:4]}-{d[4:6]}-{d[6:]}", "consolidation"
+    node = descend(body, lambda n: n.has("oj-hd-date"))
+    raw = " ".join(t.text for t in texts(node)).strip() if node else ""
+    m = RE_OJ_DATE.match(" ".join(raw.split()))
+    if not m:
+        raise SystemExit(
+            f"convert: no publication date for {celex}. Expected a "
+            f"`p.oj-hd-date` holding d.m.yyyy; found {raw!r}. Every chunk "
+            f"has to be able to say what it is current as of, so this is "
+            f"not a field to leave empty.")
+    d, mo, y = m.groups()
+    return f"{y}-{int(mo):02d}-{int(d):02d}", "publication"
+
+
 def doc_title(body, drops):
     node = descend(body, lambda n: n.has("eli-main-title"))
     if node is None:
@@ -978,7 +1013,7 @@ def main(argv=None):
                   if t.state == "emitted")
 
     celex = src["celex"]
-    vdate = celex.split("-")[1] if "-" in celex else None
+    vdate, basis = document_date(body, celex)
     meta = {
         "instrument": a.instrument,
         "title": title or src.get("doc_title") or celex,
@@ -986,8 +1021,8 @@ def main(argv=None):
                  else "recitals"),
         "celex": celex,
         "representation": src["representation"],
-        "version_date": (f"{vdate[:4]}-{vdate[4:6]}-{vdate[6:]}"
-                         if vdate else None),
+        "version_date": vdate,
+        "date_basis": basis,      # what that date IS: consolidation or OJ
         "language": "en",
         "source_url": src["requested_url"],
         "source_sha256": src["sha256"],

@@ -58,7 +58,7 @@ CHUNK_FILES = [
 # surprise column.
 FIELDS = ("id", "instrument", "part", "kind", "unit_number", "marker",
           "anchor", "citation", "parent_path", "celex", "source_url",
-          "version_date", "language", "chars", "body", "text")
+          "version_date", "date_basis", "language", "chars", "body", "text")
 
 
 def load(root):
