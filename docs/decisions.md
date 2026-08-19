@@ -740,3 +740,109 @@ the gate, and it must be measured against this same eval set before
 anything is claimed for it. D7's warning against gating on BM25 is not an
 argument against the cross-encoder: BM25 scores shared words, which is
 the failure mode; the cross-encoder is trained on relevance.
+
+## D14 — The audit: the gate stays, its demotion is falsified, and the blind spots get names
+
+**Status:** decided 2026-08-19, during M11, an audit session whose brief
+was to attack the conclusions of M6–M10 rather than extend them. Raw
+artifacts (scores, control run, probe set, scripts) are under
+`/mnt/d/.staging/audit-*`; they are diagnostics, not part of the graded
+eval, and none of them were folded into `eval/corpus.eval.jsonl`.
+
+**Context.** Four entries — D7, D10, D13, plus the uncommitted M10
+experiment — record the same mechanism degrading, and no session had
+asked the prior question: should a pre-generation relevance gate exist
+at all? The audit tested five claims the prior sessions were most
+confident about. One was falsified; it was this audit's own leading
+hypothesis, not the incumbent design.
+
+**Measured — the M10 conclusion survives a 3.6× larger sample.** M10
+rested on ten negatives, the same weakness D7 was criticised for. The
+audit re-scored the 51 eval rows (reproducing `m10-gate.json` to four
+decimals) and added 26 new out-of-corpus questions banded by nearness
+(extreme-near: UK GDPR, the Law Enforcement Directive, NIS1, the AI
+Liability Directive, the GPAI Code of Practice; out to far: SOC 2,
+PCI DSS). On 51 positives (41 eval + 10 independent probes) and 36
+negatives, the best any threshold mechanism achieves at zero false
+refusals: dense 19/36, rerank 16/36, OR 21/36. Every optimal threshold
+has **zero margin** — it sits exactly on a positive's score. Fifteen of
+36 negatives are uncatchable by any combination, including six of the
+seven extreme-near regimes; a question about the Commission's own
+prohibited-practices guidelines reranks at +0.89 against a corpus that
+genuinely covers Article 5. Both scores measure topicality. Answerability
+is not in them, and no wider sample changes that.
+
+**Measured — the control experiment nobody ran, and it falsified the
+demotion.** The full 51-question eval with `floor=None`: hit@5 37/39 and
+citation 36/39, identical to the committed run. Refusal correctness fell
+10/12 → 8/12. Of the four questions the gate catches, q18 (DORA) and
+q51 (ISO 22301) were refused by the generator anyway; **q34 (ePrivacy)
+came back as a hedged non-refusal** — substantively honest, but not the
+refusal contract — **and q35 (Data Act) came back as a fluent
+cross-regime answer**, the "provider of data processing services"
+answered out of GDPR Article 20 data portability, verified True. The
+grounding prompt is not a superset of the gate. The gate's correctness
+contribution is narrow — far-band questions only — but real, and it is
+deterministic where generation refusal measurably is not. "The gate is
+a cost optimisation with no correctness claim" was this audit's highest-
+value hypothesis, and it is wrong.
+
+**Measured — the answer key holds up.** Ten questions authored from the
+three instruments' tables of contents alone, before this session read
+the eval file, on subjects the eval does not touch (joint controllers,
+child consent, BCRs, logging retention, sandboxes, the entity registry,
+information-sharing arrangements): 10/10 retrieval hit@5, 10/10 answers
+citing the expected article, three verifier flags all in the known
+benign classes (ellipsis elision, bracket-adapted verbs). An eval set
+drifted toward its system would outperform blind questions; this one
+does not. The M7 relabel ordering (D10) remains a recorded process
+defect, but the set itself is sound, and D13's pre-registration standard
+stands as the bar.
+
+**Measured — run-to-run variance, quantified once.** The control pass
+doubles as the deliberate re-run: headline metrics identical, refusal
+behaviour on non-gate rows identical, verification flipped on 4 of 51
+rows (q24 False→True; q40, q43, q45 True→False). The nondeterminism
+lives in how the model quotes, not in what it retrieves or refuses. The
+committed report's headline bears weight; any single row's verification
+flag is a one-run sample.
+
+**Decision.**
+
+- **The gate stays: 0.59 on the best dense cosine, unchanged.** Not
+  because it discriminates — it does not, and D13's honesty about that
+  stands — but because removing it measurably loses deterministic
+  refusals that generation does not reliably replace, and costs nothing.
+- **Its claim is restated once more, downward:** a deterministic
+  far-band refusal, nothing finer. The scores contain topicality only.
+- **The OR-gate is rejected**, closing the question M10 parked: +2
+  catches on the widened sample (21 vs 19), bought with a second tuned
+  threshold at zero margin on no holdout.
+- **D13's cross-encoder hypothesis is closed, negative.** Measured by
+  M10 at n=10 and re-measured here at n=36: reranker-gating is not
+  better than the dense cosine (16 vs 19 at zero false refusals), and
+  the failure is structural, not statistical.
+- **Score-threshold redesigns are a dead end and no further ones should
+  be measured.** The open frontier is the cross-regime class (N5): q36,
+  q49, and now q35 are answered from the wrong law by a pipeline whose
+  every check passes. Anything that closes it must operate on regime
+  identity — which acts the question names versus which acts the corpus
+  holds — not on retrieval scores. Designing that is deliberately out of
+  scope for an audit; it is the first question of whatever milestone
+  precedes a fourth instrument.
+- **The defect-class inventory is a document of its own:**
+  [defect-classes.md](defect-classes.md). Twenty-four classes, seven
+  with no mechanical coverage, two of those previously unrecorded —
+  index staleness against the committed chunks (X1) and quote-to-
+  citation binding (N4). Cheap closures are recorded there; building
+  them belongs to a milestone, not an audit.
+
+**Cost accepted.** Unchanged from D13, now with numbers on the widened
+sample: the gate catches 16 of 36 audit negatives, the generator refuses
+some of the rest nondeterministically, and the extreme-near band is
+answered wrongly with verified citations. The README's limitations
+section already says this; the inventory now says it per class.
+
+**Trigger to revisit:** unchanged from D13 for the floor. For the
+mechanism: a fourth instrument, or building the N5 countermeasure —
+whichever comes first, and the audit's position is that N5 comes first.
