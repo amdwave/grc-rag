@@ -1,0 +1,410 @@
+[
+ {
+  "id": "q01",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7167407870292664,
+  "rerank": 0.9953292608261108,
+  "q": "Above what cumulative amount of training compute is "
+ },
+ {
+  "id": "q02",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7744975090026855,
+  "rerank": 0.9965364933013916,
+  "q": "What administrative fines can be imposed on an opera"
+ },
+ {
+  "id": "q03",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.750151515007019,
+  "rerank": 0.9932460784912109,
+  "q": "A company established outside the EU runs an AI syst"
+ },
+ {
+  "id": "q04",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7638105154037476,
+  "rerank": 0.999403715133667,
+  "q": "What must providers of AI systems that generate synt"
+ },
+ {
+  "id": "q05",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7076026201248169,
+  "rerank": 0.9999301433563232,
+  "q": "Is an AI system used to evaluate the creditworthines"
+ },
+ {
+  "id": "q06",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7855430245399475,
+  "rerank": 0.9996898174285889,
+  "q": "Before placing a high-risk AI system listed in Annex"
+ },
+ {
+  "id": "q07",
+  "kind": "relocated",
+  "neg": false,
+  "dense": 0.8019658327102661,
+  "rerank": 0.9995705485343933,
+  "q": "Under what conditions may a provider of a high-risk "
+ },
+ {
+  "id": "q08",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.7382879257202148,
+  "rerank": 0.988021731376648,
+  "q": "How does the AI Act ensure that the people overseein"
+ },
+ {
+  "id": "q09",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.745425283908844,
+  "rerank": 0.9984837174415588,
+  "q": "What resilience must high-risk AI systems have again"
+ },
+ {
+  "id": "q10",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.6263844966888428,
+  "rerank": 0.9716041684150696,
+  "q": "Before a deployer takes any action on the basis of a"
+ },
+ {
+  "id": "q11",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.769298255443573,
+  "rerank": 0.994559109210968,
+  "q": "Can an AI system that falls under one of the Annex I"
+ },
+ {
+  "id": "q12",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.6944926381111145,
+  "rerank": 0.9997506737709045,
+  "q": "Why are AI systems used for military and defence pur"
+ },
+ {
+  "id": "q13",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.6663526296615601,
+  "rerank": 0.9986818432807922,
+  "q": "In the AI Act's definition of an AI system, what doe"
+ },
+ {
+  "id": "q14",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.7211554050445557,
+  "rerank": 0.9966861605644226,
+  "q": "Why does the AI Act expect a provider to be able to "
+ },
+ {
+  "id": "q15",
+  "kind": "repealed",
+  "neg": false,
+  "dense": 0.6379477977752686,
+  "rerank": 0.4528236985206604,
+  "q": "What does Article 10(5) of the AI Act provide?"
+ },
+ {
+  "id": "q16",
+  "kind": "repealed",
+  "neg": false,
+  "dense": 0.6966655254364014,
+  "rerank": 0.9866327047348022,
+  "q": "Which piece of Union harmonisation legislation is li"
+ },
+ {
+  "id": "q17",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.8052201271057129,
+  "rerank": 0.9996742010116577,
+  "q": "Within what time limit must an essential entity subm"
+ },
+ {
+  "id": "q18",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.5345996618270874,
+  "rerank": 0.021724529564380646,
+  "q": "What does DORA require from financial entities with "
+ },
+ {
+  "id": "q19",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7769673466682434,
+  "rerank": 0.9952811598777771,
+  "q": "Under the GDPR, in which cases is a controller requi"
+ },
+ {
+  "id": "q20",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.6150901913642883,
+  "rerank": 0.39516422152519226,
+  "q": "What does ISO/IEC 42001 require an organisation to e"
+ },
+ {
+  "id": "q21",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.8039761781692505,
+  "rerank": 0.9988634586334229,
+  "q": "How quickly must a controller notify the supervisory"
+ },
+ {
+  "id": "q22",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7053109407424927,
+  "rerank": 0.9636088013648987,
+  "q": "On what legal bases may a company lawfully process p"
+ },
+ {
+  "id": "q23",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7201148867607117,
+  "rerank": 0.9918312430381775,
+  "q": "What is the maximum administrative fine for infringi"
+ },
+ {
+  "id": "q24",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7290939688682556,
+  "rerank": 0.9783245921134949,
+  "q": "When is a data protection impact assessment mandator"
+ },
+ {
+  "id": "q25",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.713956356048584,
+  "rerank": 0.8835716247558594,
+  "q": "What general condition must be met before personal d"
+ },
+ {
+  "id": "q26",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.6706337928771973,
+  "rerank": 0.5634888410568237,
+  "q": "A customer wants us to stop using their data while t"
+ },
+ {
+  "id": "q27",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.6558016538619995,
+  "rerank": 0.09469126909971237,
+  "q": "After a breach that puts people at serious risk, doe"
+ },
+ {
+  "id": "q28",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.6039437055587769,
+  "rerank": 0.20691843330860138,
+  "q": "Can someone require us to hand over the data they ga"
+ },
+ {
+  "id": "q29",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.6063538193702698,
+  "rerank": 0.9143503904342651,
+  "q": "Why does relying on legitimate interests depend on w"
+ },
+ {
+  "id": "q30",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.6671903729438782,
+  "rerank": 0.37894052267074585,
+  "q": "When does the GDPR stop treating information as pers"
+ },
+ {
+  "id": "q31",
+  "kind": "cross_instrument",
+  "neg": false,
+  "dense": 0.6764736771583557,
+  "rerank": 0.9819398522377014,
+  "q": "What rights does someone have when a decision affect"
+ },
+ {
+  "id": "q32",
+  "kind": "cross_instrument",
+  "neg": false,
+  "dense": 0.7530286312103271,
+  "rerank": 0.9997773766517639,
+  "q": "Before a public body puts a high-risk AI system into"
+ },
+ {
+  "id": "q33",
+  "kind": "cross_instrument",
+  "neg": false,
+  "dense": 0.710620105266571,
+  "rerank": 0.9574154615402222,
+  "q": "What must a controller tell someone who asks whether"
+ },
+ {
+  "id": "q34",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.565590500831604,
+  "rerank": 0.032191723585128784,
+  "q": "Under the ePrivacy rules, when may a website store o"
+ },
+ {
+  "id": "q35",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.585253119468689,
+  "rerank": 0.009967314079403877,
+  "q": "What must a provider of data processing services do "
+ },
+ {
+  "id": "q36",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.6413225531578064,
+  "rerank": 0.690619945526123,
+  "q": "What vulnerability handling obligations apply to a m"
+ },
+ {
+  "id": "q37",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.6267086863517761,
+  "rerank": 0.03221869841217995,
+  "q": "What must an organisation include in its Statement o"
+ },
+ {
+  "id": "q38",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.6210057139396667,
+  "rerank": 0.14239457249641418,
+  "q": "Within what period must covered entities notify indi"
+ },
+ {
+  "id": "q39",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.7578492164611816,
+  "rerank": 0.9993975162506104,
+  "q": "What cybersecurity risk-management measures must ess"
+ },
+ {
+  "id": "q40",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.6976256370544434,
+  "rerank": 0.9640459418296814,
+  "q": "What is the maximum administrative fine an essential"
+ },
+ {
+  "id": "q41",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.6832045316696167,
+  "rerank": 0.9841205477714539,
+  "q": "Which entities does the NIS2 Directive treat as esse"
+ },
+ {
+  "id": "q42",
+  "kind": "direct",
+  "neg": false,
+  "dense": 0.6191911697387695,
+  "rerank": 0.9530001878738403,
+  "q": "Is a supplier of drinking water within the scope of "
+ },
+ {
+  "id": "q43",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.6541702151298523,
+  "rerank": 0.448626846075058,
+  "q": "What is required of the people on a company's board "
+ },
+ {
+  "id": "q44",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "dense": 0.5947461128234863,
+  "rerank": 0.7425305247306824,
+  "q": "Where are newly discovered vulnerabilities in ICT pr"
+ },
+ {
+  "id": "q45",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.6721699237823486,
+  "rerank": 0.9936596751213074,
+  "q": "Why does NIS2 make entities responsible for risks ar"
+ },
+ {
+  "id": "q46",
+  "kind": "recital",
+  "neg": false,
+  "dense": 0.7176428437232971,
+  "rerank": 0.969763457775116,
+  "q": "What has driven the Union's concern about ransomware"
+ },
+ {
+  "id": "q47",
+  "kind": "cross_instrument",
+  "neg": false,
+  "dense": 0.6031997203826904,
+  "rerank": 0.6619260907173157,
+  "q": "We suffered a ransomware attack that encrypted a dat"
+ },
+ {
+  "id": "q48",
+  "kind": "cross_instrument",
+  "neg": false,
+  "dense": 0.7353971004486084,
+  "rerank": 0.998331606388092,
+  "q": "What security measures must be taken to manage risks"
+ },
+ {
+  "id": "q49",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.5927050113677979,
+  "rerank": 0.4662209451198578,
+  "q": "What resilience measures must a critical entity take"
+ },
+ {
+  "id": "q50",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.745962917804718,
+  "rerank": 0.994722843170166,
+  "q": "How is a European cybersecurity certification scheme"
+ },
+ {
+  "id": "q51",
+  "kind": "unanswerable",
+  "neg": true,
+  "dense": 0.5170081853866577,
+  "rerank": 0.004682369530200958,
+  "q": "What must an organisation document when establishing"
+ }
+]

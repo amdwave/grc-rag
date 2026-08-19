@@ -1,0 +1,998 @@
+[
+ {
+  "id": "q01",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "EU AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q02",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q03",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q04",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q05",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q06",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "EU AI Act; GDPR",
+  "declared": [
+   "EU AI Act",
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q07",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR; AI Act",
+  "declared": [
+   "EU AI Act",
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "relocated"
+ },
+ {
+  "id": "q08",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q09",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q10",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "EU AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q11",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "Artificial Intelligence Act (EU AI Act)",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q12",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q13",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q14",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q15",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "repealed"
+ },
+ {
+  "id": "q16",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GENERAL",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": false,
+  "kind": "repealed"
+ },
+ {
+  "id": "q17",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q18",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "DORA",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q19",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q20",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "ISO/IEC 42001",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q21",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q22",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q23",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q24",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q25",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q26",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q27",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q28",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q29",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q30",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q31",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "cross_instrument"
+ },
+ {
+  "id": "q32",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR; AI Act",
+  "declared": [
+   "EU AI Act",
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "cross_instrument"
+ },
+ {
+  "id": "q33",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "cross_instrument"
+ },
+ {
+  "id": "q34",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "ePrivacy Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q35",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "Data Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q36",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "Cyber Resilience Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q37",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "ISO/IEC 27001",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q38",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "HIPAA Breach Notification Rule",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q39",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q40",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q41",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q42",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "direct"
+ },
+ {
+  "id": "q43",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GENERAL",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": false,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q44",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "ENISA; Cybersecurity Act; NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "neighbour_adversary"
+ },
+ {
+  "id": "q45",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q46",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive; Cybersecurity Act; EU Cyber Solidarity Act; Directive on measures for a high common level of cybersecurity across the Union",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "recital"
+ },
+ {
+  "id": "q47",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "cross_instrument"
+ },
+ {
+  "id": "q48",
+  "group": "eval",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive; Cybersecurity Act; GDPR",
+  "declared": [
+   "GDPR",
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true,
+  "kind": "cross_instrument"
+ },
+ {
+  "id": "q49",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "Critical Entities Resilience Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q50",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "Cybersecurity Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "q51",
+  "group": "eval",
+  "truth": "out-of-corpus",
+  "reply": "ISO 22301",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "kind": "unanswerable"
+ },
+ {
+  "id": "n01",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "DORA",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "DORA",
+  "band": "near"
+ },
+ {
+  "id": "n02",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "DORA; NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": false,
+  "regime": "DORA",
+  "band": "near"
+ },
+ {
+  "id": "n03",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "NIS Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "NIS1",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n04",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Digital Services Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "DSA",
+  "band": "near"
+ },
+ {
+  "id": "n05",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "DMA (Digital Markets Act)",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "DMA",
+  "band": "near"
+ },
+ {
+  "id": "n06",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Law Enforcement Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "LED",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n07",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "UK GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": false,
+  "regime": "UK-GDPR",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n08",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "AI Liability Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "AI-Liability",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n09",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Machinery Regulation (EU) 2023/1230",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "Machinery",
+  "band": "near"
+ },
+ {
+  "id": "n10",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Cyber Resilience Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "CRA",
+  "band": "near"
+ },
+ {
+  "id": "n11",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "EU Cybersecurity Act; Cybersecurity Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "CSA",
+  "band": "near"
+ },
+ {
+  "id": "n12",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "CER Directive",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "CER",
+  "band": "near"
+ },
+ {
+  "id": "n13",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "eIDAS Regulation",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "eIDAS",
+  "band": "mid"
+ },
+ {
+  "id": "n14",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Data Governance Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "DGA",
+  "band": "mid"
+ },
+ {
+  "id": "n15",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "EHDS Regulation",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "EHDS",
+  "band": "mid"
+ },
+ {
+  "id": "n16",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "Cyber Solidarity Act",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "CySol",
+  "band": "near"
+ },
+ {
+  "id": "n17",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "General-Purpose AI Code of Practice",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "GPAI-CoP",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n18",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": false,
+  "regime": "AIA-guidelines",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n19",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "GDPR; SCCs (Standard Contractual Clauses under GDPR)",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": false,
+  "regime": "SCC",
+  "band": "extreme-near"
+ },
+ {
+  "id": "n20",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "ISO/IEC 27002",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "ISO27002",
+  "band": "mid"
+ },
+ {
+  "id": "n21",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "IEC 62443",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "IEC62443",
+  "band": "mid"
+ },
+ {
+  "id": "n22",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "SOC 2; Trust Services Criteria (TSC)",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "SOC2",
+  "band": "far"
+ },
+ {
+  "id": "n23",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "PCI DSS",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "PCI-DSS",
+  "band": "far"
+ },
+ {
+  "id": "n24",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "GENERAL",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "NIST-CSF",
+  "band": "mid"
+ },
+ {
+  "id": "n25",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "CCPA; CPRA",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "CCPA",
+  "band": "mid"
+ },
+ {
+  "id": "n26",
+  "group": "audit-negative",
+  "truth": "out-of-corpus",
+  "reply": "PIPL",
+  "declared": [],
+  "verdict": "refuse",
+  "ok": true,
+  "regime": "PIPL",
+  "band": "mid"
+ },
+ {
+  "id": "p01",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "EU AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p02",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "EU AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p03",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p04",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p05",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p06",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p07",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p08",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p09",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true
+ },
+ {
+  "id": "p10",
+  "group": "toc-probe",
+  "truth": "in-corpus",
+  "reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "verdict": "pass",
+  "ok": true
+ }
+]

@@ -1,0 +1,26 @@
+{"id": "n01", "regime": "DORA", "band": "near", "question": "What must a financial entity's ICT business continuity policy ensure under DORA?"}
+{"id": "n02", "regime": "DORA", "band": "near", "question": "Which financial entities must carry out threat-led penetration testing, and how often must it be repeated?"}
+{"id": "n03", "regime": "NIS1", "band": "extreme-near", "question": "What security requirements did the 2016 NIS Directive impose on operators of essential services?"}
+{"id": "n04", "regime": "DSA", "band": "near", "question": "What systemic risk assessments must very large online platforms conduct under the Digital Services Act?"}
+{"id": "n05", "regime": "DMA", "band": "near", "question": "What obligations does the Digital Markets Act impose on gatekeepers about combining personal data across their services?"}
+{"id": "n06", "regime": "LED", "band": "extreme-near", "question": "Under the Law Enforcement Directive, when may a police authority transfer personal data to a third country?"}
+{"id": "n07", "regime": "UK-GDPR", "band": "extreme-near", "question": "What is the deadline for reporting a personal data breach to the ICO under the UK GDPR?"}
+{"id": "n08", "regime": "AI-Liability", "band": "extreme-near", "question": "When can a national court order disclosure of evidence about a high-risk AI system under the AI Liability Directive?"}
+{"id": "n09", "regime": "Machinery", "band": "near", "question": "What essential safety requirements apply to machinery with self-evolving behaviour under the 2023 Machinery Regulation?"}
+{"id": "n10", "regime": "CRA", "band": "near", "question": "What CE marking and conformity assessment requirements does the Cyber Resilience Act impose on products with digital elements?"}
+{"id": "n11", "regime": "CSA", "band": "near", "question": "What are the assurance levels of the EU cybersecurity certification framework, and what does the level 'substantial' require?"}
+{"id": "n12", "regime": "CER", "band": "near", "question": "What background checks may Member States require for the staff of critical entities under the CER Directive?"}
+{"id": "n13", "regime": "eIDAS", "band": "mid", "question": "What must a qualified trust service provider verify before issuing a qualified certificate under eIDAS?"}
+{"id": "n14", "regime": "DGA", "band": "mid", "question": "What conditions must a data intermediation service provider meet under the Data Governance Act?"}
+{"id": "n15", "regime": "EHDS", "band": "mid", "question": "For what secondary purposes may electronic health data be made available under the European Health Data Space Regulation?"}
+{"id": "n16", "regime": "CySol", "band": "near", "question": "What is the European Cybersecurity Alert System established by the Cyber Solidarity Act and what do its cyber hubs do?"}
+{"id": "n17", "regime": "GPAI-CoP", "band": "extreme-near", "question": "What transparency commitments do signatories of the General-Purpose AI Code of Practice undertake?"}
+{"id": "n18", "regime": "AIA-guidelines", "band": "extreme-near", "question": "What do the Commission's guidelines on prohibited AI practices say about emotion recognition in the workplace?"}
+{"id": "n19", "regime": "SCC", "band": "extreme-near", "question": "What do the Standard Contractual Clauses require a data importer to do when a foreign government authority requests access to the transferred data?"}
+{"id": "n20", "regime": "ISO27002", "band": "mid", "question": "Which controls does ISO/IEC 27002 recommend for information security incident management?"}
+{"id": "n21", "regime": "IEC62443", "band": "mid", "question": "How does IEC 62443 define security levels for industrial automation and control systems?"}
+{"id": "n22", "regime": "SOC2", "band": "far", "question": "What are the Trust Services Criteria a SOC 2 report is assessed against?"}
+{"id": "n23", "regime": "PCI-DSS", "band": "far", "question": "What does PCI DSS require for storing cardholder data after authorisation?"}
+{"id": "n24", "regime": "NIST-CSF", "band": "mid", "question": "What are the core functions of the NIST Cybersecurity Framework 2.0?"}
+{"id": "n25", "regime": "CCPA", "band": "mid", "question": "What rights does the CCPA give California residents over the sale of their personal information?"}
+{"id": "n26", "regime": "PIPL", "band": "mid", "question": "What does China's PIPL require before a company transfers personal information outside China?"}

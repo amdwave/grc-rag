@@ -1,0 +1,897 @@
+{
+ "eval": [
+  {
+   "id": "q01",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7167407870292664,
+   "verified": true,
+   "cited": [
+    "ai-act#art_51",
+    "ai-act#rct_111"
+   ],
+   "text": "A general-purpose AI model is presumed to have high-impact capabilities when the cumulative amount of computation used for its training, measured in floating point operations, is greater than 10^25.\n\n- Article 51(2) states: \"A general-purpose AI model shall be presumed to have high impact capabilities pursuant to paragraph 1, point (a), when the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25.\" [ai-act#art_51]\n- Recital (111) confirms this threshold: \"an initial threshold of floating point operations should be set, which, if met by a general-purpose AI model, leads to a presumption that the model is a general-purpose AI model with systemic risks.\" [ai-act#rct_111]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q02",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7744975090026855,
+   "verified": true,
+   "cited": [
+    "ai-act#art_99(3)"
+   ],
+   "text": "Non-compliance with the prohibition of the AI practices referred to in Article 5 shall be subject to administrative fines of up to EUR 35 000 000 or, if the offender is an undertaking, up to 7 % of its total worldwide annual turnover for the preceding financial year, whichever is higher [ai-act#art_99(3)]. The text states: \"Non-compliance with the prohibition of the AI practices referred to in Article 5 shall be subject to administrative fines of up to EUR 35 000 000 or, if the offender is an undertaking, up to 7 % of its total worldwide annual turnover for the preceding financial year, whichever is higher\" [ai-act#art_99(3)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q03",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.750151515007019,
+   "verified": true,
+   "cited": [
+    "ai-act#art_2(1)",
+    "ai-act#rct_22",
+    "ai-act#rct_21",
+    "ai-act#art_2(3)"
+   ],
+   "text": "Yes. The AI Act applies to providers and deployers of AI systems established in a third country where the output produced by the system is used in the Union.\n\n- Article 2(1)(c) states the Regulation applies to \u201cproviders and deployers of AI systems that have their place of establishment or are located in a third country, where the output produced by the AI system is used in the Union\u201d [ai-act#art_2(1)].\n- Recital (22) confirms this extraterritorial reach: \u201cthis Regulation should also apply to providers and deployers of AI systems that are established in a third country, to the extent the output produced by those systems is intended to be used in the Union\u201d [ai-act#rct_22].\n- Recital (21) adds that the rules apply \u201cin a non-discriminatory manner, irrespective of whether they are established within the Union or in a third country\u201d [ai-act#rct_21].\n\nHowever, this application is subject to exclusions. Under Article 2(3), the Regulation does not apply to AI systems used exclusively for military, defence, or national security purposes, even if the output is used in the Union: \u201cThis Regulation does not apply to AI systems which are not placed on the market or put into service in the Union, where the output is used in the Union exclusively for military, defence or national security purposes\u201d [ai-act#art_2(3)]. Additionally, Recital (22) excludes public authorities of third countries and international organisations acting under certain law-enforcement or judicial cooperation agreements, provided adequate safeguards are in place [ai-act#rct_22].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q04",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7638105154037476,
+   "verified": true,
+   "cited": [
+    "ai-act#art_50(2)",
+    "ai-act#rct_133"
+   ],
+   "text": "Providers of AI systems that generate synthetic audio, image, video or text must ensure that the outputs are \"marked in a machine-readable format and detectable as artificially generated or manipulated\" [ai-act#art_50(2)]. They must ensure their technical solutions are \"effective, interoperable, robust and reliable as far as this is technically feasible, taking into account the specificities and limitations of various types of content, the costs of implementation and the generally acknowledged state of the art, as may be reflected in relevant technical standards\" [ai-act#art_50(2)].\n\nThis obligation does not apply where the AI systems \"perform an assistive function for standard editing or do not substantially alter the input data provided by the deployer or the semantics thereof, or where authorised by law to detect, prevent, investigate or prosecute criminal offences\" [ai-act#art_50(2)]. The marking techniques may include \"watermarks, metadata identifications, cryptographic methods for proving provenance and authenticity of content, logging methods, fingerprints or other techniques\" [ai-act#rct_133]. These can be implemented \"at the level of the AI system or at the level of the AI model, including general-purpose AI models generating content\" [ai-act#rct_133].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q05",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7076026201248169,
+   "verified": true,
+   "cited": [
+    "ai-act#anx_III(5)",
+    "ai-act#rct_58"
+   ],
+   "text": "Yes. An AI system used to evaluate the creditworthiness of natural persons is classified as high-risk under the AI Act.\n\n- Annex III(5)(b) explicitly lists as high-risk: \"AI systems intended to be used to evaluate the creditworthiness of natural persons or establish their credit score, with the exception of AI systems used for the purpose of detecting financial fraud\" [ai-act#anx_III(5)].\n- Recital (58) confirms this classification, stating that \"AI systems used to evaluate the credit score or creditworthiness of natural persons should be classified as high-risk AI systems, since they determine those persons\u2019 access to financial resources or essential services such as housing, electricity, and telecommunication services\" [ai-act#rct_58].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q06",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7855430245399475,
+   "verified": true,
+   "cited": [
+    "ai-act#art_49"
+   ],
+   "text": "Before placing a high-risk AI system listed in Annex III on the market, the provider must register themselves and their system in the EU database referred to in Article 71, unless the system falls under point 2 of Annex III.\n\nArticle 49(1) states: \"Before placing on the market or putting into service a high-risk AI system listed in Annex III, with the exception of high-risk AI systems referred to in point 2 of Annex III, the provider or, where applicable, the authorised representative shall register themselves and their system in the EU database referred to in Article 71.\" [ai-act#art_49]\n\nFor high-risk AI systems referred to in points 1, 6 and 7 of Annex III, in the areas of law enforcement, migration, asylum and border control management, the registration must be in a \"secure non-public section\" of that EU database, and only the Commission and national authorities referred to in Article 74(8) shall have access to those restricted sections [ai-act#art_49].\n\nFor high-risk AI systems referred to in point 2 of Annex III, the registration is instead done \"at national level\" [ai-act#art_49].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q07",
+   "kind": "relocated",
+   "mode": "answered",
+   "best_dense": 0.8019658327102661,
+   "verified": true,
+   "cited": [
+    "ai-act#art_4a(1)",
+    "ai-act#rct_70"
+   ],
+   "text": "Under Article 4a(1), a provider of a high-risk AI system may exceptionally process special categories of personal data for bias detection and correction only \"to the extent strictly necessary to ensure bias detection and correction in relation to high-risk AI systems in accordance with Article 10(2), points (f) and (g)\" [ai-act#art_4a(1)]. This is subject to \"appropriate safeguards for the fundamental rights and freedoms of natural persons\" and all of the following conditions:\n\n- **(a)** \"the bias detection and correction cannot be effectively fulfilled by processing other data, including synthetic or anonymised data\" [ai-act#art_4a(1)];\n- **(b)** \"the special categories of personal data are subject to technical limitations on the re-use of personal data, and state-of-the-art security and privacy-preserving measures, including pseudonymisation\" [ai-act#art_4a(1)];\n- **(c)** \"the special categories of personal data are subject to measures to ensure that the personal data processed are secured and protected, subject to suitable safeguards, including strict controls and documentation of the access, to avoid misuse and to ensure that only authorised persons have access to those personal data with appropriate confidentiality obligations\" [ai-act#art_4a(1)];\n- **(d)** \"the special categories of personal data are not transmitted, transferred or otherwise accessed by other parties\" [ai-act#art_4a(1)];\n- **(e)** \"the special categories of personal data are deleted once the bias has been corrected or the personal data has reached the end of its retention period, whichever comes first\" [ai-act#art_4a(1)]; and\n- **(f)** \"the records of processing activities pursuant to Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680 include the reasons why the processing of special categories of personal data was strictly necessary to detect and correct biases, and why that objective could not be achieved by processing other data\" [ai-act#art_4a(1)].\n\nRecital (70) frames this as a \"matter of substantial public interest within the meaning of Article 9(2), point (g) of Regulation (EU) 2016/679 and Article 10(2), point (g) of Regulation (EU) 2018/1725\" [ai-act#rct_70].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q08",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.7382879257202148,
+   "verified": true,
+   "cited": [
+    "ai-act#art_14(4)(b)",
+    "ai-act#art_14(3)",
+    "ai-act#art_14(4)(a)",
+    "ai-act#art_14(4)(c)",
+    "ai-act#art_14(4)(d)",
+    "ai-act#rct_73"
+   ],
+   "text": "The AI Act addresses automation bias by requiring that high-risk AI systems be provided to deployers in a way that enables the natural persons assigned human oversight to \"remain aware of the possible tendency of automatically relying or over-relying on the output produced by a high-risk AI system (automation bias), in particular for high-risk AI systems used to provide information or recommendations for decisions to be taken by natural persons\" [ai-act#art_14(4)(b)].\n\nAdditionally, the oversight measures must be \"commensurate with the risks, level of autonomy and context of use of the high-risk AI system\" and can be built into the system by the provider or implemented by the deployer [ai-act#art_14(3)]. The provider must also ensure the system enables the human overseer to \"properly understand the relevant capacities and limitations of the high-risk AI system and be able to duly monitor its operation\" [ai-act#art_14(4)(a)], to \"correctly interpret the high-risk AI system\u2019s output\" [ai-act#art_14(4)(c)], and to \"decide, in any particular situation, not to use the high-risk AI system or to otherwise disregard, override or reverse the output\" [ai-act#art_14(4)(d)].\n\nRecital 73 further reinforces this by stating that high-risk AI systems should include \"mechanisms to guide and inform a natural person to whom human oversight has been assigned to make informed decisions if, when and how to intervene in order to avoid negative consequences or risks, or stop the system if it does not perform as intended\" [ai-act#rct_73].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q09",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.745425283908844,
+   "verified": true,
+   "cited": [
+    "ai-act#art_15(5)",
+    "ai-act#rct_76",
+    "ai-act#art_15(4)"
+   ],
+   "text": "High-risk AI systems must be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities, including attacks that manipulate training data or feed adversarial inputs.\n\nArticle 15(5) states: \"High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.\" [ai-act#art_15(5)]\n\nThe technical solutions to address AI-specific vulnerabilities \"shall include, where appropriate, measures to prevent, detect, respond to, resolve and control for attacks trying to manipulate the training data set (data poisoning), or pre-trained components used in training (model poisoning), inputs designed to cause the AI model to make a mistake (adversarial examples or model evasion), confidentiality attacks or model flaws.\" [ai-act#art_15(5)]\n\nRecital (76) reinforces this, noting that \"Cyberattacks against AI systems can leverage AI specific assets, such as training data sets (e.g. data poisoning) or trained models (e.g. adversarial attacks or membership inference), or exploit vulnerabilities in the AI system\u2019s digital assets or the underlying ICT infrastructure.\" [ai-act#rct_76] It further requires that \"suitable measures, such as security controls, should therefore be taken by the providers of high-risk AI systems, also taking into account as appropriate the underlying ICT infrastructure.\" [ai-act#rct_76]\n\nAdditionally, Article 15(4) requires that high-risk AI systems \"shall be as resilient as possible regarding errors, faults or inconsistencies that may occur within the system or the environment in which the system operates,\" with technical and organisational measures taken in this regard, including \"technical redundancy solutions, which may include backup or fail-safe plans.\" [ai-act#art_15(4)]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q10",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.6263844966888428,
+   "verified": true,
+   "cited": [
+    "ai-act#art_14(5)",
+    "ai-act#rct_73"
+   ],
+   "text": "Before a deployer takes any action or decision on the basis of an identification produced by a remote biometric identification system (for high-risk AI systems referred to in point 1(a) of Annex III), the identification must be \"separately verified and confirmed by at least two natural persons with the necessary competence, training and authority\" [ai-act#art_14(5)].\n\nThis requirement is described as an \"enhanced human oversight requirement\" for certain biometric identification systems, so that \"no action or decision may be taken by the deployer on the basis of the identification resulting from the system unless this has been separately verified and confirmed by at least two natural persons\" [ai-act#rct_73]. The two persons \"could be from one or more entities and include the person operating or using the system\" [ai-act#rct_73].\n\nHowever, this two-person verification requirement does not apply to high-risk AI systems used for \"law enforcement, migration, border control or asylum, where Union or national law considers the application of this requirement to be disproportionate\" [ai-act#art_14(5)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q11",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.769298255443573,
+   "verified": true,
+   "cited": [
+    "ai-act#art_6(3)",
+    "ai-act#art_6(6)",
+    "ai-act#art_7(3)"
+   ],
+   "text": "Yes. An AI system that falls under one of the Annex III use cases can nevertheless avoid classification as high-risk, but only under the specific conditions set out in Article 6(3).\n\nArticle 6(3) states that \"an AI system referred to in Annex III shall not be considered to be high-risk where it does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making\" [ai-act#art_6(3)]. This derogation applies where any of the following conditions is fulfilled:\n\n- \"(a) the AI system is intended to perform a narrow procedural task\" [ai-act#art_6(3)];\n- \"(b) the AI system is intended to improve the result of a previously completed human activity\" [ai-act#art_6(3)];\n- \"(c) the AI system is intended to detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review\" [ai-act#art_6(3)]; or\n- \"(d) the AI system is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III\" [ai-act#art_6(3)].\n\nHowever, the derogation is expressly excluded where the system performs profiling: \"Notwithstanding the first subparagraph, an AI system referred to in Annex III shall always be considered to be high-risk where the AI system performs profiling of natural persons\" [ai-act#art_6(3)].\n\nThe Commission may also amend the conditions for this derogation via delegated acts, \"by adding new conditions to those laid down therein, or by modifying them, where there is concrete and reliable evidence of the existence of AI systems that fall under the scope of Annex III, but do not pose a significant risk of harm to the health, safety or fundamental rights of natural persons\" [ai-act#art_6(6)]. Separately, the Commission may remove entire use-cases from Annex III where the system \"no longer poses any significant risks to fundamental rights, health or safety\" and the deletion \"does not decrease the overall level of protection of health, safety and fundamental rights under Union law\" [ai-act#art_7(3)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q12",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.6944926381111145,
+   "verified": true,
+   "cited": [
+    "ai-act#rct_24",
+    "ai-act#art_2(3)"
+   ],
+   "text": "The corpus addresses this question directly.\n\nThe exclusion is justified by both the Treaty on European Union and the specific nature of defence policy. Recital (24) states: \"As regards military and defence purposes, such exclusion is justified both by Article 4(2) TEU and by the specificities of the Member States\u2019 and the common Union defence policy covered by Chapter 2 of Title V TEU that are subject to public international law, which is therefore the more appropriate legal framework for the regulation of AI systems in the context of the use of lethal force and other AI systems in the context of military and defence activities.\" [ai-act#rct_24]\n\nArticle 2(3) codifies this exclusion: \"This Regulation does not apply to AI systems where and in so far they are placed on the market, put into service, or used with or without modification exclusively for military, defence or national security purposes, regardless of the type of entity carrying out those activities.\" [ai-act#art_2(3)]\n\nThe recital further clarifies the boundary: \"if an AI system developed, placed on the market, put into service or used for military, defence or national security purposes is used outside those temporarily or permanently for other purposes, for example, civilian or humanitarian purposes, law enforcement or public security purposes, such a system would fall within the scope of this Regulation.\" [ai-act#rct_24]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q13",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.6663526296615601,
+   "verified": true,
+   "cited": [
+    "ai-act#rct_12",
+    "ai-act#art_3(1)"
+   ],
+   "text": "According to the AI Act, the \"adaptiveness that an AI system could exhibit after deployment, refers to self-learning capabilities, allowing the system to change while in use\" [ai-act#rct_12]. This is reflected in the legal definition, which states that an AI system \"may exhibit adaptiveness after deployment\" [ai-act#art_3(1)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q14",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.7211554050445557,
+   "verified": true,
+   "cited": [
+    "ai-act#rct_112",
+    "ai-act#art_52(1)"
+   ],
+   "text": "The AI Act expects a provider to be able to notify the Commission before training is complete because the training of general-purpose AI models requires considerable advance planning, including the upfront allocation of compute resources, which means providers can know in advance whether their model will meet the threshold for high-impact capabilities.\n\nRecital (112) states: \"training of general-purpose AI models takes considerable planning which includes the upfront allocation of compute resources and, therefore, providers of general-purpose AI models are able to know if their model would meet the threshold before the training is completed.\" [ai-act#rct_112]\n\nThis early notification obligation is set out in Article 52(1), which requires the provider to notify the Commission \"without delay and in any event within two weeks after that requirement is met or it becomes known that it will be met.\" [ai-act#art_52(1)] The recital further explains that this early information is \"valuable for the AI Office to anticipate the placing on the market of general-purpose AI models with systemic risks and the providers can start to engage with the AI Office early on,\" and is especially important for models planned to be released as open-source, since \"after the open-source model release, necessary measures to ensure compliance with the obligations under this Regulation may be more difficult to implement.\" [ai-act#rct_112]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q15",
+   "kind": "repealed",
+   "mode": "refused-generation",
+   "best_dense": 0.6379477977752686,
+   "verified": true,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents contain provisions on AI regulatory sandboxes (Recital 140, Article 57(10)), market surveillance coordination (Article 74(10)), remote biometric identification (Article 5(5)), and risk management integration (Article 9(10)), but none address Article 10(5).",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q16",
+   "kind": "repealed",
+   "mode": "refused-generation",
+   "best_dense": 0.6966655254364014,
+   "verified": true,
+   "cited": [
+    "ai-act#anx_I_sct_A(8)",
+    "ai-act#anx_I_sct_A(9)"
+   ],
+   "text": "The corpus does not address this. The retrieved documents list points 8 and 9 of Section A of Annex I (Regulation (EU) 2016/424 on cableway installations and Regulation (EU) 2016/425 on personal protective equipment) [ai-act#anx_I_sct_A(8)] [ai-act#anx_I_sct_A(9)], but do not contain point 1.",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q17",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.8052201271057129,
+   "verified": true,
+   "cited": [
+    "nis2#art_23(4)",
+    "nis2#rct_102"
+   ],
+   "text": "According to NIS2, an essential entity must submit an early warning to the CSIRT or competent authority \"without undue delay and in any event within 24 hours of becoming aware of the significant incident\" [nis2#art_23(4)]. This is confirmed by Recital (102), which states that \"Where essential or important entities become aware of a significant incident, they should be required to submit an early warning without undue delay and in any event within 24 hours\" [nis2#rct_102].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q18",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.5345996618270874,
+   "verified": true,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents concern NIS2 (Directive (EU) 2022/2555) and its recitals, not DORA (Regulation (EU) 2022/2554), and none of them specifies requirements for threat-led penetration testing for financial entities.",
+   "refusal_source_expected": "gate",
+   "refused_strict": false,
+   "refused_any": true
+  },
+  {
+   "id": "q19",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7769673466682434,
+   "verified": true,
+   "cited": [
+    "gdpr#art_37(1)(a)",
+    "gdpr#art_37(1)(b)",
+    "gdpr#rct_97",
+    "gdpr#art_37(1)(c)",
+    "gdpr#art_37(4)"
+   ],
+   "text": "Under the GDPR, a controller is required to designate a data protection officer in any of the following cases:\n\n1. **Public authority or body**: \"the processing is carried out by a public authority or body, except for courts acting in their judicial capacity\" [gdpr#art_37(1)(a)].\n\n2. **Regular and systematic monitoring on a large scale**: \"the core activities of the controller or the processor consist of processing operations which, by virtue of their nature, their scope and/or their purposes, require regular and systematic monitoring of data subjects on a large scale\" [gdpr#art_37(1)(b)]. Recital 97 clarifies that \"in the private sector, the core activities of a controller relate to its primary activities and do not relate to the processing of personal data as ancillary activities\" [gdpr#rct_97].\n\n3. **Large-scale processing of special categories or criminal data**: \"the core activities of the controller or the processor consist of processing on a large scale of special categories of data pursuant to Article 9 or personal data relating to criminal convictions and offences referred to in Article 10\" [gdpr#art_37(1)(c)].\n\nAdditionally, the GDPR notes that \"in cases other than those referred to in paragraph 1, the controller or processor or associations and other bodies representing categories of controllers or processors may or, where required by Union or Member State law shall, designate a data protection officer\" [gdpr#art_37(4)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q20",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.6150901913642883,
+   "verified": true,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents concern the EU AI Act's requirements for risk management systems and quality management systems, but do not mention ISO/IEC 42001.",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q21",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.8039761781692505,
+   "verified": true,
+   "cited": [
+    "gdpr#art_33",
+    "gdpr#rct_85"
+   ],
+   "text": "Based on the provided documents, a controller must notify the supervisory authority of a personal data breach \"without undue delay and, where feasible, not later than 72 hours after having become aware of it\" [gdpr#art_33]. Recital (85) confirms this same timeframe: \"the controller should notify the personal data breach to the supervisory authority without undue delay and, where feasible, not later than 72 hours after having become aware of it\" [gdpr#rct_85].\n\nIf the notification is made later than 72 hours, the controller must provide reasons for the delay. Article 33(1) states: \"Where the notification to the supervisory authority is not made within 72 hours, it shall be accompanied by reasons for the delay\" [gdpr#art_33]. Recital (85) similarly notes: \"Where such notification cannot be achieved within 72 hours, the reasons for the delay should accompany the notification and information may be provided in phases without undue further delay\" [gdpr#rct_85].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q22",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7053109407424927,
+   "verified": true,
+   "cited": [
+    "gdpr#rct_40",
+    "gdpr#rct_46",
+    "gdpr#rct_47",
+    "gdpr#rct_50"
+   ],
+   "text": "A company may lawfully process personal data on the basis of the data subject's consent or another legitimate basis laid down by law, including the necessity for compliance with a legal obligation or the necessity for the performance of a contract. Specifically, the GDPR provides that \"personal data should be processed on the basis of the consent of the data subject concerned or some other legitimate basis, laid down by law, either in this Regulation or in other Union or Member State law as referred to in this Regulation, including the necessity for compliance with the legal obligation to which the controller is subject or the necessity for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract\" [gdpr#rct_40].\n\nAdditionally, processing may be lawful where it is necessary to protect an interest essential for the life of the data subject or another natural person, as stated: \"The processing of personal data should also be regarded to be lawful where it is necessary to protect an interest which is essential for the life of the data subject or that of another natural person\" [gdpr#rct_46].\n\nA company may also rely on its legitimate interests or those of a third party, provided the data subject's interests or fundamental rights do not override them. The recital notes: \"The legitimate interests of a controller, including those of a controller to which the personal data may be disclosed, or of a third party, may provide a legal basis for processing, provided that the interests or the fundamental rights and freedoms of the data subject are not overriding\" [gdpr#rct_47]. This basis does not apply to public authorities performing their tasks, but it can cover, for example, fraud prevention and direct marketing [gdpr#rct_47].\n\nFurther processing for a purpose other than the initial collection is allowed where compatible with the original purpose, in which case \"no legal basis separate from that which allowed the collection of the personal data is required\" [gdpr#rct_50]. Compatibility is assessed considering the link between purposes, the context of collection, the data subject's reasonable expectations, the nature of the data, the consequences of further processing, and the existence of safeguards [gdpr#rct_50]. Where the data subject has given consent, or processing is based on Union or Member State law constituting a necessary and proportionate measure to safeguard important objectives of general public interest, further processing is allowed \"irrespective of the compatibility of the purposes\" [gdpr#rct_50].",
+   "hit@5": false,
+   "citation": false
+  },
+  {
+   "id": "q23",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7201148867607117,
+   "verified": true,
+   "cited": [
+    "gdpr#art_83(5)"
+   ],
+   "text": "The maximum administrative fine for infringing the basic principles for processing, including the conditions for consent, is up to **20,000,000 EUR**, or in the case of an undertaking, up to **4% of the total worldwide annual turnover of the preceding financial year**, whichever is higher.\n\nThis is set out in GDPR Article 83(5), which states: \"Infringements of the following provisions shall, in accordance with paragraph 2, be subject to administrative fines up to 20 000 000 EUR, or in the case of an undertaking, up to 4 % of the total worldwide annual turnover of the preceding financial year, whichever is higher: (a) the basic principles for processing, including conditions for consent, pursuant to Articles 5, 6, 7 and 9\" [gdpr#art_83(5)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q24",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7290939688682556,
+   "verified": true,
+   "cited": [
+    "gdpr#art_35(1)",
+    "gdpr#rct_91",
+    "gdpr#art_35(10)",
+    "gdpr#rct_90",
+    "gdpr#art_36(1)"
+   ],
+   "text": "Based on the provided documents, a data protection impact assessment (DPIA) is mandatory before processing begins in the following circumstances:\n\n1. **High-risk processing using new technologies**: Where a type of processing, \"in particular using new technologies, and taking into account the nature, scope, context and purposes of the processing, is likely to result in a high risk to the rights and freedoms of natural persons,\" the controller must carry out the assessment \"prior to the processing\" [gdpr#art_35(1)].\n\n2. **Large-scale processing with high risk**: This applies to \"large-scale processing operations which aim to process a considerable amount of personal data at regional, national or supranational level and which could affect a large number of data subjects and which are likely to result in a high risk, for example, on account of their sensitivity, where in accordance with the achieved state of technological knowledge a new technology is used on a large scale\" [gdpr#rct_91].\n\n3. **Systematic and extensive evaluation based on profiling**: A DPIA is required \"where personal data are processed for taking decisions regarding specific natural persons following any systematic and extensive evaluation of personal aspects relating to natural persons based on profiling those data\" [gdpr#rct_91].\n\n4. **Processing special categories, biometric data, or criminal data**: This includes \"the processing of special categories of personal data, biometric data, or data on criminal convictions and offences or related security measures\" [gdpr#rct_91].\n\n5. **Large-scale monitoring of publicly accessible areas**: A DPIA is \"equally required for monitoring publicly accessible areas on a large scale, especially when using optic-electronic devices\" [gdpr#rct_91].\n\n6. **Other high-risk operations identified by the supervisory authority**: This applies \"for any other operations where the competent supervisory authority considers that the processing is likely to result in a high risk to the rights and freedoms of data subjects, in particular because they prevent data subjects from exercising a right or using a service or a contract, or because they are carried out systematically on a large scale\" [gdpr#rct_91].\n\n**Exceptions and limitations**:\n- Processing is **not** considered large-scale if it \"concerns personal data from patients or clients by an individual physician, other health care professional or lawyer,\" and in such cases \"a data protection impact assessment should not be mandatory\" [gdpr#rct_91].\n- If processing has a legal basis in Union or Member State law, and a DPIA \"has already been carried out as part of a general impact assessment in the context of the adoption of that legal basis,\" then the DPIA requirements do not apply \"unless Member States deem it to be necessary to carry out such an assessment prior to processing activities\" [gdpr#art_35(10)].\n\nThe DPIA must be carried out \"prior to the processing\" [gdpr#art_35(1)] and should assess \"the particular likelihood and severity of the high risk, taking into account the nature, scope, context and purposes of the processing and the sources of the risk,\" including \"the measures, safeguards and mechanisms envisaged for mitigating that risk\" [gdpr#rct_90]. Additionally, if the DPIA indicates that processing \"would result in a high risk in the absence of measures taken by the controller to mitigate the risk,\" the controller must consult the supervisory authority prior to processing [gdpr#art_36(1)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q25",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.713956356048584,
+   "verified": true,
+   "cited": [
+    "gdpr#art_44",
+    "gdpr#rct_101",
+    "gdpr#art_46(1)",
+    "gdpr#art_49(1)"
+   ],
+   "text": "Before any transfer of personal data to a country outside the EU may take place, the general condition is that the transfer must comply with the conditions laid down in Chapter V of the GDPR, and must not undermine the level of protection guaranteed by the Regulation.\n\nArticle 44 states: \"Any transfer of personal data which are undergoing processing or are intended for processing after transfer to a third country or to an international organisation shall take place only if, subject to the other provisions of this Regulation, the conditions laid down in this Chapter are complied with by the controller and processor, including for onward transfers of personal data from the third country or an international organisation to another third country or to another international organisation. All provisions in this Chapter shall be applied in order to ensure that the level of protection of natural persons guaranteed by this Regulation is not undermined.\" [gdpr#art_44]\n\nRecital (101) reinforces this: \"In any event, transfers to third countries and international organisations may only be carried out in full compliance with this Regulation. A transfer could take place only if, subject to the other provisions of this Regulation, the conditions laid down in the provisions of this Regulation relating to the transfer of personal data to third countries or international organisations are complied with by the controller or processor.\" [gdpr#rct_101]\n\nThe specific mechanisms for lawful transfer are then set out in the subsequent articles: an adequacy decision under Article 45(3), appropriate safeguards under Article 46 (which requires that \"the controller or processor has provided appropriate safeguards, and on condition that enforceable data subject rights and effective legal remedies for data subjects are available\" [gdpr#art_46(1)]), or, in the absence of either, one of the derogations listed in Article 49(1) [gdpr#art_49(1)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q26",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.6706337928771973,
+   "verified": true,
+   "cited": [
+    "gdpr#art_18",
+    "gdpr#art_16",
+    "gdpr#art_13(2)"
+   ],
+   "text": "The customer is exercising their right to **restriction of processing** under Article 18 GDPR. This allows them to obtain from you (the controller) a restriction on processing where they contest the accuracy of the personal data, for a period enabling you to verify that accuracy.\n\n- **Right granted:** Under [gdpr#art_18], \"The data subject shall have the right to obtain from the controller restriction of processing where one of the following applies: (a) the accuracy of the personal data is contested by the data subject, for a period enabling the controller to verify the accuracy of the personal data.\" This means you must restrict processing while you verify accuracy, but you are not required to delete the data.\n\n- **What \"restriction\" means:** Under [gdpr#art_18], \"Where processing has been restricted under paragraph 1, such personal data shall, with the exception of storage, only be processed with the data subject's consent or for the establishment, exercise or defence of legal claims or for the protection of the rights of another natural or legal person or for reasons of important public interest of the Union or of a Member State.\" So you may store the data but cannot otherwise process it except in those limited circumstances.\n\n- **Obligation to inform:** Under [gdpr#art_18], \"A data subject who has obtained restriction of processing pursuant to paragraph 1 shall be informed by the controller before the restriction of processing is lifted.\" You must notify the customer before you lift the restriction.\n\n- **Related right to rectification:** The customer's underlying claim about accuracy relates to the right to rectification under [gdpr#art_16], which states \"The data subject shall have the right to obtain from the controller without undue delay the rectification of inaccurate personal data concerning him or her.\" This is separate from but connected to the restriction right.\n\n- **Information obligation:** Under [gdpr#art_13(2)], you must have informed the customer at the time of collection of \"the existence of the right to request from the controller access to and rectification or erasure of personal data or restriction of processing concerning the data subject or to object to processing as well as the right to data portability.\" This confirms the customer's right to request restriction.",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q27",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.6558016538619995,
+   "verified": true,
+   "cited": [
+    "gdpr#art_34(1)",
+    "gdpr#art_34(2)",
+    "gdpr#art_33(3)(b)-(d)",
+    "gdpr#art_34(3)",
+    "gdpr#art_34(3)(a)",
+    "gdpr#art_34(3)(b)",
+    "gdpr#art_34(3)(c)",
+    "gdpr#art_34(4)"
+   ],
+   "text": "Yes. Under the GDPR, after a personal data breach that is \"likely to result in a high risk to the rights and freedoms of natural persons,\" the controller must communicate the breach to the affected data subjects themselves, without undue delay [gdpr#art_34(1)].\n\nThe communication must \"describe in clear and plain language the nature of the personal data breach and contain at least the information and measures referred to in points (b), (c) and (d) of Article 33(3)\" [gdpr#art_34(2)]. This includes the name and contact details of the data protection officer or other contact point, the likely consequences of the breach, and the measures taken or proposed to address it [gdpr#art_33(3)(b)-(d)].\n\nThe GDPR states: \"When the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall communicate the personal data breach to the data subject without undue delay\" [gdpr#art_34(1)].\n\nHowever, this communication is not required if any of the following conditions are met [gdpr#art_34(3)]:\n- The controller has implemented appropriate technical and organisational protection measures applied to the affected data, \"in particular those that render the personal data unintelligible to any person who is not authorised to access it, such as encryption\" [gdpr#art_34(3)(a)].\n- The controller has taken subsequent measures ensuring the high risk \"is no longer likely to materialise\" [gdpr#art_34(3)(b)].\n- It would involve disproportionate effort, in which case \"there shall instead be a public communication or similar measure whereby the data subjects are informed in an equally effective manner\" [gdpr#art_34(3)(c)].\n\nIf the controller has not already communicated the breach, the supervisory authority \"may require it to do so or may decide that any of the conditions referred to in paragraph 3 are met\" [gdpr#art_34(4)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q28",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.6039437055587769,
+   "verified": true,
+   "cited": [
+    "gdpr#art_20",
+    "gdpr#rct_68"
+   ],
+   "text": "Yes. Under the GDPR, a data subject can require you to hand over the personal data they provided to you in a structured, commonly used and machine-readable format so they can transmit it to another controller (e.g., a competitor), provided the conditions in Article 20 are met.\n\n**The right and its conditions** \u2014 Article 20(1) states: \"The data subject shall have the right to receive the personal data concerning him or her, which he or she has provided to a controller, in a structured, commonly used and machine-readable format and have the right to transmit those data to another controller without hindrance from the controller to which the personal data have been provided, where: (a) the processing is based on consent pursuant to point (a) of Article 6(1) or point (a) of Article 9(2) or on a contract pursuant to point (b) of Article 6(1); and (b) the processing is carried out by automated means.\" [gdpr#art_20]\n\n**Direct transmission** \u2014 Article 20(2) adds: \"In exercising his or her right to data portability pursuant to paragraph 1, the data subject shall have the right to have the personal data transmitted directly from one controller to another, where technically feasible.\" [gdpr#art_20]\n\n**Limitations** \u2014 The right does not apply where processing is necessary for a task carried out in the public interest or in the exercise of official authority (Article 20(3)) [gdpr#art_20]. Recital (68) clarifies it \"should not apply where processing is based on a legal ground other than consent or contract\" and \"should not create an obligation for the controllers to adopt or maintain processing systems which are technically compatible.\" [gdpr#rct_68] The right is also \"without prejudice to Article 17\" (erasure) and \"shall not adversely affect the rights and freedoms of others\" (Article 20(3)\u2013(4)). [gdpr#art_20]\n\n**Interoperable formats encouraged** \u2014 Recital (68) states: \"Data controllers should be encouraged to develop interoperable formats that enable data portability.\" [gdpr#rct_68]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q29",
+   "kind": "recital",
+   "mode": "refused-generation",
+   "best_dense": 0.6063538193702698,
+   "verified": true,
+   "cited": [
+    "gdpr#rct_47",
+    "gdpr#rct_50",
+    "gdpr#rct_113"
+   ],
+   "text": "The corpus does not address this. The retrieved documents discuss the role of \"reasonable expectations\" in the context of legitimate interests [gdpr#rct_47], compatibility of further processing [gdpr#rct_50], and the residual transfer derogation [gdpr#rct_113], but none of them explains the underlying rationale for why legitimate interests depend on reasonable expectations.",
+   "hit@5": true,
+   "citation": false
+  },
+  {
+   "id": "q30",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.6671903729438782,
+   "verified": true,
+   "cited": [
+    "gdpr#rct_26",
+    "gdpr#art_4(5)",
+    "gdpr#art_11(1)",
+    "gdpr#art_11(2)"
+   ],
+   "text": "Based on the provided documents, the GDPR stops treating information as personal data when it is anonymous, meaning the data subject is not or no longer identifiable. This is determined by considering all means reasonably likely to be used to identify the individual.\n\n- Recital 26 states: \"The principles of data protection should therefore not apply to anonymous information, namely information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable.\" [gdpr#rct_26]\n- The same recital clarifies the test for identifiability: \"To determine whether a natural person is identifiable, account should be taken of all the means reasonably likely to be used, such as singling out, either by the controller or by another person to identify the natural person directly or indirectly. To ascertain whether means are reasonably likely to be used to identify the natural person, account should be taken of all objective factors, such as the costs of and the amount of time required for identification, taking into consideration the available technology at the time of the processing and technological developments.\" [gdpr#rct_26]\n- Pseudonymised data remains personal data: \"Personal data which have undergone pseudonymisation, which could be attributed to a natural person by the use of additional information should be considered to be information on an identifiable natural person.\" [gdpr#rct_26] This is reinforced by the definition of pseudonymisation, which requires that the additional information be kept separately and subject to technical and organisational measures to prevent attribution. [gdpr#art_4(5)]\n- Article 11 provides a related but distinct rule: if the controller does not need to identify the data subject for its purposes, it is not obliged to maintain, acquire, or process additional information solely to comply with the GDPR. [gdpr#art_11(1)] Where the controller can demonstrate it is not in a position to identify the data subject, it must inform the data subject if possible, and Articles 15 to 20 (rights of access, rectification, erasure, restriction, portability) do not apply unless the data subject provides additional identifying information. [gdpr#art_11(2)]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q31",
+   "kind": "cross_instrument",
+   "mode": "answered",
+   "best_dense": 0.6764736771583557,
+   "verified": true,
+   "cited": [
+    "gdpr#art_22",
+    "gdpr#rct_71",
+    "gdpr#art_21",
+    "ai-act#rct_10",
+    "ai-act#rct_171"
+   ],
+   "text": "Under the GDPR, a data subject has the right **not to be subject** to a decision based solely on automated processing, including profiling, which produces legal effects concerning them or similarly significantly affects them [gdpr#art_22]. Recital 71 clarifies this includes measures such as \"automatic refusal of an online credit application or e-recruiting practices without any human intervention\" [gdpr#rct_71].\n\nWhere such a decision is permitted (e.g., necessary for a contract or based on explicit consent), the controller must implement \"suitable measures to safeguard the data subject's rights and freedoms and legitimate interests, at least the right to obtain human intervention on the part of the controller, to express his or her point of view and to contest the decision\" [gdpr#art_22]. Recital 71 adds that safeguards should include \"specific information to the data subject and the right to obtain human intervention, to express his or her point of view, to obtain an explanation of the decision reached after such assessment and to challenge the decision\" [gdpr#rct_71].\n\nAdditionally, the data subject has a separate right to object to processing based on legitimate interests or public interest, including profiling based on those provisions, \"on grounds relating to his or her particular situation\" [gdpr#art_21]. The controller must then stop processing unless it demonstrates \"compelling legitimate grounds for the processing which override the interests, rights and freedoms of the data subject\" [gdpr#art_21].\n\nThe EU AI Act preserves these rights, stating that \"data subjects continue to enjoy all the rights and guarantees awarded to them by such Union law, including the rights related to solely automated individual decision-making, including profiling\" [ai-act#rct_10]. It also provides a right to explanation for decisions based mainly on output from certain high-risk AI systems that produce legal effects or similarly significant adverse impacts, where that right is not already provided under Union law [ai-act#rct_171].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q32",
+   "kind": "cross_instrument",
+   "mode": "answered",
+   "best_dense": 0.7530286312103271,
+   "verified": true,
+   "cited": [
+    "ai-act#art_27(1)",
+    "ai-act#art_27(2)",
+    "ai-act#rct_96"
+   ],
+   "text": "Before a public body (a deployer that is a body governed by public law) puts a high-risk AI system into use, it must perform an assessment of the impact on fundamental rights that the use of the system may produce, prior to deploying the system [ai-act#art_27(1)].\n\nThe assessment must consist of the following elements:\n\n- **(a)** \"a description of the deployer\u2019s processes in which the high-risk AI system will be used in line with its intended purpose\" [ai-act#art_27(1)];\n- **(b)** \"a description of the period of time within which, and the frequency with which, each high-risk AI system is intended to be used\" [ai-act#art_27(1)];\n- **(c)** \"the categories of natural persons and groups likely to be affected by its use in the specific context\" [ai-act#art_27(1)];\n- **(d)** \"the specific risks of harm likely to have an impact on the categories of natural persons or groups of persons identified pursuant to point (c) of this paragraph, taking into account the information given by the provider pursuant to Article 13\" [ai-act#art_27(1)];\n- **(e)** \"a description of the implementation of human oversight measures, according to the instructions for use\" [ai-act#art_27(1)];\n- **(f)** \"the measures to be taken in the case of the materialisation of those risks, including the arrangements for internal governance and complaint mechanisms\" [ai-act#art_27(1)].\n\nThe obligation applies \"to the first use of the high-risk AI system\" [ai-act#art_27(2)]. The deployer may, in similar cases, rely on previously conducted fundamental rights impact assessments or existing impact assessments carried out by the provider [ai-act#art_27(2)]. If, during use, the deployer considers that any of the listed elements \"has changed or is no longer up to date, the deployer shall take the necessary steps to update the information\" [ai-act#art_27(2)].\n\nThe purpose of the assessment is \"for the deployer to identify the specific risks to the rights of individuals or groups of individuals likely to be affected, identify measures to be taken in the case of a materialisation of those risks\" [ai-act#rct_96]. It should be performed \"prior to deploying the high-risk AI system, and should be updated when the deployer considers that any of the relevant factors have changed\" [ai-act#rct_96]. After performing the assessment, the deployer \"should notify the relevant market surveillance authority\" [ai-act#rct_96].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q33",
+   "kind": "cross_instrument",
+   "mode": "answered",
+   "best_dense": 0.710620105266571,
+   "verified": true,
+   "cited": [
+    "gdpr#art_15(1)",
+    "gdpr#art_15(3)",
+    "gdpr#rct_60"
+   ],
+   "text": "Under Article 15(1), where personal data concerning the data subject are being processed, the controller must provide access to the personal data and the following information:\n\n- (a) the purposes of the processing;\n- (b) the categories of personal data concerned;\n- (c) the recipients or categories of recipient to whom the personal data have been or will be disclosed, in particular recipients in third countries or international organisations;\n- (d) where possible, the envisaged period for which the personal data will be stored, or, if not possible, the criteria used to determine that period;\n- (e) the existence of the right to request rectification or erasure of personal data or restriction of processing or to object to such processing;\n- (f) the right to lodge a complaint with a supervisory authority;\n- (g) where the personal data are not collected from the data subject, any available information as to their source;\n- (h) the existence of automated decision-making, including profiling, and, at least in those cases, meaningful information about the logic involved, as well as the significance and the envisaged consequences of such processing for the data subject.\n\n[gdpr#art_15(1)]\n\nUnder Article 15(3), the controller shall provide a copy of the personal data undergoing processing. For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs. Where the request is made by electronic means, and unless otherwise requested by the data subject, the information shall be provided in a commonly used electronic form. [gdpr#art_15(3)]\n\nRecital (60) adds that the controller should provide the data subject with any further information necessary to ensure fair and transparent processing, taking into account the specific circumstances and context, and should inform the data subject of the existence of profiling and its consequences. Where personal data are collected from the data subject, the data subject should also be informed whether he or she is obliged to provide the data and of the consequences if he or she does not provide such data. [gdpr#rct_60]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q34",
+   "kind": "unanswerable",
+   "mode": "answered",
+   "best_dense": 0.565590500831604,
+   "verified": true,
+   "cited": [
+    "ai-act#rct_10"
+   ],
+   "text": "Based on the provided documents, the corpus does not directly address the specific conditions under which a website may store or access information on a user's terminal equipment under the ePrivacy rules. The documents mention the ePrivacy Directive only in passing, noting that it \"additionally protects private life and the confidentiality of communications, including by way of providing conditions for any storing of personal and non-personal data in, and access from, terminal equipment\" [ai-act#rct_10], but they do not set out the substantive conditions for such storage or access.",
+   "refusal_source_expected": "gate",
+   "refused_strict": false,
+   "refused_any": false
+  },
+  {
+   "id": "q35",
+   "kind": "unanswerable",
+   "mode": "answered",
+   "best_dense": 0.585253119468689,
+   "verified": true,
+   "cited": [
+    "gdpr#art_20",
+    "gdpr#rct_68"
+   ],
+   "text": "Based on the provided documents, a provider of data processing services must allow a customer to receive their personal data in a portable format and transmit it to another provider, but only under specific conditions.\n\nThe right to data portability is set out in Article 20. The data subject (customer) has the right to receive personal data they have provided to a controller in a \"structured, commonly used and machine-readable format\" and to transmit those data to another controller \"without hindrance\" [gdpr#art_20]. This right applies only where the processing is based on consent or a contract and is carried out by automated means [gdpr#art_20]. The provider must also, \"where technically feasible,\" transmit the data directly from one controller to another [gdpr#art_20].\n\nHowever, the provider is not required to adopt or maintain processing systems that are technically compatible with the new provider. Recital 68 states that \"the data subject's right to transmit or receive personal data concerning him or her should not create an obligation for the controllers to adopt or maintain processing systems which are technically compatible\" [gdpr#rct_68]. The right also does not apply where processing is necessary for compliance with a legal obligation or for a task in the public interest [gdpr#rct_68][gdpr#art_20].\n\nAdditionally, the right to portability is \"without prejudice to Article 17\" (the right to erasure) and \"shall not adversely affect the rights and freedoms of others\" [gdpr#art_20].",
+   "refusal_source_expected": "gate",
+   "refused_strict": false,
+   "refused_any": false
+  },
+  {
+   "id": "q36",
+   "kind": "unanswerable",
+   "mode": "answered",
+   "best_dense": 0.6413225531578064,
+   "verified": true,
+   "cited": [
+    "nis2#rct_58",
+    "nis2#art_12(1)",
+    "ai-act#rct_77",
+    "ai-act#rct_78",
+    "ai-act#art_25(3)"
+   ],
+   "text": "Based on the provided documents, the vulnerability handling obligations for a manufacturer of a product with digital elements are addressed in the NIS2 Directive, which requires manufacturers to establish procedures for receiving vulnerability information from third parties and to participate in coordinated vulnerability disclosure.\n\n- **Procedures to receive vulnerability information**: The manufacturer or provider of ICT products or ICT services must \"put in place the necessary procedures to receive vulnerability information from third parties\" [nis2#rct_58]. The recital also notes that \"international standards ISO/IEC 30111 and ISO/IEC 29147 provide guidance on vulnerability handling and vulnerability disclosure\" [nis2#rct_58].\n\n- **Coordinated vulnerability disclosure**: The recital states that \"Coordinated vulnerability disclosure specifies a structured process through which vulnerabilities are reported to the manufacturer or provider of the potentially vulnerable ICT products or ICT services in a manner allowing it to diagnose and remedy the vulnerability before detailed vulnerability information is disclosed to third parties or to the public\" [nis2#rct_58]. It further requires that \"Coordinated vulnerability disclosure should also include coordination between the reporting natural or legal person and the manufacturer or provider of the potentially vulnerable ICT products or ICT services as regards the timing of remediation and publication of vulnerabilities\" [nis2#rct_58].\n\n- **Role of the CSIRT coordinator**: Under NIS2, each Member State designates a CSIRT as coordinator for coordinated vulnerability disclosure, which \"shall act as a trusted intermediary, facilitating, where necessary, the interaction between the natural or legal person reporting a vulnerability and the manufacturer or provider of the potentially vulnerable ICT products or ICT services\" [nis2#art_12(1)]. The coordinator's tasks include \"identifying and contacting the entities concerned,\" \"assisting the natural or legal persons reporting a vulnerability,\" and \"negotiating disclosure timelines and managing vulnerabilities that affect multiple entities\" [nis2#art_12(1)].\n\nThe AI Act documents provided do not impose specific vulnerability handling obligations on manufacturers of products with digital elements; they address cybersecurity requirements for high-risk AI systems in the context of horizontal cybersecurity legislation [ai-act#rct_77], [ai-act#rct_78], and the provider status of product manufacturers for high-risk AI systems [ai-act#art_25(3)].",
+   "refusal_source_expected": "generation",
+   "refused_strict": false,
+   "refused_any": false
+  },
+  {
+   "id": "q37",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.6267086863517761,
+   "verified": false,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents concern cybersecurity risk-management measures under NIS2 and record-keeping of processing activities under the GDPR, but none of them mentions a \"Statement of Applicability\" for an information security management system.",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q38",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.6210057139396667,
+   "verified": true,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents concern notification obligations to supervisory authorities and CSIRTs under the GDPR and NIS2, not notification to individuals of breaches of unsecured protected health information.",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q39",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.7578492164611816,
+   "verified": true,
+   "cited": [
+    "nis2#rct_79",
+    "nis2#rct_85",
+    "nis2#rct_88",
+    "nis2#rct_82"
+   ],
+   "text": "Based on the provided documents, essential and important entities must put in place cybersecurity risk-management measures that:\n\n- Are based on an \"all-hazards approach\" that protects network and information systems and their physical environment from events such as \"theft, fire, flood, telecommunication or power failures, or unauthorised physical access and damage to, and interference with\" the entity's information and processing facilities [nis2#rct_79].\n- Address \"the physical and environmental security of network and information systems\" by including measures to protect systems from \"system failures, human error, malicious acts or natural phenomena,\" in line with European and international standards such as the ISO/IEC 27000 series [nis2#rct_79].\n- Address \"human resources security\" and include \"appropriate access control policies\" [nis2#rct_79].\n- Assess and take into account \"the overall quality and resilience of products and services, the cybersecurity risk-management measures embedded in them, and the cybersecurity practices of their suppliers and service providers, including their secure development procedures\" [nis2#rct_85].\n- Incorporate cybersecurity risk-management measures into \"contractual arrangements with their direct suppliers and service providers\" [nis2#rct_85].\n- Address risks from interactions with other stakeholders in the broader ecosystem, including \"countering industrial espionage and protecting trade secrets,\" ensuring cooperation with academic and research institutions follows cybersecurity policies and good practices for \"secure access and dissemination of information\" and \"protection of intellectual property\" [nis2#rct_88].\n- Take \"all appropriate cybersecurity risk-management measures\" when relying on \"data transformation and data analytics services from third parties\" [nis2#rct_88].\n- Be \"proportionate to the degree of the essential or important entity\u2019s exposure to risks and to the societal and economic impact that an incident would have,\" taking into account \"the criticality of the entity, the risks, including societal risks, to which it is exposed, the entity\u2019s size and the likelihood of occurrence of incidents and their severity\" [nis2#rct_82].",
+   "hit@5": false,
+   "citation": false
+  },
+  {
+   "id": "q40",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.6976256370544434,
+   "verified": false,
+   "cited": [
+    "nis2#art_34(4)",
+    "nis2#art_32(4)",
+    "nis2#art_32(7)"
+   ],
+   "text": "For infringing Article 21 (cybersecurity risk-management measures) or Article 23 (reporting obligations), an essential entity faces an administrative fine of \"a maximum of at least EUR 10 000 000 or of a maximum of at least 2 % of the total worldwide annual turnover in the preceding financial year of the undertaking to which the essential entity belongs, whichever is higher\" [nis2#art_34(4)].\n\nThe competent authorities may impose this fine \"in addition to any of the measures referred to in points (a) to (h)\" of Article 32(4), which include warnings, binding instructions, orders to cease infringing conduct, orders to comply with Article 21 or 23, orders to inform affected persons of significant cyber threats, orders to implement security audit recommendations, designation of a monitoring officer, and orders to make infringements public [nis2#art_32(4)].\n\nWhen determining the fine, authorities must \"take due account of\" factors including \"the seriousness of the infringement,\" \"the duration of the infringement,\" \"any relevant previous infringements,\" \"any material or non-material damage caused,\" \"any intent or negligence,\" \"any measures taken by the entity to prevent or mitigate the damage,\" \"any adherence to approved codes of conduct or approved certification mechanisms,\" and \"the level of cooperation\" with authorities [nis2#art_32(7)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q41",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.6832045316696167,
+   "verified": true,
+   "cited": [
+    "nis2#art_3(1)(a)",
+    "nis2#art_3(1)(b)",
+    "nis2#art_3(1)(c)",
+    "nis2#art_3(1)(d)",
+    "nis2#art_3(1)(e)",
+    "nis2#art_3(1)(f)",
+    "nis2#art_3(1)(g)",
+    "nis2#art_3(1)",
+    "nis2#art_3(2)",
+    "nis2#rct_15"
+   ],
+   "text": "Based on the provided documents, the NIS2 Directive treats the following entities as essential rather than important:\n\n- Entities of a type referred to in Annex I which exceed the ceilings for medium-sized enterprises provided for in Article 2(1) of the Annex to Recommendation 2003/361/EC [nis2#art_3(1)(a)].\n- Qualified trust service providers and top-level domain name registries as well as DNS service providers, regardless of their size [nis2#art_3(1)(b)].\n- Providers of public electronic communications networks or of publicly available electronic communications services which qualify as medium-sized enterprises under Article 2 of the Annex to Recommendation 2003/361/EC [nis2#art_3(1)(c)].\n- Public administration entities referred to in Article 2(2), point (f)(i) [nis2#art_3(1)(d)].\n- Any other entities of a type referred to in Annex I or II that are identified by a Member State as essential entities pursuant to Article 2(2), points (b) to (e) [nis2#art_3(1)(e)].\n- Entities identified as critical entities under Directive (EU) 2022/2557, referred to in Article 2(3) of this Directive [nis2#art_3(1)(f)].\n- If the Member State so provides, entities which that Member State identified before 16 January 2023 as operators of essential services in accordance with Directive (EU) 2016/1148 or national law [nis2#art_3(1)(g)].\n\nThe classification is set out in Article 3(1): \"For the purposes of this Directive, the following entities shall be considered to be essential entities\" [nis2#art_3(1)]. Entities of a type referred to in Annex I or II which do not qualify as essential entities pursuant to paragraph 1 are considered important entities [nis2#art_3(2)]. The distinction reflects \"the extent to which they are critical as regards their sector or the type of service they provide, as well as their size\" [nis2#rct_15].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q42",
+   "kind": "direct",
+   "mode": "answered",
+   "best_dense": 0.6191911697387695,
+   "verified": false,
+   "cited": [
+    "nis2#anx_I",
+    "nis2#rct_37"
+   ],
+   "text": "Yes. A supplier of drinking water falls within the scope of NIS2's \"highly critical\" sectors, under the sector \"Drinking water.\"\n\nThe relevant provision states that the sector \"Drinking water\" covers \"Suppliers and distributors of water intended for human consumption as defined in Article 2, point (1)(a), of Directive (EU) 2020/2184,\" with an exclusion only for \"distributors for which distribution of water for human consumption is a non-essential part of their general activity of distributing other commodities and goods\" [nis2#anx_I].\n\nAdditionally, Recital (37) confirms that the interdependencies addressed by the Directive concern \"sectors such as energy, transport, digital infrastructure, drinking water and waste water, health, certain aspects of public administration, as well as space,\" explicitly listing drinking water among the critical sectors [nis2#rct_37].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q43",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.6541702151298523,
+   "verified": false,
+   "cited": [
+    "nis2#art_20",
+    "nis2#rct_137"
+   ],
+   "text": "Based on the provided documents, the members of a company's management body (board) have specific responsibilities regarding cybersecurity risk-management measures.\n\n1.  **Approval and Oversight**: The management body must approve the cybersecurity risk-management measures and oversee their implementation. Article 20(1) states: \"Member States shall ensure that the management bodies of essential and important entities approve the cybersecurity risk-management measures taken by those entities in order to comply with Article 21, oversee its implementation and can be held liable for infringements by the entities of that Article.\" [nis2#art_20]\n\n2.  **Liability**: The management body \"can be held liable for infringements\" of Article 21 by the entity. [nis2#art_20] Recital 137 reinforces this by stating the Directive \"should aim to ensure a high level of responsibility... Therefore, the management bodies of the essential and important entities should approve the cybersecurity risk-management measures and oversee their implementation.\" [nis2#rct_137]\n\n3.  **Training**: Members of the management body are required to follow training. Article 20(2) states: \"Member States shall ensure that the members of the management bodies of essential and important entities are required to follow training, and shall encourage essential and important entities to offer similar training to their employees on a regular basis, in order that they gain sufficient knowledge and skills to enable them to identify risks and assess cybersecurity risk-management practices and their impact on the services provided by the entity.\" [nis2#art_20]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q44",
+   "kind": "neighbour_adversary",
+   "mode": "answered",
+   "best_dense": 0.5947461128234863,
+   "verified": false,
+   "cited": [
+    "nis2#art_12(2)",
+    "nis2#rct_62"
+   ],
+   "text": "Newly discovered vulnerabilities in ICT products are recorded at Union level in the **European vulnerability database**, which ENISA is tasked to develop and maintain.\n\n- **Establishment and purpose**: \"ENISA shall develop and maintain, after consulting the Cooperation Group, a European vulnerability database\" [nis2#art_12(2)]. The database is designed so that \"entities, regardless of whether they fall within the scope of this Directive, and their suppliers of network and information systems, can disclose and register, on a voluntary basis, publicly known vulnerabilities\" [nis2#rct_62].\n\n- **Content of the database**: The database \"shall include: (a) information describing the vulnerability; (b) the affected ICT products or ICT services and the severity of the vulnerability in terms of the circumstances under which it may be exploited; (c) the availability of related patches and, in the absence of available patches, guidance provided by the competent authorities or the CSIRTs addressed to users of vulnerable ICT products and ICT services as to how the risks resulting from disclosed vulnerabilities can be mitigated\" [nis2#art_12(2)].\n\n- **Access and publication process**: \"All stakeholders shall be provided access to the information about the vulnerabilities contained in the European vulnerability database\" [nis2#art_12(2)]. ENISA should establish \"an appropriate procedure regarding the publication process in order to give entities the time to take mitigating measures as regards their vulnerabilities\" [nis2#rct_62].\n\n- **Voluntary nature and protection**: Disclosure is \"on a voluntary basis\" [nis2#rct_62], and \"disclosure should have no detrimental effects on the reporting natural or legal person\" [nis2#rct_62].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q45",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.6721699237823486,
+   "verified": false,
+   "cited": [
+    "nis2#rct_85",
+    "nis2#art_21(3)",
+    "nis2#rct_86",
+    "nis2#rct_90"
+   ],
+   "text": "NIS2 makes entities responsible for supply-chain risks because incidents frequently exploit vulnerabilities in third-party products and services, and because the quality and security practices of suppliers directly affect the entity\u2019s own cybersecurity posture.\n\n- Recital (85) states: \"Addressing risks stemming from an entity\u2019s supply chain and its relationship with its suppliers... is particularly important given the prevalence of incidents where entities have been the victim of cyberattacks and where malicious perpetrators were able to compromise the security of an entity\u2019s network and information systems by exploiting vulnerabilities affecting third-party products and services.\" [nis2#rct_85]\n- The same recital requires entities to \"assess and take into account the overall quality and resilience of products and services, the cybersecurity risk-management measures embedded in them, and the cybersecurity practices of their suppliers and service providers, including their secure development procedures.\" [nis2#rct_85]\n- Article 21(3) makes this a legal obligation: \"Member States shall ensure that... entities take into account the vulnerabilities specific to each direct supplier and service provider and the overall quality of products and cybersecurity practices of their suppliers and service providers, including their secure development procedures.\" [nis2#art_21(3)]\n- For managed security service providers specifically, Recital (86) notes they \"have however also themselves been the target of cyberattacks and, because of their close integration in the operations of entities pose a particular risk,\" so entities \"should therefore exercise increased diligence in selecting a managed security service provider.\" [nis2#rct_86]\n- Recital (90) adds that coordinated supply-chain risk assessments aim to \"identify measures, mitigation plans and best practices to counter critical dependencies, potential single points of failure, threats, vulnerabilities and other risks associated with the supply chain,\" including \"undue influence by a third country on suppliers and service providers... concealed vulnerabilities or backdoors and potential systemic supply disruptions.\" [nis2#rct_90]",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q46",
+   "kind": "recital",
+   "mode": "answered",
+   "best_dense": 0.7176428437232971,
+   "verified": true,
+   "cited": [
+    "nis2#rct_54",
+    "nis2#rct_3",
+    "nis2#rct_56"
+   ],
+   "text": "The Union's concern about ransomware is driven by the \"exponential increase in ransomware attacks\" it has faced in recent years, in which \"malware encrypts data and systems and demands a ransom payment for release\" [nis2#rct_54]. The increasing frequency and severity of these attacks are driven by several factors, including \"different attack patterns, criminal business models around \u2018ransomware as a service\u2019 and cryptocurrencies, ransom demands, and the rise of supply chain attacks\" [nis2#rct_54]. Consequently, Member States are required to \"develop a policy addressing the rise of ransomware attacks as part of their national cybersecurity strategy\" [nis2#rct_54].\n\nAdditionally, the broader context of the threat landscape is relevant: the \"number, magnitude, sophistication, frequency and impact of incidents are increasing, and present a major threat to the functioning of network and information systems\" [nis2#rct_3]. Small and medium-sized enterprises face an \"increased level of threat, such as ransomware,\" and are \"increasingly becoming the target of supply chain attacks due to their less rigorous cybersecurity risk-management measures and attack management\" [nis2#rct_56].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q47",
+   "kind": "cross_instrument",
+   "mode": "answered",
+   "best_dense": 0.6031997203826904,
+   "verified": true,
+   "cited": [
+    "gdpr#art_33",
+    "gdpr#rct_85"
+   ],
+   "text": "Under Article 33(1) GDPR, you must notify the supervisory authority of the personal data breach \"without undue delay and, where feasible, not later than 72 hours after having become aware of it\" [gdpr#art_33]. The same 72-hour benchmark is reiterated in Recital 85: \"the controller should notify the personal data breach to the supervisory authority without undue delay and, where feasible, not later than 72 hours after having become aware of it\" [gdpr#rct_85].\n\nIf you cannot notify within 72 hours, the notification \"shall be accompanied by reasons for the delay\" [gdpr#art_33]. Information may also be provided \"in phases without undue further delay\" where it is not possible to provide all details at the same time [gdpr#art_33]. The 72-hour deadline applies \"unless the personal data breach is unlikely to result in a risk to the rights and freedoms of natural persons\" [gdpr#art_33]; Recital 85 similarly notes the notification obligation applies \"unless the controller is able to demonstrate, in accordance with the accountability principle, that the personal data breach is unlikely to result in a risk to the rights and freedoms of natural persons\" [gdpr#rct_85].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q48",
+   "kind": "cross_instrument",
+   "mode": "answered",
+   "best_dense": 0.7353971004486084,
+   "verified": true,
+   "cited": [
+    "nis2#art_21(1)",
+    "nis2#art_21(2)",
+    "nis2#rct_79",
+    "nis2#rct_78",
+    "nis2#rct_81"
+   ],
+   "text": "Based on the provided documents, essential and important entities must take \"appropriate and proportionate technical, operational and organisational measures to manage the risks posed to the security of network and information systems\" [nis2#art_21(1)]. These measures must be based on an \"all-hazards approach\" and include at least the following [nis2#art_21(2)]:\n\n- \"(a) policies on risk analysis and information system security\" [nis2#art_21(2)]\n- \"(b) incident handling\" [nis2#art_21(2)]\n- \"(c) business continuity, such as backup management and disaster recovery, and crisis management\" [nis2#art_21(2)]\n- \"(d) supply chain security, including security-related aspects concerning the relationships between each entity and its direct suppliers or service providers\" [nis2#art_21(2)]\n- \"(e) security in network and information systems acquisition, development and maintenance, including vulnerability handling and disclosure\" [nis2#art_21(2)]\n- \"(f) policies and procedures to assess the effectiveness of cybersecurity risk-management measures\" [nis2#art_21(2)]\n- \"(g) basic cyber hygiene practices and cybersecurity training\" [nis2#art_21(2)]\n- \"(h) policies and procedures regarding the use of cryptography and, where appropriate, encryption\" [nis2#art_21(2)]\n- \"(i) human resources security, access control policies and asset management\" [nis2#art_21(2)]\n- \"(j) the use of multi-factor authentication or continuous authentication solutions, secured voice, video and text communications and secured emergency communication systems within the entity, where appropriate\" [nis2#art_21(2)]\n\nThe measures must also address \"the physical and environmental security of network and information systems by including measures to protect such systems from system failures, human error, malicious acts or natural phenomena, in line with European and international standards, such as those included in the ISO/IEC 27000 series\" [nis2#rct_79]. They should \"take into account the degree of dependence of the essential or important entity on network and information systems and include measures to identify any risks of incidents, to prevent, detect, respond to and recover from incidents and to mitigate their impact\" [nis2#rct_78].\n\nThe measures must be \"proportionate to the risks posed to the network and information system concerned, taking into account the state-of-the-art of such measures, and, where applicable, relevant European and international standards, as well as the cost for their implementation\" [nis2#rct_81]. When assessing proportionality, \"due account shall be taken of the degree of the entity\u2019s exposure to risks, the entity\u2019s size and the likelihood of occurrence of incidents and their severity, including their societal and economic impact\" [nis2#art_21(1)].",
+   "hit@5": true,
+   "citation": true
+  },
+  {
+   "id": "q49",
+   "kind": "unanswerable",
+   "mode": "answered",
+   "best_dense": 0.5927050113677979,
+   "verified": true,
+   "cited": [
+    "nis2#art_21(2)",
+    "nis2#rct_79",
+    "nis2#art_21(2)(c)",
+    "nis2#art_21(2)(i)",
+    "nis2#rct_82"
+   ],
+   "text": "Based on the provided documents, a critical entity must take cybersecurity risk-management measures that address physical and environmental security, including protection against sabotage and natural disasters, as part of an all-hazards approach.\n\n- The measures must be based on an \"all-hazards approach that aims to protect network and information systems and the physical environment of those systems from incidents\" [nis2#art_21(2)]. This includes protecting against \"system failures, human error, malicious acts or natural phenomena\" [nis2#rct_79].\n- Specifically, the measures must include \"business continuity, such as backup management and disaster recovery, and crisis management\" [nis2#art_21(2)(c)].\n- The measures must also include \"human resources security, access control policies and asset management\" [nis2#art_21(2)(i)].\n- The all-hazards approach is further detailed as aiming \"to protect network and information systems and the physical environment of those systems from events such as theft, fire, flood, telecommunication or power failures, or unauthorised physical access and damage to, and interference with, an essential or important entity\u2019s information and information processing facilities\" [nis2#rct_79].\n- These measures should be \"in line with European and international standards, such as those included in the ISO/IEC 27000 series\" [nis2#rct_79].\n- The measures must be \"proportionate to the degree of the essential or important entity\u2019s exposure to risks and to the societal and economic impact that an incident would have\" [nis2#rct_82].\n- The measures should be consistent with Directive (EU) 2022/2557, which covers critical entities [nis2#rct_79].",
+   "refusal_source_expected": "generation",
+   "refused_strict": false,
+   "refused_any": false
+  },
+  {
+   "id": "q50",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.745962917804718,
+   "verified": true,
+   "cited": [],
+   "text": "The corpus does not address this. The retrieved documents concern the use of certified ICT products under European cybersecurity certification schemes and the Commission's power to require such use, but they do not describe the adoption procedure for the certification schemes themselves.",
+   "refusal_source_expected": "generation",
+   "refused_strict": true,
+   "refused_any": true
+  },
+  {
+   "id": "q51",
+   "kind": "unanswerable",
+   "mode": "refused-generation",
+   "best_dense": 0.5170081853866577,
+   "verified": true,
+   "cited": [
+    "nis2#art_21(2)",
+    "ai-act#art_18",
+    "ai-act#anx_VII(4)"
+   ],
+   "text": "The corpus does not address this. The retrieved documents concern cybersecurity risk-management measures under NIS2 [nis2#art_21(2)] and quality management and technical documentation requirements for high-risk AI systems under the EU AI Act [ai-act#art_18], [ai-act#anx_VII(4)], but none of them mentions ISO 22301 or business continuity management system documentation requirements.",
+   "refusal_source_expected": "gate",
+   "refused_strict": false,
+   "refused_any": true
+  }
+ ],
+ "probe": [
+  {
+   "id": "p01",
+   "mode": "answered",
+   "expected_anchor": "ai-act#art_22",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "ai-act#art_22(1)",
+    "ai-act#rct_82",
+    "ai-act#art_22(3)",
+    "ai-act#art_23(1)"
+   ],
+   "text": "A provider of a high-risk AI system established outside the EU must, prior to making the system available on the Union market, appoint an authorised representative established in the Union by written mandate.\n\n- The obligation is explicit: \"Prior to making their high-risk AI systems available on the Union market, providers established in third countries shall, by written mandate, appoint an authorised representative which is established in the Union.\" [ai-act#art_22(1)]\n- The rationale is that \"it is important to ensure that, under all circumstances, a person established in the Union can provide authorities with all the necessary information on the compliance of an AI system,\" and the authorised representative \"plays a pivotal role in ensuring the compliance of the high-risk AI systems placed on the market or put into service in the Union by those providers who are not established in the Union and in serving as their contact person established in the Union.\" [ai-act#rct_82]\n- The authorised representative must perform tasks specified in the mandate, including verifying the EU declaration of conformity and technical documentation, keeping documents for 10 years, providing information to authorities, cooperating with authorities, and complying with registration obligations where applicable. [ai-act#art_22(3)]\n- Importers must also verify that \"the provider has appointed an authorised representative in accordance with Article 22(1)\" before placing a high-risk AI system on the market. [ai-act#art_23(1)]"
+  },
+  {
+   "id": "p02",
+   "mode": "answered",
+   "expected_anchor": "ai-act#art_12|ai-act#art_19",
+   "anchor_cited": true,
+   "verified": false,
+   "cited": [
+    "ai-act#art_12",
+    "ai-act#art_19"
+   ],
+   "text": "Under Article 12(1), a high-risk AI system \"shall technically allow for the automatic recording of events (logs) over the lifetime of the system\" [ai-act#art_12]. The logging capabilities must enable recording of events relevant for: \"(a) identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modification; (b) facilitating the post-market monitoring referred to in Article 72; and (c) monitoring the operation of high-risk AI systems referred to in Article 26(5)\" [ai-act#art_12].\n\nFor the provider's retention obligation, Article 19(1) states: \"Providers of high-risk AI systems shall keep the logs referred to in Article 12(1), automatically generated by their high-risk AI systems, to the extent such logs are under their control... the logs shall be kept for a period appropriate to the intended purpose of the high-risk AI system, of at least six months, unless provided otherwise in the applicable Union or national law, in particular in Union law on the protection of personal data\" [ai-act#art_19]."
+  },
+  {
+   "id": "p03",
+   "mode": "answered",
+   "expected_anchor": "ai-act#art_57",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "ai-act#rct_139",
+    "ai-act#rct_138",
+    "ai-act#art_57(7)",
+    "ai-act#art_58(4)"
+   ],
+   "text": "Based on the provided documents, an AI regulatory sandbox is a controlled experimentation and testing environment, and the national authorities running one provide participants with guidance, written proof of activities, and an exit report.\n\n**Purpose of an AI regulatory sandbox:**\n- The objectives are \"to foster AI innovation by establishing a controlled experimentation and testing environment in the development and pre-marketing phase with a view to ensuring compliance of the innovative AI systems with this Regulation and other relevant Union and national law\" [ai-act#rct_139].\n- It aims \"to enhance legal certainty for innovators and the competent authorities\u2019 oversight and understanding of the opportunities, emerging risks and the impacts of AI use, to facilitate regulatory learning for authorities and undertakings, including with a view to future adaptions of the legal framework, to support cooperation and the sharing of best practices with the authorities involved in the AI regulatory sandbox, and to accelerate access to markets, including by removing barriers for SMEs, including start-ups\" [ai-act#rct_139].\n- It provides \"a safe and controlled space for experimentation, while ensuring responsible innovation and integration of appropriate safeguards and risk mitigation measures\" [ai-act#rct_138].\n- The supervision within the sandbox covers \"their development, training, testing and validation before the systems are placed on the market or put into service, as well as the notion and occurrence of substantial modification that may require a new conformity assessment procedure\" [ai-act#rct_139].\n\n**What national authorities provide to participants:**\n- **Guidance:** \"Competent authorities shall provide providers and prospective providers participating in the AI regulatory sandbox with guidance on regulatory expectations and how to fulfil the requirements and obligations set out in this Regulation\" [ai-act#art_57(7)].\n- **Written proof:** \"Upon request of the provider or prospective provider of the AI system, the competent authority shall provide a written proof of the activities successfully carried out in the sandbox\" [ai-act#art_57(7)].\n- **Exit report:** \"The competent authority shall also provide an exit report detailing the activities carried out in the sandbox and the related results and learning outcomes\" [ai-act#art_57(7)].\n- **Use of documentation:** \"Providers may use such documentation to demonstrate their compliance with this Regulation through the conformity assessment process or relevant market surveillance activities. In this regard, the exit reports and the written proof provided by the national competent authority shall be taken positively into account by market surveillance authorities and notified bodies, with a view to accelerating conformity assessment procedures to a reasonable extent\" [ai-act#art_57(7)].\n- **Terms for real-world testing:** \"Where national competent authorities consider authorising testing in real world conditions supervised within the framework of an AI regulatory sandbox to be established under this Article, they shall specifically agree the terms and conditions of such testing and, in particular, the appropriate safeguards with the participants, with a view to protecting fundamental rights, health and safety\" [ai-act#art_58(4)]."
+  },
+  {
+   "id": "p04",
+   "mode": "answered",
+   "expected_anchor": "ai-act#art_78",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "ai-act#art_74(14)",
+    "ai-act#art_77(4)",
+    "ai-act#art_53(7)",
+    "ai-act#art_21",
+    "ai-act#art_78(3)"
+   ],
+   "text": "The confidentiality obligations that bind authorities obtaining information or documentation under the AI Act are set out in **Article 78**, to which multiple provisions explicitly refer.\n\n- **Article 74(14)** states: \"Any information or documentation obtained by market surveillance authorities shall be treated in accordance with the confidentiality obligations set out in Article 78.\" [ai-act#art_74(14)]\n- **Article 77(4)** states: \"Any information or documentation obtained by the national public authorities or bodies referred to in paragraph 1 of this Article pursuant to this Article shall be treated in accordance with the confidentiality obligations set out in Article 78.\" [ai-act#art_77(4)]\n- **Article 53(7)** states: \"Any information or documentation obtained pursuant to this Article, including trade secrets, shall be treated in accordance with the confidentiality obligations set out in Article 78.\" [ai-act#art_53(7)]\n- **Article 21(3)** states: \"Any information obtained by a competent authority pursuant to this Article shall be treated in accordance with the confidentiality obligations set out in Article 78.\" [ai-act#art_21]\n\nThe substantive content of those obligations is found in **Article 78(3)**, which provides that \"information exchanged on a confidential basis between the national competent authorities or between national competent authorities and the Commission shall not be disclosed without prior consultation of the originating national competent authority and the deployer when high-risk AI systems referred to in point 1, 6 or 7 of Annex III are used by law enforcement, border control, immigration or asylum authorities and when such disclosure would jeopardise public and national security interests.\" It further states that \"this exchange of information shall not cover sensitive operational data in relation to the activities of law enforcement, border control, immigration or asylum authorities.\" [ai-act#art_78(3)]\n\nAdditionally, Article 78(3) imposes a specific confidentiality rule for technical documentation: \"When the law enforcement, immigration or asylum authorities are providers of high-risk AI systems referred to in point 1, 6 or 7 of Annex III, the technical documentation referred to in Annex IV shall remain within the premises of those authorities.\" Access is restricted: \"Only staff of the market surveillance authority holding the appropriate level of security clearance shall be allowed to access that documentation or any copy thereof.\" [ai-act#art_78(3)]"
+  },
+  {
+   "id": "p05",
+   "mode": "answered",
+   "expected_anchor": "gdpr#art_26",
+   "anchor_cited": true,
+   "verified": false,
+   "cited": [
+    "gdpr#art_26",
+    "gdpr#rct_79"
+   ],
+   "text": "Under the GDPR, where two or more controllers jointly determine the purposes and means of processing, they are joint controllers and must arrange their respective responsibilities as follows:\n\n- **Transparent arrangement**: They \"shall in a transparent manner determine their respective responsibilities for compliance with the obligations under this Regulation, in particular as regards the exercising of the rights of the data subject and their respective duties to provide the information referred to in Articles 13 and 14, by means of an arrangement between them unless, and in so far as, the respective responsibilities of the controllers are determined by Union or Member State law to which the controllers are subject.\" [gdpr#art_26]\n- **Reflect roles and be made available**: \"The arrangement referred to in paragraph 1 shall duly reflect the respective roles and relationships of the joint controllers vis-\u00e0-vis the data subjects. The essence of the arrangement shall be made available to the data subject.\" [gdpr#art_26]\n- **Contact point (optional)**: \"The arrangement may designate a contact point for data subjects.\" [gdpr#art_26]\n\nRegardless of the terms of that arrangement, a data subject retains full rights against each controller: \"Irrespective of the terms of the arrangement referred to in paragraph 1, the data subject may exercise his or her rights under this Regulation in respect of and against each of the controllers.\" [gdpr#art_26]\n\nThe rationale for this clear allocation is stated in Recital 79: \"The protection of the rights and freedoms of data subjects as well as the responsibility and liability of controllers and processors... requires a clear allocation of the responsibilities under this Regulation, including where a controller determines the purposes and means of the processing jointly with other controllers.\" [gdpr#rct_79]"
+  },
+  {
+   "id": "p06",
+   "mode": "answered",
+   "expected_anchor": "gdpr#art_30",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "gdpr#art_30(1)",
+    "gdpr#art_30(3)",
+    "gdpr#rct_82",
+    "gdpr#art_30(5)"
+   ],
+   "text": "A controller's record of processing activities must contain all of the following information:\n\n- \"(a) the name and contact details of the controller and, where applicable, the joint controller, the controller's representative and the data protection officer;\"\n- \"(b) the purposes of the processing;\"\n- \"(c) a description of the categories of data subjects and of the categories of personal data;\"\n- \"(d) the categories of recipients to whom the personal data have been or will be disclosed including recipients in third countries or international organisations;\"\n- \"(e) where applicable, transfers of personal data to a third country or an international organisation, including the identification of that third country or international organisation and, in the case of transfers referred to in the second subparagraph of Article 49(1), the documentation of suitable safeguards;\"\n- \"(f) where possible, the envisaged time limits for erasure of the different categories of data;\"\n- \"(g) where possible, a general description of the technical and organisational security measures referred to in Article 32(1).\" [gdpr#art_30(1)]\n\nThe record must be \"in writing, including in electronic form\" [gdpr#art_30(3)], and must be made available to the supervisory authority on request to demonstrate compliance [gdpr#rct_82].\n\n**Exemption:** The obligation does not apply to \"an enterprise or an organisation employing fewer than 250 persons\" unless any of the following conditions apply:\n\n- \"the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects,\"\n- \"the processing is not occasional,\" or\n- \"the processing includes special categories of data as referred to in Article 9(1) or personal data relating to criminal convictions and offences referred to in Article 10.\" [gdpr#art_30(5)]"
+  },
+  {
+   "id": "p07",
+   "mode": "answered",
+   "expected_anchor": "gdpr#art_8",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "gdpr#art_8"
+   ],
+   "text": "Based on the provided documents, a child can validly consent to the processing of their personal data by an online service from the age of 16 years, unless a Member State has set a lower age (but not below 13 years). When the child is younger than the applicable age, the controller must obtain consent given or authorised by the holder of parental responsibility and must make reasonable efforts to verify this.\n\n- **Age threshold**: \"the processing of the personal data of a child shall be lawful where the child is at least 16 years old. Where the child is below the age of 16 years, such processing shall be lawful only if and to the extent that consent is given or authorised by the holder of parental responsibility over the child.\" [gdpr#art_8]\n- **Member State lower age**: \"Member States may provide by law for a lower age for those purposes provided that such lower age is not below 13 years.\" [gdpr#art_8]\n- **Controller's verification duty**: \"The controller shall make reasonable efforts to verify in such cases that consent is given or authorised by the holder of parental responsibility over the child, taking into consideration available technology.\" [gdpr#art_8]"
+  },
+  {
+   "id": "p08",
+   "mode": "answered",
+   "expected_anchor": "gdpr#art_47",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "gdpr#art_47(2)",
+    "gdpr#art_47(1)"
+   ],
+   "text": "Binding corporate rules (BCRs) must specify at least the following before a supervisory authority will approve them for intra-group data transfers, as set out in Article 47(2) [gdpr#art_47(2)]:\n\n- **(a)** \"the structure and contact details of the group of undertakings, or group of enterprises engaged in a joint economic activity and of each of its members\" [gdpr#art_47(2)]\n- **(b)** \"the data transfers or set of transfers, including the categories of personal data, the type of processing and its purposes, the type of data subjects affected and the identification of the third country or countries in question\" [gdpr#art_47(2)]\n- **(c)** \"their legally binding nature, both internally and externally\" [gdpr#art_47(2)]\n- **(d)** \"the application of the general data protection principles, in particular purpose limitation, data minimisation, limited storage periods, data quality, data protection by design and by default, legal basis for processing, processing of special categories of personal data, measures to ensure data security, and the requirements in respect of onward transfers to bodies not bound by the binding corporate rules\" [gdpr#art_47(2)]\n- **(e)** \"the rights of data subjects in regard to processing and the means to exercise those rights, including the right not to be subject to decisions based solely on automated processing, including profiling in accordance with Article 22, the right to lodge a complaint with the competent supervisory authority and before the competent courts of the Member States in accordance with Article 79, and to obtain redress and, where appropriate, compensation for a breach of the binding corporate rules\" [gdpr#art_47(2)]\n- **(f)** \"the acceptance by the controller or processor established on the territory of a Member State of liability for any breaches of the binding corporate rules by any member concerned not established in the Union; the controller or the processor shall be exempt from that liability, in whole or in part, only if it proves that that member is not responsible for the event giving rise to the damage\" [gdpr#art_47(2)]\n- **(g)** \"how the information on the binding corporate rules, in particular on the provisions referred to in points (d), (e) and (f) of this paragraph is provided to the data subjects in addition to Articles 13 and 14\" [gdpr#art_47(2)]\n- **(h)** \"the tasks of any data protection officer designated in accordance with Article 37 or any other person or entity in charge of the monitoring compliance with the binding corporate rules within the group of undertakings, or group of enterprises engaged in a joint economic activity, as well as monitoring training and complaint-handling\" [gdpr#art_47(2)]\n- **(i)** \"the complaint procedures\" [gdpr#art_47(2)]\n- **(j)** \"the mechanisms within the group of undertakings, or group of enterprises engaged in a joint economic activity for ensuring the verification of compliance with the binding corporate rules. Such mechanisms shall include data protection audits and methods for ensuring corrective actions to protect the rights of the data subject. Results of such verification should be communicated to the person or entity referred to in point (h) and to the board of the controlling undertaking of a group of undertakings, or of the group of enterprises engaged in a joint economic activity, and should be available upon request to the competent supervisory authority\" [gdpr#art_47(2)]\n- **(k)** \"the mechanisms for reporting and recording changes to the rules and reporting those changes to the supervisory authority\" [gdpr#art_47(2)]\n- **(l)** \"the cooperation mechanism with the supervisory authority to ensure compliance by any member of the group of undertakings, or group of enterprises engaged in a joint economic activity, in particular by making available to the supervisory authority the results of verifications of the measures referred to in point (j)\" [gdpr#art_47(2)]\n- **(m)** \"the mechanisms for reporting to the competent supervisory authority any legal requirements to which a member of the group of undertakings, or group of enterprises engaged in a joint economic activity is subject in a third country which are likely to have a substantial adverse effect on the guarantees provided by the binding corporate rules\" [gdpr#art_47(2)]\n- **(n)** \"the appropriate data protection training to personnel having permanent or regular access to personal data\" [gdpr#art_47(2)]\n\nAdditionally, under Article 47(1), the competent supervisory authority shall approve BCRs only if they: \"(a) are legally binding and apply to and are enforced by every member concerned of the group of undertakings, or group of enterprises engaged in a joint economic activity, including their employees; (b) expressly confer enforceable rights on data subjects with regard to the processing of their personal data; and (c) fulfil the requirements laid down in paragraph 2\" [gdpr#art_47(1)]."
+  },
+  {
+   "id": "p09",
+   "mode": "answered",
+   "expected_anchor": "nis2#art_27",
+   "anchor_cited": true,
+   "verified": true,
+   "cited": [
+    "nis2#art_3(4)",
+    "nis2#art_27(3)"
+   ],
+   "text": "Under NIS2, essential and important entities must submit the following information to the competent authorities for the purpose of establishing the list of entities:\n\n- \"the name of the entity\" [nis2#art_3(4)]\n- \"the address and up-to-date contact details, including email addresses, IP ranges and telephone numbers\" [nis2#art_3(4)]\n- \"where applicable, the relevant sector and subsector referred to in Annex I or II\" [nis2#art_3(4)]\n- \"where applicable, a list of the Member States where they provide services falling within the scope of this Directive\" [nis2#art_3(4)]\n\nChanges to these details must be notified \"without delay, and, in any event, within two weeks of the date of the change\" [nis2#art_3(4)]. This two-week deadline applies to the registry information under Article 3(4) [nis2#art_3(4)]. Note that a separate, longer deadline of \"within three months of the date of the change\" applies to changes to information submitted under Article 27(2) concerning incident-related or other notification data [nis2#art_27(3)]."
+  },
+  {
+   "id": "p10",
+   "mode": "answered",
+   "expected_anchor": "nis2#art_29",
+   "anchor_cited": true,
+   "verified": false,
+   "cited": [
+    "nis2#art_29(1)",
+    "nis2#art_29(2)",
+    "nis2#rct_74",
+    "nis2#rct_45"
+   ],
+   "text": "Under NIS2, companies may exchange cybersecurity threat information among themselves on a **voluntary basis**, provided the exchange meets two cumulative conditions set out in Article 29(1):\n\n1. **Purpose condition** \u2013 the sharing must \"(a) aim[] to prevent, detect, respond to or recover from incidents or to mitigate their impact\" [nis2#art_29(1)].\n2. **Effect condition** \u2013 the sharing must \"(b) enhance[] the level of cybersecurity, in particular through raising awareness in relation to cyber threats, limiting or impeding the ability of such threats to spread, supporting a range of defensive capabilities, vulnerability remediation and disclosure, threat detection, containment and prevention techniques, mitigation strategies, or response and recovery stages or promoting collaborative cyber threat research between public and private entities\" [nis2#art_29(1)].\n\nThe information that may be exchanged includes \"information relating to cyber threats, near misses, vulnerabilities, techniques and procedures, indicators of compromise, adversarial tactics, threat-actor-specific information, cybersecurity alerts and recommendations regarding configuration of cybersecurity tools to detect cyberattacks\" [nis2#art_29(1)].\n\n**Additional structural conditions** apply:\n\n- The exchange must take place \"within communities of essential and important entities, and where relevant, their suppliers or service providers\" [nis2#art_29(2)].\n- The exchange \"shall be implemented through cybersecurity information-sharing arrangements in respect of the potentially sensitive nature of the information shared\" [nis2#art_29(2)].\n\n**Cross-border dimension**: Member States may cooperate with third countries to facilitate, inter alia, \"information exchange on cyber threats, incidents, vulnerabilities, tools and methods, tactics, techniques and procedures, cybersecurity crisis management preparedness and exercises, training, trust building and structured information-sharing arrangements\" [nis2#rct_74]. For international cooperation, CSIRTs and competent authorities may exchange information, including personal data, with third-country counterparts \"provided that the conditions under Union data protection law for transfers of personal data to third countries, inter alia those of Article 49 of Regulation (EU) 2016/679, are met\" [nis2#rct_45]."
+  }
+ ]
+}

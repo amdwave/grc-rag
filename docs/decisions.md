@@ -746,7 +746,9 @@ the failure mode; the cross-encoder is trained on relevance.
 **Status:** decided 2026-08-19, during M11, an audit session whose brief
 was to attack the conclusions of M6–M10 rather than extend them. Raw
 artifacts (scores, control run, probe set, scripts) are under
-`/mnt/d/.staging/audit-*`; they are diagnostics, not part of the graded
+[diagnostics/](../diagnostics/) (migrated there in M13 — they were in a
+scratch directory when this entry was written); they are diagnostics,
+not part of the graded
 eval, and none of them were folded into `eval/corpus.eval.jsonl`.
 
 **Context.** Four entries — D7, D10, D13, plus the uncommitted M10
@@ -983,8 +985,8 @@ The predictions were pre-registered before each run and are committed
 unedited at [n5-preregistration.md](n5-preregistration.md), including
 the three that were falsified; this entry owns the decision and the
 results. Raw artifacts (run scripts, JSON output, the 23-question
-hard-class set) stay in `/mnt/d/.staging/n5-*` as diagnostics and are
-not folded into the graded eval.
+hard-class set) live in [diagnostics/](../diagnostics/) and are not
+folded into the graded eval.
 
 **Context.** D14 recorded N5 — a question about a regime the corpus does
 not hold, answered fluently out of an adjacent one — as the highest-value

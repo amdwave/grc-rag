@@ -1,0 +1,48 @@
+q01  direct               answered            dense 0.7167  ok
+q02  direct               answered            dense 0.7745  ok
+q03  direct               answered            dense 0.7502  ok
+q04  direct               answered            dense 0.7638  ok
+q05  direct               answered            dense 0.7076  ok
+q06  direct               answered            dense 0.7855  ok
+q07  relocated            answered            dense 0.8020  ok
+q08  neighbour_adversary  answered            dense 0.7383  ok
+q09  neighbour_adversary  answered            dense 0.7454  ok
+q10  neighbour_adversary  answered            dense 0.6264  ok
+q11  neighbour_adversary  answered            dense 0.7693  ok
+q12  recital              answered            dense 0.6945  ok
+q13  recital              answered            dense 0.6664  ok
+q14  recital              answered            dense 0.7212  ok
+q15  repealed             refused-generation  dense 0.6379  ok
+q16  repealed             refused-generation  dense 0.6967  ok
+q17  unanswerable         refused-gate        dense 0.5864  ok
+q18  unanswerable         refused-gate        dense 0.4918  ok
+q19  direct               answered            dense 0.7770  ok
+q20  unanswerable         refused-generation  dense 0.6151  ok
+q21  direct               answered            dense 0.8040  ok
+q22  direct               answered            dense 0.6915  MISS
+q23  direct               answered            dense 0.7201  ok
+q24  direct               answered            dense 0.7291  ok
+q25  direct               answered            dense 0.7140  ok
+q26  neighbour_adversary  answered            dense 0.6706  ok
+q27  neighbour_adversary  answered            dense 0.6558  ok
+q28  neighbour_adversary  answered            dense 0.6039  MISS
+q29  recital              refused-generation  dense 0.6064  MISS
+q30  recital              answered            dense 0.6672  MISS
+q31  cross_instrument     answered            dense 0.6765  ok
+q32  cross_instrument     answered            dense 0.7530  ok
+q33  cross_instrument     answered            dense 0.7106  ok
+q34  unanswerable         refused-gate        dense 0.5656  ok
+q35  unanswerable         refused-gate        dense 0.5853  ok
+q36  unanswerable         refused-generation  dense 0.6413  ok
+q37  unanswerable         refused-generation  dense 0.6135  MISS
+q38  unanswerable         refused-generation  dense 0.6210  ok
+metric   result
+---   ---
+retrieval hit rate @5   27/28
+citation correctness   26/28
+refusal correctness   10/10
+verification clean   35/38
+gate floor   0.595
+
+wrote eval/corpus.eval.report.md
+exit=0

@@ -206,8 +206,9 @@ the register supersedes it where they disagree.
     src/grc_rag/query/     network allowed; index build, engine, CLI
     tests/                 checks, independent of the pipeline they check
     corpus/                raw source, manifests, canonical markdown, chunks
-    eval/                  the 20-question set, its README, the committed report
-    docs/                  decision register, original brief
+    eval/                  the 51-question graded set, its README, the committed report
+    diagnostics/           measurement instruments that are NOT the graded set
+    docs/                  decision register, defect-class inventory, original brief
 
 Those three package directories are the three import buckets — `convert`
 may not import a network module, a clock or an entropy source, because

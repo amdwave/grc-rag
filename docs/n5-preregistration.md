@@ -15,8 +15,8 @@ measurement contradicts is a finding, not something to quietly edit.
 > scratchpad. **It is not updated to match the outcomes**; P1, P3 and P7
 > below were falsified and are left exactly as written.
 >
-> Raw measurement artifacts stay in `/mnt/d/.staging/n5-*`: the three
-> run scripts, their JSON output, and `n5-hardclass.jsonl` (the 23
+> Raw measurement artifacts live in [diagnostics/](../diagnostics/):
+> the run scripts, their JSON output, and `n5-hardclass.jsonl` (the 23
 > questions). They are diagnostics and are deliberately NOT folded into
 > `eval/corpus.eval.jsonl`.
 

@@ -1,0 +1,70 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 11581.73it/s]
+Loading weights:   0%|          | 0/393 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 49/393 [00:00<00:00, 477.87it/s]Loading weights:  25%|██▌       | 99/393 [00:00<00:00, 468.63it/s]Loading weights:  40%|███▉      | 157/393 [00:00<00:00, 502.54it/s]Loading weights:  54%|█████▍    | 213/393 [00:00<00:00, 509.97it/s]Loading weights:  67%|██████▋   | 264/393 [00:00<00:00, 508.60it/s]Loading weights:  80%|████████  | 315/393 [00:00<00:00, 463.45it/s]Loading weights: 100%|██████████| 393/393 [00:00<00:00, 581.32it/s]
+q01   spans  2  N4 0  already-unverified 0
+q02   spans  1  N4 0  already-unverified 0
+q03   spans  4  N4 0  already-unverified 0
+q04   spans  5  N4 0  already-unverified 0
+q05   spans  2  N4 0  already-unverified 0
+q06   spans  2  N4 0  already-unverified 0
+q07   spans  9  N4 0  already-unverified 0
+q08   spans  6  N4 0  already-unverified 0
+q09   spans  6  N4 0  already-unverified 0
+q10   spans  5  N4 0  already-unverified 0
+q11   spans  9  N4 0  already-unverified 0
+q12   spans  3  N4 0  already-unverified 0
+q13   spans  2  N4 0  already-unverified 0
+q14   spans  4  N4 0  already-unverified 0
+q15   spans  0  N4 0  already-unverified 0
+q16   spans  0  N4 0  already-unverified 0
+q17   spans  2  N4 0  already-unverified 0
+q18   spans  0  N4 0  already-unverified 0
+q19   spans  5  N4 0  already-unverified 0
+q20   spans  0  N4 0  already-unverified 0
+q21   spans  4  N4 0  already-unverified 0
+q22   spans  5  N4 0  already-unverified 0
+q23   spans  1  N4 0  already-unverified 0
+q24   spans 15  N4 0  already-unverified 0
+q25   spans  3  N4 0  already-unverified 0
+q26   spans  5  N4 0  already-unverified 0
+q27   spans  7  N4 0  already-unverified 0
+q28   spans  7  N4 0  already-unverified 0
+q29   spans  1  N4 0  already-unverified 0
+q30   spans  3  N4 0  already-unverified 0
+q31   spans  6  N4 0  already-unverified 0
+q32   spans 11  N4 0  already-unverified 0
+q33   spans  0  N4 0  already-unverified 0
+q34   spans  1  N4 0  already-unverified 0
+q35   spans  5  N4 0  already-unverified 0
+q36   spans  8  N4 0  already-unverified 0
+q37   spans  1  N4 0  already-unverified 0
+q38   spans  0  N4 0  already-unverified 0
+q39   spans 15  N4 0  already-unverified 0
+q40   spans 10  N4 0  already-unverified 1
+q41   spans  2  N4 0  already-unverified 0
+q42   spans  4  N4 0  already-unverified 0
+q43   spans  4  N4 0  already-unverified 1
+q44   spans  7  N4 0  already-unverified 1
+q45   spans  7  N4 0  already-unverified 3
+q46   spans  7  N4 0  already-unverified 0
+q47   spans  6  N4 0  already-unverified 0
+q48   spans 16  N4 0  already-unverified 0
+q49   spans  7  N4 0  already-unverified 0
+q50   spans  0  N4 0  already-unverified 0
+q51   spans  0  N4 0  already-unverified 0
+p01   spans  4  N4 0  already-unverified 0
+p02   spans  3  N4 0  already-unverified 1
+p03   spans  9  N4 0  already-unverified 0
+p04   spans  8  N4 0  already-unverified 0
+p05   spans  5  N4 0  already-unverified 1
+p06   spans 12  N4 0  already-unverified 0
+p07   spans  3  N4 0  already-unverified 0
+p08   spans 15  N4 0  already-unverified 0
+p09   spans  6  N4 0  already-unverified 0
+p10   spans  7  N4 0  already-unverified 2
+
+61 answers | 307 spans | 290 attributed
+  already caught by verify() (elision / adaptation): 10  in 7 answers
+  NEW - verify() passes, cited chunk does not hold it: 0  in 0 answers
+
+wrote /mnt/d/.staging/audit-n4-measure.json

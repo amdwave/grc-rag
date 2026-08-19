@@ -1,0 +1,327 @@
+[
+ {
+  "id": "n01",
+  "regime": "DORA",
+  "band": "near",
+  "question": "What must a financial entity's ICT business continuity policy ensure under DORA?",
+  "mode": "refused-gate",
+  "best_dense": 0.5686877369880676,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n02",
+  "regime": "DORA",
+  "band": "near",
+  "question": "Which financial entities must carry out threat-led penetration testing, and how often must it be repeated?",
+  "mode": "refused-gate",
+  "best_dense": 0.5567193031311035,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n03",
+  "regime": "NIS1",
+  "band": "extreme-near",
+  "question": "What security requirements did the 2016 NIS Directive impose on operators of essential services?",
+  "mode": "refused-generation",
+  "best_dense": 0.590910792350769,
+  "verified": true,
+  "cited": [
+   "nis2#art_3(1)",
+   "nis2#rct_7",
+   "nis2#rct_4"
+  ],
+  "text": "The corpus does not address this. The retrieved documents discuss the scope and classification of entities under NIS2 (e.g., [nis2#art_3(1)], [nis2#rct_7]) and the rationale for replacing the 2016 Directive (e.g., [nis2#rct_4]), but they do not set out the specific security requirements imposed on operators of essential services under Directive (EU) 2016/1148."
+ },
+ {
+  "id": "n04",
+  "regime": "DSA",
+  "band": "near",
+  "question": "What systemic risk assessments must very large online platforms conduct under the Digital Services Act?",
+  "mode": "refused-generation",
+  "best_dense": 0.6101075410842896,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents reference the Digital Services Act (Regulation (EU) 2022/2065) only to note that very large online platforms are subject to its risk-management framework and must assess systemic risks, but they do not specify the content of those assessments."
+ },
+ {
+  "id": "n05",
+  "regime": "DMA",
+  "band": "near",
+  "question": "What obligations does the Digital Markets Act impose on gatekeepers about combining personal data across their services?",
+  "mode": "refused-gate",
+  "best_dense": 0.5627559423446655,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n06",
+  "regime": "LED",
+  "band": "extreme-near",
+  "question": "Under the Law Enforcement Directive, when may a police authority transfer personal data to a third country?",
+  "mode": "refused-generation",
+  "best_dense": 0.6849256753921509,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents concern the General Data Protection Regulation (GDPR), not the Law Enforcement Directive."
+ },
+ {
+  "id": "n07",
+  "regime": "UK-GDPR",
+  "band": "extreme-near",
+  "question": "What is the deadline for reporting a personal data breach to the ICO under the UK GDPR?",
+  "mode": "refused-generation",
+  "best_dense": 0.6374942064285278,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents concern the EU GDPR (Regulation (EU) 2016/679) and do not contain any provision on the UK GDPR or the Information Commissioner's Office (ICO)."
+ },
+ {
+  "id": "n08",
+  "regime": "AI-Liability",
+  "band": "extreme-near",
+  "question": "When can a national court order disclosure of evidence about a high-risk AI system under the AI Liability Directive?",
+  "mode": "refused-generation",
+  "best_dense": 0.6432132124900818,
+  "verified": true,
+  "cited": [
+   "ai-act#art_26(10)",
+   "ai-act#art_78(3)",
+   "ai-act#anx_III(6)",
+   "ai-act#rct_131",
+   "ai-act#art_18"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern the EU AI Act's provisions on post-remote biometric identification authorisation [ai-act#art_26(10)], confidential information exchange between authorities [ai-act#art_78(3)], high-risk law enforcement use cases [ai-act#anx_III(6)], the EU database for high-risk AI systems [ai-act#rct_131], and provider record-keeping obligations [ai-act#art_18], but none of them concerns the AI Liability Directive or court-ordered disclosure of evidence."
+ },
+ {
+  "id": "n09",
+  "regime": "Machinery",
+  "band": "near",
+  "question": "What essential safety requirements apply to machinery with self-evolving behaviour under the 2023 Machinery Regulation?",
+  "mode": "refused-gate",
+  "best_dense": 0.5454549193382263,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n10",
+  "regime": "CRA",
+  "band": "near",
+  "question": "What CE marking and conformity assessment requirements does the Cyber Resilience Act impose on products with digital elements?",
+  "mode": "refused-generation",
+  "best_dense": 0.6801773905754089,
+  "verified": true,
+  "cited": [
+   "ai-act#art_48",
+   "ai-act#rct_129",
+   "nis2#art_7(2)"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern the EU AI Act's CE marking and conformity assessment provisions for high-risk AI systems [ai-act#art_48], [ai-act#rct_129], and NIS2's national cybersecurity strategy policies [nis2#art_7(2)], but none of them contains the Cyber Resilience Act's own CE marking or conformity assessment requirements."
+ },
+ {
+  "id": "n11",
+  "regime": "CSA",
+  "band": "near",
+  "question": "What are the assurance levels of the EU cybersecurity certification framework, and what does the level 'substantial' require?",
+  "mode": "refused-generation",
+  "best_dense": 0.6309228539466858,
+  "verified": true,
+  "cited": [
+   "nis2#art_24",
+   "nis2#rct_80"
+  ],
+  "text": "The corpus does not address this. The retrieved documents mention European cybersecurity certification schemes and their use (e.g., [nis2#art_24], [nis2#rct_80]) but do not define the assurance levels of the EU cybersecurity certification framework or specify what the level 'substantial' requires."
+ },
+ {
+  "id": "n12",
+  "regime": "CER",
+  "band": "near",
+  "question": "What background checks may Member States require for the staff of critical entities under the CER Directive?",
+  "mode": "refused-gate",
+  "best_dense": 0.5396291613578796,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n13",
+  "regime": "eIDAS",
+  "band": "mid",
+  "question": "What must a qualified trust service provider verify before issuing a qualified certificate under eIDAS?",
+  "mode": "refused-gate",
+  "best_dense": 0.583646833896637,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n14",
+  "regime": "DGA",
+  "band": "mid",
+  "question": "What conditions must a data intermediation service provider meet under the Data Governance Act?",
+  "mode": "refused-generation",
+  "best_dense": 0.5925582051277161,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents concern the EU AI Act's data governance requirements for high-risk AI systems and GDPR provisions on lawful processing and health data, but none of them contain provisions on data intermediation service providers under the Data Governance Act."
+ },
+ {
+  "id": "n15",
+  "regime": "EHDS",
+  "band": "mid",
+  "question": "For what secondary purposes may electronic health data be made available under the European Health Data Space Regulation?",
+  "mode": "refused-generation",
+  "best_dense": 0.6086829304695129,
+  "verified": true,
+  "cited": [
+   "ai-act#rct_68",
+   "gdpr#rct_53",
+   "gdpr#rct_54",
+   "gdpr#art_4(15)",
+   "gdpr#rct_35"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern the EU AI Act's recital on data access for high-risk AI systems [ai-act#rct_68] and GDPR provisions on health data processing [gdpr#rct_53], [gdpr#rct_54], [gdpr#art_4(15)], [gdpr#rct_35], but none of them is the European Health Data Space Regulation or describes its secondary-use purposes."
+ },
+ {
+  "id": "n16",
+  "regime": "CySol",
+  "band": "near",
+  "question": "What is the European Cybersecurity Alert System established by the Cyber Solidarity Act and what do its cyber hubs do?",
+  "mode": "refused-gate",
+  "best_dense": 0.5884363055229187,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n17",
+  "regime": "GPAI-CoP",
+  "band": "extreme-near",
+  "question": "What transparency commitments do signatories of the General-Purpose AI Code of Practice undertake?",
+  "mode": "answered",
+  "best_dense": 0.6351525187492371,
+  "verified": true,
+  "cited": [
+   "ai-act#art_56(4)",
+   "ai-act#art_56(5)",
+   "ai-act#rct_101",
+   "ai-act#rct_117"
+  ],
+  "text": "Based on the provided documents, the corpus does not contain the text of the General-Purpose AI Code of Practice itself, nor does it list the specific transparency commitments its signatories undertake. The documents instead describe the framework and objectives for such codes.\n\nThe documents state that codes of practice should \"clearly set out their specific objectives and contain commitments or measures, including key performance indicators as appropriate, to ensure the achievement of those objectives\" [ai-act#art_56(4)]. They also require that \"participants to the codes of practice report regularly to the AI Office on the implementation of the commitments and the measures taken and their outcomes, including as measured against the key performance indicators as appropriate\" [ai-act#art_56(5)].\n\nRegarding transparency for general-purpose AI models more broadly, the corpus notes that \"proportionate transparency measures should be laid down, including the drawing up and keeping up to date of documentation, and the provision of information on the general-purpose AI model for its usage by the downstream providers,\" with technical documentation to be made available \"upon request, to the AI Office and the national competent authorities\" [ai-act#rct_101]. The corpus also mentions that codes of practice are a \"central tool for the proper compliance with the obligations provided for under this Regulation for providers of general-purpose AI models\" and that providers \"should be able to rely on codes of practice to demonstrate compliance with the obligations\" [ai-act#rct_117]."
+ },
+ {
+  "id": "n18",
+  "regime": "AIA-guidelines",
+  "band": "extreme-near",
+  "question": "What do the Commission's guidelines on prohibited AI practices say about emotion recognition in the workplace?",
+  "mode": "refused-generation",
+  "best_dense": 0.6353899240493774,
+  "verified": true,
+  "cited": [
+   "ai-act#art_5(1)(f)",
+   "ai-act#art_96(1)(b)"
+  ],
+  "text": "The corpus does not address this. The retrieved documents contain the prohibition on emotion recognition in the workplace [ai-act#art_5(1)(f)] and the Commission's general mandate to issue guidelines on prohibited practices [ai-act#art_96(1)(b)], but no document provides the content of those guidelines."
+ },
+ {
+  "id": "n19",
+  "regime": "SCC",
+  "band": "extreme-near",
+  "question": "What do the Standard Contractual Clauses require a data importer to do when a foreign government authority requests access to the transferred data?",
+  "mode": "refused-generation",
+  "best_dense": 0.6392154693603516,
+  "verified": true,
+  "cited": [
+   "gdpr#rct_108",
+   "gdpr#rct_109",
+   "gdpr#art_46(3)",
+   "gdpr#art_58(3)",
+   "gdpr#rct_168"
+  ],
+  "text": "The corpus does not address this. The retrieved documents discuss the general legal basis for appropriate safeguards such as standard contractual clauses [gdpr#rct_108], the possibility of adding supplementary clauses [gdpr#rct_109], the authorisation of contractual clauses by supervisory authorities [gdpr#art_46(3)], the powers of supervisory authorities [gdpr#art_58(3)], and the examination procedure for adopting implementing acts on standard contractual clauses [gdpr#rct_168], but none of them specify the obligations of a data importer when a foreign government authority requests access to transferred data."
+ },
+ {
+  "id": "n20",
+  "regime": "ISO27002",
+  "band": "mid",
+  "question": "Which controls does ISO/IEC 27002 recommend for information security incident management?",
+  "mode": "refused-generation",
+  "best_dense": 0.6015233993530273,
+  "verified": true,
+  "cited": [
+   "nis2#art_21(2)"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern NIS2 requirements for cybersecurity risk-management measures (e.g., incident handling, business continuity) [nis2#art_21(2)], but they do not specify controls recommended by ISO/IEC 27002 for information security incident management."
+ },
+ {
+  "id": "n21",
+  "regime": "IEC62443",
+  "band": "mid",
+  "question": "How does IEC 62443 define security levels for industrial automation and control systems?",
+  "mode": "refused-gate",
+  "best_dense": 0.5174548625946045,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n22",
+  "regime": "SOC2",
+  "band": "far",
+  "question": "What are the Trust Services Criteria a SOC 2 report is assessed against?",
+  "mode": "refused-gate",
+  "best_dense": 0.49422556161880493,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n23",
+  "regime": "PCI-DSS",
+  "band": "far",
+  "question": "What does PCI DSS require for storing cardholder data after authorisation?",
+  "mode": "refused-gate",
+  "best_dense": 0.5604584217071533,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n24",
+  "regime": "NIST-CSF",
+  "band": "mid",
+  "question": "What are the core functions of the NIST Cybersecurity Framework 2.0?",
+  "mode": "refused-gate",
+  "best_dense": 0.5891621112823486,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n25",
+  "regime": "CCPA",
+  "band": "mid",
+  "question": "What rights does the CCPA give California residents over the sale of their personal information?",
+  "mode": "refused-gate",
+  "best_dense": 0.5017837882041931,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "n26",
+  "regime": "PIPL",
+  "band": "mid",
+  "question": "What does China's PIPL require before a company transfers personal information outside China?",
+  "mode": "refused-generation",
+  "best_dense": 0.600554347038269,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents concern the EU General Data Protection Regulation (GDPR) and contain no provisions on China's Personal Information Protection Law (PIPL)."
+ }
+]

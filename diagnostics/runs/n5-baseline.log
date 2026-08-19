@@ -1,0 +1,42 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 16567.39it/s]
+Loading weights:   0%|          | 0/393 [00:00<?, ?it/s]Loading weights:  14%|█▍        | 56/393 [00:00<00:00, 541.70it/s]Loading weights:  28%|██▊       | 111/393 [00:00<00:00, 509.68it/s]Loading weights:  42%|████▏     | 164/393 [00:00<00:00, 518.15it/s]Loading weights:  55%|█████▌    | 217/393 [00:00<00:00, 522.65it/s]Loading weights:  69%|██████▉   | 271/393 [00:00<00:00, 528.65it/s]Loading weights:  82%|████████▏ | 324/393 [00:00<00:00, 489.45it/s]Loading weights: 100%|██████████| 393/393 [00:00<00:00, 604.24it/s]
+n01  DORA            near          refused-gate        dense 0.5687  ver True
+n02  DORA            near          refused-gate        dense 0.5567  ver True
+n03  NIS1            extreme-near  refused-generation  dense 0.5909  ver True
+n04  DSA             near          refused-generation  dense 0.6101  ver True
+n05  DMA             near          refused-gate        dense 0.5628  ver True
+n06  LED             extreme-near  refused-generation  dense 0.6849  ver True
+n07  UK-GDPR         extreme-near  refused-generation  dense 0.6375  ver True
+n08  AI-Liability    extreme-near  refused-generation  dense 0.6432  ver True
+n09  Machinery       near          refused-gate        dense 0.5455  ver True
+n10  CRA             near          refused-generation  dense 0.6802  ver True
+n11  CSA             near          refused-generation  dense 0.6309  ver True
+n12  CER             near          refused-gate        dense 0.5396  ver True
+n13  eIDAS           mid           refused-gate        dense 0.5836  ver True
+n14  DGA             mid           refused-generation  dense 0.5926  ver True
+n15  EHDS            mid           refused-generation  dense 0.6087  ver True
+n16  CySol           near          refused-gate        dense 0.5884  ver True
+n17  GPAI-CoP        extreme-near  answered            dense 0.6352  ver True
+n18  AIA-guidelines  extreme-near  refused-generation  dense 0.6354  ver True
+n19  SCC             extreme-near  refused-generation  dense 0.6392  ver True
+n20  ISO27002        mid           refused-generation  dense 0.6015  ver True
+n21  IEC62443        mid           refused-gate        dense 0.5175  ver True
+n22  SOC2            far           refused-gate        dense 0.4942  ver True
+n23  PCI-DSS         far           refused-gate        dense 0.5605  ver True
+n24  NIST-CSF        mid           refused-gate        dense 0.5892  ver True
+n25  CCPA            mid           refused-gate        dense 0.5018  ver True
+n26  PIPL            mid           refused-generation  dense 0.6006  ver True
+
+BASELINE (shipped, floor=0.59): 1/26 ANSWERED rather than refused
+  refused-gate:       12
+  refused-generation: 13
+  extreme-near  answered 1/7
+  near          answered 0/9
+  mid           answered 0/8
+  far           answered 0/2
+
+answered (each of these is an N5 instance):
+  n17 GPAI-CoP        verified=True cited ai-act#art_56(4), ai-act#art_56(5), ai-act#rct_101, ai-act#rct_117
+
+wrote /mnt/d/.staging/n5-baseline.json

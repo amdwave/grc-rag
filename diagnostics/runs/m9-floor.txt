@@ -1,0 +1,51 @@
+0.5170  refuse  q51  What must an organisation document when establishing a b
+0.5346  refuse  q18  What does DORA require from financial entities with rega
+0.5656  refuse  q34  Under the ePrivacy rules, when may a website store or ac
+0.5853  refuse  q35  What must a provider of data processing services do to l
+0.5927  refuse  q49  What resilience measures must a critical entity take to 
+0.5947  pass    q44  Where are newly discovered vulnerabilities in ICT produc
+0.6032  pass    q47  We suffered a ransomware attack that encrypted a databas
+0.6039  pass    q28  Can someone require us to hand over the data they gave u
+0.6064  pass    q29  Why does relying on legitimate interests depend on what 
+0.6151  pass    q20  What does ISO/IEC 42001 require an organisation to estab
+0.6192  pass    q42  Is a supplier of drinking water within the scope of the 
+0.6210  pass    q38  Within what period must covered entities notify individu
+0.6264  pass    q10  Before a deployer takes any action on the basis of an id
+0.6267  pass    q37  What must an organisation include in its Statement of Ap
+0.6379  pass    q15  What does Article 10(5) of the AI Act provide?
+0.6413  pass    q36  What vulnerability handling obligations apply to a manuf
+0.6542  pass    q43  What is required of the people on a company's board in r
+0.6558  pass    q27  After a breach that puts people at serious risk, does th
+0.6664  pass    q13  In the AI Act's definition of an AI system, what does th
+0.6672  pass    q30  When does the GDPR stop treating information as personal
+0.6706  pass    q26  A customer wants us to stop using their data while they 
+0.6722  pass    q45  Why does NIS2 make entities responsible for risks arisin
+0.6765  pass    q31  What rights does someone have when a decision affecting 
+0.6832  pass    q41  Which entities does the NIS2 Directive treat as essentia
+0.6945  pass    q12  Why are AI systems used for military and defence purpose
+0.6967  pass    q16  Which piece of Union harmonisation legislation is listed
+0.6976  pass    q40  What is the maximum administrative fine an essential ent
+0.7053  pass    q22  On what legal bases may a company lawfully process perso
+0.7076  pass    q05  Is an AI system used to evaluate the creditworthiness of
+0.7106  pass    q33  What must a controller tell someone who asks whether the
+0.7140  pass    q25  What general condition must be met before personal data 
+0.7167  pass    q01  Above what cumulative amount of training compute is a ge
+0.7176  pass    q46  What has driven the Union's concern about ransomware in 
+0.7201  pass    q23  What is the maximum administrative fine for infringing t
+0.7212  pass    q14  Why does the AI Act expect a provider to be able to noti
+0.7291  pass    q24  When is a data protection impact assessment mandatory be
+0.7354  pass    q48  What security measures must be taken to manage risks to 
+0.7383  pass    q08  How does the AI Act ensure that the people overseeing a 
+0.7454  pass    q09  What resilience must high-risk AI systems have against a
+0.7460  refuse  q50  How is a European cybersecurity certification scheme for
+0.7502  pass    q03  A company established outside the EU runs an AI system e
+0.7530  pass    q32  Before a public body puts a high-risk AI system into use
+0.7578  pass    q39  What cybersecurity risk-management measures must essenti
+0.7638  pass    q04  What must providers of AI systems that generate syntheti
+0.7693  pass    q11  Can an AI system that falls under one of the Annex III u
+0.7745  pass    q02  What administrative fines can be imposed on an operator 
+0.7770  pass    q19  Under the GDPR, in which cases is a controller required 
+0.7855  pass    q06  Before placing a high-risk AI system listed in Annex III
+0.8020  pass    q07  Under what conditions may a provider of a high-risk AI s
+0.8040  pass    q21  How quickly must a controller notify the supervisory aut
+0.8052  pass    q17  Within what time limit must an essential entity submit a

@@ -1,0 +1,101 @@
+q01   eval           want in-corpus   -> pass    ok    [EU AI Act]  EU AI Act
+q02   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q03   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q04   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q05   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q06   eval           want in-corpus   -> pass    ok    [EU AI Act, GDPR]  EU AI Act; GDPR
+q07   eval           want in-corpus   -> pass    ok    [EU AI Act, GDPR]  GDPR; AI Act
+q08   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q09   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q10   eval           want in-corpus   -> pass    ok    [EU AI Act]  EU AI Act
+q11   eval           want in-corpus   -> pass    ok    [EU AI Act]  Artificial Intelligence Act (EU AI Act)
+q12   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q13   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q14   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q15   eval           want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+q16   eval           want in-corpus   -> refuse  MISS  [-]  GENERAL
+q17   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q18   eval           want out-of-corpus -> refuse  ok    [-]  DORA
+q19   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q20   eval           want out-of-corpus -> refuse  ok    [-]  ISO/IEC 42001
+q21   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q22   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q23   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q24   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q25   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q26   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q27   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q28   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q29   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q30   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q31   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q32   eval           want in-corpus   -> pass    ok    [EU AI Act, GDPR]  GDPR; AI Act
+q33   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q34   eval           want out-of-corpus -> refuse  ok    [-]  ePrivacy Directive
+q35   eval           want out-of-corpus -> refuse  ok    [-]  Data Act
+q36   eval           want out-of-corpus -> refuse  ok    [-]  Cyber Resilience Act
+q37   eval           want out-of-corpus -> refuse  ok    [-]  ISO/IEC 27001
+q38   eval           want out-of-corpus -> refuse  ok    [-]  HIPAA Breach Notification Rule
+q39   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q40   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q41   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q42   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q43   eval           want in-corpus   -> refuse  MISS  [-]  GENERAL
+q44   eval           want in-corpus   -> pass    ok    [NIS2]  ENISA; Cybersecurity Act; NIS2 Directive
+q45   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+q46   eval           want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive; Cybersecurity Act; EU Cyber Solidarity Act; Directive 
+q47   eval           want in-corpus   -> pass    ok    [GDPR]  GDPR
+q48   eval           want in-corpus   -> pass    ok    [GDPR, NIS2]  NIS2 Directive; Cybersecurity Act; GDPR
+q49   eval           want out-of-corpus -> refuse  ok    [-]  Critical Entities Resilience Directive
+q50   eval           want out-of-corpus -> refuse  ok    [-]  Cybersecurity Act
+q51   eval           want out-of-corpus -> refuse  ok    [-]  ISO 22301
+n01   audit-negative want out-of-corpus -> refuse  ok    [-]  DORA
+n02   audit-negative want out-of-corpus -> pass    MISS  [NIS2]  DORA; NIS2 Directive
+n03   audit-negative want out-of-corpus -> refuse  ok    [-]  NIS Directive
+n04   audit-negative want out-of-corpus -> refuse  ok    [-]  Digital Services Act
+n05   audit-negative want out-of-corpus -> refuse  ok    [-]  DMA (Digital Markets Act)
+n06   audit-negative want out-of-corpus -> refuse  ok    [-]  Law Enforcement Directive
+n07   audit-negative want out-of-corpus -> pass    MISS  [GDPR]  UK GDPR
+n08   audit-negative want out-of-corpus -> refuse  ok    [-]  AI Liability Directive
+n09   audit-negative want out-of-corpus -> refuse  ok    [-]  Machinery Regulation (EU) 2023/1230
+n10   audit-negative want out-of-corpus -> refuse  ok    [-]  Cyber Resilience Act
+n11   audit-negative want out-of-corpus -> refuse  ok    [-]  EU Cybersecurity Act; Cybersecurity Act
+n12   audit-negative want out-of-corpus -> refuse  ok    [-]  CER Directive
+n13   audit-negative want out-of-corpus -> refuse  ok    [-]  eIDAS Regulation
+n14   audit-negative want out-of-corpus -> refuse  ok    [-]  Data Governance Act
+n15   audit-negative want out-of-corpus -> refuse  ok    [-]  EHDS Regulation
+n16   audit-negative want out-of-corpus -> refuse  ok    [-]  Cyber Solidarity Act
+n17   audit-negative want out-of-corpus -> refuse  ok    [-]  General-Purpose AI Code of Practice
+n18   audit-negative want out-of-corpus -> pass    MISS  [EU AI Act]  AI Act
+n19   audit-negative want out-of-corpus -> pass    MISS  [GDPR]  GDPR; SCCs (Standard Contractual Clauses under GDPR)
+n20   audit-negative want out-of-corpus -> refuse  ok    [-]  ISO/IEC 27002
+n21   audit-negative want out-of-corpus -> refuse  ok    [-]  IEC 62443
+n22   audit-negative want out-of-corpus -> refuse  ok    [-]  SOC 2; Trust Services Criteria (TSC)
+n23   audit-negative want out-of-corpus -> refuse  ok    [-]  PCI DSS
+n24   audit-negative want out-of-corpus -> refuse  ok    [-]  GENERAL
+n25   audit-negative want out-of-corpus -> refuse  ok    [-]  CCPA; CPRA
+n26   audit-negative want out-of-corpus -> refuse  ok    [-]  PIPL
+p01   toc-probe      want in-corpus   -> pass    ok    [EU AI Act]  EU AI Act
+p02   toc-probe      want in-corpus   -> pass    ok    [EU AI Act]  EU AI Act
+p03   toc-probe      want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+p04   toc-probe      want in-corpus   -> pass    ok    [EU AI Act]  AI Act
+p05   toc-probe      want in-corpus   -> pass    ok    [GDPR]  GDPR
+p06   toc-probe      want in-corpus   -> pass    ok    [GDPR]  GDPR
+p07   toc-probe      want in-corpus   -> pass    ok    [GDPR]  GDPR
+p08   toc-probe      want in-corpus   -> pass    ok    [GDPR]  GDPR
+p09   toc-probe      want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+p10   toc-probe      want in-corpus   -> pass    ok    [NIS2]  NIS2 Directive
+
+== regime pre-flight ==
+  out-of-corpus caught: 32/36
+  FALSE REFUSALS:       2/51
+  false-refused rows (P3/P4 watch these):
+    q16 (repealed): GENERAL
+    q43 (neighbour_adversary): GENERAL
+  negatives NOT caught:
+    n02 DORA: DORA; NIS2 Directive
+    n07 UK-GDPR: UK GDPR
+    n18 AIA-guidelines: AI Act
+    n19 SCC: GDPR; SCCs (Standard Contractual Clauses under GDPR)
+
+wrote /mnt/d/.staging/n5-preflight.json

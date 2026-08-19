@@ -1,0 +1,47 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 50788.88it/s]
+Loading weights:   0%|          | 0/393 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 58/393 [00:00<00:00, 554.79it/s]Loading weights:  29%|██▉       | 114/393 [00:00<00:00, 545.19it/s]Loading weights:  43%|████▎     | 169/393 [00:00<00:00, 476.82it/s]Loading weights:  58%|█████▊    | 228/393 [00:00<00:00, 513.21it/s]Loading weights:  72%|███████▏  | 281/393 [00:00<00:00, 497.41it/s]Loading weights:  86%|████████▌ | 338/393 [00:00<00:00, 520.13it/s]Loading weights: 100%|██████████| 393/393 [00:00<00:00, 570.20it/s]
+h01  out-of-corpus  shipped=refused-gate        preflight=refuse  [-] Cyber Resilience Act
+h02  out-of-corpus  shipped=refused-generation  preflight=refuse  [-] Critical Entities Resilience Directive
+h03  out-of-corpus  shipped=refused-gate        preflight=refuse  [-] Data Act
+h04  out-of-corpus  shipped=answered            preflight=pass    [NIS2] DORA; NIS2 Directive
+h05  out-of-corpus  shipped=answered            preflight=refuse  [-] DSA (Digital Services Act)
+h06  out-of-corpus  shipped=refused-gate        preflight=pass    [GDPR] GDPR; Digital Markets Act
+h07  out-of-corpus  shipped=refused-gate        preflight=refuse  [-] DGA
+h08  out-of-corpus  shipped=refused-gate        preflight=pass    [GDPR] Health Data Access Body Regulation; General D
+h09  out-of-corpus  shipped=answered            preflight=refuse  [-] eIDAS Regulation
+h10  out-of-corpus  shipped=refused-generation  preflight=refuse  [-] Cybersecurity Act
+h11  out-of-corpus  shipped=refused-generation  preflight=refuse  [-] AI Liability Directive
+h12  out-of-corpus  shipped=refused-gate        preflight=refuse  [-] ePrivacy Directive
+h13  out-of-corpus  shipped=answered            preflight=refuse  [-] Machinery Directive; CE Marking Regulation (E
+h14  out-of-corpus  shipped=refused-generation  preflight=pass    [NIS2] NIS2 Directive
+h15  out-of-corpus  shipped=answered            preflight=pass    [NIS2] NIS2 Directive
+h16  in-corpus      shipped=answered            preflight=pass    [EU AI Act] EU AI Act
+h17  in-corpus      shipped=answered            preflight=pass    [EU AI Act] AI Act
+h18  in-corpus      shipped=answered            preflight=pass    [NIS2] NIS2 Directive
+h19  in-corpus      shipped=answered            preflight=pass    [NIS2] NIS2 Directive
+h20  in-corpus      shipped=answered            preflight=pass    [GDPR] GDPR
+h21  in-corpus      shipped=answered            preflight=pass    [GDPR] GDPR
+h22  in-corpus      shipped=answered            preflight=pass    [EU AI Act, GDPR] AI Act; GDPR
+h23  in-corpus      shipped=answered            preflight=pass    [GDPR, NIS2] NIS2 Directive; General Data Protection Regul
+
+== HARD CLASS: 15 out-of-corpus, 8 in-corpus ==
+shipped pipeline answered wrongly: 5/15  (headline, excl. debatable: 4/14)
+   h04 DORA                             verified=True cited nis2#art_32(10), nis2#art_33(6)
+   h05 DSA                              verified=True cited ai-act#rct_118, ai-act#rct_120, nis2#rct_140
+   h09 eIDAS                            verified=True cited nis2#art_6(27), nis2#art_6(26), nis2#rct_93
+   h13 Machinery Regulation 2023/1230   verified=True cited ai-act#art_16(a), ai-act#art_16(f), ai-act#art_16(g)
+   h15 NIS1 (2016/1148, repealed)       verified=False cited nis2#art_23(1), nis2#art_23(4)
+
+pre-flight caught: 10/15  (headline: 9/14)
+pre-flight FALSE REFUSALS: 0/8
+pre-flight missed (5):
+   h04 DORA                             declared=['NIS2'] reply=DORA; NIS2 Directive
+   h06 DMA                              declared=['GDPR'] reply=GDPR; Digital Markets Act
+   h08 EHDS                             declared=['GDPR'] reply=Health Data Access Body Regulation; General D
+   h14 Cyber Solidarity Act             declared=['NIS2'] reply=NIS2 Directive
+   h15 NIS1 (2016/1148, repealed)       declared=['NIS2'] reply=NIS2 Directive
+
+WHAT IT BUYS: of 5 shipped failures, the pre-flight refuses 3: h05, h09, h13
+
+wrote /mnt/d/.staging/n5-hardclass.json

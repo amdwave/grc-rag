@@ -1,0 +1,480 @@
+[
+ {
+  "id": "h01",
+  "truth": "out-of-corpus",
+  "regime": "Cyber Resilience Act",
+  "term": "product with digital elements",
+  "bait": "AI Act Art 15 cybersecurity, NIS2 supply chain",
+  "question": "What must a manufacturer of a product with digital elements do about security updates during the support period?",
+  "preflight_reply": "Cyber Resilience Act",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-gate",
+  "best_dense": 0.5895323753356934,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h02",
+  "truth": "out-of-corpus",
+  "regime": "CER Directive",
+  "term": "critical entity",
+  "bait": "NIS2 Art 21(2) all-hazards, physical environment",
+  "question": "What must a critical entity include in its resilience plan, and how often must it be reviewed?",
+  "preflight_reply": "Critical Entities Resilience Directive",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-generation",
+  "best_dense": 0.6136149764060974,
+  "verified": true,
+  "cited": [
+   "nis2#art_14(9)",
+   "nis2#rct_85",
+   "nis2#rct_30"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern NIS2 cooperation with the Critical Entities Resilience Group [nis2#art_14(9)], supply-chain risk management [nis2#rct_85], and coordination between NIS2 and the Critical Entities Resilience Directive [nis2#rct_30], but none specify the required contents or review frequency of a critical entity's resilience plan."
+ },
+ {
+  "id": "h03",
+  "truth": "out-of-corpus",
+  "regime": "Data Act",
+  "term": "data processing service",
+  "bait": "GDPR Art 20 portability",
+  "question": "What switching charges may a provider of data processing services impose on a customer moving to a competitor?",
+  "preflight_reply": "Data Act",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-gate",
+  "best_dense": 0.5263495445251465,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h04",
+  "truth": "out-of-corpus",
+  "regime": "DORA",
+  "term": "critical ICT third-party service provider",
+  "bait": "NIS2 Art 21(2)(d) supply chain security",
+  "question": "What oversight applies to a critical ICT third-party service provider designated at Union level?",
+  "preflight_reply": "DORA; NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.6143164038658142,
+  "verified": true,
+  "cited": [
+   "nis2#art_32(10)",
+   "nis2#art_33(6)"
+  ],
+  "text": "Based on the provided documents, the oversight of a critical ICT third-party service provider designated at Union level is addressed through the cooperation and information-sharing obligations placed on Member State competent authorities under NIS2.\n\nThe documents state that Member States must ensure their competent authorities cooperate with the relevant authorities under Regulation (EU) 2022/2554 (DORA). Specifically, when exercising supervisory and enforcement powers to ensure an essential or important entity that is also designated as a critical ICT third-party service provider complies with NIS2, the national authorities must inform the Oversight Forum established under Article 32(1) of that Regulation.\n\n- For essential entities: \"Member States shall ensure that their competent authorities under this Directive inform the Oversight Forum established pursuant to Article 32(1) of Regulation (EU) 2022/2554 when exercising their supervisory and enforcement powers aimed at ensuring compliance of an essential entity that is designated as a critical ICT third-party service provider pursuant to Article 31 of Regulation (EU) 2022/2554. with this Directive.\" [nis2#art_32(10)]\n\n- For important entities: \"Member States shall ensure that their competent authorities under this Directive inform the Oversight Forum established pursuant to Article 32(1) of Regulation (EU) 2022/2554 when exercising their supervisory and enforcement powers aimed at ensuring compliance of an important entity that is designated as a critical ICT third-party service provider pursuant to Article 31 of Regulation (EU) 2022/2554. with this Directive.\" [nis2#art_33(6)]\n\nThe documents do not otherwise describe the direct oversight regime for such providers under NIS2 itself; the provisions cited focus on the obligation of national authorities to notify the Oversight Forum."
+ },
+ {
+  "id": "h05",
+  "truth": "out-of-corpus",
+  "regime": "DSA",
+  "term": "very large online platform",
+  "bait": "AI Act Art 55 systemic risk obligations",
+  "question": "What systemic risk mitigation measures must a very large online platform put in place, and who audits them?",
+  "preflight_reply": "DSA (Digital Services Act)",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "answered",
+  "best_dense": 0.6043702363967896,
+  "verified": true,
+  "cited": [
+   "ai-act#rct_118",
+   "ai-act#rct_120",
+   "nis2#rct_140"
+  ],
+  "text": "Based on the provided documents, a very large online platform (VLOP) must put in place systemic risk mitigation measures, but the documents do not specify who audits them.\n\n**Systemic risk mitigation measures:**\n\n- VLOPs are \"obliged to take appropriate mitigating measures in observance of fundamental rights\" [ai-act#rct_118].\n- They must \"assess potential systemic risks stemming from the design, functioning and use of their services, including how the design of algorithmic systems used in the service may contribute to such risks, as well as systemic risks stemming from potential misuses\" [ai-act#rct_118].\n- They must \"identify and mitigate systemic risks that may arise from the dissemination of content that has been artificially generated or manipulated, in particular risk of the actual or foreseeable negative effects on democratic processes, civic discourse and electoral processes, including through disinformation\" [ai-act#rct_120].\n\n**Who audits them:**\n\nThe documents do not address who audits VLOPs' systemic risk mitigation measures. The corpus only mentions that the Commission should periodically review NIS2 to assess whether VLOPs \"could be identified as essential entities under this Directive\" [nis2#rct_140], but this does not concern auditing of the AI Act's risk measures."
+ },
+ {
+  "id": "h06",
+  "truth": "out-of-corpus",
+  "regime": "DMA",
+  "term": "gatekeeper / core platform service",
+  "bait": "GDPR Art 6 consent, Art 5 purpose limitation",
+  "question": "May a gatekeeper combine personal data collected from one core platform service with data from another, and on what condition?",
+  "preflight_reply": "GDPR; Digital Markets Act",
+  "declared": [
+   "GDPR"
+  ],
+  "preflight": "pass",
+  "mode": "refused-gate",
+  "best_dense": 0.5639410614967346,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h07",
+  "truth": "out-of-corpus",
+  "regime": "Data Governance Act",
+  "term": "data intermediation service",
+  "bait": "GDPR controller/processor duties",
+  "question": "What conditions must a provider of data intermediation services satisfy to be entered in the public register?",
+  "preflight_reply": "DGA",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-gate",
+  "best_dense": 0.584952175617218,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h08",
+  "truth": "out-of-corpus",
+  "regime": "EHDS",
+  "term": "health data access body",
+  "bait": "GDPR Art 9 special categories, Art 89 research",
+  "question": "On what grounds may a health data access body refuse a permit for the secondary use of electronic health data?",
+  "preflight_reply": "Health Data Access Body Regulation; General Data Protection Regulation; Data Governance Act",
+  "declared": [
+   "GDPR"
+  ],
+  "preflight": "pass",
+  "mode": "refused-gate",
+  "best_dense": 0.5853720903396606,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h09",
+  "truth": "out-of-corpus",
+  "regime": "eIDAS",
+  "term": "qualified trust service provider",
+  "bait": "NIS2 amends Reg 910/2014; NIS2 Art 21 measures",
+  "question": "What must a qualified trust service provider do before issuing a qualified certificate for electronic signatures?",
+  "preflight_reply": "eIDAS Regulation",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "answered",
+  "best_dense": 0.6051489114761353,
+  "verified": true,
+  "cited": [
+   "nis2#art_6(27)",
+   "nis2#art_6(26)",
+   "nis2#rct_93"
+  ],
+  "text": "Based on the provided documents, the corpus does not specify any pre-issuance obligations for a qualified trust service provider before issuing a qualified certificate for electronic signatures.\n\nThe documents only define what a \"qualified trust service provider\" is [nis2#art_6(27)] and what a \"qualified trust service\" is [nis2#art_6(26)], and state that the requirements for qualified trust service providers under Article 24 of Regulation (EU) No 910/2014 continue to apply [nis2#rct_93]. They do not contain the specific steps a provider must take before issuing such a certificate."
+ },
+ {
+  "id": "h10",
+  "truth": "out-of-corpus",
+  "regime": "Cybersecurity Act",
+  "term": "assurance level substantial",
+  "bait": "NIS2 Art 24 certification schemes",
+  "question": "What does the assurance level 'substantial' require of an ICT product under a European certification scheme?",
+  "preflight_reply": "Cybersecurity Act",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-generation",
+  "best_dense": 0.6836692094802856,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this. The retrieved documents concern NIS2 provisions on requiring certified ICT products, services, and processes under European cybersecurity certification schemes, but they do not define or specify the requirements of the assurance level 'substantial' for an ICT product."
+ },
+ {
+  "id": "h11",
+  "truth": "out-of-corpus",
+  "regime": "AI Liability Directive",
+  "term": "presumption of causality",
+  "bait": "AI Act Art 9 risk management, Art 86 explanation",
+  "question": "When does a presumption of causality arise against the provider of an AI system in a damages claim?",
+  "preflight_reply": "AI Liability Directive",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-generation",
+  "best_dense": 0.6239126920700073,
+  "verified": true,
+  "cited": [
+   "ai-act#art_73(2)",
+   "ai-act#art_73(4)",
+   "ai-act#art_60(9)",
+   "ai-act#art_7(2)",
+   "ai-act#rct_84"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern reporting deadlines for serious incidents [ai-act#art_73(2)], [ai-act#art_73(4)], liability for testing in real-world conditions [ai-act#art_60(9)], criteria for classifying AI systems as high-risk [ai-act#art_7(2)], and when third parties may be considered providers [ai-act#rct_84], but none of them establishes a presumption of causality in damages claims."
+ },
+ {
+  "id": "h12",
+  "truth": "out-of-corpus",
+  "regime": "ePrivacy Directive",
+  "term": "terminal equipment",
+  "bait": "GDPR consent conditions Art 7",
+  "question": "When may information be stored on or read from a user's terminal equipment without consent?",
+  "preflight_reply": "ePrivacy Directive",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "refused-gate",
+  "best_dense": 0.5839196443557739,
+  "verified": true,
+  "cited": [],
+  "text": "The corpus does not address this."
+ },
+ {
+  "id": "h13",
+  "truth": "out-of-corpus",
+  "debatable": true,
+  "why_debatable": "term occurs 32x in corpus; the AI Act genuinely regulates AI safety components (Art 6(1)) and has its own CE marking (Art 48), so an AI Act attribution is defensible. Flagged BEFORE any model saw the set; excluded from the headline figure and reported separately.",
+  "regime": "Machinery Regulation 2023/1230",
+  "term": "safety component",
+  "bait": "AI Act Art 6(1) safety components, Annex I",
+  "question": "What must the manufacturer of a safety component demonstrate before affixing the CE marking to it?",
+  "preflight_reply": "Machinery Directive; CE Marking Regulation (EU) 2019/1020; harmonised standards under the Machinery Directive",
+  "declared": [],
+  "preflight": "refuse",
+  "mode": "answered",
+  "best_dense": 0.6324329376220703,
+  "verified": true,
+  "cited": [
+   "ai-act#art_16(a)",
+   "ai-act#art_16(f)",
+   "ai-act#art_16(g)",
+   "ai-act#art_16(h)",
+   "ai-act#art_48(1), ai-act#art_48(3)",
+   "ai-act#art_48(4)",
+   "ai-act#art_43(3)"
+  ],
+  "text": "Based on the provided documents, the manufacturer of a safety component that is a high-risk AI system must demonstrate conformity with the requirements of the AI Act before affixing the CE marking.\n\n- The provider (which, per Recital 87, includes the product manufacturer for a safety component not placed on the market independently) must \"ensure that their high-risk AI systems are compliant with the requirements set out in Section 2\" [ai-act#art_16(a)].\n- The provider must \"ensure that the high-risk AI system undergoes the relevant conformity assessment procedure as referred to in Article 43, prior to its being placed on the market or put into service\" [ai-act#art_16(f)].\n- The provider must \"draw up an EU declaration of conformity in accordance with Article 47\" [ai-act#art_16(g)].\n- The provider must \"affix the CE marking to the high-risk AI system or, where that is not possible, on its packaging or its accompanying documentation, to indicate conformity with this Regulation, in accordance with Article 48\" [ai-act#art_16(h)].\n\nThe CE marking itself is subject to the general principles of Regulation (EC) No 765/2008 and must be affixed \"visibly, legibly and indelibly\" [ai-act#art_48(1), ai-act#art_48(3)]. Where applicable, the CE marking must be followed by the identification number of the notified body responsible for the conformity assessment under Article 43 [ai-act#art_48(4)].\n\nFor a safety component covered by Union harmonisation legislation listed in Section A of Annex I, the provider must follow the relevant conformity assessment procedure required by that legislation, and the AI Act's Section 2 requirements \"shall be part of that assessment\" [ai-act#art_43(3)]. The manufacturer is not required to choose a third-party conformity assessment solely because the product includes a high-risk AI system as a safety component, if that is not required by the relevant Union harmonisation legislation [ai-act#art_43(3)]."
+ },
+ {
+  "id": "h14",
+  "truth": "out-of-corpus",
+  "regime": "Cyber Solidarity Act",
+  "term": "cross-border cyber hub",
+  "bait": "NIS2 CSIRT network, Art 15/16",
+  "question": "What is a cross-border cyber hub required to share, and with whom?",
+  "preflight_reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "refused-generation",
+  "best_dense": 0.6135203838348389,
+  "verified": false,
+  "cited": [
+   "nis2#art_15(3)",
+   "nis2#art_19(1)",
+   "nis2#rct_26",
+   "nis2#rct_84",
+   "nis2#rct_4"
+  ],
+  "text": "The corpus does not address this. The retrieved documents concern the CSIRTs network's tasks under NIS2 [nis2#art_15(3)], peer reviews [nis2#art_19(1)], and related recitals [nis2#rct_26], [nis2#rct_84], [nis2#rct_4], but contain no provision on a \"cross-border cyber hub.\""
+ },
+ {
+  "id": "h15",
+  "truth": "out-of-corpus",
+  "regime": "NIS1 (2016/1148, repealed)",
+  "term": "operator of essential services",
+  "bait": "NIS2 Art 21 - its own successor provisions",
+  "question": "What incident notification duties fall on an operator of essential services, and to which authority?",
+  "preflight_reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.6503387093544006,
+  "verified": false,
+  "cited": [
+   "nis2#art_23(1)",
+   "nis2#art_23(4)"
+  ],
+  "text": "Based on the provided documents, an operator of essential services (an \"essential entity\") has the following incident notification duties, directed to its CSIRT or, where applicable, its competent authority:\n\n1. **Duty to notify significant incidents without undue delay**: Each Member State shall ensure that essential entities \"notify, without undue delay, its CSIRT or, where applicable, its competent authority in accordance with paragraph 4 of any incident that has a significant impact on the provision of their services\" [nis2#art_23(1)]. Where appropriate, the entity must also notify the recipients of its services of significant incidents likely to adversely affect those services [nis2#art_23(1)].\n\n2. **Specific notification timeline and content** (per Article 23(4)): The entity must submit to the CSIRT or competent authority:\n   - **(a)** \"without undue delay and in any event within 24 hours of becoming aware of the significant incident, an early warning, which, where applicable, shall indicate whether the significant incident is suspected of being caused by unlawful or malicious acts or could have a cross-border impact\" [nis2#art_23(4)].\n   - **(b)** \"without undue delay and in any event within 72 hours of becoming aware of the significant incident, an incident notification, which, where applicable, shall update the information referred to in point (a) and indicate an initial assessment of the significant incident, including its severity and impact, as well as, where available, the indicators of compromise\" [nis2#art_23(4)].\n   - **(c)** \"upon the request of a CSIRT or, where applicable, the competent authority, an intermediate report on relevant status updates\" [nis2#art_23(4)].\n   - **(d)** \"a final report not later than one month after the submission of the incident notification under point (b)\", including a detailed description, the type of threat or root cause, applied and ongoing mitigation measures, and, where applicable, the cross-border impact [nis2#art_23(4)].\n   - **(e)** \"in the event of an ongoing incident at the time of the submission of the final report... a progress report at that time and a final report within one month of their handling of the incident\" [nis2#art_23(4)].\n\n3. **Information for cross-border impact determination**: The entity must report \"any information enabling the CSIRT or, where applicable, the competent authority to determine any cross-border impact of the incident\" [nis2#art_23(1)].\n\n4. **No increased liability for notifying**: \"The mere act of notification shall not subject the notifying entity to increased liability\" [nis2#art_23(1)].\n\nThe notification is made to the \"CSIRT or, where applicable, the competent authority\" [nis2#art_23(1)], and where the entity notifies the competent authority, that authority must forward the notification to the CSIRT upon receipt [nis2#art_23(1)]."
+ },
+ {
+  "id": "h16",
+  "truth": "in-corpus",
+  "regime": "EU AI Act",
+  "term": "high-risk AI system / provider",
+  "bait": "-",
+  "question": "What must the provider of a high-risk AI system do before placing it on the market?",
+  "preflight_reply": "EU AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.7369474768638611,
+  "verified": true,
+  "cited": [
+   "ai-act#art_16",
+   "ai-act#rct_72",
+   "ai-act#rct_123"
+  ],
+  "text": "Before placing a high-risk AI system on the market, the provider must:\n\n- Ensure the system is compliant with the requirements set out in Section 2 of the Regulation. [ai-act#art_16]\n- Indicate on the system (or, where not possible, on its packaging or accompanying documentation) their name, registered trade name or registered trade mark, and the address at which they can be contacted. [ai-act#art_16]\n- Have a quality management system in place that complies with Article 17. [ai-act#art_16]\n- Keep the documentation referred to in Article 18. [ai-act#art_16]\n- Keep the logs automatically generated by the system as referred to in Article 19, when under their control. [ai-act#art_16]\n- Ensure the system undergoes the relevant conformity assessment procedure as referred to in Article 43, prior to its being placed on the market or put into service. [ai-act#art_16]\n- Draw up an EU declaration of conformity in accordance with Article 47. [ai-act#art_16]\n- Affix the CE marking to the system (or, where not possible, on its packaging or accompanying documentation) to indicate conformity, in accordance with Article 48. [ai-act#art_16]\n- Comply with the registration obligations referred to in Article 49(1). [ai-act#art_16]\n- Take the necessary corrective actions and provide information as required in Article 20. [ai-act#art_16]\n- Upon a reasoned request of a national competent authority, demonstrate the conformity of the system with the requirements set out in Section 2. [ai-act#art_16]\n- Ensure the system complies with accessibility requirements in accordance with Directives (EU) 2016/2102 and (EU) 2019/882. [ai-act#art_16]\n\nAdditionally, the provider must ensure the system is designed to enable deployers to understand how it works, evaluate its functionality, and comprehend its strengths and limitations, and must accompany it with appropriate information in the form of instructions for use. Such instructions should include characteristics, capabilities and limitations of performance, possible known and foreseeable circumstances of use that may lead to risks, pre-determined changes assessed for conformity, and relevant human oversight measures. [ai-act#rct_72] The instructions for use must be made available in a language easily understood by target deployers, as determined by the Member State concerned. [ai-act#rct_72]\n\nThe provider must also ensure the system is subject to a conformity assessment prior to placing on the market. [ai-act#rct_123]"
+ },
+ {
+  "id": "h17",
+  "truth": "in-corpus",
+  "regime": "EU AI Act",
+  "term": "general-purpose AI model with systemic risk",
+  "bait": "-",
+  "question": "What obligations attach to a provider of a general-purpose AI model with systemic risk?",
+  "preflight_reply": "AI Act",
+  "declared": [
+   "EU AI Act"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.791178822517395,
+  "verified": true,
+  "cited": [
+   "ai-act#art_55",
+   "ai-act#rct_114",
+   "ai-act#rct_115",
+   "ai-act#art_53(2)"
+  ],
+  "text": "Based on the provided documents, a provider of a general-purpose AI model with systemic risk is subject to the following obligations under Article 55(1):\n\n- **(a) Model evaluation:** \"perform model evaluation in accordance with standardised protocols and tools reflecting the state of the art, including conducting and documenting adversarial testing of the model with a view to identifying and mitigating systemic risks\" [ai-act#art_55].\n- **(b) Risk assessment and mitigation:** \"assess and mitigate possible systemic risks at Union level, including their sources, that may stem from the development, the placing on the market, or the use of general-purpose AI models with systemic risk\" [ai-act#art_55].\n- **(c) Incident reporting:** \"keep track of, document, and report, without undue delay, to the AI Office and, as appropriate, to national competent authorities, relevant information about serious incidents and possible corrective measures to address them\" [ai-act#art_55].\n- **(d) Cybersecurity:** \"ensure an adequate level of cybersecurity protection for the general-purpose AI model with systemic risk and the physical infrastructure of the model\" [ai-act#art_55].\n\nRecital (114) clarifies that these obligations apply \"regardless of whether it is provided as a standalone model or embedded in an AI system or a product\" and that model evaluation should occur \"in particular prior to its first placing on the market\" [ai-act#rct_114]. Recital (115) adds that cybersecurity protection \"should duly consider accidental model leakage, unauthorised releases, circumvention of safety measures, and defence against cyberattacks, unauthorised access or model theft\" [ai-act#rct_115].\n\nArticle 55(2) states that providers \"may rely on codes of practice within the meaning of Article 56 to demonstrate compliance\" until a harmonised standard is published, and that compliance with European harmonised standards grants a presumption of conformity. Providers who do not adhere to an approved code of practice or harmonised standard \"shall demonstrate alternative adequate means of compliance for assessment by the Commission\" [ai-act#art_55]. Article 55(3) requires that information obtained under this Article be treated per the confidentiality obligations of Article 78 [ai-act#art_55].\n\nNote that the free and open-source licence exception in Article 53(2) \"shall not apply to general-purpose AI models with systemic risks\" [ai-act#art_53(2)]."
+ },
+ {
+  "id": "h18",
+  "truth": "in-corpus",
+  "regime": "NIS2",
+  "term": "essential entity",
+  "bait": "-",
+  "question": "Within what deadline must an essential entity submit an early warning after becoming aware of a significant incident?",
+  "preflight_reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.8055599331855774,
+  "verified": true,
+  "cited": [
+   "nis2#art_23(4)",
+   "nis2#rct_102"
+  ],
+  "text": "According to the provided documents, an essential entity must submit an early warning \"without undue delay and in any event within 24 hours of becoming aware of the significant incident\" [nis2#art_23(4)]. This requirement is reiterated in Recital (102), which states that \"they should be required to submit an early warning without undue delay and in any event within 24 hours\" [nis2#rct_102]."
+ },
+ {
+  "id": "h19",
+  "truth": "in-corpus",
+  "regime": "NIS2",
+  "term": "important entity",
+  "bait": "-",
+  "question": "How does supervision of an important entity differ from supervision of an essential one?",
+  "preflight_reply": "NIS2 Directive",
+  "declared": [
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.6807494163513184,
+  "verified": true,
+  "cited": [
+   "nis2#rct_122",
+   "nis2#art_32(2)",
+   "nis2#rct_15"
+  ],
+  "text": "Supervision of an important entity differs from supervision of an essential one in that important entities are subject to a \"light, ex post only, supervisory regime,\" while essential entities are subject to a \"comprehensive ex ante and ex post supervisory regime\" [nis2#rct_122]. The Directive states: \"essential entities should be subject to a comprehensive ex ante and ex post supervisory regime, while important entities should be subject to a light, ex post only, supervisory regime\" [nis2#rct_122].\n\nConsequently, \"Important entities should therefore not be required to systematically document compliance with cybersecurity risk-management measures, while the competent authorities should implement a reactive ex post approach to supervision and, hence, not have a general obligation to supervise those entities\" [nis2#rct_122]. The ex post supervision of important entities \"may be triggered by evidence, indication or information brought to the attention of the competent authorities considered by those authorities to suggest potential infringements of this Directive,\" such as information from other authorities, entities, citizens, media, or publicly available sources [nis2#rct_122].\n\nIn contrast, for essential entities, Member States must ensure that competent authorities have at least the powers listed in Article 32(2), including on-site inspections, off-site supervision, random checks, regular and targeted security audits, ad hoc audits, security scans, requests for information, requests to access data, and requests for evidence of implementation of cybersecurity policies [nis2#art_32(2)]. The differentiation is also justified by the need for \"a fair balance between risk-based requirements and obligations on the one hand, and the administrative burden stemming from the supervision of compliance on the other\" [nis2#rct_15]."
+ },
+ {
+  "id": "h20",
+  "truth": "in-corpus",
+  "regime": "GDPR",
+  "term": "controller / processor",
+  "bait": "-",
+  "question": "What must a controller put in place before engaging a processor to handle personal data on its behalf?",
+  "preflight_reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.7172181010246277,
+  "verified": true,
+  "cited": [
+   "gdpr#art_28(1)",
+   "gdpr#rct_81",
+   "gdpr#art_28(3)",
+   "gdpr#art_28(3)(a)",
+   "gdpr#art_28(3)(b)",
+   "gdpr#art_28(3)(c)",
+   "gdpr#art_28(3)(d)",
+   "gdpr#art_28(3)(e)",
+   "gdpr#art_28(3)(f)",
+   "gdpr#art_28(3)(g)",
+   "gdpr#art_28(3)(h)"
+  ],
+  "text": "Before engaging a processor, a controller must ensure the processor provides sufficient guarantees and that the processing is governed by a binding contract or other legal act with specific mandatory content.\n\n1. **Sufficient guarantees**: The controller \"shall use only processors providing sufficient guarantees to implement appropriate technical and organisational measures in such a manner that processing will meet the requirements of this Regulation and ensure the protection of the rights of the data subject.\" [gdpr#art_28(1)] Recital (81) elaborates that these guarantees relate \"in particular in terms of expert knowledge, reliability and resources, to implement technical and organisational measures which will meet the requirements of this Regulation, including for the security of processing.\" [gdpr#rct_81]\n\n2. **Binding contract or other legal act**: The processing \"shall be governed by a contract or other legal act under Union or Member State law, that is binding on the processor with regard to the controller and that sets out the subject-matter and duration of the processing, the nature and purpose of the processing, the type of personal data and categories of data subjects and the obligations and rights of the controller.\" [gdpr#art_28(3)] Recital (81) similarly states the contract must set out \"the subject-matter and duration of the processing, the nature and purposes of the processing, the type of personal data and categories of data subjects, taking into account the specific tasks and responsibilities of the processor in the context of the processing to be carried out and the risk to the rights and freedoms of the data subject.\" [gdpr#rct_81]\n\n3. **Mandatory contractual stipulations**: The contract must stipulate, in particular, that the processor:\n   - processes personal data only on documented instructions from the controller (including regarding transfers to third countries), unless required by law, in which case the processor informs the controller before processing unless prohibited [gdpr#art_28(3)(a)];\n   - ensures authorised persons are bound by confidentiality [gdpr#art_28(3)(b)];\n   - takes all measures required pursuant to Article 32 (security of processing) [gdpr#art_28(3)(c)];\n   - respects conditions for engaging another (sub-)processor [gdpr#art_28(3)(d)];\n   - assists the controller in responding to data subjects' rights requests [gdpr#art_28(3)(e)];\n   - assists the controller in ensuring compliance with Articles 32 to 36 [gdpr#art_28(3)(f)];\n   - at the controller's choice, deletes or returns all personal data after the end of services and deletes existing copies unless law requires storage [gdpr#art_28(3)(g)];\n   - makes available all information necessary to demonstrate compliance and allows for and contributes to audits, including inspections [gdpr#art_28(3)(h)].\n\n4. **Post-processing obligations**: \"After the completion of the processing on behalf of the controller, the processor should, at the choice of the controller, return or delete the personal data, unless there is a requirement to store the personal data under Union or Member State law to which the processor is subject.\" [gdpr#rct_81]\n\n5. **Optional demonstration of compliance**: \"The adherence of the processor to an approved code of conduct or an approved certification mechanism may be used as an element to demonstrate compliance with the obligations of the controller.\" [gdpr#rct_81]"
+ },
+ {
+  "id": "h21",
+  "truth": "in-corpus",
+  "regime": "GDPR",
+  "term": "data subject / restriction of processing",
+  "bait": "-",
+  "question": "When may a data subject obtain restriction of processing rather than erasure?",
+  "preflight_reply": "GDPR",
+  "declared": [
+   "GDPR"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.7580854296684265,
+  "verified": true,
+  "cited": [
+   "gdpr#art_18",
+   "gdpr#art_17(1)",
+   "gdpr#art_13(2)",
+   "gdpr#art_15(1)"
+  ],
+  "text": "A data subject may obtain restriction of processing rather than erasure in the specific situations listed in Article 18(1), which are:\n\n- **(a)** \"the accuracy of the personal data is contested by the data subject, for a period enabling the controller to verify the accuracy of the personal data\" [gdpr#art_18]\n- **(b)** \"the processing is unlawful and the data subject opposes the erasure of the personal data and requests the restriction of their use instead\" [gdpr#art_18]\n- **(c)** \"the controller no longer needs the personal data for the purposes of the processing, but they are required by the data subject for the establishment, exercise or defence of legal claims\" [gdpr#art_18]\n- **(d)** \"the data subject has objected to processing pursuant to Article 21(1) pending the verification whether the legitimate grounds of the controller override those of the data subject\" [gdpr#art_18]\n\nWhere processing is restricted under Article 18(1), the data may only be processed, \"with the exception of storage,\" with the data subject's consent, for legal claims, for protection of the rights of another person, or for important public interest of the Union or a Member State [gdpr#art_18]. The controller must inform the data subject before the restriction is lifted [gdpr#art_18].\n\nThe right to restriction is distinct from the right to erasure under Article 17(1), which applies, for example, when data are no longer necessary, consent is withdrawn, the data subject objects with no overriding grounds, processing is unlawful, erasure is required by law, or data were collected in relation to information society services [gdpr#art_17(1)]. The data subject's right to request restriction (as opposed to erasure) is also reflected in the information that controllers must provide under Article 13(2)(b) and Article 15(1)(e) [gdpr#art_13(2)] [gdpr#art_15(1)]."
+ },
+ {
+  "id": "h22",
+  "truth": "in-corpus",
+  "regime": "EU AI Act",
+  "term": "deployer / fundamental rights impact assessment",
+  "bait": "-",
+  "question": "Which deployers must carry out a fundamental rights impact assessment, and what must it cover?",
+  "preflight_reply": "AI Act; GDPR",
+  "declared": [
+   "EU AI Act",
+   "GDPR"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.7066575884819031,
+  "verified": true,
+  "cited": [
+   "ai-act#art_27(1)",
+   "ai-act#rct_96",
+   "ai-act#art_27(2)",
+   "ai-act#art_27(4)",
+   "ai-act#art_27(5)"
+  ],
+  "text": "Under Article 27(1), the fundamental rights impact assessment (FRIA) obligation applies to deployers that are \"bodies governed by public law, or are private entities providing public services,\" and also to deployers of high-risk AI systems referred to in points 5(b) and (c) of Annex III [ai-act#art_27(1)]. This applies prior to deploying a high-risk AI system referred to in Article 6(2), with an exception for high-risk AI systems intended to be used in the area listed in point 2 of Annex III [ai-act#art_27(1)]. Recital (96) similarly states that \"deployers of high-risk AI systems that are bodies governed by public law, or private entities providing public services and deployers of certain high-risk AI systems listed in an annex to this Regulation, such as banking or insurance entities, should carry out a fundamental rights impact assessment prior to putting it into use\" [ai-act#rct_96].\n\nThe assessment must cover the following elements, per Article 27(1)(a)\u2013(f) [ai-act#art_27(1)]:\n- (a) \"a description of the deployer\u2019s processes in which the high-risk AI system will be used in line with its intended purpose\";\n- (b) \"a description of the period of time within which, and the frequency with which, each high-risk AI system is intended to be used\";\n- (c) \"the categories of natural persons and groups likely to be affected by its use in the specific context\";\n- (d) \"the specific risks of harm likely to have an impact on the categories of natural persons or groups of persons identified pursuant to point (c) of this paragraph, taking into account the information given by the provider pursuant to Article 13\";\n- (e) \"a description of the implementation of human oversight measures, according to the instructions for use\";\n- (f) \"the measures to be taken in the case of the materialisation of those risks, including the arrangements for internal governance and complaint mechanisms.\"\n\nThe obligation applies to the first use of the high-risk AI system, and the deployer may rely on previously conducted FRIAs or existing impact assessments carried out by the provider in similar cases; if any element changes or is no longer up to date, the deployer must update the information [ai-act#art_27(2)]. If obligations are already met through a data protection impact assessment under Article 35 of Regulation (EU) 2016/679 or Article 27 of Directive (EU) 2016/680, the deployer may include cross-references to or relevant parts of that assessment in the FRIA [ai-act#art_27(4)]. The AI Office must develop a template for a questionnaire, including through an automated tool, to facilitate compliance, and this template may allow cross-references to the data protection impact assessment [ai-act#art_27(5)]."
+ },
+ {
+  "id": "h23",
+  "truth": "in-corpus",
+  "regime": "NIS2",
+  "term": "management body",
+  "bait": "-",
+  "question": "What must a management body do in relation to cybersecurity risk-management measures, and what is the consequence of failing?",
+  "preflight_reply": "NIS2 Directive; General Data Protection Regulation",
+  "declared": [
+   "GDPR",
+   "NIS2"
+  ],
+  "preflight": "pass",
+  "mode": "answered",
+  "best_dense": 0.7071508765220642,
+  "verified": false,
+  "cited": [
+   "nis2#rct_137",
+   "nis2#art_20"
+  ],
+  "text": "Based on the provided documents, a management body must approve the cybersecurity risk-management measures, oversee their implementation, and can be held liable for infringements. Specifically:\n\n- **Approve and oversee:** \"the management bodies of essential and important entities should approve the cybersecurity risk-management measures and oversee their implementation\" [nis2#rct_137]. This is further mandated: \"Member States shall ensure that the management bodies of essential and important entities approve the cybersecurity risk-management measures taken by those entities in order to comply with Article 21, oversee its implementation and can be held liable for infringements by the entities of that Article\" [nis2#art_20].\n\n- **Consequence of failing:** The consequence is that the management body \"can be held liable for infringements\" of Article 21 [nis2#art_20]. The document does not specify the exact penalties or legal consequences beyond this liability, and it notes that \"The application of this paragraph shall be without prejudice to national law as regards the liability rules applicable to public institutions, as well as the liability of public servants and elected or appointed officials\" [nis2#art_20].\n\n- **Additional duty:** Members of management bodies \"are required to follow training\" to gain \"sufficient knowledge and skills to enable them to identify risks and assess cybersecurity risk-management practices and their impact on the services provided by the entity\" [nis2#art_20]."
+ }
+]

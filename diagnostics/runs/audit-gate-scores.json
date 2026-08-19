@@ -1,0 +1,3262 @@
+[
+ {
+  "id": "q01",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Above what cumulative amount of training compute is a general-purpose AI model presumed to have high-impact capabilities?",
+  "dense": 0.7167407870292664,
+  "rerank": 0.9953292608261108,
+  "top": [
+   {
+    "id": "ai-act#rct_111",
+    "rerank": 0.9953292608261108,
+    "dense": 0.7167407870292664
+   },
+   {
+    "id": "ai-act#art_51",
+    "rerank": 0.9921661615371704,
+    "dense": 0.6734693646430969
+   },
+   {
+    "id": "ai-act#rct_112",
+    "rerank": 0.9423230886459351,
+    "dense": 0.6572268009185791
+   },
+   {
+    "id": "ai-act#anx_XIII",
+    "rerank": 0.868172287940979,
+    "dense": 0.6840717196464539
+   },
+   {
+    "id": "ai-act#art_3(64)",
+    "rerank": 0.6045864224433899,
+    "dense": 0.5562260150909424
+   }
+  ]
+ },
+ {
+  "id": "q02",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What administrative fines can be imposed on an operator that engages in an AI practice prohibited by Article 5?",
+  "dense": 0.7744975090026855,
+  "rerank": 0.9965364933013916,
+  "top": [
+   {
+    "id": "ai-act#art_99(3)",
+    "rerank": 0.9965364933013916,
+    "dense": 0.7744975090026855
+   },
+   {
+    "id": "ai-act#art_100(2)",
+    "rerank": 0.9944491386413574,
+    "dense": 0.7729178667068481
+   },
+   {
+    "id": "ai-act#art_5(1)",
+    "rerank": 0.9933207631111145,
+    "dense": 0.716705858707428
+   },
+   {
+    "id": "ai-act#art_100(3)",
+    "rerank": 0.9675259590148926,
+    "dense": 0.7198410630226135
+   },
+   {
+    "id": "ai-act#art_99(4)",
+    "rerank": 0.9534003138542175,
+    "dense": 0.7156669497489929
+   }
+  ]
+ },
+ {
+  "id": "q03",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "A company established outside the EU runs an AI system entirely outside the Union, but the output of that system is used inside the Union. Does the AI Act apply?",
+  "dense": 0.750151515007019,
+  "rerank": 0.9932460784912109,
+  "top": [
+   {
+    "id": "ai-act#rct_22",
+    "rerank": 0.9932460784912109,
+    "dense": 0.7355881333351135
+   },
+   {
+    "id": "ai-act#art_2(3)",
+    "rerank": 0.9890172481536865,
+    "dense": 0.7104334831237793
+   },
+   {
+    "id": "ai-act#rct_21",
+    "rerank": 0.9859883189201355,
+    "dense": 0.7178751230239868
+   },
+   {
+    "id": "ai-act#art_2(1)",
+    "rerank": 0.9818665385246277,
+    "dense": 0.750151515007019
+   },
+   {
+    "id": "ai-act#rct_46",
+    "rerank": 0.9358744025230408,
+    "dense": 0.6655836701393127
+   }
+  ]
+ },
+ {
+  "id": "q04",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What must providers of AI systems that generate synthetic audio, image, video or text do so that the outputs can be identified as artificially generated?",
+  "dense": 0.7638105154037476,
+  "rerank": 0.999403715133667,
+  "top": [
+   {
+    "id": "ai-act#art_50(2)",
+    "rerank": 0.999403715133667,
+    "dense": 0.7638105154037476
+   },
+   {
+    "id": "ai-act#rct_133",
+    "rerank": 0.9898601174354553,
+    "dense": 0.685640811920166
+   },
+   {
+    "id": "ai-act#rct_134",
+    "rerank": 0.9817990660667419,
+    "dense": 0.694871723651886
+   },
+   {
+    "id": "ai-act#art_50(4)",
+    "rerank": 0.9815748333930969,
+    "dense": 0.6996393203735352
+   },
+   {
+    "id": "ai-act#rct_136",
+    "rerank": 0.9812825918197632,
+    "dense": 0.6565078496932983
+   }
+  ]
+ },
+ {
+  "id": "q05",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Is an AI system used to evaluate the creditworthiness of natural persons classified as high-risk under the AI Act?",
+  "dense": 0.7076026201248169,
+  "rerank": 0.9999301433563232,
+  "top": [
+   {
+    "id": "ai-act#rct_58",
+    "rerank": 0.9999301433563232,
+    "dense": 0.7076026201248169
+   },
+   {
+    "id": "ai-act#rct_59",
+    "rerank": 0.9985525012016296,
+    "dense": 0.6876625418663025
+   },
+   {
+    "id": "ai-act#anx_III(5)",
+    "rerank": 0.9984764456748962,
+    "dense": 0.7045726776123047
+   },
+   {
+    "id": "ai-act#rct_54",
+    "rerank": 0.9978011250495911,
+    "dense": 0.6618659496307373
+   },
+   {
+    "id": "ai-act#rct_63",
+    "rerank": 0.9964630007743835,
+    "dense": 0.6414600014686584
+   }
+  ]
+ },
+ {
+  "id": "q06",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Before placing a high-risk AI system listed in Annex III on the market, where must the provider register the system and themselves?",
+  "dense": 0.7855430245399475,
+  "rerank": 0.9996898174285889,
+  "top": [
+   {
+    "id": "ai-act#art_49",
+    "rerank": 0.9996898174285889,
+    "dense": 0.7855430245399475
+   },
+   {
+    "id": "ai-act#art_6(4)",
+    "rerank": 0.9646415710449219,
+    "dense": 0.7820501327514648
+   },
+   {
+    "id": "ai-act#art_23(1)",
+    "rerank": 0.9562896490097046,
+    "dense": 0.713747501373291
+   },
+   {
+    "id": "ai-act#art_24(1)",
+    "rerank": 0.8892416954040527,
+    "dense": 0.6977760791778564
+   },
+   {
+    "id": "ai-act#art_16",
+    "rerank": 0.8882408738136292,
+    "dense": 0.7046123147010803
+   }
+  ]
+ },
+ {
+  "id": "q07",
+  "group": "eval",
+  "kind": "relocated",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Under what conditions may a provider of a high-risk AI system exceptionally process special categories of personal data in order to detect and correct bias?",
+  "dense": 0.8019658327102661,
+  "rerank": 0.9995705485343933,
+  "top": [
+   {
+    "id": "ai-act#art_4a(1)",
+    "rerank": 0.9995705485343933,
+    "dense": 0.8019658327102661
+   },
+   {
+    "id": "ai-act#art_4a(2)",
+    "rerank": 0.9980257749557495,
+    "dense": 0.7945435643196106
+   },
+   {
+    "id": "ai-act#rct_70",
+    "rerank": 0.996526300907135,
+    "dense": 0.7592306733131409
+   },
+   {
+    "id": "ai-act#rct_53",
+    "rerank": 0.9521622061729431,
+    "dense": 0.6233213543891907
+   },
+   {
+    "id": "ai-act#rct_54",
+    "rerank": 0.9038001298904419,
+    "dense": 0.6908777356147766
+   }
+  ]
+ },
+ {
+  "id": "q08",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "How does the AI Act ensure that the people overseeing a high-risk AI system do not automatically rely on or over-rely on its outputs?",
+  "dense": 0.7382879257202148,
+  "rerank": 0.988021731376648,
+  "top": [
+   {
+    "id": "ai-act#art_14(4)",
+    "rerank": 0.988021731376648,
+    "dense": 0.7363420724868774
+   },
+   {
+    "id": "ai-act#rct_73",
+    "rerank": 0.9844412803649902,
+    "dense": 0.7382879257202148
+   },
+   {
+    "id": "ai-act#rct_59",
+    "rerank": 0.8757194876670837,
+    "dense": 0.6597357988357544
+   },
+   {
+    "id": "ai-act#art_14(3)",
+    "rerank": 0.8753400444984436,
+    "dense": 0.7096700072288513
+   },
+   {
+    "id": "ai-act#art_16",
+    "rerank": 0.8707582354545593,
+    "dense": 0.6733784675598145
+   }
+  ]
+ },
+ {
+  "id": "q09",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What resilience must high-risk AI systems have against attacks that manipulate their training data or feed them inputs designed to cause mistakes?",
+  "dense": 0.745425283908844,
+  "rerank": 0.9984837174415588,
+  "top": [
+   {
+    "id": "ai-act#art_15(5)",
+    "rerank": 0.9984837174415588,
+    "dense": 0.745425283908844
+   },
+   {
+    "id": "ai-act#rct_75",
+    "rerank": 0.9816855192184448,
+    "dense": 0.7183533310890198
+   },
+   {
+    "id": "ai-act#rct_76",
+    "rerank": 0.9698578715324402,
+    "dense": 0.7081381678581238
+   },
+   {
+    "id": "ai-act#art_15(4)",
+    "rerank": 0.9640916585922241,
+    "dense": 0.7353619933128357
+   },
+   {
+    "id": "ai-act#rct_77",
+    "rerank": 0.8791431188583374,
+    "dense": 0.646126389503479
+   }
+  ]
+ },
+ {
+  "id": "q10",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Before a deployer takes any action on the basis of an identification produced by a remote biometric identification system, how many people must have verified that identification?",
+  "dense": 0.6263844966888428,
+  "rerank": 0.9716041684150696,
+  "top": [
+   {
+    "id": "ai-act#rct_73",
+    "rerank": 0.9716041684150696,
+    "dense": 0.5547844171524048
+   },
+   {
+    "id": "ai-act#art_14(5)",
+    "rerank": 0.9317446351051331,
+    "dense": 0.6263844966888428
+   },
+   {
+    "id": "ai-act#art_26(10)",
+    "rerank": 0.49731776118278503,
+    "dense": 0.6054638624191284
+   },
+   {
+    "id": "ai-act#rct_17",
+    "rerank": 0.38985133171081543,
+    "dense": 0.6133741140365601
+   },
+   {
+    "id": "ai-act#rct_33",
+    "rerank": 0.22530381381511688,
+    "dense": 0.6079748868942261
+   }
+  ]
+ },
+ {
+  "id": "q11",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Can an AI system that falls under one of the Annex III use cases nevertheless avoid classification as high-risk?",
+  "dense": 0.769298255443573,
+  "rerank": 0.994559109210968,
+  "top": [
+   {
+    "id": "ai-act#art_6(3)",
+    "rerank": 0.994559109210968,
+    "dense": 0.769298255443573
+   },
+   {
+    "id": "ai-act#art_43(3)",
+    "rerank": 0.9855829477310181,
+    "dense": 0.6602528095245361
+   },
+   {
+    "id": "ai-act#art_6(6)",
+    "rerank": 0.984613299369812,
+    "dense": 0.6745808720588684
+   },
+   {
+    "id": "ai-act#art_7(1)",
+    "rerank": 0.9726323485374451,
+    "dense": 0.7034347653388977
+   },
+   {
+    "id": "ai-act#art_7(3)",
+    "rerank": 0.9667815566062927,
+    "dense": 0.6920260190963745
+   }
+  ]
+ },
+ {
+  "id": "q12",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Why are AI systems used for military and defence purposes excluded from the scope of the AI Act?",
+  "dense": 0.6944926381111145,
+  "rerank": 0.9997506737709045,
+  "top": [
+   {
+    "id": "ai-act#rct_24",
+    "rerank": 0.9997506737709045,
+    "dense": 0.6944926381111145
+   },
+   {
+    "id": "ai-act#art_2(3)",
+    "rerank": 0.976077139377594,
+    "dense": 0.6675952076911926
+   },
+   {
+    "id": "ai-act#rct_25",
+    "rerank": 0.9138572216033936,
+    "dense": 0.5844561457633972
+   },
+   {
+    "id": "ai-act#rct_59",
+    "rerank": 0.8755714893341064,
+    "dense": 0.5967370867729187
+   },
+   {
+    "id": "ai-act#rct_17",
+    "rerank": 0.7341281771659851,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "q13",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "In the AI Act's definition of an AI system, what does the 'adaptiveness' that a system may exhibit after deployment refer to?",
+  "dense": 0.6663526296615601,
+  "rerank": 0.9986818432807922,
+  "top": [
+   {
+    "id": "ai-act#rct_12",
+    "rerank": 0.9986818432807922,
+    "dense": 0.6129646301269531
+   },
+   {
+    "id": "ai-act#art_3(1)",
+    "rerank": 0.9921725988388062,
+    "dense": 0.6663526296615601
+   },
+   {
+    "id": "ai-act#rct_128",
+    "rerank": 0.5453148484230042,
+    "dense": 0.6488755941390991
+   },
+   {
+    "id": "ai-act#art_3(23)",
+    "rerank": 0.30771803855895996,
+    "dense": 0.6166577339172363
+   },
+   {
+    "id": "ai-act#art_15(4)",
+    "rerank": 0.15083782374858856,
+    "dense": 0.6228746175765991
+   }
+  ]
+ },
+ {
+  "id": "q14",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Why does the AI Act expect a provider to be able to notify the Commission even before the training of a general-purpose AI model is complete?",
+  "dense": 0.7211554050445557,
+  "rerank": 0.9966861605644226,
+  "top": [
+   {
+    "id": "ai-act#rct_112",
+    "rerank": 0.9966861605644226,
+    "dense": 0.6512566208839417
+   },
+   {
+    "id": "ai-act#art_52(1)",
+    "rerank": 0.9757059812545776,
+    "dense": 0.7164854407310486
+   },
+   {
+    "id": "ai-act#rct_113",
+    "rerank": 0.9677932262420654,
+    "dense": 0.7055392265319824
+   },
+   {
+    "id": "ai-act#art_91",
+    "rerank": 0.9014351963996887,
+    "dense": 0.6580839157104492
+   },
+   {
+    "id": "ai-act#rct_101",
+    "rerank": 0.8931726813316345,
+    "dense": 0.6385200619697571
+   }
+  ]
+ },
+ {
+  "id": "q15",
+  "group": "eval",
+  "kind": "repealed",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "What does Article 10(5) of the AI Act provide?",
+  "dense": 0.6379477977752686,
+  "rerank": 0.4528236985206604,
+  "top": [
+   {
+    "id": "ai-act#rct_140",
+    "rerank": 0.4528236985206604,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#art_57(10)",
+    "rerank": 0.3514848053455353,
+    "dense": 0.6097407937049866
+   },
+   {
+    "id": "ai-act#art_74(10)",
+    "rerank": 0.21981094777584076,
+    "dense": 0.6148927807807922
+   },
+   {
+    "id": "ai-act#art_5(5)",
+    "rerank": 0.2166624814271927,
+    "dense": 0.6351652145385742
+   },
+   {
+    "id": "ai-act#art_9(10)",
+    "rerank": 0.21234440803527832,
+    "dense": 0.624620258808136
+   }
+  ]
+ },
+ {
+  "id": "q16",
+  "group": "eval",
+  "kind": "repealed",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "Which piece of Union harmonisation legislation is listed as point 1 in Section A of Annex I to the AI Act?",
+  "dense": 0.6966655254364014,
+  "rerank": 0.9866327047348022,
+  "top": [
+   {
+    "id": "ai-act#art_43(3)",
+    "rerank": 0.9866327047348022,
+    "dense": 0.671650230884552
+   },
+   {
+    "id": "ai-act#art_46(7)",
+    "rerank": 0.974151074886322,
+    "dense": 0.671707034111023
+   },
+   {
+    "id": "ai-act#art_28(8)",
+    "rerank": 0.969157874584198,
+    "dense": 0.6966655254364014
+   },
+   {
+    "id": "ai-act#anx_I_sct_A(8)",
+    "rerank": 0.9581031799316406,
+    "dense": 0.6322594881057739
+   },
+   {
+    "id": "ai-act#anx_I_sct_A(9)",
+    "rerank": 0.9513978362083435,
+    "dense": 0.6310621500015259
+   }
+  ]
+ },
+ {
+  "id": "q17",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Within what time limit must an essential entity submit an early warning to the CSIRT after becoming aware of a significant incident?",
+  "dense": 0.8052201271057129,
+  "rerank": 0.9996742010116577,
+  "top": [
+   {
+    "id": "nis2#rct_102",
+    "rerank": 0.9996742010116577,
+    "dense": 0.8052201271057129
+   },
+   {
+    "id": "nis2#art_23(4)",
+    "rerank": 0.9945204854011536,
+    "dense": 0.7008540034294128
+   },
+   {
+    "id": "nis2#art_23(5)",
+    "rerank": 0.989891767501831,
+    "dense": 0.7051515579223633
+   },
+   {
+    "id": "nis2#art_23(1)",
+    "rerank": 0.9064599871635437,
+    "dense": 0.657055675983429
+   },
+   {
+    "id": "ai-act#art_73(4)",
+    "rerank": 0.6413503289222717,
+    "dense": 0.5893210172653198
+   }
+  ]
+ },
+ {
+  "id": "q18",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "refuse",
+  "refusal_source": "gate",
+  "q": "What does DORA require from financial entities with regard to threat-led penetration testing?",
+  "dense": 0.5345996618270874,
+  "rerank": 0.021724529564380646,
+  "top": [
+   {
+    "id": "nis2#rct_28",
+    "rerank": 0.021724529564380646,
+    "dense": 0.5345996618270874
+   },
+   {
+    "id": "nis2#rct_86",
+    "rerank": 0.00927285198122263,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#rct_103",
+    "rerank": 0.0022626658901572227,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#rct_101",
+    "rerank": 0.0014161106664687395,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#rct_87",
+    "rerank": 0.0011095256777480245,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "q19",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Under the GDPR, in which cases is a controller required to designate a data protection officer?",
+  "dense": 0.7769673466682434,
+  "rerank": 0.9952811598777771,
+  "top": [
+   {
+    "id": "gdpr#art_37",
+    "rerank": 0.9952811598777771,
+    "dense": 0.7769673466682434
+   },
+   {
+    "id": "gdpr#art_35(2)",
+    "rerank": 0.743046224117279,
+    "dense": 0.7039791345596313
+   },
+   {
+    "id": "gdpr#rct_97",
+    "rerank": 0.6253498792648315,
+    "dense": 0.6748481392860413
+   },
+   {
+    "id": "gdpr#rct_80",
+    "rerank": 0.5158999562263489,
+    "dense": 0.6830760836601257
+   },
+   {
+    "id": "gdpr#art_14(1)",
+    "rerank": 0.37157365679740906,
+    "dense": 0.6692261695861816
+   }
+  ]
+ },
+ {
+  "id": "q20",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "What does ISO/IEC 42001 require an organisation to establish and maintain for its AI management system?",
+  "dense": 0.6150901913642883,
+  "rerank": 0.39516422152519226,
+  "top": [
+   {
+    "id": "ai-act#art_9(1)",
+    "rerank": 0.39516422152519226,
+    "dense": 0.6096623539924622
+   },
+   {
+    "id": "ai-act#rct_81",
+    "rerank": 0.16724161803722382,
+    "dense": 0.585469126701355
+   },
+   {
+    "id": "ai-act#art_17(1)",
+    "rerank": 0.06297635287046432,
+    "dense": 0.6150901913642883
+   },
+   {
+    "id": "ai-act#anx_VII(3)",
+    "rerank": 0.056232623755931854,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#art_9(10)",
+    "rerank": 0.03786298632621765,
+    "dense": 0.5702789425849915
+   }
+  ]
+ },
+ {
+  "id": "q21",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "How quickly must a controller notify the supervisory authority of a personal data breach, and what happens if it is later than that?",
+  "dense": 0.8039761781692505,
+  "rerank": 0.9988634586334229,
+  "top": [
+   {
+    "id": "gdpr#rct_85",
+    "rerank": 0.9988634586334229,
+    "dense": 0.7484740018844604
+   },
+   {
+    "id": "gdpr#art_33",
+    "rerank": 0.9985894560813904,
+    "dense": 0.8039761781692505
+   },
+   {
+    "id": "gdpr#rct_86",
+    "rerank": 0.9544931650161743,
+    "dense": 0.7202231884002686
+   },
+   {
+    "id": "gdpr#rct_87",
+    "rerank": 0.9041382074356079,
+    "dense": 0.6951963901519775
+   },
+   {
+    "id": "gdpr#art_34",
+    "rerank": 0.8629677891731262,
+    "dense": 0.7164492607116699
+   }
+  ]
+ },
+ {
+  "id": "q22",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "On what legal bases may a company lawfully process personal data?",
+  "dense": 0.7053109407424927,
+  "rerank": 0.9636088013648987,
+  "top": [
+   {
+    "id": "gdpr#rct_50",
+    "rerank": 0.9636088013648987,
+    "dense": 0.6761859655380249
+   },
+   {
+    "id": "gdpr#rct_47",
+    "rerank": 0.9546080827713013,
+    "dense": 0.6662682890892029
+   },
+   {
+    "id": "gdpr#rct_46",
+    "rerank": 0.9449565410614014,
+    "dense": 0.691466748714447
+   },
+   {
+    "id": "gdpr#rct_40",
+    "rerank": 0.9432432055473328,
+    "dense": 0.6737233996391296
+   },
+   {
+    "id": "gdpr#rct_69",
+    "rerank": 0.8973871469497681,
+    "dense": 0.6822343468666077
+   }
+  ]
+ },
+ {
+  "id": "q23",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What is the maximum administrative fine for infringing the basic principles for processing, including the conditions for consent?",
+  "dense": 0.7201148867607117,
+  "rerank": 0.9918312430381775,
+  "top": [
+   {
+    "id": "gdpr#art_83(5)",
+    "rerank": 0.9918312430381775,
+    "dense": 0.7201148867607117
+   },
+   {
+    "id": "gdpr#art_7",
+    "rerank": 0.533681333065033,
+    "dense": 0.5491207838058472
+   },
+   {
+    "id": "gdpr#art_83(4)",
+    "rerank": 0.37019649147987366,
+    "dense": 0.672785758972168
+   },
+   {
+    "id": "nis2#art_34(4)",
+    "rerank": 0.36197370290756226,
+    "dense": 0.614772617816925
+   },
+   {
+    "id": "nis2#art_34(5)",
+    "rerank": 0.3557480275630951,
+    "dense": 0.6119792461395264
+   }
+  ]
+ },
+ {
+  "id": "q24",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "When is a data protection impact assessment mandatory before processing begins?",
+  "dense": 0.7290939688682556,
+  "rerank": 0.9783245921134949,
+  "top": [
+   {
+    "id": "gdpr#rct_91",
+    "rerank": 0.9783245921134949,
+    "dense": 0.6938109397888184
+   },
+   {
+    "id": "gdpr#rct_90",
+    "rerank": 0.9630260467529297,
+    "dense": 0.7290939688682556
+   },
+   {
+    "id": "gdpr#art_35(1)",
+    "rerank": 0.9569292068481445,
+    "dense": 0.6954033374786377
+   },
+   {
+    "id": "gdpr#art_35(10)",
+    "rerank": 0.9566116333007812,
+    "dense": 0.6971027851104736
+   },
+   {
+    "id": "gdpr#art_36(1)",
+    "rerank": 0.920799732208252,
+    "dense": 0.6800336241722107
+   }
+  ]
+ },
+ {
+  "id": "q25",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What general condition must be met before personal data undergoing processing may be transferred to a country outside the EU?",
+  "dense": 0.713956356048584,
+  "rerank": 0.8835716247558594,
+  "top": [
+   {
+    "id": "gdpr#rct_101",
+    "rerank": 0.8835716247558594,
+    "dense": 0.6980055570602417
+   },
+   {
+    "id": "gdpr#art_44",
+    "rerank": 0.8635251522064209,
+    "dense": 0.713956356048584
+   },
+   {
+    "id": "gdpr#art_49(1)",
+    "rerank": 0.849399745464325,
+    "dense": 0.6961874961853027
+   },
+   {
+    "id": "gdpr#art_46(1)",
+    "rerank": 0.7172388434410095,
+    "dense": 0.6902061104774475
+   },
+   {
+    "id": "gdpr#rct_115",
+    "rerank": 0.7077905535697937,
+    "dense": 0.6604659557342529
+   }
+  ]
+ },
+ {
+  "id": "q26",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "A customer wants us to stop using their data while they contest whether it is accurate, but not to delete it. What does that give them a right to?",
+  "dense": 0.6706337928771973,
+  "rerank": 0.5634888410568237,
+  "top": [
+   {
+    "id": "gdpr#art_18",
+    "rerank": 0.5634888410568237,
+    "dense": 0.6383216381072998
+   },
+   {
+    "id": "gdpr#art_16",
+    "rerank": 0.14413151144981384,
+    "dense": 0.6086053848266602
+   },
+   {
+    "id": "gdpr#rct_65",
+    "rerank": 0.05957953631877899,
+    "dense": 0.6706337928771973
+   },
+   {
+    "id": "gdpr#art_22",
+    "rerank": 0.057351887226104736,
+    "dense": 0.5522027611732483
+   },
+   {
+    "id": "gdpr#art_13(2)",
+    "rerank": 0.033238135278224945,
+    "dense": 0.592687726020813
+   }
+  ]
+ },
+ {
+  "id": "q27",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "After a breach that puts people at serious risk, does the company have to tell the affected individuals themselves?",
+  "dense": 0.6558016538619995,
+  "rerank": 0.09469126909971237,
+  "top": [
+   {
+    "id": "gdpr#art_34",
+    "rerank": 0.09469126909971237,
+    "dense": 0.6522108316421509
+   },
+   {
+    "id": "gdpr#rct_86",
+    "rerank": 0.08009273558855057,
+    "dense": 0.6418284177780151
+   },
+   {
+    "id": "nis2#art_32(7)",
+    "rerank": 0.031246282160282135,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#rct_85",
+    "rerank": 0.0172237828373909,
+    "dense": 0.6558016538619995
+   },
+   {
+    "id": "gdpr#art_33",
+    "rerank": 0.008166384883224964,
+    "dense": 0.6240367889404297
+   }
+  ]
+ },
+ {
+  "id": "q28",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Can someone require us to hand over the data they gave us in a machine-readable form so they can move it to a competitor?",
+  "dense": 0.6039437055587769,
+  "rerank": 0.20691843330860138,
+  "top": [
+   {
+    "id": "gdpr#rct_68",
+    "rerank": 0.20691843330860138,
+    "dense": 0.6005597710609436
+   },
+   {
+    "id": "gdpr#art_20",
+    "rerank": 0.14635354280471802,
+    "dense": 0.5886061191558838
+   },
+   {
+    "id": "gdpr#rct_60",
+    "rerank": 0.03714282065629959,
+    "dense": 0.5330853462219238
+   },
+   {
+    "id": "ai-act#art_50(2)",
+    "rerank": 0.03379328176379204,
+    "dense": 0.5457738041877747
+   },
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.026369569823145866,
+    "dense": 0.5631802082061768
+   }
+  ]
+ },
+ {
+  "id": "q29",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Why does relying on legitimate interests depend on what the individual would reasonably expect?",
+  "dense": 0.6063538193702698,
+  "rerank": 0.9143503904342651,
+  "top": [
+   {
+    "id": "gdpr#rct_47",
+    "rerank": 0.9143503904342651,
+    "dense": 0.6063538193702698
+   },
+   {
+    "id": "gdpr#rct_50",
+    "rerank": 0.16627569496631622,
+    "dense": 0.500840425491333
+   },
+   {
+    "id": "gdpr#rct_113",
+    "rerank": 0.12031066417694092,
+    "dense": 0.5280084609985352
+   },
+   {
+    "id": "gdpr#art_49(1)",
+    "rerank": 0.050426509231328964,
+    "dense": 0.4936990737915039
+   },
+   {
+    "id": "gdpr#art_22",
+    "rerank": 0.0500810369849205,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "q30",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "When does the GDPR stop treating information as personal data because individuals can no longer be identified from it?",
+  "dense": 0.6671903729438782,
+  "rerank": 0.37894052267074585,
+  "top": [
+   {
+    "id": "gdpr#art_4(5)",
+    "rerank": 0.37894052267074585,
+    "dense": 0.6242650747299194
+   },
+   {
+    "id": "gdpr#art_11",
+    "rerank": 0.3612954616546631,
+    "dense": 0.6432046890258789
+   },
+   {
+    "id": "gdpr#rct_26",
+    "rerank": 0.3253569006919861,
+    "dense": 0.6473124027252197
+   },
+   {
+    "id": "gdpr#rct_65",
+    "rerank": 0.20668061077594757,
+    "dense": 0.6011583805084229
+   },
+   {
+    "id": "gdpr#art_94",
+    "rerank": 0.19855089485645294,
+    "dense": 0.6671903729438782
+   }
+  ]
+ },
+ {
+  "id": "q31",
+  "group": "eval",
+  "kind": "cross_instrument",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What rights does someone have when a decision affecting them legally is taken solely by automated means?",
+  "dense": 0.6764736771583557,
+  "rerank": 0.9819398522377014,
+  "top": [
+   {
+    "id": "gdpr#art_22",
+    "rerank": 0.9819398522377014,
+    "dense": 0.6764736771583557
+   },
+   {
+    "id": "gdpr#rct_71",
+    "rerank": 0.9759568572044373,
+    "dense": 0.6333303451538086
+   },
+   {
+    "id": "ai-act#rct_10",
+    "rerank": 0.785058856010437,
+    "dense": 0.5728628635406494
+   },
+   {
+    "id": "gdpr#art_21",
+    "rerank": 0.6237510442733765,
+    "dense": 0.587863028049469
+   },
+   {
+    "id": "ai-act#rct_171",
+    "rerank": 0.5889040231704712,
+    "dense": 0.6302531957626343
+   }
+  ]
+ },
+ {
+  "id": "q32",
+  "group": "eval",
+  "kind": "cross_instrument",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Before a public body puts a high-risk AI system into use, what assessment of its effects on fundamental rights must it carry out?",
+  "dense": 0.7530286312103271,
+  "rerank": 0.9997773766517639,
+  "top": [
+   {
+    "id": "ai-act#rct_96",
+    "rerank": 0.9997773766517639,
+    "dense": 0.7530286312103271
+   },
+   {
+    "id": "ai-act#art_27(1)",
+    "rerank": 0.9920122027397156,
+    "dense": 0.7525724768638611
+   },
+   {
+    "id": "ai-act#rct_59",
+    "rerank": 0.9700910449028015,
+    "dense": 0.7132049202919006
+   },
+   {
+    "id": "ai-act#art_27(2)",
+    "rerank": 0.9609522819519043,
+    "dense": 0.6850371360778809
+   },
+   {
+    "id": "ai-act#rct_58",
+    "rerank": 0.945883572101593,
+    "dense": 0.6849167346954346
+   }
+  ]
+ },
+ {
+  "id": "q33",
+  "group": "eval",
+  "kind": "cross_instrument",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What must a controller tell someone who asks whether their personal data is being processed and asks for a copy of it?",
+  "dense": 0.710620105266571,
+  "rerank": 0.9574154615402222,
+  "top": [
+   {
+    "id": "gdpr#rct_66",
+    "rerank": 0.9574154615402222,
+    "dense": 0.6465433239936829
+   },
+   {
+    "id": "gdpr#art_15(3)",
+    "rerank": 0.9218241572380066,
+    "dense": 0.7002788782119751
+   },
+   {
+    "id": "gdpr#rct_60",
+    "rerank": 0.8942448496818542,
+    "dense": 0.685368001461029
+   },
+   {
+    "id": "gdpr#art_15(1)",
+    "rerank": 0.8386266827583313,
+    "dense": 0.689300537109375
+   },
+   {
+    "id": "gdpr#art_17(2)",
+    "rerank": 0.7872493863105774,
+    "dense": 0.6509302854537964
+   }
+  ]
+ },
+ {
+  "id": "q34",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "refuse",
+  "refusal_source": "gate",
+  "q": "Under the ePrivacy rules, when may a website store or access information on a user's terminal equipment?",
+  "dense": 0.565590500831604,
+  "rerank": 0.032191723585128784,
+  "top": [
+   {
+    "id": "ai-act#rct_10",
+    "rerank": 0.032191723585128784,
+    "dense": 0.5363068580627441
+   },
+   {
+    "id": "nis2#rct_121",
+    "rerank": 0.0017467295983806252,
+    "dense": 0.5452566146850586
+   },
+   {
+    "id": "gdpr#rct_23",
+    "rerank": 0.0015778840752318501,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#art_14(2)",
+    "rerank": 0.0013425650540739298,
+    "dense": 0.5290139317512512
+   },
+   {
+    "id": "gdpr#rct_30",
+    "rerank": 0.0013303662417456508,
+    "dense": 0.5326765179634094
+   }
+  ]
+ },
+ {
+  "id": "q35",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "refuse",
+  "refusal_source": "gate",
+  "q": "What must a provider of data processing services do to let a customer switch to another provider?",
+  "dense": 0.585253119468689,
+  "rerank": 0.009967314079403877,
+  "top": [
+   {
+    "id": "gdpr#rct_68",
+    "rerank": 0.009967314079403877,
+    "dense": 0.5840340256690979
+   },
+   {
+    "id": "gdpr#art_28(4)",
+    "rerank": 0.008273315615952015,
+    "dense": 0.5699905753135681
+   },
+   {
+    "id": "gdpr#art_28(3)",
+    "rerank": 0.007806198205798864,
+    "dense": 0.5797145366668701
+   },
+   {
+    "id": "gdpr#rct_23",
+    "rerank": 0.006829638499766588,
+    "dense": 0.5607446432113647
+   },
+   {
+    "id": "gdpr#art_20",
+    "rerank": 0.00606576120480895,
+    "dense": 0.5838497281074524
+   }
+  ]
+ },
+ {
+  "id": "q36",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "What vulnerability handling obligations apply to a manufacturer of a product with digital elements?",
+  "dense": 0.6413225531578064,
+  "rerank": 0.690619945526123,
+  "top": [
+   {
+    "id": "ai-act#rct_78",
+    "rerank": 0.690619945526123,
+    "dense": 0.6413225531578064
+   },
+   {
+    "id": "ai-act#rct_77",
+    "rerank": 0.6341745853424072,
+    "dense": 0.5998364686965942
+   },
+   {
+    "id": "nis2#rct_58",
+    "rerank": 0.33385196328163147,
+    "dense": 0.5959553122520447
+   },
+   {
+    "id": "ai-act#art_25(3)",
+    "rerank": 0.030777106061577797,
+    "dense": 0.5538732409477234
+   },
+   {
+    "id": "nis2#art_12(1)",
+    "rerank": 0.021363822743296623,
+    "dense": 0.5365376472473145
+   }
+  ]
+ },
+ {
+  "id": "q37",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "What must an organisation include in its Statement of Applicability for an information security management system?",
+  "dense": 0.6267086863517761,
+  "rerank": 0.03221869841217995,
+  "top": [
+   {
+    "id": "nis2#rct_78",
+    "rerank": 0.03221869841217995,
+    "dense": 0.5784438252449036
+   },
+   {
+    "id": "gdpr#art_30(1)",
+    "rerank": 0.029155392199754715,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_21(1)",
+    "rerank": 0.022439850494265556,
+    "dense": 0.6267086863517761
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.021096540614962578,
+    "dense": 0.6241616010665894
+   },
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.015768922865390778,
+    "dense": 0.574516236782074
+   }
+  ]
+ },
+ {
+  "id": "q38",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "Within what period must covered entities notify individuals of a breach of unsecured protected health information?",
+  "dense": 0.6210057139396667,
+  "rerank": 0.14239457249641418,
+  "top": [
+   {
+    "id": "nis2#art_27(3)",
+    "rerank": 0.14239457249641418,
+    "dense": 0.5681877732276917
+   },
+   {
+    "id": "gdpr#rct_85",
+    "rerank": 0.10892198979854584,
+    "dense": 0.6210057139396667
+   },
+   {
+    "id": "nis2#art_23(4)",
+    "rerank": 0.08898087590932846,
+    "dense": 0.5650656223297119
+   },
+   {
+    "id": "nis2#art_3(4)",
+    "rerank": 0.06421524286270142,
+    "dense": 0.5471814870834351
+   },
+   {
+    "id": "gdpr#art_33",
+    "rerank": 0.044012147933244705,
+    "dense": 0.611474871635437
+   }
+  ]
+ },
+ {
+  "id": "q39",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What cybersecurity risk-management measures must essential and important entities put in place?",
+  "dense": 0.7578492164611816,
+  "rerank": 0.9993975162506104,
+  "top": [
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.9993975162506104,
+    "dense": 0.6567888855934143
+   },
+   {
+    "id": "nis2#rct_85",
+    "rerank": 0.9977197051048279,
+    "dense": 0.689093828201294
+   },
+   {
+    "id": "nis2#rct_88",
+    "rerank": 0.9970404505729675,
+    "dense": 0.693474292755127
+   },
+   {
+    "id": "nis2#rct_97",
+    "rerank": 0.9970234036445618,
+    "dense": 0.6573733687400818
+   },
+   {
+    "id": "nis2#rct_82",
+    "rerank": 0.9966340661048889,
+    "dense": 0.7578492164611816
+   }
+  ]
+ },
+ {
+  "id": "q40",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What is the maximum administrative fine an essential entity faces for infringing the risk-management or reporting obligations?",
+  "dense": 0.6976256370544434,
+  "rerank": 0.9640459418296814,
+  "top": [
+   {
+    "id": "nis2#art_34(4)",
+    "rerank": 0.9640459418296814,
+    "dense": 0.696399450302124
+   },
+   {
+    "id": "nis2#art_34(5)",
+    "rerank": 0.942208468914032,
+    "dense": 0.6976256370544434
+   },
+   {
+    "id": "nis2#art_32(4)",
+    "rerank": 0.6596700549125671,
+    "dense": 0.5822495818138123
+   },
+   {
+    "id": "nis2#art_32(7)",
+    "rerank": 0.4089285433292389,
+    "dense": 0.5970486998558044
+   },
+   {
+    "id": "nis2#art_33(4)",
+    "rerank": 0.3907468318939209,
+    "dense": 0.5743294358253479
+   }
+  ]
+ },
+ {
+  "id": "q41",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Which entities does the NIS2 Directive treat as essential rather than important?",
+  "dense": 0.6832045316696167,
+  "rerank": 0.9841205477714539,
+  "top": [
+   {
+    "id": "nis2#art_3(1)",
+    "rerank": 0.9841205477714539,
+    "dense": 0.6813271641731262
+   },
+   {
+    "id": "nis2#rct_122",
+    "rerank": 0.9806766510009766,
+    "dense": 0.6043717265129089
+   },
+   {
+    "id": "nis2#rct_16",
+    "rerank": 0.9569722414016724,
+    "dense": 0.5762514472007751
+   },
+   {
+    "id": "nis2#art_3(2)",
+    "rerank": 0.953479528427124,
+    "dense": 0.6832045316696167
+   },
+   {
+    "id": "nis2#rct_15",
+    "rerank": 0.9485999941825867,
+    "dense": 0.5947129130363464
+   }
+  ]
+ },
+ {
+  "id": "q42",
+  "group": "eval",
+  "kind": "direct",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Is a supplier of drinking water within the scope of the sectors NIS2 treats as highly critical?",
+  "dense": 0.6191911697387695,
+  "rerank": 0.9530001878738403,
+  "top": [
+   {
+    "id": "nis2#anx_I",
+    "rerank": 0.9530001878738403,
+    "dense": 0.604957640171051
+   },
+   {
+    "id": "nis2#rct_15",
+    "rerank": 0.6210687756538391,
+    "dense": 0.5740971565246582
+   },
+   {
+    "id": "nis2#rct_37",
+    "rerank": 0.49868324398994446,
+    "dense": 0.5593067407608032
+   },
+   {
+    "id": "nis2#art_2(2)",
+    "rerank": 0.4672376811504364,
+    "dense": 0.6191911697387695
+   },
+   {
+    "id": "nis2#rct_7",
+    "rerank": 0.3627171814441681,
+    "dense": 0.543912410736084
+   }
+  ]
+ },
+ {
+  "id": "q43",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What is required of the people on a company's board in relation to its cybersecurity obligations?",
+  "dense": 0.6541702151298523,
+  "rerank": 0.448626846075058,
+  "top": [
+   {
+    "id": "nis2#art_20",
+    "rerank": 0.448626846075058,
+    "dense": 0.6541702151298523
+   },
+   {
+    "id": "nis2#rct_93",
+    "rerank": 0.3189173638820648,
+    "dense": 0.6250406503677368
+   },
+   {
+    "id": "nis2#rct_137",
+    "rerank": 0.23997120559215546,
+    "dense": 0.63847815990448
+   },
+   {
+    "id": "nis2#rct_4",
+    "rerank": 0.17521029710769653,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_1",
+    "rerank": 0.1271466165781021,
+    "dense": 0.6071233153343201
+   }
+  ]
+ },
+ {
+  "id": "q44",
+  "group": "eval",
+  "kind": "neighbour_adversary",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Where are newly discovered vulnerabilities in ICT products recorded at Union level?",
+  "dense": 0.5947461128234863,
+  "rerank": 0.7425305247306824,
+  "top": [
+   {
+    "id": "nis2#rct_62",
+    "rerank": 0.7425305247306824,
+    "dense": 0.5798247456550598
+   },
+   {
+    "id": "nis2#art_12(2)",
+    "rerank": 0.4851444959640503,
+    "dense": 0.5848565101623535
+   },
+   {
+    "id": "nis2#rct_58",
+    "rerank": 0.18215572834014893,
+    "dense": 0.5947461128234863
+   },
+   {
+    "id": "nis2#art_7(2)",
+    "rerank": 0.10752438753843307,
+    "dense": 0.5189881920814514
+   },
+   {
+    "id": "nis2#art_22",
+    "rerank": 0.07619107514619827,
+    "dense": 0.5544566512107849
+   }
+  ]
+ },
+ {
+  "id": "q45",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "Why does NIS2 make entities responsible for risks arising from their suppliers and service providers?",
+  "dense": 0.6721699237823486,
+  "rerank": 0.9936596751213074,
+  "top": [
+   {
+    "id": "nis2#rct_85",
+    "rerank": 0.9936596751213074,
+    "dense": 0.6721699237823486
+   },
+   {
+    "id": "nis2#rct_90",
+    "rerank": 0.9495722055435181,
+    "dense": 0.6292266845703125
+   },
+   {
+    "id": "nis2#art_21(3)",
+    "rerank": 0.9234625101089478,
+    "dense": 0.6543324589729309
+   },
+   {
+    "id": "nis2#rct_62",
+    "rerank": 0.8542855978012085,
+    "dense": 0.5979742407798767
+   },
+   {
+    "id": "nis2#rct_86",
+    "rerank": 0.7726172804832458,
+    "dense": 0.5906988978385925
+   }
+  ]
+ },
+ {
+  "id": "q46",
+  "group": "eval",
+  "kind": "recital",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What has driven the Union's concern about ransomware in the context of network and information security?",
+  "dense": 0.7176428437232971,
+  "rerank": 0.969763457775116,
+  "top": [
+   {
+    "id": "nis2#rct_54",
+    "rerank": 0.969763457775116,
+    "dense": 0.7176428437232971
+   },
+   {
+    "id": "nis2#rct_70",
+    "rerank": 0.33675605058670044,
+    "dense": 0.5656655430793762
+   },
+   {
+    "id": "nis2#rct_3",
+    "rerank": 0.26750648021698,
+    "dense": 0.5410957336425781
+   },
+   {
+    "id": "nis2#rct_2",
+    "rerank": 0.22459878027439117,
+    "dense": 0.5365281105041504
+   },
+   {
+    "id": "nis2#rct_56",
+    "rerank": 0.11599376797676086,
+    "dense": 0.5639199018478394
+   }
+  ]
+ },
+ {
+  "id": "q47",
+  "group": "eval",
+  "kind": "cross_instrument",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "We suffered a ransomware attack that encrypted a database of customer records. Within what deadline must we notify the data protection supervisory authority?",
+  "dense": 0.6031997203826904,
+  "rerank": 0.6619260907173157,
+  "top": [
+   {
+    "id": "gdpr#art_33",
+    "rerank": 0.6619260907173157,
+    "dense": 0.6031997203826904
+   },
+   {
+    "id": "gdpr#rct_85",
+    "rerank": 0.42858654260635376,
+    "dense": 0.5830837488174438
+   },
+   {
+    "id": "gdpr#art_36(2)",
+    "rerank": 0.334060937166214,
+    "dense": 0.5218702554702759
+   },
+   {
+    "id": "gdpr#rct_94",
+    "rerank": 0.10695599019527435,
+    "dense": 0.5122051239013672
+   },
+   {
+    "id": "gdpr#rct_87",
+    "rerank": 0.10402482748031616,
+    "dense": 0.5602609515190125
+   }
+  ]
+ },
+ {
+  "id": "q48",
+  "group": "eval",
+  "kind": "cross_instrument",
+  "neg": false,
+  "gate_expectation": "pass",
+  "refusal_source": null,
+  "q": "What security measures must be taken to manage risks to network and information systems?",
+  "dense": 0.7353971004486084,
+  "rerank": 0.998331606388092,
+  "top": [
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.998331606388092,
+    "dense": 0.7158957719802856
+   },
+   {
+    "id": "nis2#rct_78",
+    "rerank": 0.997490406036377,
+    "dense": 0.7256895303726196
+   },
+   {
+    "id": "nis2#art_21(1)",
+    "rerank": 0.9959938526153564,
+    "dense": 0.7353971004486084
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.9902313351631165,
+    "dense": 0.7017303705215454
+   },
+   {
+    "id": "nis2#rct_81",
+    "rerank": 0.990056037902832,
+    "dense": 0.6830348372459412
+   }
+  ]
+ },
+ {
+  "id": "q49",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "What resilience measures must a critical entity take to protect against physical threats such as sabotage or natural disaster?",
+  "dense": 0.5927050113677979,
+  "rerank": 0.4662209451198578,
+  "top": [
+   {
+    "id": "nis2#rct_30",
+    "rerank": 0.4662209451198578,
+    "dense": 0.5591543316841125
+   },
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.3164832293987274,
+    "dense": 0.5791109204292297
+   },
+   {
+    "id": "nis2#rct_85",
+    "rerank": 0.1332491636276245,
+    "dense": 0.5781376361846924
+   },
+   {
+    "id": "nis2#rct_82",
+    "rerank": 0.07353611290454865,
+    "dense": 0.5909349322319031
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.06945972889661789,
+    "dense": 0.5651647448539734
+   }
+  ]
+ },
+ {
+  "id": "q50",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "pass",
+  "refusal_source": "generation",
+  "q": "How is a European cybersecurity certification scheme for ICT products adopted?",
+  "dense": 0.745962917804718,
+  "rerank": 0.994722843170166,
+  "top": [
+   {
+    "id": "nis2#art_24",
+    "rerank": 0.994722843170166,
+    "dense": 0.7323275804519653
+   },
+   {
+    "id": "nis2#rct_80",
+    "rerank": 0.9807830452919006,
+    "dense": 0.745962917804718
+   },
+   {
+    "id": "nis2#rct_138",
+    "rerank": 0.9368277788162231,
+    "dense": 0.6723592877388
+   },
+   {
+    "id": "nis2#art_7(2)",
+    "rerank": 0.4415753483772278,
+    "dense": 0.6599130034446716
+   },
+   {
+    "id": "nis2#notes(18)",
+    "rerank": 0.1740845888853073,
+    "dense": 0.6216198205947876
+   }
+  ]
+ },
+ {
+  "id": "q51",
+  "group": "eval",
+  "kind": "unanswerable",
+  "neg": true,
+  "gate_expectation": "refuse",
+  "refusal_source": "gate",
+  "q": "What must an organisation document when establishing a business continuity management system to ISO 22301?",
+  "dense": 0.5170081853866577,
+  "rerank": 0.004682369530200958,
+  "top": [
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.004682369530200958,
+    "dense": 0.5017148852348328
+   },
+   {
+    "id": "ai-act#art_18",
+    "rerank": 0.001183435320854187,
+    "dense": 0.5170081853866577
+   },
+   {
+    "id": "ai-act#rct_81",
+    "rerank": 0.0010970857692882419,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#anx_VII(1)",
+    "rerank": 0.0009048355277627707,
+    "dense": 0.49240148067474365
+   },
+   {
+    "id": "ai-act#anx_VII(4)",
+    "rerank": 0.00087875931058079,
+    "dense": 0.5072876811027527
+   }
+  ]
+ },
+ {
+  "id": "n01",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "DORA",
+  "band": "near",
+  "q": "What must a financial entity's ICT business continuity policy ensure under DORA?",
+  "dense": 0.5686877369880676,
+  "rerank": 0.017991146072745323,
+  "top": [
+   {
+    "id": "nis2#rct_28",
+    "rerank": 0.017991146072745323,
+    "dense": 0.5686877369880676
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.004633618053048849,
+    "dense": 0.5037821531295776
+   },
+   {
+    "id": "nis2#art_33(6)",
+    "rerank": 0.0032575426157563925,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_32(10)",
+    "rerank": 0.0020388627890497446,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_7(2)",
+    "rerank": 0.0013017072342336178,
+    "dense": 0.521637499332428
+   }
+  ]
+ },
+ {
+  "id": "n02",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "DORA",
+  "band": "near",
+  "q": "Which financial entities must carry out threat-led penetration testing, and how often must it be repeated?",
+  "dense": 0.5567193031311035,
+  "rerank": 0.02745540626347065,
+  "top": [
+   {
+    "id": "nis2#rct_28",
+    "rerank": 0.02745540626347065,
+    "dense": 0.5218371152877808
+   },
+   {
+    "id": "nis2#rct_86",
+    "rerank": 0.022015631198883057,
+    "dense": 0.5131412148475647
+   },
+   {
+    "id": "nis2#art_33(4)",
+    "rerank": 0.005226999055594206,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_32(4)",
+    "rerank": 0.004081503488123417,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_32(7)",
+    "rerank": 0.0034955847077071667,
+    "dense": 0.4871717691421509
+   }
+  ]
+ },
+ {
+  "id": "n03",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "NIS1",
+  "band": "extreme-near",
+  "q": "What security requirements did the 2016 NIS Directive impose on operators of essential services?",
+  "dense": 0.590910792350769,
+  "rerank": 0.8737924098968506,
+  "top": [
+   {
+    "id": "nis2#rct_7",
+    "rerank": 0.8737924098968506,
+    "dense": 0.5839837789535522
+   },
+   {
+    "id": "nis2#rct_1",
+    "rerank": 0.7947923541069031,
+    "dense": 0.5870882272720337
+   },
+   {
+    "id": "nis2#rct_4",
+    "rerank": 0.7195602059364319,
+    "dense": 0.5463513135910034
+   },
+   {
+    "id": "nis2#art_3(1)",
+    "rerank": 0.71583092212677,
+    "dense": 0.5545869469642639
+   },
+   {
+    "id": "nis2#rct_17",
+    "rerank": 0.5025894045829773,
+    "dense": 0.5436345934867859
+   }
+  ]
+ },
+ {
+  "id": "n04",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "DSA",
+  "band": "near",
+  "q": "What systemic risk assessments must very large online platforms conduct under the Digital Services Act?",
+  "dense": 0.6101075410842896,
+  "rerank": 0.9161012172698975,
+  "top": [
+   {
+    "id": "ai-act#rct_118",
+    "rerank": 0.9161012172698975,
+    "dense": 0.5916184186935425
+   },
+   {
+    "id": "ai-act#rct_136",
+    "rerank": 0.8156657218933105,
+    "dense": 0.6066544055938721
+   },
+   {
+    "id": "ai-act#rct_120",
+    "rerank": 0.7858219146728516,
+    "dense": 0.5880557894706726
+   },
+   {
+    "id": "nis2#rct_140",
+    "rerank": 0.12479689717292786,
+    "dense": 0.5819880962371826
+   },
+   {
+    "id": "nis2#rct_84",
+    "rerank": 0.08181740343570709,
+    "dense": 0.6049005389213562
+   }
+  ]
+ },
+ {
+  "id": "n05",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "DMA",
+  "band": "near",
+  "q": "What obligations does the Digital Markets Act impose on gatekeepers about combining personal data across their services?",
+  "dense": 0.5627559423446655,
+  "rerank": 0.03654519096016884,
+  "top": [
+   {
+    "id": "gdpr#rct_7",
+    "rerank": 0.03654519096016884,
+    "dense": 0.5116060972213745
+   },
+   {
+    "id": "gdpr#rct_13",
+    "rerank": 0.03192589432001114,
+    "dense": 0.5439919829368591
+   },
+   {
+    "id": "gdpr#rct_5",
+    "rerank": 0.03117990680038929,
+    "dense": 0.5439095497131348
+   },
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.019281022250652313,
+    "dense": 0.5401102900505066
+   },
+   {
+    "id": "ai-act#rct_3",
+    "rerank": 0.015601280145347118,
+    "dense": 0.5105838179588318
+   }
+  ]
+ },
+ {
+  "id": "n06",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "LED",
+  "band": "extreme-near",
+  "q": "Under the Law Enforcement Directive, when may a police authority transfer personal data to a third country?",
+  "dense": 0.6849256753921509,
+  "rerank": 0.787379264831543,
+  "top": [
+   {
+    "id": "gdpr#art_46(1)",
+    "rerank": 0.787379264831543,
+    "dense": 0.6660794019699097
+   },
+   {
+    "id": "gdpr#art_45(1)",
+    "rerank": 0.5866951942443848,
+    "dense": 0.6707537174224854
+   },
+   {
+    "id": "gdpr#art_48",
+    "rerank": 0.5281756520271301,
+    "dense": 0.6849256753921509
+   },
+   {
+    "id": "gdpr#art_49(5)",
+    "rerank": 0.3979717493057251,
+    "dense": 0.6353607177734375
+   },
+   {
+    "id": "gdpr#art_45(2)",
+    "rerank": 0.3848327100276947,
+    "dense": 0.6209732890129089
+   }
+  ]
+ },
+ {
+  "id": "n07",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "UK-GDPR",
+  "band": "extreme-near",
+  "q": "What is the deadline for reporting a personal data breach to the ICO under the UK GDPR?",
+  "dense": 0.6374942064285278,
+  "rerank": 0.8085824847221375,
+  "top": [
+   {
+    "id": "gdpr#art_33",
+    "rerank": 0.8085824847221375,
+    "dense": 0.6374942064285278
+   },
+   {
+    "id": "gdpr#rct_85",
+    "rerank": 0.608536958694458,
+    "dense": 0.6253795027732849
+   },
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.22085876762866974,
+    "dense": 0.5680663585662842
+   },
+   {
+    "id": "gdpr#art_34",
+    "rerank": 0.11731984466314316,
+    "dense": 0.6217151880264282
+   },
+   {
+    "id": "gdpr#rct_86",
+    "rerank": 0.10313022881746292,
+    "dense": 0.575762927532196
+   }
+  ]
+ },
+ {
+  "id": "n08",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "AI-Liability",
+  "band": "extreme-near",
+  "q": "When can a national court order disclosure of evidence about a high-risk AI system under the AI Liability Directive?",
+  "dense": 0.6432132124900818,
+  "rerank": 0.6258002519607544,
+  "top": [
+   {
+    "id": "ai-act#art_26(10)",
+    "rerank": 0.6258002519607544,
+    "dense": 0.6261186599731445
+   },
+   {
+    "id": "ai-act#art_78(3)",
+    "rerank": 0.4939432144165039,
+    "dense": 0.6432132124900818
+   },
+   {
+    "id": "ai-act#anx_III(6)",
+    "rerank": 0.4802842438220978,
+    "dense": 0.6378390192985535
+   },
+   {
+    "id": "ai-act#rct_131",
+    "rerank": 0.4072314500808716,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#art_18",
+    "rerank": 0.3705534338951111,
+    "dense": 0.6247296333312988
+   }
+  ]
+ },
+ {
+  "id": "n09",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "Machinery",
+  "band": "near",
+  "q": "What essential safety requirements apply to machinery with self-evolving behaviour under the 2023 Machinery Regulation?",
+  "dense": 0.5454549193382263,
+  "rerank": 0.13547280430793762,
+  "top": [
+   {
+    "id": "ai-act#rct_64",
+    "rerank": 0.13547280430793762,
+    "dense": 0.5454549193382263
+   },
+   {
+    "id": "ai-act#anx_I_sct_B(21)",
+    "rerank": 0.023822300136089325,
+    "dense": 0.5379904508590698
+   },
+   {
+    "id": "ai-act#rct_166",
+    "rerank": 0.012147634290158749,
+    "dense": 0.5432321429252625
+   },
+   {
+    "id": "ai-act#notes(53)",
+    "rerank": 0.008274453692138195,
+    "dense": 0.5168541073799133
+   },
+   {
+    "id": "ai-act#rct_50",
+    "rerank": 0.006419079378247261,
+    "dense": 0.515243411064148
+   }
+  ]
+ },
+ {
+  "id": "n10",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "CRA",
+  "band": "near",
+  "q": "What CE marking and conformity assessment requirements does the Cyber Resilience Act impose on products with digital elements?",
+  "dense": 0.6801773905754089,
+  "rerank": 0.9282072186470032,
+  "top": [
+   {
+    "id": "ai-act#rct_77",
+    "rerank": 0.9282072186470032,
+    "dense": 0.6358380317687988
+   },
+   {
+    "id": "ai-act#rct_78",
+    "rerank": 0.9197880029678345,
+    "dense": 0.6801773905754089
+   },
+   {
+    "id": "ai-act#art_48",
+    "rerank": 0.14748673141002655,
+    "dense": 0.610536515712738
+   },
+   {
+    "id": "ai-act#rct_129",
+    "rerank": 0.12955769896507263,
+    "dense": 0.6001446843147278
+   },
+   {
+    "id": "nis2#art_7(2)",
+    "rerank": 0.07691852003335953,
+    "dense": 0.5654399394989014
+   }
+  ]
+ },
+ {
+  "id": "n11",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "CSA",
+  "band": "near",
+  "q": "What are the assurance levels of the EU cybersecurity certification framework, and what does the level 'substantial' require?",
+  "dense": 0.6309228539466858,
+  "rerank": 0.39585596323013306,
+  "top": [
+   {
+    "id": "nis2#art_24",
+    "rerank": 0.39585596323013306,
+    "dense": 0.6309228539466858
+   },
+   {
+    "id": "nis2#rct_138",
+    "rerank": 0.31320562958717346,
+    "dense": 0.6033342480659485
+   },
+   {
+    "id": "nis2#rct_80",
+    "rerank": 0.2307073473930359,
+    "dense": 0.6213340759277344
+   },
+   {
+    "id": "ai-act#rct_78",
+    "rerank": 0.08660886436700821,
+    "dense": 0.609768807888031
+   },
+   {
+    "id": "nis2#rct_4",
+    "rerank": 0.08047343790531158,
+    "dense": 0.5682528614997864
+   }
+  ]
+ },
+ {
+  "id": "n12",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "CER",
+  "band": "near",
+  "q": "What background checks may Member States require for the staff of critical entities under the CER Directive?",
+  "dense": 0.5396291613578796,
+  "rerank": 0.2729848325252533,
+  "top": [
+   {
+    "id": "nis2#art_1",
+    "rerank": 0.2729848325252533,
+    "dense": 0.515715479850769
+   },
+   {
+    "id": "nis2#rct_30",
+    "rerank": 0.23987187445163727,
+    "dense": 0.5333095192909241
+   },
+   {
+    "id": "nis2#art_32(9)",
+    "rerank": 0.22888995707035065,
+    "dense": 0.5066356658935547
+   },
+   {
+    "id": "nis2#rct_18",
+    "rerank": 0.2263398915529251,
+    "dense": 0.5122094750404358
+   },
+   {
+    "id": "nis2#art_32(2)",
+    "rerank": 0.2017998993396759,
+    "dense": 0.5396291613578796
+   }
+  ]
+ },
+ {
+  "id": "n13",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "eIDAS",
+  "band": "mid",
+  "q": "What must a qualified trust service provider verify before issuing a qualified certificate under eIDAS?",
+  "dense": 0.583646833896637,
+  "rerank": 0.0539780892431736,
+  "top": [
+   {
+    "id": "nis2#art_6(27)",
+    "rerank": 0.0539780892431736,
+    "dense": 0.5747839212417603
+   },
+   {
+    "id": "nis2#rct_93",
+    "rerank": 0.04272798076272011,
+    "dense": 0.5706722736358643
+   },
+   {
+    "id": "nis2#art_24",
+    "rerank": 0.019761385396122932,
+    "dense": 0.5793973803520203
+   },
+   {
+    "id": "nis2#art_6(26)",
+    "rerank": 0.019140180200338364,
+    "dense": 0.5639132261276245
+   },
+   {
+    "id": "nis2#art_3(1)",
+    "rerank": 0.013176592998206615,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "n14",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "DGA",
+  "band": "mid",
+  "q": "What conditions must a data intermediation service provider meet under the Data Governance Act?",
+  "dense": 0.5925582051277161,
+  "rerank": 0.04874321073293686,
+  "top": [
+   {
+    "id": "ai-act#rct_67",
+    "rerank": 0.04874321073293686,
+    "dense": 0.5731862783432007
+   },
+   {
+    "id": "gdpr#art_6(3)",
+    "rerank": 0.015608610585331917,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#rct_53",
+    "rerank": 0.015302883461117744,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#rct_69",
+    "rerank": 0.014362496323883533,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#rct_23",
+    "rerank": 0.011937317438423634,
+    "dense": 0.5817639827728271
+   }
+  ]
+ },
+ {
+  "id": "n15",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "EHDS",
+  "band": "mid",
+  "q": "For what secondary purposes may electronic health data be made available under the European Health Data Space Regulation?",
+  "dense": 0.6086829304695129,
+  "rerank": 0.39086511731147766,
+  "top": [
+   {
+    "id": "ai-act#rct_68",
+    "rerank": 0.39086511731147766,
+    "dense": 0.6013798713684082
+   },
+   {
+    "id": "gdpr#rct_53",
+    "rerank": 0.16852031648159027,
+    "dense": 0.5963863730430603
+   },
+   {
+    "id": "gdpr#rct_54",
+    "rerank": 0.15331977605819702,
+    "dense": 0.6086829304695129
+   },
+   {
+    "id": "gdpr#art_4(15)",
+    "rerank": 0.0869036614894867,
+    "dense": 0.5680215358734131
+   },
+   {
+    "id": "gdpr#rct_35",
+    "rerank": 0.06517741084098816,
+    "dense": 0.5912348031997681
+   }
+  ]
+ },
+ {
+  "id": "n16",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "CySol",
+  "band": "near",
+  "q": "What is the European Cybersecurity Alert System established by the Cyber Solidarity Act and what do its cyber hubs do?",
+  "dense": 0.5884363055229187,
+  "rerank": 0.03626945614814758,
+  "top": [
+   {
+    "id": "nis2#art_16(1)",
+    "rerank": 0.03626945614814758,
+    "dense": 0.5544911026954651
+   },
+   {
+    "id": "nis2#art_11(3)",
+    "rerank": 0.017448989674448967,
+    "dense": 0.5161141753196716
+   },
+   {
+    "id": "nis2#art_16(3)",
+    "rerank": 0.013314907439053059,
+    "dense": 0.5568305253982544
+   },
+   {
+    "id": "nis2#art_16(5)",
+    "rerank": 0.011162797920405865,
+    "dense": 0.5442460179328918
+   },
+   {
+    "id": "nis2#art_16(2)",
+    "rerank": 0.010547622106969357,
+    "dense": 0.5510659217834473
+   }
+  ]
+ },
+ {
+  "id": "n17",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "GPAI-CoP",
+  "band": "extreme-near",
+  "q": "What transparency commitments do signatories of the General-Purpose AI Code of Practice undertake?",
+  "dense": 0.6351525187492371,
+  "rerank": 0.7184240818023682,
+  "top": [
+   {
+    "id": "ai-act#art_56(5)",
+    "rerank": 0.7184240818023682,
+    "dense": 0.6351525187492371
+   },
+   {
+    "id": "ai-act#art_56(4)",
+    "rerank": 0.6066303253173828,
+    "dense": 0.60417640209198
+   },
+   {
+    "id": "ai-act#rct_101",
+    "rerank": 0.5826138257980347,
+    "dense": 0.6160808205604553
+   },
+   {
+    "id": "ai-act#art_50(7)",
+    "rerank": 0.34743693470954895,
+    "dense": 0.5980514287948608
+   },
+   {
+    "id": "ai-act#rct_117",
+    "rerank": 0.32880187034606934,
+    "dense": 0.6109200119972229
+   }
+  ]
+ },
+ {
+  "id": "n18",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "AIA-guidelines",
+  "band": "extreme-near",
+  "q": "What do the Commission's guidelines on prohibited AI practices say about emotion recognition in the workplace?",
+  "dense": 0.6353899240493774,
+  "rerank": 0.8932603597640991,
+  "top": [
+   {
+    "id": "ai-act#art_5(1)",
+    "rerank": 0.8932603597640991,
+    "dense": 0.608303427696228
+   },
+   {
+    "id": "ai-act#rct_44",
+    "rerank": 0.7780484557151794,
+    "dense": 0.6353899240493774
+   },
+   {
+    "id": "ai-act#art_96(1)",
+    "rerank": 0.550679087638855,
+    "dense": 0.5847127437591553
+   },
+   {
+    "id": "ai-act#rct_29",
+    "rerank": 0.25489309430122375,
+    "dense": 0.5409265756607056
+   },
+   {
+    "id": "ai-act#rct_18",
+    "rerank": 0.2254074364900589,
+    "dense": 0.5862078070640564
+   }
+  ]
+ },
+ {
+  "id": "n19",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "SCC",
+  "band": "extreme-near",
+  "q": "What do the Standard Contractual Clauses require a data importer to do when a foreign government authority requests access to the transferred data?",
+  "dense": 0.6392154693603516,
+  "rerank": 0.4013977646827698,
+  "top": [
+   {
+    "id": "gdpr#rct_108",
+    "rerank": 0.4013977646827698,
+    "dense": 0.6246830224990845
+   },
+   {
+    "id": "gdpr#rct_109",
+    "rerank": 0.279784619808197,
+    "dense": 0.5862631797790527
+   },
+   {
+    "id": "gdpr#art_46(3)",
+    "rerank": 0.1722240000963211,
+    "dense": 0.6199437975883484
+   },
+   {
+    "id": "gdpr#art_58(3)",
+    "rerank": 0.11837603896856308,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#rct_168",
+    "rerank": 0.11764423549175262,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "n20",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "ISO27002",
+  "band": "mid",
+  "q": "Which controls does ISO/IEC 27002 recommend for information security incident management?",
+  "dense": 0.6015233993530273,
+  "rerank": 0.20960943400859833,
+  "top": [
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.20960943400859833,
+    "dense": 0.5754696726799011
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.07904146611690521,
+    "dense": 0.5815368294715881
+   },
+   {
+    "id": "nis2#rct_78",
+    "rerank": 0.02571907825767994,
+    "dense": 0.5499494075775146
+   },
+   {
+    "id": "nis2#art_21(1)",
+    "rerank": 0.019219961017370224,
+    "dense": 0.5608409643173218
+   },
+   {
+    "id": "nis2#art_23(6)",
+    "rerank": 0.011376029811799526,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "n21",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "IEC62443",
+  "band": "mid",
+  "q": "How does IEC 62443 define security levels for industrial automation and control systems?",
+  "dense": 0.5174548625946045,
+  "rerank": 0.02583443745970726,
+  "top": [
+   {
+    "id": "nis2#anx_I",
+    "rerank": 0.02583443745970726,
+    "dense": 0.5026898384094238
+   },
+   {
+    "id": "nis2#rct_79",
+    "rerank": 0.0030440441332757473,
+    "dense": 0.48237597942352295
+   },
+   {
+    "id": "nis2#rct_96",
+    "rerank": 0.002315429039299488,
+    "dense": 0.0
+   },
+   {
+    "id": "nis2#art_21(2)",
+    "rerank": 0.0022683751303702593,
+    "dense": 0.4824690818786621
+   },
+   {
+    "id": "gdpr#art_32",
+    "rerank": 0.0016987650888040662,
+    "dense": 0.49086540937423706
+   }
+  ]
+ },
+ {
+  "id": "n22",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "SOC2",
+  "band": "far",
+  "q": "What are the Trust Services Criteria a SOC 2 report is assessed against?",
+  "dense": 0.49422556161880493,
+  "rerank": 0.06303492933511734,
+  "top": [
+   {
+    "id": "nis2#rct_93",
+    "rerank": 0.06303492933511734,
+    "dense": 0.4915945529937744
+   },
+   {
+    "id": "nis2#rct_11",
+    "rerank": 0.029171565547585487,
+    "dense": 0.4604295492172241
+   },
+   {
+    "id": "nis2#art_23(4)",
+    "rerank": 0.015812305733561516,
+    "dense": 0.4770106077194214
+   },
+   {
+    "id": "nis2#art_2(2)",
+    "rerank": 0.014254952780902386,
+    "dense": 0.4506293535232544
+   },
+   {
+    "id": "nis2#rct_94",
+    "rerank": 0.013318165205419064,
+    "dense": 0.4732508659362793
+   }
+  ]
+ },
+ {
+  "id": "n23",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "PCI-DSS",
+  "band": "far",
+  "q": "What does PCI DSS require for storing cardholder data after authorisation?",
+  "dense": 0.5604584217071533,
+  "rerank": 0.0013183847768232226,
+  "top": [
+   {
+    "id": "gdpr#art_58(3)",
+    "rerank": 0.0013183847768232226,
+    "dense": 0.0
+   },
+   {
+    "id": "gdpr#art_25",
+    "rerank": 0.0006309556192718446,
+    "dense": 0.5374607443809509
+   },
+   {
+    "id": "gdpr#art_13(2)",
+    "rerank": 0.0006137605523690581,
+    "dense": 0.5265195369720459
+   },
+   {
+    "id": "gdpr#rct_156",
+    "rerank": 0.0005853516049683094,
+    "dense": 0.5318748354911804
+   },
+   {
+    "id": "gdpr#rct_81",
+    "rerank": 0.0005503574502654374,
+    "dense": 0.5262728929519653
+   }
+  ]
+ },
+ {
+  "id": "n24",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "NIST-CSF",
+  "band": "mid",
+  "q": "What are the core functions of the NIST Cybersecurity Framework 2.0?",
+  "dense": 0.5891621112823486,
+  "rerank": 0.4227403700351715,
+  "top": [
+   {
+    "id": "nis2#art_7(2)",
+    "rerank": 0.4227403700351715,
+    "dense": 0.5465410947799683
+   },
+   {
+    "id": "nis2#rct_48",
+    "rerank": 0.41369524598121643,
+    "dense": 0.5204163193702698
+   },
+   {
+    "id": "nis2#art_7(1)",
+    "rerank": 0.3263704776763916,
+    "dense": 0.56920325756073
+   },
+   {
+    "id": "nis2#art_9(1)",
+    "rerank": 0.28728556632995605,
+    "dense": 0.5167858004570007
+   },
+   {
+    "id": "nis2#art_9(4)",
+    "rerank": 0.2657942473888397,
+    "dense": 0.537187397480011
+   }
+  ]
+ },
+ {
+  "id": "n25",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "CCPA",
+  "band": "mid",
+  "q": "What rights does the CCPA give California residents over the sale of their personal information?",
+  "dense": 0.5017837882041931,
+  "rerank": 0.004351094830781221,
+  "top": [
+   {
+    "id": "gdpr#rct_2",
+    "rerank": 0.004351094830781221,
+    "dense": 0.49823904037475586
+   },
+   {
+    "id": "gdpr#rct_73",
+    "rerank": 0.0031426940113306046,
+    "dense": 0.48364704847335815
+   },
+   {
+    "id": "gdpr#rct_1",
+    "rerank": 0.002931365044787526,
+    "dense": 0.5017837882041931
+   },
+   {
+    "id": "gdpr#rct_65",
+    "rerank": 0.0022198481019586325,
+    "dense": 0.48613500595092773
+   },
+   {
+    "id": "gdpr#art_13(2)",
+    "rerank": 0.0019535375759005547,
+    "dense": 0.4597483277320862
+   }
+  ]
+ },
+ {
+  "id": "n26",
+  "group": "audit-negative",
+  "neg": true,
+  "regime": "PIPL",
+  "band": "mid",
+  "q": "What does China's PIPL require before a company transfers personal information outside China?",
+  "dense": 0.600554347038269,
+  "rerank": 0.05469981208443642,
+  "top": [
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.05469981208443642,
+    "dense": 0.5760654211044312
+   },
+   {
+    "id": "gdpr#rct_107",
+    "rerank": 0.052465084940195084,
+    "dense": 0.5483307838439941
+   },
+   {
+    "id": "gdpr#art_45(1)",
+    "rerank": 0.03152504935860634,
+    "dense": 0.5794106721878052
+   },
+   {
+    "id": "gdpr#art_49(1)",
+    "rerank": 0.02428640052676201,
+    "dense": 0.600554347038269
+   },
+   {
+    "id": "gdpr#art_48",
+    "rerank": 0.01969635672867298,
+    "dense": 0.559940755367279
+   }
+  ]
+ },
+ {
+  "id": "p01",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "ai-act#art_22",
+  "q": "A provider of a high-risk AI system is established outside the EU. What must it do about appointing an authorised representative before making the system available on the Union market?",
+  "dense": 0.8454709053039551,
+  "rerank": 0.9996602535247803,
+  "top": [
+   {
+    "id": "ai-act#rct_82",
+    "rerank": 0.9996602535247803,
+    "dense": 0.8146856427192688
+   },
+   {
+    "id": "ai-act#art_22(1)",
+    "rerank": 0.99785977602005,
+    "dense": 0.8454709053039551
+   },
+   {
+    "id": "ai-act#art_22(3)",
+    "rerank": 0.9932882189750671,
+    "dense": 0.712374210357666
+   },
+   {
+    "id": "ai-act#art_23(1)",
+    "rerank": 0.9893436431884766,
+    "dense": 0.7198143601417542
+   },
+   {
+    "id": "ai-act#art_49",
+    "rerank": 0.983463704586029,
+    "dense": 0.7076535224914551
+   }
+  ]
+ },
+ {
+  "id": "p02",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "ai-act#art_12|ai-act#art_19",
+  "q": "What logging capability must a high-risk AI system have, and for how long must the provider keep the logs it generates?",
+  "dense": 0.7771265506744385,
+  "rerank": 0.9985393285751343,
+  "top": [
+   {
+    "id": "ai-act#art_19",
+    "rerank": 0.9985393285751343,
+    "dense": 0.7771265506744385
+   },
+   {
+    "id": "ai-act#art_26(6)",
+    "rerank": 0.99797123670578,
+    "dense": 0.768395185470581
+   },
+   {
+    "id": "ai-act#art_22(3)",
+    "rerank": 0.9878173470497131,
+    "dense": 0.0
+   },
+   {
+    "id": "ai-act#art_12",
+    "rerank": 0.983045220375061,
+    "dense": 0.748345673084259
+   },
+   {
+    "id": "ai-act#art_18",
+    "rerank": 0.9426430463790894,
+    "dense": 0.6740782260894775
+   }
+  ]
+ },
+ {
+  "id": "p03",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "ai-act#art_57",
+  "q": "What is an AI regulatory sandbox for, and what do the national authorities running one provide to participants?",
+  "dense": 0.7548040151596069,
+  "rerank": 0.9928382039070129,
+  "top": [
+   {
+    "id": "ai-act#rct_138",
+    "rerank": 0.9928382039070129,
+    "dense": 0.748473048210144
+   },
+   {
+    "id": "ai-act#art_57(7)",
+    "rerank": 0.9831101894378662,
+    "dense": 0.7041056156158447
+   },
+   {
+    "id": "ai-act#rct_139",
+    "rerank": 0.9827737808227539,
+    "dense": 0.7548040151596069
+   },
+   {
+    "id": "ai-act#art_57(1)",
+    "rerank": 0.9702683091163635,
+    "dense": 0.7294546961784363
+   },
+   {
+    "id": "ai-act#art_58(4)",
+    "rerank": 0.9689779877662659,
+    "dense": 0.7123842239379883
+   }
+  ]
+ },
+ {
+  "id": "p04",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "ai-act#art_78",
+  "q": "What confidentiality obligations bind the authorities that obtain information or documentation under the AI Act?",
+  "dense": 0.704162061214447,
+  "rerank": 0.991502046585083,
+  "top": [
+   {
+    "id": "ai-act#art_74(14)",
+    "rerank": 0.991502046585083,
+    "dense": 0.6861333847045898
+   },
+   {
+    "id": "ai-act#art_77(4)",
+    "rerank": 0.9866965413093567,
+    "dense": 0.7013114094734192
+   },
+   {
+    "id": "ai-act#art_53(7)",
+    "rerank": 0.9825270771980286,
+    "dense": 0.6864304542541504
+   },
+   {
+    "id": "ai-act#art_21",
+    "rerank": 0.9592573642730713,
+    "dense": 0.648342490196228
+   },
+   {
+    "id": "ai-act#art_78(3)",
+    "rerank": 0.9511770009994507,
+    "dense": 0.6889860033988953
+   }
+  ]
+ },
+ {
+  "id": "p05",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "gdpr#art_26",
+  "q": "Two companies jointly determine the purposes and means of processing personal data. What does the GDPR require them to arrange between themselves, and what can a data subject do regardless of that arrangement?",
+  "dense": 0.7277248501777649,
+  "rerank": 0.9954272508621216,
+  "top": [
+   {
+    "id": "gdpr#art_26",
+    "rerank": 0.9954272508621216,
+    "dense": 0.7277248501777649
+   },
+   {
+    "id": "gdpr#rct_79",
+    "rerank": 0.7681553363800049,
+    "dense": 0.6511704921722412
+   },
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.6206579208374023,
+    "dense": 0.6746914386749268
+   },
+   {
+    "id": "gdpr#rct_50",
+    "rerank": 0.5992395877838135,
+    "dense": 0.6513431668281555
+   },
+   {
+    "id": "gdpr#rct_36",
+    "rerank": 0.5528485178947449,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "p06",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "gdpr#art_30",
+  "q": "What must a controller's record of processing activities contain, and which organisations are exempt from keeping one?",
+  "dense": 0.7088720202445984,
+  "rerank": 0.9888363480567932,
+  "top": [
+   {
+    "id": "gdpr#art_30(1)",
+    "rerank": 0.9888363480567932,
+    "dense": 0.7088720202445984
+   },
+   {
+    "id": "gdpr#art_30(2)",
+    "rerank": 0.9525945782661438,
+    "dense": 0.6844758987426758
+   },
+   {
+    "id": "gdpr#rct_82",
+    "rerank": 0.8107432723045349,
+    "dense": 0.607783854007721
+   },
+   {
+    "id": "gdpr#art_30(5)",
+    "rerank": 0.6426690220832825,
+    "dense": 0.5983098149299622
+   },
+   {
+    "id": "gdpr#art_30(3)",
+    "rerank": 0.614361047744751,
+    "dense": 0.0
+   }
+  ]
+ },
+ {
+  "id": "p07",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "gdpr#art_8",
+  "q": "From what age can a child validly consent to the processing of their personal data by an online service, and what must the controller do when the child is younger?",
+  "dense": 0.7955940365791321,
+  "rerank": 0.9844607710838318,
+  "top": [
+   {
+    "id": "gdpr#art_8",
+    "rerank": 0.9844607710838318,
+    "dense": 0.7955940365791321
+   },
+   {
+    "id": "gdpr#rct_65",
+    "rerank": 0.37017443776130676,
+    "dense": 0.6170216202735901
+   },
+   {
+    "id": "gdpr#rct_50",
+    "rerank": 0.2137465924024582,
+    "dense": 0.5998472571372986
+   },
+   {
+    "id": "gdpr#rct_64",
+    "rerank": 0.17242445051670074,
+    "dense": 0.618471622467041
+   },
+   {
+    "id": "gdpr#rct_74",
+    "rerank": 0.16616053879261017,
+    "dense": 0.6190293431282043
+   }
+  ]
+ },
+ {
+  "id": "p08",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "gdpr#art_47",
+  "q": "What must binding corporate rules specify before a supervisory authority will approve them for intra-group data transfers?",
+  "dense": 0.7039419412612915,
+  "rerank": 0.989104151725769,
+  "top": [
+   {
+    "id": "gdpr#art_47(2)",
+    "rerank": 0.989104151725769,
+    "dense": 0.6699272990226746
+   },
+   {
+    "id": "gdpr#art_47(1)",
+    "rerank": 0.9635509252548218,
+    "dense": 0.7039419412612915
+   },
+   {
+    "id": "gdpr#art_47(3)",
+    "rerank": 0.8825622200965881,
+    "dense": 0.6402459740638733
+   },
+   {
+    "id": "gdpr#art_70(1)",
+    "rerank": 0.8204570412635803,
+    "dense": 0.5694777369499207
+   },
+   {
+    "id": "gdpr#art_46(2)",
+    "rerank": 0.8167399764060974,
+    "dense": 0.5829171538352966
+   }
+  ]
+ },
+ {
+  "id": "p09",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "nis2#art_27",
+  "q": "What information must essential and important entities submit for the registry of entities under NIS2, and within what time must changes be notified?",
+  "dense": 0.7193273305892944,
+  "rerank": 0.9984118938446045,
+  "top": [
+   {
+    "id": "nis2#art_3(4)",
+    "rerank": 0.9984118938446045,
+    "dense": 0.7193273305892944
+   },
+   {
+    "id": "nis2#rct_18",
+    "rerank": 0.9906197786331177,
+    "dense": 0.6637490391731262
+   },
+   {
+    "id": "nis2#art_27(3)",
+    "rerank": 0.9897372126579285,
+    "dense": 0.6817959547042847
+   },
+   {
+    "id": "nis2#art_3(5)",
+    "rerank": 0.9829810857772827,
+    "dense": 0.6985101699829102
+   },
+   {
+    "id": "nis2#rct_102",
+    "rerank": 0.9722461700439453,
+    "dense": 0.6460459232330322
+   }
+  ]
+ },
+ {
+  "id": "p10",
+  "group": "toc-probe",
+  "neg": false,
+  "expected_anchor": "nis2#art_29",
+  "q": "Under what conditions may companies exchange cybersecurity threat information among themselves under NIS2?",
+  "dense": 0.7282004356384277,
+  "rerank": 0.971467912197113,
+  "top": [
+   {
+    "id": "nis2#art_29(1)",
+    "rerank": 0.971467912197113,
+    "dense": 0.7282004356384277
+   },
+   {
+    "id": "nis2#art_29(2)",
+    "rerank": 0.7219575643539429,
+    "dense": 0.6695177555084229
+   },
+   {
+    "id": "nis2#rct_45",
+    "rerank": 0.6886556148529053,
+    "dense": 0.6199019551277161
+   },
+   {
+    "id": "nis2#art_13(5)",
+    "rerank": 0.6860327124595642,
+    "dense": 0.641810417175293
+   },
+   {
+    "id": "nis2#rct_74",
+    "rerank": 0.6524142026901245,
+    "dense": 0.6169697046279907
+   }
+  ]
+ }
+]
