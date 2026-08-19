@@ -53,6 +53,8 @@ CHUNK_FILES = [
     "corpus/chunks/ai-act.recitals.chunks.jsonl",
     "corpus/chunks/gdpr.chunks.jsonl",
     "corpus/chunks/gdpr.recitals.chunks.jsonl",
+    "corpus/chunks/nis2.chunks.jsonl",
+    "corpus/chunks/nis2.recitals.chunks.jsonl",
 ]
 
 # Fields that travel into the table. Anything not named here stays out,

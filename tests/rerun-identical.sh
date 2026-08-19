@@ -51,10 +51,10 @@ run_into() {
     # so a difference here is the chunker's and not an echo of the
     # converter's.
     #
-    # The AI Act and GDPR as of M7. NIS2 is converted but NOT chunked -
-    # M8 stops at Gate A, exactly as M6 did for GDPR - so its chunk lines
-    # are absent on purpose; comparing against committed chunk files that
-    # do not exist would fail for the wrong reason.
+    # All six documents as of M9. NIS2's lines were absent through M8 on
+    # purpose - it was converted but not chunked until Gate A had been
+    # signed off - and comparing against committed chunk files that did
+    # not exist would have failed for the wrong reason.
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.md \
         --out-dir "$d" >/dev/null || return 1
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/ai-act.recitals.md \
@@ -62,6 +62,10 @@ run_into() {
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/gdpr.md \
         --out-dir "$d" >/dev/null || return 1
     "$PY" -m grc_rag.convert.chunk --doc corpus/eu/gdpr.recitals.md \
+        --out-dir "$d" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.chunk --doc corpus/eu/nis2.md \
+        --out-dir "$d" >/dev/null || return 1
+    "$PY" -m grc_rag.convert.chunk --doc corpus/eu/nis2.recitals.md \
         --out-dir "$d" >/dev/null || return 1
 }
 
@@ -78,7 +82,10 @@ for f in ai-act.md ai-act.report.md ai-act.recitals.md \
          ai-act.recitals.chunks.report.md \
          gdpr.chunks.jsonl gdpr.chunks.txt gdpr.chunks.report.md \
          gdpr.recitals.chunks.jsonl gdpr.recitals.chunks.txt \
-         gdpr.recitals.chunks.report.md; do
+         gdpr.recitals.chunks.report.md \
+         nis2.chunks.jsonl nis2.chunks.txt nis2.chunks.report.md \
+         nis2.recitals.chunks.jsonl nis2.recitals.chunks.txt \
+         nis2.recitals.chunks.report.md; do
     a=$(sha256sum "$TMP/a/$f" | cut -d' ' -f1)
     b=$(sha256sum "$TMP/b/$f" | cut -d' ' -f1)
     if [ "$a" = "$b" ]; then
@@ -105,7 +112,8 @@ for f in ai-act.md ai-act.recitals.md gdpr.md gdpr.recitals.md \
     fi
 done
 for f in ai-act.chunks.jsonl ai-act.recitals.chunks.jsonl \
-         gdpr.chunks.jsonl gdpr.recitals.chunks.jsonl; do
+         gdpr.chunks.jsonl gdpr.recitals.chunks.jsonl \
+         nis2.chunks.jsonl nis2.recitals.chunks.jsonl; do
     if cmp -s "$TMP/a/$f" "corpus/chunks/$f"; then
         echo "  corpus/chunks/$f matches a fresh chunking"
     else

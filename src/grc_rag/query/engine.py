@@ -59,21 +59,24 @@ TABLE = "chunks"
 REFUSAL = "The corpus does not address this."
 
 # Tuned against the eval set's in-corpus vs out-of-corpus dense-score
-# distributions (docs/decisions.md D10, superseding D7). Placed BELOW
-# every in-corpus question (min 0.6039) rather than at a midpoint: with
-# two instruments the clusters overlap, and of the two errors only a
-# false refusal is silent - the user is told the corpus does not cover
-# something it does. Four near-domain out-of-corpus questions therefore
-# reach the generator by design; the grounding prompt is what refuses
-# them. Re-run `cli.py floor` after ANY corpus, chunking or embedder
-# change.
+# distributions (docs/decisions.md D13, superseding D10 and D7).
 #
-# 0.595 is the midpoint of the post-reclassification gap
-# (0.5864 .. 0.6039), the same method D7 used. The binding constraint
-# is the one above - below every in-corpus question - and the midpoint
-# is the tie-break within it: 0.60 also satisfied the constraint but
-# left only 0.0039 of margin under the lowest real question.
-DEFAULT_FLOOR = 0.595
+# At three instruments the gate is a COARSE filter and no longer
+# pretends otherwise: it separates only questions whose vocabulary the
+# corpus does not share at all. Of ten unanswerable eval questions it
+# catches four; the other six retrieve legitimately - the corpus really
+# does hold material on their subject matter - and the grounding prompt
+# refuses them. The floor still sits below every in-corpus question
+# (min 0.5947), because of the two possible errors only a false refusal
+# is silent. The gap left after that is 0.5853 .. 0.5927 and its
+# midpoint is 0.589; 0.59 is that rounded, still inside the gap and
+# still under every in-corpus question. Note what the lower bound of
+# that gap IS, though: 0.5927 is q49, an out-of-corpus question, and
+# the lowest genuine in-corpus score is q44 at 0.5947. The gap is
+# narrower than it looks and is not evidence the gate discriminates.
+#
+# Re-run `cli.py floor` after ANY corpus, chunking or embedder change.
+DEFAULT_FLOOR = 0.59
 
 GROUNDING_PROMPT = """\
 You are a compliance research assistant answering questions from an

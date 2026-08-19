@@ -1,17 +1,17 @@
-# Eval set — EU AI Act + GDPR
+# Eval set — EU AI Act, GDPR, NIS2
 
 `corpus.eval.jsonl` is the answer key the query path is graded against — and,
 after ⛔ Gate B sign-off, tuned against. It is data, Class A, git-tracked
-(decisions.md D0). Thirty-eight questions, one JSON object per line.
+(decisions.md D0). Fifty-one questions, one JSON object per line.
 
 One file for the whole corpus, not one per instrument: the questions that
 matter most here are the ones that could be answered from the wrong act, and
 those belong to no single instrument (decisions.md D9).
 
 **Status: twenty questions approved at ⛔ Gate B on 2026-08-17 (floor tuned
-after, as D7); extended to thirty-eight and re-approved at ⛔ Gate B on
-2026-08-18, with the floor re-measured after that (D10). In both cases the
-set was fixed before anything was tuned against it.**
+after, as D7); extended to thirty-eight and re-approved on 2026-08-18
+(D10); extended to fifty-one for NIS2 and re-approved the same day (D13).
+In every case the set was fixed before anything was tuned against it.**
 
 ## Why these questions
 
@@ -20,13 +20,13 @@ only became possible in M7 when a second act arrived:
 
 | kind | n | what it tests |
 |---|---|---|
-| `direct` | 12 | one clearly correct unit; across scope, penalties, transparency, annexes, registration, GPAI, and on the GDPR side breach timing, lawful bases, fine tiers, DPIA trigger, transfers, DPO |
-| `neighbour_adversary` | 7 | questions whose surface vocabulary points at the wrong neighbouring article — what the lexical leg and reranker exist for. GDPR's are 18-not-17, 34-not-33, 20-not-15 |
-| `recital` | 5 | answered by a recitals file, which carries the as-published provenance while enacting neighbours carry the consolidation — the provenance-honest-citation test (D4), now run on both acts |
+| `direct` | 17 | one clearly correct unit; across scope, penalties, transparency, annexes, registration, GPAI, and on the GDPR side breach timing, lawful bases, fine tiers, DPIA trigger, transfers, DPO. NIS2 adds risk-management measures, the essential-entity fine tier, the essential/important split, the early-warning deadline, and one question aimed squarely at the Annex I sector table |
+| `neighbour_adversary` | 9 | questions whose surface vocabulary points at the wrong neighbouring article — what the lexical leg and reranker exist for. GDPR's are 18-not-17, 34-not-33, 20-not-15. NIS2's are Article 20 board duties against Article 21's measures, and the ENISA vulnerability database against incident reporting |
+| `recital` | 7 | answered by a recitals file, which carries the as-published provenance while enacting neighbours carry the consolidation — the provenance-honest-citation test (D4), now run on both acts |
 | `relocated` | 1 | Regulation (EU) 2026/1744 moved a provision (old 10(5) → new 4a); parametric memory answers with the old number, the corpus with the new — corpus must win |
-| `cross_instrument` | 3 | the same subject, or the same article NUMBER, live in both acts. q31 automated decisions (GDPR 22, decoys AI Act 86/14), q32 fundamental-rights assessment (AI Act 27, decoy GDPR 35), q33 right of access (GDPR 15, decoy AI Act 15 — same number, different provision). Retrieving the right act is the test |
+| `cross_instrument` | 5 | the same subject, or the same article NUMBER, lives in more than one act. q47/q48 are the pair that matters most: a ransomware incident hitting personal data, where NIS2 wants 24h/72h to the CSIRT and GDPR 72h to the supervisory authority. q31 automated decisions (GDPR 22, decoys AI Act 86/14), q32 fundamental-rights assessment (AI Act 27, decoy GDPR 35), q33 right of access (GDPR 15, decoy AI Act 15 — same number, different provision). Retrieving the right act is the test |
 | `repealed` | 2 | provisions the 2026 consolidation no longer contains (Article 10(5) by number, Annex I point 1); the honest output is a refusal or redirect **from the generator**, because retrieval legitimately succeeds |
-| `unanswerable` | 8 | out-of-corpus (NIS2, DORA, ePrivacy, Data Act, CRA, ISO 42001, ISO 27001, HIPAA), all near-domain on purpose. Four are caught by the gate; four are not, and refuse at generation instead — see the floor section |
+| `unanswerable` | 10 | out-of-corpus (DORA, ePrivacy, Data Act, CRA, CER, Cybersecurity Act, ISO 42001, ISO 27001, ISO 22301, HIPAA), all near-domain on purpose — NIS2's own sister Directive is among them. Four are caught by the gate; six are not, and refuse at generation instead — see the floor section |
 
 ## Fields
 
@@ -72,29 +72,41 @@ only became possible in M7 when a second act arrived:
    `refusal_source`: 4 must refuse at the gate, 2 must pass the gate and
    refuse in generation.
 
-## Floor tuning, and what M7 measured
+## Floor tuning, and what three instruments did to it
 
 In-corpus distribution: every `gate_expectation: pass` question. Out-of-corpus:
 every `gate_expectation: refuse` one. Run `python -m grc_rag.query.cli floor`.
 
-**M4's clean gap was a four-sample artifact.** With GDPR in the corpus and
-eight out-of-corpus rows instead of four, the clusters **overlap**: the Cyber
-Resilience Act question reached 0.6413, above three genuinely answerable
-questions (lowest in-corpus 0.6039). No threshold separated them. That is the
-honest measure of how well a dense cosine discriminates near-domain questions,
-and D7 predicted it in words ("permissive at the margin") on a sample too
-small to show it.
+**The gate has caught exactly four questions in every measurement, while
+the out-of-corpus set grew from four to ten.**
 
-The trade-off chosen, and why (decisions.md D10): the floor sits **below every
-in-corpus question**, because of the two errors only a false refusal is
-silent — the user is told the corpus does not cover something it does, and
-cannot tell that is wrong. Four near-domain out-of-corpus questions therefore
-reach the generator, whose grounding prompt refuses them. Those four were
-**reclassified to `refusal_source: generation` after the measurement**, on the
-same test q15/q16 use: the corpus genuinely holds material bearing on their
-vocabulary, so retrieval succeeding is legitimate. Each row's `notes` records
-that the relabel came after the score, because the ordering is the weak part
-of the argument and hiding it would be worse than the weakness.
+| | out-of-corpus rows | caught at the gate | lowest in-corpus |
+|---|---|---|---|
+| M4, one instrument (D7) | 4 | 4 | 0.6264 |
+| M7, two instruments (D10) | 8 | 4 | 0.6039 |
+| M9, three instruments (D13) | 10 | 4 | 0.5947 |
+
+The absolute number is static and the coverage is falling. M4's clean gap
+was a four-sample artifact; by M7 the clusters overlapped; by M9 the
+Cybersecurity Act question (q50) scored **0.7460 — above thirty-four of
+the forty-five answerable questions**, and no floor that caught it would leave
+the system usable. A dense cosine separates questions whose vocabulary the
+corpus does not share at all, and nothing finer.
+
+The trade-off chosen, and why (decisions.md D13, superseding D10): the
+floor sits **below every in-corpus question**, because of the two errors
+only a false refusal is silent — the user is told the corpus does not cover
+something it does, and cannot tell that is wrong. Six unanswerable questions
+therefore reach the generator, whose grounding prompt refuses them.
+
+Those six carry `refusal_source: generation` on the test q15/q16 use: the
+corpus genuinely holds material bearing on their subject, so retrieval
+succeeding is legitimate. **How that label was arrived at differs between
+them, and each row says which.** The four added in M7 were relabelled after
+their scores were seen — the ordering is the weak part of that argument. The
+two added in M9 had the reason written into their notes at Gate B, before
+any score existed; there the measurement confirmed a prediction instead of
+supplying one. That is the standard the next ones should meet.
 
 Do not quietly raise the floor until q15/q16 refuse at the gate — that masks
 the generation-honesty test rather than passing it.
@@ -106,6 +118,17 @@ the generation-honesty test rather than passing it.
   between a clean answer and a hedged refusal (q03, q10, q12–q14 each
   did at least once). The metrics in the committed report are one run's
   numbers, not a constant of the system.
+- **A question about an act the corpus does NOT hold can be answered
+  from one it does.** M9's worst result: q36 (Cyber Resilience Act) and
+  q49 (CER Directive) were answered rather than refused, out of NIS2's
+  vulnerability-disclosure and physical-environment provisions. Both are
+  `verified True` — every quote verbatim, every cited id resolving, the
+  instrument correctly named for the text quoted. The answers are wrong
+  anyway, because "product with digital elements" and "critical entity"
+  are terms of art belonging to acts that are not in the corpus. No
+  mechanical check in this pipeline catches that, and adding instruments
+  makes it likelier: there is always something topically adjacent to
+  answer from. Read refusal correctness with this in mind.
 - **The verifier cannot tell a quotation from a mention.** A correct
   refusal that names the missing term in quotes — q37 answered "none of
   them mention a \"Statement of Applicability\" or an \"information

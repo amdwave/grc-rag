@@ -618,3 +618,125 @@ D10's trigger — a third instrument moves both dense-score distributions,
 so the floor must be re-measured rather than assumed, and the eval set
 needs NIS2 questions plus replacements for q17, whose subject is now
 in-corpus.
+
+## D13 — Three instruments: the gate is a coarse filter, and says so
+
+**Status:** decided 2026-08-18, during M9, after Gate B sign-off on the
+51-question set. **Supersedes D10's value**; the reasoning in D7 about
+*what* the gate reads — best dense cosine alone, never the fused rank and
+never BM25 — still stands.
+
+**Context.** D10 named its own trigger: "a third instrument, which will
+move both distributions again." NIS2 fired it. The prediction recorded at
+the end of M8 was that the overlap would widen rather than close, because
+NIS2 shares heavy vocabulary with both existing acts and its nearest
+out-of-corpus neighbours are closer than anything in the M7 set.
+
+**Measured** (51 questions, best dense cosine each, before any
+relabelling):
+
+    out-of-corpus (6):  0.5170  0.5346  0.5656  0.5853  0.5927 │ 0.7460
+    in-corpus    (45):  0.5947 ....................................... 0.8052
+
+The prediction held. **q50 — how a European cybersecurity certification
+scheme is adopted — scored 0.7460, above thirty-four of the
+forty-five answerable questions.** No floor that caught it would leave the system
+usable; it would silently refuse three quarters of the questions the
+corpus can actually answer.
+
+**The trend is the finding, not the number.**
+
+| | out-of-corpus rows | caught at the gate | lowest in-corpus |
+|---|---|---|---|
+| D7 (M4, one instrument) | 4 | 4 | 0.6264 |
+| D10 (M7, two instruments) | 8 | 4 | 0.6039 |
+| D13 (M9, three instruments) | 10 | 4 | 0.5947 |
+
+The gate has caught **exactly four questions in every measurement** while
+the out-of-corpus set grew from four to ten. Its absolute reach is static
+and its coverage is falling. A dense cosine separates questions whose
+vocabulary the corpus does not share at all — DORA, ePrivacy, the Data
+Act, ISO 22301 — and nothing finer. That is a real capability, and it is
+a smaller one than "the gate refuses out-of-corpus questions" implies.
+
+**Decision: floor 0.59**, below every in-corpus question, on D10's
+unchanged asymmetry argument — of the two errors only a false refusal is
+silent. The gap left after reclassification is 0.5853 .. 0.5927 and its
+midpoint is 0.589; 0.59 is that rounded. **Read that gap sceptically:**
+its lower bound, 0.5927, is q49, an out-of-corpus question moved into the
+pass cluster by the reclassification below. The lowest genuine in-corpus
+score is q44 at 0.5947, so the real separation between the nearest
+out-of-corpus question and the nearest answerable one is 0.0020. That is
+noise, not discrimination.
+
+**Two rows reclassified, and this time the reason came first.** q49 (CER
+Directive, physical resilience) and q50 (Cybersecurity Act certification)
+move to `refusal_source: generation` on the D10 test — the corpus
+genuinely holds bearing material: NIS2 Article 21(2) requires physical and
+environmental security, and NIS2 Article 24 is titled "Use of European
+cybersecurity certification schemes". **Unlike the four relabelled in M7,
+the reason for both was written into the row's `notes` at Gate B, before
+any score was measured.** The measurement confirmed a prediction rather
+than supplying one. That is the standard the next reclassification should
+meet, and the M7 four are still marked as not having met it.
+
+**Cost accepted, and it is larger than D10 assumed.** Six of ten
+unanswerable questions now reach the generator. D10 said the grounding
+prompt was the second line of defence for exactly these. **The M9 eval
+run falsified that for two of them.**
+
+q36 (Cyber Resilience Act vulnerability handling) and q49 (CER Directive
+physical resilience) were **answered, not refused** — refusal correctness
+10/12. Neither answer is a fabrication: both are `verified True`, every
+quote is verbatim, every cited id resolves. They answer a question about
+one regime out of the text of another. q36 presents NIS2's coordinated
+vulnerability disclosure as the CRA obligations of "a manufacturer of a
+product with digital elements"; q49 offers NIS2 Article 21(2), which
+protects "the physical environment of network and information systems",
+as the resilience duties of a CER "critical entity". Both are terms of
+art belonging to acts this corpus does not contain.
+
+This is the multi-instrument failure mode, and it is worse than a bad
+refusal because every mechanical check passes. The verifier confirms the
+quotes. The citation contract names the right instrument — for the text
+quoted. The answer is still wrong, because the question named a regime
+nobody checked for. D11 fixed instrument confusion at the RENDERING
+layer; this is the same confusion at the REASONING layer, and nothing in
+the pipeline currently addresses it.
+
+The honest statement, which the README and eval README now carry: the
+gate is a coarse pre-filter for far-out-of-domain questions, the
+grounding prompt catches most of the rest, and **at three instruments
+neither reliably catches a question about a fourth regime whose subject
+matter the corpus partly covers.**
+
+**Two retrieval findings, recorded without acting on them.** q39 (NIS2
+risk-management measures) and q22 (GDPR lawful bases) both answered
+correctly from RECITALS while the enacting article — Article 21(2) and
+Article 6(1) respectively — never entered the top five. Twice, in two
+instruments: recital prose matches a natural-language "what must we do"
+question better than an enumerated enacting provision does. Neither
+answer key was widened afterwards to admit the recitals, because that
+would be editing the key to fit the result. It is a chunking or
+retrieval-weighting question for a later milestone.
+
+**One Gate B worry that measured clean.** `nis2#anx_I` is 12,759
+characters, by far the largest chunk in the corpus, and q42 was written
+to find out whether a whole sector grid in one vector still retrieves.
+It does: hit@5 and citation both correct. Spanned-table granularity is
+not a problem at this size, and the question stays in the set as the
+canary if that changes.
+
+**Trigger to revisit — and this one is a redesign, not a re-tune.** A
+fourth instrument will not improve any of this and will make the
+cross-regime failure above more likely, not less. Before adding one, the
+gate's mechanism should be reconsidered. The specific hypothesis worth
+testing first: **gate on the reranker's cross-encoder score rather than
+the dense cosine.** The cross-encoder judges query-document relevance
+directly, which is the question the gate is actually asking, where cosine
+similarity measures vocabulary overlap, which is the question it can
+answer. It is a hypothesis, not a known fix — it costs a rerank before
+the gate, and it must be measured against this same eval set before
+anything is claimed for it. D7's warning against gating on BM25 is not an
+argument against the cross-encoder: BM25 scores shared words, which is
+the failure mode; the cross-encoder is trained on relevance.

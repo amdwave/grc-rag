@@ -3,13 +3,11 @@
 RAG over regulatory primary sources — the actual text of the instruments,
 answered with a citation that can be checked against the article.
 
-Two instruments end to end — the EU AI Act and the GDPR, **1,349 chunks
-over four source documents** — a 38-question eval the query path is graded
-against, and three mechanical checks standing between the model and a
-plausible fabrication. A third, **NIS2, is fetched and converted** (two
-further documents, 46 articles and 144 recitals) but deliberately not yet
-chunked, indexed or evaluated, so every number below still describes the
-first two. *(Every count and result below is as of 2026-08-18.)*
+Three instruments end to end — the EU AI Act, the GDPR and NIS2 —
+**1,739 chunks over six source documents**, a 51-question eval the query
+path is graded against, and three mechanical checks standing between the
+model and a plausible fabrication. *(Every count and result below is as of
+2026-08-18.)*
 
 The second instrument is what makes the citation contract load-bearing
 rather than decorative: **Article 15 is accuracy and robustness in the AI
@@ -45,7 +43,7 @@ flowchart TD
         direction TB
         R["retrieve<br/>dense + BM25, RRF-fused, top 20"]
         RR["rerank<br/>bge-reranker-v2-m3, keep 5"]
-        G{"GATE<br/>best dense cosine >= 0.595?"}
+        G{"GATE<br/>best dense cosine >= 0.59?"}
         REF["refusal string<br/>no model request is made"]
         GEN["generate<br/>DeepSeek, temperature 0<br/>grounding prompt: the document wins"]
         V["VERIFY<br/>every quoted span verbatim<br/>in a retrieved chunk"]
@@ -76,12 +74,13 @@ answer is a fixed refusal string and **no request is sent**.
 *Prevents:* an out-of-corpus question coming back as a fluent answer
 assembled from the model's training data, wearing citations to whatever
 the retriever happened to return.
-The floor is 0.595, tuned from the eval set's measured in-corpus and
+The floor is 0.59, tuned from the eval set's measured in-corpus and
 out-of-corpus distributions and recorded with them in
-[D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact); an untuned floor is decoration. It is placed
-**below every in-corpus question** rather than midway between the
-clusters, because with two instruments the clusters overlap and only one
-of the two possible errors is silent — see the limitations.
+[D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so); an untuned floor is decoration. It is placed
+**below every in-corpus question**, because only one of the two possible
+errors is silent. At three instruments it catches four of the ten
+out-of-corpus questions and is honest about being a coarse pre-filter
+rather than a guarantee — see the limitations.
 
 **2. Quotes are verified verbatim against the chunks that were
 retrieved** — not merely against the corpus, which checks the citation
@@ -104,7 +103,7 @@ recital passed off as current consolidated law.
 
 ## What it scores
 
-Thirty-eight questions in seven kinds — direct, neighbour-adversary,
+Fifty-one questions in seven kinds — direct, neighbour-adversary,
 recital, relocated, cross-instrument, repealed, unanswerable — authored
 and signed off **before** anything was tuned against them. Question
 design, schema and the run properties worth knowing are in
@@ -113,24 +112,29 @@ design, schema and the run properties worth knowing are in
 
 | metric | result | denominator |
 | --- | --- | --- |
-| retrieval hit rate @5 | **27/28** | the 28 answerable questions |
-| citation correctness | **26/28** | same 28, including instrument and date basis |
-| refusal correctness | **10/10** | 4 refused at the gate, 6 in generation |
-| verification clean | **35/38** | every question |
+| retrieval hit rate @5 | **37/39** | the 39 answerable questions |
+| citation correctness | **36/39** | same 39, including instrument and date basis |
+| refusal correctness | **10/12** | 4 at the gate, 6 in generation, **2 not refused at all** |
+| verification clean | **47/51** | every question |
 
-Run 2026-08-18 against `deepseek-chat` at temperature 0. That refusal
-split is load-bearing: an out-of-corpus question should be refused *by
-the gate* with no model call, while questions about repealed provisions —
-and, since M7, near-domain questions the dense score cannot separate —
-retrieve **well** and must be refused *by the generator*. A floor tuned
-high enough to catch those would be tuned against the wrong thing.
+Run 2026-08-18 against `deepseek-chat` at temperature 0.
 
-The four misses are diagnosed rather than rounded off. q22 answered the
-GDPR's lawful bases correctly from Recitals 40 and 46 while the enacting
-Article 6(1) never entered the top five — a real retrieval finding, and
-the answer key was **not** widened afterwards to make it pass. q29 is an
-over-refusal: the right recital was retrieved and the generator declined
-anyway. q28 and q30 are the verifier catching quotes the model elided
+**Read the refusal row first, because it is the one that got worse.**
+Two out-of-corpus questions were answered rather than refused: one about
+the Cyber Resilience Act, answered out of NIS2's vulnerability-disclosure
+recitals, and one about the CER Directive, answered out of NIS2's
+physical-environment provisions. Both answers are `verified True` — every
+quote verbatim, every cited id resolving, the instrument correctly named
+for the text quoted — and both are wrong, because the question named an
+act this corpus does not hold. That failure mode arrives with the third
+instrument and no mechanical check in this pipeline sees it
+([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
+
+The remaining misses are diagnosed rather than rounded off. q22 and q39
+answered correctly from **recitals** while the enacting article never
+entered the top five — twice, in two different instruments; the answer
+keys were **not** widened afterwards to make them pass. q29 is an
+over-refusal. The rest are the verifier catching quotes the model elided
 with an ellipsis, which is the verifier working.
 
 **The worked example.** Drafting eval question q01 — before any tuning
@@ -168,6 +172,7 @@ it wrong.
 | [D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact) | The gate floor after GDPR: the clean gap was a small-sample artifact |
 | [D11](docs/decisions.md#d11--the-citation-names-the-instrument-and-the-eval-finally-checks-it) | The citation names the instrument, and the eval finally checks it |
 | [D12](docs/decisions.md#d12--nis2-the-rowspan-defect-and-the-third-kind-of-wrong) | NIS2, the rowspan defect, and the third kind of wrong |
+| [D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so) | Three instruments: the gate is a coarse filter, and says so |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -326,18 +331,27 @@ invisible in the totals and obvious on sight.
 Stated because a system whose limits are unwritten gets trusted past
 them.
 
-- **Two instruments, one language.** The EU AI Act and the GDPR in
-  English, 1,349 chunks — small enough that retrieval quality here says
-  little about how this behaves at ten instruments.
-- **The gate cannot separate near-domain questions, and no longer
-  pretends to.** With eight out-of-corpus rows instead of four, the
-  in-corpus and out-of-corpus dense-score clusters **overlap**: a Cyber
-  Resilience Act question scored 0.6413, above three genuinely answerable
-  ones. M4's clean gap was a four-sample artifact. The floor now sits
-  below every in-corpus question, so half the out-of-corpus set reaches
-  the generator by design and the grounding prompt is what refuses it
-  ([D10](docs/decisions.md#d10--the-gate-floor-after-gdpr-the-clean-gap-was-a-small-sample-artifact)). Of the two errors, only a false refusal is
-  silent — that asymmetry is the whole argument.
+- **Three instruments, one language.** The EU AI Act, the GDPR and NIS2
+  in English, 1,739 chunks — small enough that retrieval quality here
+  says little about how this behaves at ten instruments.
+- **A question about a FOURTH act can be answered from these three.**
+  The worst result in the M9 eval: questions about the Cyber Resilience
+  Act and the CER Directive were answered, fluently and with verbatim
+  verified quotes, out of adjacent NIS2 provisions. The verifier, the
+  citation contract and the gate all passed them. Every instrument added
+  makes this likelier, because there is always something topically
+  adjacent to answer from ([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
+- **The gate is a coarse pre-filter, and the measurement says so.** It
+  has caught **exactly four questions in every measurement** while the
+  out-of-corpus set grew from four to ten: 4/4 at one instrument, 4/8 at
+  two, 4/10 at three. A question about European cybersecurity
+  certification scored 0.7460 — above 34 of the 39 answerable ones — so
+  no usable floor catches it. A dense cosine separates questions whose
+  vocabulary the corpus does not share at all, and nothing finer. The
+  floor sits below every in-corpus question because of the two errors
+  only a false refusal is silent; the rest is the generator's job, which
+  it does imperfectly (above). Fixing this is a redesign, not a re-tune
+  ([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
 - **Nothing automated checks table STRUCTURE.** The coverage table sees a
   multiset of characters and the sequence check sees their order; a cell
   landing in the wrong column is neither. NIS2's annexes arrived with
@@ -357,7 +371,7 @@ them.
   refusal across identical runs (eval README). Temperature 0 reduces
   variance; it is not the groundedness guarantee. The verifier and the
   citation contract are.
-- **Thirty-eight questions, one author.** The eval is a regression instrument,
+- **Fifty-one questions, one author.** The eval is a regression instrument,
   not a benchmark, and it grades retrieval, citation and refusal — not
   whether the answer is good legal analysis.
 - **No CI, no HTTP service, manual commits**, all by design (D1, D2).
