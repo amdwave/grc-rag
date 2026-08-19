@@ -1,6 +1,7 @@
 # Defect classes — what can go wrong, and which check sees it
 
-Written during the M11 audit (2026-08-19, D14). The four defects this
+Written during the M11 audit (2026-08-19, D14); X1 and N4 closed in M12
+the same day (D15). The four defects this
 project has actually found — the 10^25 superscript (M4), the
 Cellar-route provenance loss (D9), the rowspan misalignment (D12), the
 cross-regime answers (D13) — each exposed a *class*, and two of the four
@@ -24,7 +25,7 @@ sees it today.
 | C4 | front matter asserts a falsehood (metadata not derived from the document) | **`amending_acts` empty match (D9)** | nothing; found by code reading. The second-opinion pattern exists for the fetch id, not for the amendment list | none |
 | K1 | chunk text loss/duplication/reorder | — | chunk report: every body verbatim, in order, no paragraph unclaimed | check |
 | K2 | wrong chunk boundaries (unit can't answer alone) | q22/q39 recital-wins symptom (D13) | human reads the dump; eval hit@5 indirectly | human/eval |
-| X1 | **index stale against committed chunks** | — | **nothing.** `rerun-identical.sh` stops at the chunk files; no hash ties `index/` to them. The verifier checks quotes against index-served bodies, so a stale index passes every downstream check self-consistently | **none** |
+| X1 | index stale against committed chunks | — | `tests/index-current.py` — the build stamps chunk-file SHA-256s + embedder into `index/source-manifest.json`; the check re-hashes and compares, `index-probe.sh` demonstrates it failing (D15) | check |
 | X2 | lexical leg silently absent | — | `index --smoke-only` identifier query (D6) | check (at build) |
 | R1 | retrieval miss (right chunk not in top-k) | q22, q39 | eval hit@5 | eval |
 | G1 | gate false refusal — silent to the user | — | `cli floor` distributions; eval | eval |
@@ -32,7 +33,7 @@ sees it today.
 | N1 | fabricated quote (≥ 20 chars, quoted) | — | verifier, verbatim against retrieved bodies | check |
 | N2 | fabricated *unquoted* claim (paraphrase) | — | grounding prompt + cited-id check only; README names the hole | none (named) |
 | N3 | fabricated citation id | — | cited-id check; unknown id fails the answer | check |
-| N4 | **quote attributed to the wrong retrieved chunk** | — | **nothing.** The verifier matches a span against *any* retrieved body and separately checks the adjacent id is retrieved; it never binds the two. A quote from chunk A cited as chunk B passes both, and a reader following the citation finds nothing | **none** |
+| N4 | quote attributed to the wrong retrieved chunk | — | `check_attribution()` requires the cited chunk to contain the span; fails the answer. Measured 0/290 attributed spans on 61 real answers — a guard against an unexercised class, not a description of the model (D15) | check |
 | N5 | cross-regime answer — right text, wrong law | **q36/q49 (M9, D13); q35 joins when the gate is off (D14)** | nothing mechanical; eval canaries the known rows. Verifier, citation contract and gate all pass it; the gate currently masks q35's exposure rather than seeing it | none (eval canaries) |
 | N6 | context silently truncated | — | `cli sentinel`, on demand | check (on demand) |
 | N7 | run-to-run flip (answer ↔ refusal at temp 0) | q03, q10, q12–q14, M4 | known property, measured, not checkable per run (eval README) | named |
@@ -43,30 +44,30 @@ sees it today.
 
 ## The reading that matters
 
-Classes with **no** mechanical coverage: C1, C3, C4, X1, N2, N4, N5.
-Four of the seven are known and accepted with eyes open (C1 canaried,
-C3 via D12, N2 in the README, N5 in D13). **X1 and N4 are new findings
-of the M11 audit and nobody had accepted them** — X1 especially: every
-other check in the pipeline assumes the index serves the committed
-chunks, and nothing makes that true.
+Classes with **no** mechanical coverage: C1, C3, C4, N2, N5.
 
-Cheap closures, recorded not built (they belong to a milestone that
-implements them):
+X1 and N4 were on that list when the M11 audit wrote it, as the two
+classes nobody had noticed, let alone accepted. **Both were closed in
+M12 (D15)** and now carry checks that have been watched failing. The
+five that remain are all previously known and accepted in writing: C1
+canaried by q01, C3 via D12, C4 by code reading, N2 in the README, N5
+in D13.
 
-- **X1**: the index build stamps the six chunk files' SHA-256 into a
-  small manifest inside `index/`; a standing check compares it against
-  the committed files. One hash comparison; kills the class.
-- **N4**: the verifier already knows which source matched each span;
-  requiring the id cited adjacent to the quote to *be* that source (or
-  its base chunk) is a stricter flag on data it already has.
+Two are conversion-side and cheap enough to build when they next
+matter:
+
 - **C3**: D12's sketch stands — re-parse each rendered table, assert
-  cell count against the source grid's expanded width × height.
+  cell count against the source grid's expanded width × height. Its
+  trigger is a fourth instrument with heavy tables.
 - **C4**: derive-and-compare like D8's discovery — the amendment list
   read from the modifiers table must agree with the consolidation id's
   own claim about what was folded in.
 
-C1 and N5 have no cheap mechanical closure. C1's honest mitigation is
-what already happens: named drop rules, reports read by eye, and an
-eval canary per caught instance. N5 is the multi-instrument failure
-mode; anything that closes it changes the answer path, which is a
-redesign decision (D14), not a check.
+C1, N2 and N5 have no cheap mechanical closure. C1's honest mitigation
+is what already happens: named drop rules, reports read by eye, and an
+eval canary per caught instance. N2 is inherent — an unquoted claim is
+not mechanically checkable, which is why the prompt demands quotes and
+the CLI flags an answer that carries none. N5 is the multi-instrument
+failure mode; anything that closes it changes the answer path, which is
+a redesign decision (D14), not a check, and D14's position is that it
+is the next design question this project should take on.

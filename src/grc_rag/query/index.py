@@ -31,8 +31,24 @@ INDEX IS CLASS C
 corpus and this file in a few minutes (decisions.md D0). The corpus is
 the artifact; this is a derived cache, and treating it as anything more
 is how a pipeline acquires a state nobody can reproduce.
+
+AND BECAUSE IT IS DERIVED, IT CAN BE STALE - which nothing could see
+
+Every other check in this repo assumes the index serves the committed
+chunks, and until D15 nothing made that true. A stale index is the
+quiet failure: the verifier matches quotes against bodies the INDEX
+served, so an index built from superseded chunks verifies its own
+answers perfectly and every downstream check passes self-consistently
+(defect-classes.md X1). A successful build therefore stamps
+`source-manifest.json` beside the table, recording the SHA-256 of each
+chunk file it actually read plus the embedder it used;
+`tests/index-current.py` is what compares that against what is
+committed. The manifest is removed before a rebuild and written only
+after the smoke test passes, so it never vouches for a table that
+failed one.
 """
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -63,6 +79,33 @@ CHUNK_FILES = [
 FIELDS = ("id", "instrument", "part", "kind", "unit_number", "marker",
           "anchor", "citation", "parent_path", "celex", "source_url",
           "version_date", "date_basis", "language", "chars", "body", "text")
+
+# What a built index claims about its own provenance. Lives INSIDE
+# index/ - it describes the derived artifact, not the corpus, so it is
+# Class C with everything else here and is never committed.
+MANIFEST = "source-manifest.json"
+
+
+def sha256(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def manifest(root, rows):
+    """The provenance record a rebuild stamps into the index.
+
+    The embedder is in here beside the file hashes because an index
+    built with a different model is stale in exactly the same way: the
+    table no longer holds what it claims to. D7/D10/D13 all say
+    re-measure the floor after an embedder change, and this is what
+    makes forgetting visible rather than silent.
+    """
+    return {
+        "written_by": "grc_rag.query.index",
+        "embed_model": MODEL,
+        "dim": DIM,
+        "rows": len(rows),
+        "chunk_files": {rel: sha256(root / rel) for rel in CHUNK_FILES},
+    }
 
 
 def load(root):
@@ -156,6 +199,14 @@ def main(argv=None):
 
     rows = load(root)
     print(f"index: {len(rows):,} chunks from {len(CHUNK_FILES)} files")
+
+    # Before the rebuild, not after: from here until the smoke test
+    # passes there is no manifest at all, so an interrupted or failing
+    # build leaves the index UNVOUCHED rather than vouched-for by a
+    # stale record. `index-current.py` tells those two states apart.
+    mpath = Path(a.index_dir) / MANIFEST
+    mpath.unlink(missing_ok=True)
+
     rows = embed(rows)
 
     # Not `if TABLE in db.list_tables()`: that returns a
@@ -177,7 +228,14 @@ def main(argv=None):
           f"full-text on `text`)")
 
     print("index: smoke test")
-    return 0 if smoke(table, rows) else 1
+    if not smoke(table, rows):
+        return 1
+
+    mpath.write_text(json.dumps(manifest(root, rows), indent=1) + "\n",
+                     encoding="utf-8")
+    print(f"  wrote {a.index_dir}/{MANIFEST}  ({len(CHUNK_FILES)} chunk "
+          f"file hashes + embedder) - `tests/index-current.py` checks it")
+    return 0
 
 
 if __name__ == "__main__":

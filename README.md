@@ -5,9 +5,16 @@ answered with a citation that can be checked against the article.
 
 Three instruments end to end — the EU AI Act, the GDPR and NIS2 —
 **1,739 chunks over six source documents**, a 51-question eval the query
-path is graded against, and three mechanical checks standing between the
-model and a plausible fabrication. *(Every count and result below is as of
-2026-08-18.)*
+path is graded against, and three mechanical checks in the query path
+between the model and a plausible fabrication. *(Every count and result
+below is as of 2026-08-18, except where a line says otherwise.)*
+
+Those three checks are load-bearing and they are not a barrier: an audit
+of this pipeline enumerated what can go wrong and found seven defect
+classes no mechanical check sees, two of them undiscovered until the
+audit ran. What each check does and does not cover is in
+[docs/defect-classes.md](docs/defect-classes.md), and the honest summary
+is in the limitations.
 
 The second instrument is what makes the citation contract load-bearing
 rather than decorative: **Article 15 is accuracy and robustness in the AI
@@ -86,7 +93,12 @@ rather than a guarantee — see the limitations.
 retrieved** — not merely against the corpus, which checks the citation
 for free. Every quoted span of 20 characters or more must appear in a
 chunk the model was actually given; a cited chunk id naming nothing
-retrieved fails the answer outright.
+retrieved fails the answer outright. Since
+[D15](docs/decisions.md#d15--closing-two-blind-spots-the-index-can-be-stale-and-a-real-quote-can-carry-the-wrong-id)
+the span must appear in **the chunk the answer pointed at**, not merely
+in some retrieved chunk: a real quotation printed beside the wrong id
+passed both halves of the old check and sent a reader to a chunk where
+the quote is not.
 *Prevents:* the quotation that is almost the law — a verb tense adapted
 to fit the sentence, an elision that drops a condition, a real article
 number attached to words from somewhere else.
@@ -173,6 +185,8 @@ it wrong.
 | [D11](docs/decisions.md#d11--the-citation-names-the-instrument-and-the-eval-finally-checks-it) | The citation names the instrument, and the eval finally checks it |
 | [D12](docs/decisions.md#d12--nis2-the-rowspan-defect-and-the-third-kind-of-wrong) | NIS2, the rowspan defect, and the third kind of wrong |
 | [D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so) | Three instruments: the gate is a coarse filter, and says so |
+| [D14](docs/decisions.md#d14--the-audit-the-gate-stays-its-demotion-is-falsified-and-the-blind-spots-get-names) | The audit: the gate stays, its demotion is falsified, and the blind spots get names |
+| [D15](docs/decisions.md#d15--closing-two-blind-spots-the-index-can-be-stale-and-a-real-quote-can-carry-the-wrong-id) | Closing two blind spots: the index can be stale, and a real quote can carry the wrong id |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -222,6 +236,9 @@ Export this once per shell, or `uv` will build a `.venv` in the repo:
     # (gitignored, ~4.6 MB, 41 s on an RTX 3500 Ada once BGE-M3 is cached)
     uv run python -m grc_rag.query.index
 
+    # …and confirm it is serving what is committed, not a stale build
+    uv run python tests/index-current.py
+
     uv run python -m grc_rag.query.cli ask \
         "what compute threshold makes a general-purpose AI model presumed to have systemic risk?"
 
@@ -248,23 +265,40 @@ rather than an HTTP service
 
 ### The checks
 
-Four standing checks, each failing differently, plus the query path's own
-selftest. All five pass as of 2026-08-18, the conversion checks now
-covering all four documents:
+Six standing checks, each failing differently, plus the query path's own
+selftest. All seven pass as of 2026-08-19:
 
     uv run python tests/check-imports.py         # the three buckets hold
     uv run bash tests/probe-check.sh             # …and that check can actually fail
     uv run bash tests/rerun-identical.sh         # byte-identical reruns; corpus not stale
     uv run python tests/seqcheck-corpus.py both  # source text present IN ORDER
-    uv run python -m grc_rag.query.cli selftest  # verifier normalisation and matching
+    uv run python tests/index-current.py         # the INDEX serves the committed chunks
+    uv run bash tests/index-probe.sh             # …and that check can actually fail
+    uv run python -m grc_rag.query.cli selftest  # verifier normalisation, matching, attribution
 
 `probe-check.sh` drops an unclassified module into the package and
 requires the import check to fail *naming it*, with a clean run either
 side — a control nobody has watched fail is a control nobody has tested.
+`index-probe.sh` does the same for index currency, doctoring the
+manifest rather than the corpus so a probe that dies halfway leaves
+nothing to clean up.
 `seqcheck-corpus.py` compares the corpus against an independent regex
 extraction of the same raw HTML, in order: every bag-of-words check is
 blind to text shredded into the wrong sequence, which is how a corrupted
 corpus passes three checks and still poisons every answer.
+
+`index-current.py` is the newest and closes the quietest hole
+([D15](docs/decisions.md#d15--closing-two-blind-spots-the-index-can-be-stale-and-a-real-quote-can-carry-the-wrong-id)).
+`index/` is Class C — gitignored and rebuildable — and nothing tied it
+to the chunk files in git. Edit a chunk, commit, forget to rebuild, and
+every other check still passes: the verifier matches quotes against the
+bodies the *index* served, so an index built from superseded chunks
+verifies its own answers and the whole pipeline agrees with itself while
+disagreeing with the repository. The build now stamps the six chunk
+files' SHA-256 and the embedder name into `index/source-manifest.json`;
+this compares them, and distinguishes "not built yet" (exit 2) from
+"disagrees" (exit 1), because a check that answers *no* the same way for
+both trains people to ignore it.
 
 ### Rebuilding the corpus from source
 
@@ -365,6 +399,15 @@ them.
   Quoting is what makes a claim mechanically checkable, which is why the
   prompt demands it — an answer that paraphrases everything is weakly
   checked, and the CLI says so rather than passing it silently.
+- **Seven defect classes have no mechanical check at all**, out of
+  twenty-four enumerated in
+  [docs/defect-classes.md](docs/defect-classes.md). Four are accepted
+  with eyes open and named elsewhere in this list; the other three are
+  the conversion classes a human catches at Gate A or not at all. The
+  inventory exists because two of the four real defects this project has
+  found passed every automated check, and enumerating the classes was
+  cheaper than discovering them one instrument at a time
+  ([D14](docs/decisions.md#d14--the-audit-the-gate-stays-its-demotion-is-falsified-and-the-blind-spots-get-names)).
 - **DeepSeek at temperature 0 is not run-to-run deterministic.** The
   committed report is one run's numbers, not a constant of the system:
   individual questions have flipped between a clean answer and a hedged

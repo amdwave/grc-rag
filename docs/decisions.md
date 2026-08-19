@@ -846,3 +846,129 @@ section already says this; the inventory now says it per class.
 **Trigger to revisit:** unchanged from D13 for the floor. For the
 mechanism: a fourth instrument, or building the N5 countermeasure —
 whichever comes first, and the audit's position is that N5 comes first.
+
+## D15 — Closing two blind spots: the index can be stale, and a real quote can carry the wrong id
+
+**Status:** decided 2026-08-19, during M12, implementing the two cheap
+closures D14 recorded and deliberately did not build. Both are defect
+classes the audit *discovered* rather than inherited — nobody had
+accepted them, because nobody had noticed them.
+
+**Context.** D14's inventory found seven classes with no mechanical
+coverage. Five were already known and accepted in writing. Two were not:
+
+- **X1, index staleness.** `index/` is Class C — gitignored,
+  rebuildable, no backup (D0). Correct classification, with an
+  unwritten consequence: nothing tied the built index to the chunk
+  files in git. `rerun-identical.sh` checks the converter and chunker
+  against the committed corpus and never opens the index.
+- **N4, quote-to-citation binding.** `verify()` asked whether *some*
+  retrieved chunk held a quoted span; the cited-id check asked whether
+  the ids named retrieved chunks. Neither asked whether *the chunk the
+  answer pointed at* held the quote.
+
+**Why X1 is the more serious of the two, and why it was invisible.**
+A stale index is self-consistent. The verifier matches quotes against
+the bodies the **index** served, so an index built from superseded
+chunks verifies its own answers perfectly; the eval grades ids that
+resolve — in the stale table; every check passes and the whole
+disagrees with the repository. Every other guarantee in this pipeline
+silently assumed a property nothing established.
+
+**Decision — X1: the build stamps its provenance, and a check compares
+it.** A successful build writes `index/source-manifest.json`: the
+SHA-256 of each of the six chunk files it read, plus the embedder name
+and dimension. `tests/index-current.py` re-hashes the committed files
+and compares.
+
+- **The manifest lives inside `index/`** and is therefore Class C with
+  everything else there. It describes the derived artifact, not the
+  corpus, so committing it would put a hash of the corpus in two places
+  and create exactly the two-owners-one-fact drift this project treats
+  as a defect.
+- **Removed before a rebuild, written only after the smoke test
+  passes.** A build that fails or is interrupted leaves the index
+  *unvouched* rather than vouched-for by a stale record.
+- **Three exit codes, because there are three states:** 2 = no index or
+  no manifest, nothing to compare; 1 = a manifest exists and disagrees;
+  0 = agrees. A check that answers "no" the same way for "you have not
+  built it yet" and "what you built disagrees with git" trains people
+  to ignore it — the same distinction `probe-check.sh` makes about
+  permission-denied versus file-not-found.
+- **The embedder is compared alongside the file hashes.** An index
+  built by a different model is stale in the same way even when every
+  chunk file matches, and the D13 floor is only meaningful against the
+  vectors BGE-M3 produced.
+- **`tests/index-probe.sh` demonstrates the control failing**, on
+  `probe-check.sh`'s three-run structure: clean, doctored, clean again.
+  It doctors the manifest rather than a committed chunk file — the same
+  comparison either way, but the manifest is gitignored, so a probe that
+  dies halfway leaves nothing in the corpus to clean up. Watched
+  failing on all three paths before shipping: a one-byte append to a
+  chunk file, a doctored hash, and a doctored embedder name.
+
+**Decision — N4: the quote must be in the chunk the answer pointed at.**
+`check_attribution()` pairs each quoted span with the first chunk id at
+or after it (the grounding prompt's rule 2 puts the id after the quote)
+and requires **that chunk to contain the span**.
+
+- **Asked as containment in the cited chunk, not as agreement with
+  `verify()`'s match.** Legal text repeats itself across chunks — a
+  recital and its enacting article share phrasing — so the first body
+  that happens to hold a span says nothing about which one the model
+  meant. "Follow the citation and find the quote" is both the reader's
+  question and immune to that ambiguity.
+- **It fails the answer, like a fabricated id**, because the failure is
+  the same from the reader's side: a citation that does not support the
+  claim beside it.
+- **Reported only for spans `verify()` accepted.** A span the model
+  elided or bracket-adapted is in no chunk at all, so it fails an
+  attribution test too — but that is the verifier's finding, already
+  reported, and repeating it as a second defect would inflate this
+  check with defects it did not find.
+- **A span with no id after it is unattributed, not misattributed** —
+  a weaker and different defect, reported as itself.
+
+**Measured before shipping, and the number is zero.** Replaying the 61
+answer texts captured during the D14 audit (51 eval + 10 probe) against
+freshly retrieved sources: 307 quoted spans, 290 carrying an id, **10
+attribution failures — every one of them the already-caught elision or
+bracket-adaptation kind, and none a true misattribution.** The selftest
+carries the case that separates the two checks: a span verbatim in
+`art_15(4)` printed beside `[ai-act#art_9]`, where `verify()` passes and
+attribution fails.
+
+**So this check is a guard against an unexercised class, and says so.**
+DeepSeek did not misattribute once in 290 opportunities. That is a
+reason to ship the check cheaply and not to claim it found anything —
+the class was real in the design and is currently not real in the
+output. If it never fires, that is the honest result.
+
+**The eval was deliberately NOT re-run.** Neither change touches
+retrieval or generation, and the attribution clause is measured to fire
+zero times on 61 real answers, so the committed report's numbers stand
+as of their date. A re-run would replace one dated number with another
+and — per the audit's own variance finding, 4 of 51 verification flags
+flipping across identical runs — the movement would be noise attributed
+to this milestone. The next deliberate re-run belongs to whatever
+changes retrieval or generation.
+
+**The README's claim was corrected.** It sold "three mechanical checks
+standing between the model and a plausible fabrication". The three are
+real, and *standing between* overstates them: D14 found seven classes
+no check sees. The sentence now says the checks are load-bearing and
+not a barrier, and points at the inventory.
+
+**Cost accepted.** The manifest is one more file a build writes, and a
+rebuild is now required after any chunk change before the checks pass —
+which is the point, but it does mean a chunker change is a two-step
+operation. `index-current.py` compares against the working tree, not
+against HEAD: it answers "does the index serve what you would query",
+which is the useful question and not quite the same as "what is
+committed".
+
+**Trigger to revisit:** N4 firing on a real answer — the first one is
+worth reading closely, because a model that misattributes once will do
+it in patterns. For X1, a second consumer of the index (the voice
+project, D1) would want the manifest read at query time rather than by
+a standing check.

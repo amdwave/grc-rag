@@ -19,8 +19,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from grc_rag.query.engine import (
-    REFUSAL, Answer, Engine, cite, cited_ids, extract_quotes, load_eval,
-    normalize, verify)
+    REFUSAL, Answer, Engine, check_attribution, cite, cited_ids,
+    extract_quotes, load_eval, normalize, verify)
 
 # Corpus-wide, not per-instrument: one eval set spans every act in the
 # index, because the questions that matter most are the ones that could
@@ -54,13 +54,17 @@ def render(a, out=sys.stdout):
         print(f"note cited id [{cid}] is more precise than the retrieved "
               f"chunk id - treated as its base chunk; the rendered citation "
               f"stays at the chunk's own anchor", file=out)
+    for span, cid, real in a.misattributed:
+        print(f"FAIL quote is verbatim but cited to the wrong chunk: printed "
+              f"beside [{cid}], actually in [{real}] - following the citation "
+              f"would not find it: {span[:60]}…", file=out)
     if not a.quotes:
         if a.mode == "answered":
             print("VERIFIER: no quoted span >= 20 chars to check - an answer "
                   "with no verbatim quote is a paraphrase; the grounding "
                   "prompt asks for quotes.", file=out)
-        return 1 if a.unknown_ids else 0
-    bad = len(a.unknown_ids)
+        return 1 if (a.unknown_ids or a.misattributed) else 0
+    bad = len(a.unknown_ids) + len(a.misattributed)
     for q, hit in a.quotes:
         if hit:
             print(f"OK   [{hit.id}] {q[:60]}…", file=out)
@@ -207,6 +211,9 @@ def cmd_eval(eng, path, report_path):
         for cid in a.refined_ids:
             lines.append(f"  - refined id cited (counted as its base "
                          f"chunk): `{cid}`")
+        for span, cid, real in a.misattributed:
+            lines.append(f"  - MISATTRIBUTED quote: verbatim in `{real}` "
+                         f"but cited to `{cid}` — “{span}”")
         for span, hit_src in a.quotes:
             if hit_src is None:
                 lines.append(f"  - unverified quote (full span): “{span}”")
@@ -323,6 +330,46 @@ def cmd_selftest(with_models):
                   'regarding errors" here.', [src])
     check("altered word inside quote still fails",
           [bool(h) for _, h in verb], [False])
+    # -- N4: the quote must be in the chunk the answer POINTED AT ------
+    # A second retrieved chunk, so "some chunk holds it" and "the cited
+    # chunk holds it" can disagree - which is the entire defect class.
+    other = S(id="ai-act#art_9", instrument="EU AI Act",
+              citation="Article 9", parent_path="",
+              date_basis="consolidation", version_date="2026-07-27",
+              body="A risk management system shall be established, "
+                   "implemented, documented and maintained.",
+              text="", dense=0.8, rerank=0.0)
+    pair = [src, other]
+    good = check_attribution(
+        'It says "as resilient as possible regarding errors, faults or '
+        'inconsistencies" [ai-act#art_15(4)].', pair)
+    check("quote beside its own chunk id passes",
+          [ok for _, _, _, ok in good], [True])
+    # THE case: the span is verbatim in art_15(4) and art_9 was really
+    # retrieved, so verify() and the cited-id check both pass. Only
+    # attribution sees that following the citation finds nothing.
+    wrong = 'It says "as resilient as possible regarding errors, faults ' \
+            'or inconsistencies" [ai-act#art_9].'
+    check("verify() passes the misattributed quote",
+          [bool(h) for _, h in verify(wrong, pair)], [True])
+    check("attribution FAILS the misattributed quote",
+          [ok for _, _, _, ok in check_attribution(wrong, pair)], [False])
+    check("misattribution names the cited chunk",
+          [cid for _, cid, _, _ in check_attribution(wrong, pair)],
+          ["ai-act#art_9"])
+    # A refined id is its base chunk (D11), not a misattribution.
+    refined = check_attribution(
+        'It says "shall be as resilient as possible" '
+        '[ai-act#art_15(4)(a)].', pair)
+    check("refined id resolves to its base chunk",
+          [ok for _, _, _, ok in refined], [True])
+    # No id beside the quote is a weaker, different defect: reported as
+    # unattributed rather than counted as a wrong attribution.
+    naked = check_attribution(
+        'It says "as resilient as possible regarding errors".', pair)
+    check("unattributed quote is not a misattribution",
+          [(cid, ok) for _, cid, _, ok in naked], [(None, True)])
+
     check("consolidation citation", cite(src),
           "EU AI Act, Article 15(4) (consolidated text as of 2026-07-27)")
     src.date_basis, src.version_date = "publication", "2024-07-12"

@@ -133,7 +133,11 @@ class Answer:
     quotes: list = field(default_factory=list)    # (span, Source-or-None) pairs
     unknown_ids: list = field(default_factory=list)  # cited ids not retrieved
     refined_ids: list = field(default_factory=list)  # over-precise but real
-    verified: bool = True     # False if any quote unmatched or id unknown
+    # (span, cited id, id that actually holds it) - real quotes printed
+    # beside the wrong chunk (D15, defect-classes.md N4)
+    misattributed: list = field(default_factory=list)
+    verified: bool = True     # False if any quote unmatched, id unknown,
+                              # or a real quote attributed to the wrong chunk
 
     @property
     def refused(self):
@@ -200,50 +204,131 @@ def _naive_pairs(seg, min_len):
     return spans
 
 
+def _segment_spans(seg, min_len, find):
+    """The quoted spans one line-segment contributes, each with the
+    source that holds it (or None).
+
+    Two readings, tried in order. First the OUTERMOST span (first quote
+    mark to last), which is what survives nested quotes. If that fails,
+    the naive left-to-right pairs, and the segment passes only if EVERY
+    pair verifies - one failing pair fails the segment, so an invented
+    quote cannot hide behind a verified neighbour. The fallback exists
+    because models answer in flowing prose with several real quotes per
+    paragraph, and the first eval run returned seven false alarms in
+    twenty questions - false alarms teach people to ignore the verifier,
+    which defeats it.
+
+    Shared by verify() and check_attribution() so the two can never
+    disagree about what counts as a quote; they ask different questions
+    about the same spans.
+    """
+    first, last = seg.find('"'), seg.rfind('"')
+    if first < 0 or last <= first:
+        return []
+    outer = seg[first + 1:last].strip()
+    if len(outer) < min_len:
+        return []
+    hit = find(outer)
+    if hit is not None:
+        return [(outer, hit)]
+    pairs = _naive_pairs(seg, min_len)
+    if pairs:
+        return [(p, find(p)) for p in pairs]
+    return [(outer, None)]
+
+
+def _finder(sources):
+    """Match a span against retrieved bodies, with this repo's
+    normalisation. Edge punctuation is typography, not content: models
+    close a quotation with "." where the source sentence runs on with
+    "," (three of four flags in the fourth eval run). Interior
+    punctuation still has to match exactly - "pose" for "poses" was the
+    fourth flag, and it stays a failure."""
+    haystacks = [(s, normalize(s.body)) for s in sources]
+
+    def find(span):
+        needle = normalize(span).strip(".,;: ")
+        return next((s for s, h in haystacks if needle and needle in h),
+                    None)
+
+    def contains(source, span):
+        needle = normalize(span).strip(".,;: ")
+        return bool(needle) and needle in normalize(source.body)
+
+    return find, contains
+
+
 def verify(answer_text, sources, min_len=20):
     """Every quoted span must appear verbatim in a RETRIEVED chunk's
     `body` - the act's words with nothing this pipeline added (the
     parent-path lives in `text`, deliberately not checked against).
 
-    Per segment, two readings, tried in order. First the OUTERMOST span
-    (first quote mark to last), which is what survives nested quotes.
-    If that fails, the naive left-to-right pairs, and the segment passes
-    only if EVERY pair verifies - one failing pair fails the segment, so
-    an invented quote cannot hide behind a verified neighbour. The
-    fallback exists because models answer in flowing prose with several
-    real quotes per paragraph, and the first eval run returned seven
-    false alarms in twenty questions - false alarms teach people to
-    ignore the verifier, which defeats it.
+    This asks whether SOME retrieved chunk holds the span.
+    check_attribution() asks the stricter question - whether the chunk
+    the answer POINTED AT holds it - and the two are separate because
+    they fail differently and a reader needs to know which.
     """
-    haystacks = [(s, normalize(s.body)) for s in sources]
+    find, _ = _finder(sources)
+    results = []
+    for seg in SEGMENT_RE.split(fold_punct(answer_text)):
+        results.extend(_segment_spans(seg, min_len, find))
+    return results
 
-    def find(span):
-        # Edge punctuation is typography, not content: models close a
-        # quotation with "." where the source sentence runs on with ","
-        # (three of four flags in the fourth eval run). Interior
-        # punctuation still has to match exactly - "pose" for "poses"
-        # was the fourth flag, and it stays a failure.
-        needle = normalize(span).strip(".,;: ")
-        return next((s for s, h in haystacks if needle and needle in h),
+
+def check_attribution(answer_text, sources, min_len=20):
+    """Does the chunk id printed beside a quote actually contain it?
+
+    THE HOLE THIS CLOSES (defect-classes.md N4). Until D15 the pipeline
+    checked two things that never met: verify() asked whether SOME
+    retrieved chunk held the span, and the cited-id check asked whether
+    the ids named retrieved chunks. A quote lifted verbatim from chunk A
+    and printed beside `[B]` satisfied both - the span is real, B was
+    retrieved - and a reader who follows the citation to B finds
+    nothing. The citation contract is the product; that is the failure
+    it cannot have.
+
+    Asked as CONTAINMENT IN THE CITED CHUNK, deliberately, rather than
+    by comparing against verify()'s match. Legal text repeats itself
+    across chunks - a recital and its enacting article share phrasing -
+    so verify() returning the first body that happens to hold a span
+    says nothing about which one the model meant. "Follow the citation
+    and find the quote" is both the reader's question and immune to
+    that ambiguity.
+
+    Attribution is the FIRST id marker at or after the span's end, per
+    the grounding prompt's rule 2 ("quote... followed by its chunk id").
+    A span with no marker after it in its segment is unattributed and
+    reported as such rather than guessed at: the prompt asks for the id
+    and its absence is a different, weaker defect than a wrong one.
+
+    Returns (span, cited_id-or-None, source-or-None, ok) per span, where
+    `ok` is False only for a span attributed to a chunk that does not
+    contain it. A refined id counts as its base chunk, per D11.
+    """
+    find, contains = _finder(sources)
+    by_id = {s.id: s for s in sources}
+
+    def base(cid):
+        if cid in by_id:
+            return by_id[cid]
+        return next((s for i, s in by_id.items() if cid.startswith(i + "(")),
                     None)
 
     results = []
     for seg in SEGMENT_RE.split(fold_punct(answer_text)):
-        first, last = seg.find('"'), seg.rfind('"')
-        if first < 0 or last <= first:
-            continue
-        outer = seg[first + 1:last].strip()
-        if len(outer) < min_len:
-            continue
-        hit = find(outer)
-        if hit is not None:
-            results.append((outer, hit))
-            continue
-        pairs = _naive_pairs(seg, min_len)
-        if pairs:
-            results.extend((p, find(p)) for p in pairs)
-        else:
-            results.append((outer, None))
+        marks = [(m.start(), m.group(0)[1:-1]) for m in MARKER_RE.finditer(seg)]
+        for span, _hit in _segment_spans(seg, min_len, find):
+            at = seg.find(span)
+            end = at + len(span) if at >= 0 else 0
+            cid = next((c for pos, c in marks if pos >= end), None)
+            if cid is None:
+                results.append((span, None, None, True))
+                continue
+            src = base(cid)
+            # An id naming nothing retrieved is already a hard failure
+            # in answer() - not this check's finding to duplicate.
+            results.append((span, cid, src,
+                            src is None or contains(src, span)))
     return results
 
 
@@ -381,11 +466,26 @@ class Engine:
                 continue
             (refined if any(c.startswith(k + "(") for k in known)
              else unknown).append(c)
+        # Misattribution is reported ONLY for spans verify() accepted.
+        # A span the model elided or bracket-adapted is in no chunk at
+        # all, so it fails an attribution test too - but that is the
+        # verifier's finding, already reported above, and repeating it
+        # here as a second defect would inflate this check with defects
+        # it did not find. Measured before shipping: on 61 real answers
+        # (307 spans, 290 carrying an id) every attribution failure was
+        # of that already-caught kind and none was a true misattribution
+        # (D15). The check is a guard against an unexercised class, not
+        # a description of how this model behaves.
+        placed = {span: hit for span, hit in quotes if hit is not None}
+        misattributed = [(span, cid, placed[span].id)
+                         for span, cid, _src, ok
+                         in check_attribution(text, sources)
+                         if not ok and span in placed]
         return Answer(question=question, mode=mode, text=text,
                       sources=sources, best_dense=best, floor=self.floor,
                       quotes=quotes, unknown_ids=unknown,
-                      refined_ids=refined,
-                      verified=not unknown
+                      refined_ids=refined, misattributed=misattributed,
+                      verified=not unknown and not misattributed
                       and all(hit is not None for _, hit in quotes))
 
     def dense_score(self, question):
