@@ -208,7 +208,8 @@ the register supersedes it where they disagree.
     corpus/                raw source, manifests, canonical markdown, chunks
     eval/                  the 51-question graded set, its README, the committed report
     diagnostics/           measurement instruments that are NOT the graded set
-    docs/                  decision register, defect-class inventory, original brief
+    docs/                  decision register, defect-class inventory, briefs
+    docs/kickoffs/         how each session was framed before it ran
 
 Those three package directories are the three import buckets — `convert`
 may not import a network module, a clock or an entropy source, because

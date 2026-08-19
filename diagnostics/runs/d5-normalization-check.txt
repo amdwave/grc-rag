@@ -1,0 +1,41 @@
+D5 normalization, checked against FOUR independent fetches
+==========================================================
+Recorded 2026-08-19 during the M13 migration, from scratch files that
+were deleted immediately afterwards. This note exists so the evidence
+survives the bytes.
+
+D5 says: EUR-Lex stamps a per-response Dynatrace RUM id into one
+<script data-dtconfig="..."> attribute, so two fetches of the same
+unchanged document differ in sha256 and agree in sha256_normalized.
+The entry demonstrates it with a pair. The scratch directory turned out
+to hold two further fetches of the SAME consolidated document, made
+during M2 exploration, which makes the demonstration a four-way one.
+
+Document: 02024R1689-20260727 (AI Act, consolidated), legal-content route.
+Rule applied: strip /\sdata-dtconfig="[^"]*"/ then SHA-256.
+
+  fetch                          raw sha256        normalized sha256
+  committed corpus/raw/...html   dcf7d6c5ba9f6619  32df6567c98a006f
+  scratch aiact-cons.html        161866cae8be287f  32df6567c98a006f
+  scratch cmp.html               4fd66ae8cde190b2  32df6567c98a006f
+  manifest-only (d5-fetch-pair)  a2ba185c2d01f1a9  32df6567c98a006f
+
+Four raw hashes, one normalized hash. The rule holds.
+
+Two details worth keeping:
+
+* cmp.html was 853,873 bytes - byte-for-byte the length recorded in
+  d5-fetch-pair.manifest.json, with a different hash. Same length,
+  different content is exactly what a fixed-width telemetry id
+  produces, and it is why a length check would not have caught this and
+  a hash does.
+* The raw bytes behind d5-fetch-pair.manifest.json were never kept;
+  its row above is the hash pair the manifest records, not a
+  recomputation.
+
+Why the sources were deleted rather than committed: 3.6 MB of
+near-duplicate fetches of two documents already committed under
+corpus/raw/, distinguished only by a per-response telemetry id. The
+accompanying *.headers files were deleted and NOT committed for a
+different reason - they carry live ELX_SESSIONID and AWS load-balancer
+session cookies, which do not belong in a public repo.
