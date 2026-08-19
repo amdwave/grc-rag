@@ -1,6 +1,6 @@
 """The terminal shell around `engine.Engine` - argparse stays out here (D1).
 
-    python -m grc_rag.query.cli ask "question"      retrieve, gate, answer, verify
+    python -m grc_rag.query.cli ask "question"      retrieve, gate, preflight, answer, verify
     python -m grc_rag.query.cli show "question"     retrieval only, no model call
     python -m grc_rag.query.cli repl                models load once, ask many
     python -m grc_rag.query.cli floor               where the gate floor belongs
@@ -20,7 +20,8 @@ from dotenv import load_dotenv
 
 from grc_rag.query.engine import (
     REFUSAL, Answer, Engine, check_attribution, cite, cited_ids,
-    extract_quotes, load_eval, normalize, verify)
+    declared_regimes, extract_quotes, is_general, load_eval, normalize,
+    regime_aliases, verify)
 
 # Corpus-wide, not per-instrument: one eval set spans every act in the
 # index, because the questions that matter most are the ones that could
@@ -44,6 +45,14 @@ def render(a, out=sys.stdout):
           + (f" >= floor {a.floor:.4f}" if a.floor is not None
              else "  (floor UNTUNED - the gate is decoration; run `floor`)"),
           file=out)
+    if a.mode == "refused-preflight":
+        print(f"[preflight] the question's regime is outside the corpus - "
+              f"declared: {a.preflight!r}; no documents call was made.",
+              file=out)
+        return 0
+    if a.preflight is not None:
+        print(f"[preflight] {', '.join(a.declared) or 'GENERAL (fails open)'}"
+              f"  ({a.preflight!r})", file=out)
     for s in a.sources:
         print(f"  [{s.id}] rerank {s.rerank:+.2f} dense {s.dense:.4f}  "
               f"{cite(s)}", file=out)
@@ -189,8 +198,16 @@ def cmd_eval(eng, path, report_path):
             cit += row["citation"]
             row["ok"] = row["hit@5"] and row["citation"]
         else:
-            want_mode = ("refused-gate" if q["refusal_source"] == "gate"
-                         else "refused-generation")
+            # Graded BY MECHANISM, not merely by refusing: each refuse
+            # row's `refusal_source` was assigned from the mechanism's
+            # definition and written into its notes BEFORE the M14 run
+            # (D13's ordering standard). A refusal from the wrong layer
+            # is a miss - that strictness is what caught q34's hedged
+            # non-refusal in the D14 control run.
+            want_mode = {"gate": "refused-gate",
+                         "preflight": "refused-preflight",
+                         "generation": "refused-generation"}[
+                q["refusal_source"]]
             row["refusal"] = row["ok"] = a.mode == want_mode
             refusal_rows.append(row)
         ver += a.verified
@@ -273,6 +290,49 @@ def cmd_selftest(with_models):
     def check(name, got, want):
         if got != want:
             fails.append(f"{name}\n     got:  {got!r}\n     want: {want!r}")
+
+    # -- the regime pre-flight's MATCHER, before anything else ---------
+    # D16's P8 held twice: both M13 defects were membership tests done
+    # sloppily, and each flipped a verdict. A production pre-flight
+    # fails at membership testing before it fails at regime
+    # identification, so the matcher is tested first.
+    regimes = regime_aliases(["EU AI Act", "GDPR", "NIS2"])
+    check("GENERAL is the whole reply, not a substring",
+          [is_general("GENERAL"), is_general(" general. "),
+           is_general("General-Purpose AI Code of Practice"),
+           is_general("GENERAL; GDPR")],
+          [True, True, False, False])
+    check("jurisdiction-qualified name is NOT the instrument it qualifies",
+          declared_regimes("UK GDPR", regimes), [])
+    check("unknown qualified instrument matches nothing",
+          declared_regimes("Swiss FADP", regimes), [])
+    check("plain name matches",
+          declared_regimes("GDPR", regimes), ["GDPR"])
+    check("multi-label: any overlap with the closed set",
+          declared_regimes("Cyber Resilience Act; NIS2 Directive", regimes),
+          ["NIS2"])
+    check("cross-instrument reply declares both",
+          declared_regimes("NIS2 Directive; GDPR", regimes),
+          ["GDPR", "NIS2"])
+    check("parenthetical gloss after the name",
+          declared_regimes("GDPR (General Data Protection Regulation)",
+                           regimes), ["GDPR"])
+    check("name inside a trailing gloss",
+          declared_regimes("EU data protection law (GDPR)", regimes),
+          ["GDPR"])
+    check("out-of-corpus instrument matches nothing",
+          declared_regimes("DORA", regimes), [])
+    check("celex-style alias still matches exactly",
+          declared_regimes("Regulation (EU) 2024/1689", regimes),
+          ["EU AI Act"])
+    # The closed set derives from the corpus's own `instrument` field;
+    # an instrument with no aliases must fail loudly, not match nothing.
+    try:
+        regime_aliases(["EU AI Act", "GDPR", "NIS2", "DORA"])
+        fails.append("alias table accepted an instrument it has no "
+                     "aliases for - a fourth instrument must trip this")
+    except KeyError:
+        pass
 
     check("curly quotes extracted",
           extract_quotes("He notes “the corpus is the current law” here."),

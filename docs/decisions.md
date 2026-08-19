@@ -1145,3 +1145,128 @@ same 23 rows plus the 51, and only then implement.
 **Trigger to revisit:** a fourth instrument, which changes the closed
 set and makes the alias table load-bearing rather than incidental; or
 the primary-instrument experiment above returning a better rule.
+
+## D17 — M14: the defining-instrument pre-flight ships, and q44 is its price
+
+**Status:** decided 2026-08-19, during M14, implementing D16's design
+after running the one experiment it required first. The decision rule
+was pre-registered in the M14 kickoff **before** the variant was
+measured; this entry records that both thresholds were met exactly, and
+that the rule being written first is the only reason adopting is not
+choosing the rule after the numbers.
+
+**Context.** D16 adopted the regime pre-flight on measurement but
+deliberately stopped at design, naming one cheap experiment that should
+precede implementation: ask for the instrument that DEFINES the
+question's terms rather than every instrument that is relevant, because
+three of the five hard-class misses (h04, h06, h08) named the correct
+out-of-corpus regime *alongside* an in-corpus one and the any-overlap
+rule passed them. The kickoff pre-registered: adopt only at **≥ 12 of
+15** hard-class negatives caught **and ≤ 1 false refusal in 59**
+in-corpus rows; two variants is measurement, a third is tuning and the
+road D14 closed.
+
+**Measured — the variant experiment** (110 questions: 51 eval, 26 audit
+negatives, 10 TOC probes, 23 hard class; runner and dated output
+committed as `diagnostics/runners/n5-preflight-defining.py` and
+`runs/n5-preflight-defining.json`, beside the D16 baseline rather than
+over it):
+
+| | D16 prompt | defining-instrument prompt |
+|---|---|---|
+| hard-class negatives caught | 10/15 | **12/15** |
+| false refusals, 59 in-corpus | 0 | **1 (q44)** |
+| audit negatives caught | 21/26 | 21/26 (n02 recovered, n17 lost to GENERAL) |
+| eval `unanswerable` caught | 10/10 | 10/10 |
+| q15/q16 (repealed) pass | yes | yes — P4 holds |
+
+The +2 are h04 and h08 — two of the three rows the experiment was
+designed for; their replies stopped naming the in-corpus neighbour, as
+predicted. h06 still names GDPR alongside the DMA. **12/15 and 1 false
+refusal sit exactly on both pre-registered lines.** Adopted per the
+rule as written.
+
+**The price, named.** q44's reply was "ENISA (European Union Agency for
+Cybersecurity)" — an agency, not an instrument. That is precisely the
+hazard D16 recorded against a naive first-named *rule*, arriving
+instead through the prompt: asked for the single defining instrument of
+the ENISA vulnerability-database question, the model names the body
+rather than NIS2. This is the silent error class (D10), it was
+pre-registered as acceptable at ≤ 1, and it shows up in the eval below
+as a real citation miss rather than being argued away.
+
+**Decision — implement, with the matcher built test-first.** D16's P8
+held twice in M13 (both defects were membership tests, both flipped
+verdicts), so `cli.py selftest` carries the matcher cases before the
+pipeline was touched:
+
+- **The GENERAL sentinel is the whole reply**, never a substring.
+- **A jurisdiction-qualified name is NOT the instrument it qualifies.**
+  The production matcher is **exact segment membership** — each
+  semicolon-separated name must BE one of ours, not contain one — which
+  kills "UK GDPR" generically, with no jurisdiction blocklist.
+- **The alias table derives from the corpus's own `instrument` field**:
+  Engine reads the distinct values from the index at load and
+  `regime_aliases()` raises on any instrument without documented
+  aliases — the fourth-instrument trip wire D16 asked for.
+- **Multi-label, any overlap passes; GENERAL fails open** — both
+  unchanged from D16, both P4-derived, not score-derived.
+
+Because the production matcher is stricter than the runners' substring
+matcher, `diagnostics/runners/n5-matcher-replay.py` replays **all 220
+committed replies** through it: the only verdict flips are n07
+("UK GDPR") in both runs, which is the intended qualified-name rule —
+so the measured numbers transfer, and the production pipeline catches
+22/26 audit negatives where the runners measured 21.
+
+Plumbing: `Answer.mode` gains `refused-preflight`, positioned after
+retrieval and the gate (N5 lives in questions that survive the gate;
+free refusals stay free), rendered by `cli.py`, mapped in `cmd_eval`,
+drawn as the fourth guard in the README pipeline. `defect-classes.md`
+N5 moves to `check (partial)` — the one row whose coverage is a rate.
+
+**The answer key, relabelled the D13 way.** Six eval rows (q20, q36,
+q37, q38, q49, q50) moved `refusal_source: generation → preflight`,
+each with the attribution reasoning written into its notes **before**
+the eval run, derived from the mechanism's definition — which
+instrument defines the question's terms — not from any run's output.
+q15/q16 were annotated must-PASS (their regime IS the AI Act) and kept
+at `generation`. The hard-class questions were **not** folded into the
+graded eval: that is a Gate B question requiring sign-off, deferred and
+flagged, not decided here.
+
+**Measured — the deliberate eval re-run, once, 2026-08-19:**
+
+| metric | 2026-08-18 | this run | why it moved |
+|---|---|---|---|
+| retrieval hit@5 | 37/39 | 37/39 | — |
+| citation correctness | 36/39 | **35/39** | q44 falsely refused — the pre-registered cost, now visible |
+| refusal correctness | 10/12 | **12/12** | q36 and q49, the rows N5 was named for, refuse at the pre-flight; all 12 land at their expected mechanism |
+| verification clean | 47/51 | 47/51 | four flags as before; q25/q30 flipped in, q37/q44 out — inside D14's measured 4-of-51 run variance, all known-benign classes |
+
+Every movement is explained by the change or by the measured variance;
+nothing was averaged away and nothing was re-run for a nicer number.
+
+**The claim, stated as narrowly as the evidence supports.** On the
+adversarially built hard class the pre-flight now refuses 12 of 15
+before any documents are sent; pairing it with the M13 shipped-pipeline
+run (a cross-run construction, same as D16's), the combined failure
+drops 5/15 → 1/15, h15 surviving — the model reads the repealed NIS1's
+"operator of essential services" as NIS2's, and no downstream check
+sees an attribution the model itself gets wrong. h06 and h14 still pass
+the pre-flight. **This reduces N5 and does not close it**, and ordinary
+named-act questions were already handled (25/26) before any of this.
+
+**Cost accepted.** One extra model call per gate-passing question. A
+model judgement in the refusal path, mitigated by grading against a
+closed set. One in-corpus eval row (q44) falsely refused in this run —
+and, per N7, that specific reply is one sample: the pre-flight verdict
+is now itself subject to run-to-run flips, which future eval reruns
+should read with the same care as verification flags. Two prompt
+variants were measured; per the kickoff rule, no third will be.
+
+**Trigger to revisit:** a fourth instrument (the closed set changes and
+`regime_aliases()` starts refusing to load until it is extended); a
+second agency-for-instrument reply of the q44 kind in real use, which
+would make the false-refusal rate a pattern rather than a sample; or a
+designed fix for the h15 residue, which today has none.

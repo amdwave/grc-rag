@@ -34,7 +34,7 @@ sees it today.
 | N2 | fabricated *unquoted* claim (paraphrase) | — | grounding prompt + cited-id check only; README names the hole | none (named) |
 | N3 | fabricated citation id | — | cited-id check; unknown id fails the answer | check |
 | N4 | quote attributed to the wrong retrieved chunk | — | `check_attribution()` requires the cited chunk to contain the span; fails the answer. Measured 0/290 attributed spans on 61 real answers — a guard against an unexercised class, not a description of the model (D15) | check |
-| N5 | cross-regime answer — right text, wrong law | **q36/q49 (M9, D13); q35 when the gate is off (D14); 5 of 15 hard-class rows (D16)** | nothing mechanical today; eval canaries the known rows. **A regime pre-flight is designed and measured (D16) — halves the hard-class rate, 0 false refusals in 59 — but deliberately not yet implemented.** Rate depends entirely on phrasing: 1/26 when the question names its act, 5/15 when the regime is carried in a term of art | none (design decided, D16) |
+| N5 | cross-regime answer — right text, wrong law | **q36/q49 (M9, D13); q35 when the gate is off (D14); 5 of 15 hard-class rows (D16)** | **the regime pre-flight, shipped in M14 (D17)**: a documents-free call names the instrument(s) defining the question's terms, graded against the corpus's closed set; no overlap → refusal before the documents call, GENERAL fails open. The defining-instrument prompt catches 12 of 15 hard-class rows at 1 false refusal in 59 (q44); h06/h14/h15 still pass — attribution judgement, not string matching — so the check REDUCES this class and does not close it. Eval canaries the six known rows as `refusal_source: preflight` | check (partial, D17) |
 | N6 | context silently truncated | — | `cli sentinel`, on demand | check (on demand) |
 | N7 | run-to-run flip (answer ↔ refusal at temp 0) | q03, q10, q12–q14, M4 | known property, measured, not checkable per run (eval README) | named |
 | T1 | citation more precise than the chunk (refined id) | routine | warned, counted as base chunk — a policy, not a defect (D11) | check |
@@ -44,14 +44,17 @@ sees it today.
 
 ## The reading that matters
 
-Classes with **no** mechanical coverage: C1, C3, C4, N2, N5.
+Classes with **no** mechanical coverage: C1, C3, C4, N2.
 
 X1 and N4 were on that list when the M11 audit wrote it, as the two
 classes nobody had noticed, let alone accepted. **Both were closed in
-M12 (D15)** and now carry checks that have been watched failing. The
-five that remain are all previously known and accepted in writing: C1
-canaried by q01, C3 via D12, C4 by code reading, N2 in the README, N5
-in D13.
+M12 (D15)** and now carry checks that have been watched failing. N5
+left the list in M14 (D17) with a partial closure: the regime
+pre-flight roughly halves the hard class and leaves a named residue
+(h06/h14/h15), so it is the one row whose coverage is a rate, not a
+guarantee. The four that remain are all previously known and accepted
+in writing: C1 canaried by q01, C3 via D12, C4 by code reading, N2 in
+the README.
 
 Two are conversion-side and cheap enough to build when they next
 matter:
@@ -63,11 +66,13 @@ matter:
   read from the modifiers table must agree with the consolidation id's
   own claim about what was folded in.
 
-C1, N2 and N5 have no cheap mechanical closure. C1's honest mitigation
+C1 and N2 have no cheap mechanical closure. C1's honest mitigation
 is what already happens: named drop rules, reports read by eye, and an
 eval canary per caught instance. N2 is inherent — an unquoted claim is
 not mechanically checkable, which is why the prompt demands quotes and
-the CLI flags an answer that carries none. N5 is the multi-instrument
-failure mode; anything that closes it changes the answer path, which is
-a redesign decision (D14), not a check, and D14's position is that it
-is the next design question this project should take on.
+the CLI flags an answer that carries none. N5 got the redesign D14
+called for — the pre-flight changes the answer path, which is why it
+took a milestone (M14) and a decision entry (D17) rather than a check;
+what survives it is the residue whose fix nobody has designed:
+attribution errors the model itself makes, like reading a repealed
+Directive's term as its successor's.

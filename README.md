@@ -5,11 +5,11 @@ answered with a citation that can be checked against the article.
 
 Three instruments end to end — the EU AI Act, the GDPR and NIS2 —
 **1,739 chunks over six source documents**, a 51-question eval the query
-path is graded against, and three mechanical checks in the query path
+path is graded against, and four mechanical checks in the query path
 between the model and a plausible fabrication. *(Every count and result
-below is as of 2026-08-18, except where a line says otherwise.)*
+below is as of 2026-08-19, except where a line says otherwise.)*
 
-Those three checks are load-bearing and they are not a barrier: an audit
+Those four checks are load-bearing and they are not a barrier: an audit
 of this pipeline enumerated what can go wrong and found seven defect
 classes no mechanical check sees, two of them undiscovered until the
 audit ran. What each check does and does not cover is in
@@ -52,26 +52,30 @@ flowchart TD
         RR["rerank<br/>bge-reranker-v2-m3, keep 5"]
         G{"GATE<br/>best dense cosine >= 0.59?"}
         REF["refusal string<br/>no model request is made"]
+        PF{"PRE-FLIGHT<br/>whose law is the question?<br/>no documents sent"}
+        REFP["refusal string<br/>the documents call is never made"]
         GEN["generate<br/>DeepSeek, temperature 0<br/>grounding prompt: the document wins"]
         V["VERIFY<br/>every quoted span verbatim<br/>in a retrieved chunk"]
         CI["CITE<br/>the chunk's own anchor<br/>+ its date basis"]
         R --> RR --> G
         G -- "below" --> REF
-        G -- "at or above" --> GEN --> V --> CI
+        G -- "at or above" --> PF
+        PF -- "regime outside the corpus" --> REFP
+        PF -- "overlap, or GENERAL (fails open)" --> GEN --> V --> CI
     end
 
     X -. "LanceDB table" .-> R
     CI --> A(["answer + checkable citations"])
 
     classDef guard stroke-width:4px
-    class G,V,CI guard
+    class G,PF,V,CI guard
 ```
 
-The three heavy-bordered steps are the mechanical guarantees. Each is a
+The four heavy-bordered steps are the mechanical guarantees. Each is a
 check with a distinguishable failure mode, not a prompt asking the model
 to behave.
 
-## Three guarantees, and the failure each prevents
+## Four guarantees, and the failure each prevents
 
 **1. The gate runs before any model call.** It reads retrieval's best
 *dense* cosine alone — never the fused rank, never BM25, which scores
@@ -89,7 +93,27 @@ errors is silent. At three instruments it catches four of the ten
 out-of-corpus questions and is honest about being a coarse pre-filter
 rather than a guarantee — see the limitations.
 
-**2. Quotes are verified verbatim against the chunks that were
+**2. The regime pre-flight asks whose law the question is, with no
+documents.** After the gate, before the documents call: one short model
+call names the instrument(s) that *define* the question's terms, and the
+reply is graded against the closed set the corpus holds — a membership
+test, not a judgement. No overlap → the fixed refusal string, and the
+expensive documents call is never made; a reply of GENERAL fails *open*,
+because a model failing to attribute a question is not evidence its
+regime is outside the corpus. This is the one place world knowledge is
+allowed in — for "whose law is this?" only, never for content. The
+grounding prompt's ban on outside knowledge is what makes the system
+honest about content and is also precisely what blinded it to regime
+identity; splitting the two questions is the design
+([D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise)).
+*Prevents (roughly half of):* a question about a regime the corpus does
+not hold, carried in a term of art rather than an act's name — "product
+with digital elements", "critical entity" — answered fluently and
+*verifiably* out of an adjacent act's text. Measured on an
+adversarially built hard class it catches 12 of 15, not all; the honest
+residue is in the limitations.
+
+**3. Quotes are verified verbatim against the chunks that were
 retrieved** — not merely against the corpus, which checks the citation
 for free. Every quoted span of 20 characters or more must appear in a
 chunk the model was actually given; a cited chunk id naming nothing
@@ -103,7 +127,7 @@ the quote is not.
 to fit the sentence, an elision that drops a condition, a real article
 number attached to words from somewhere else.
 
-**3. Citations are anchor- and provenance-honest.** The rendered citation
+**4. Citations are anchor- and provenance-honest.** The rendered citation
 is the chunk's own `citation` field plus the date basis it can honestly
 claim; nothing in the query path re-derives precision the chunk does not
 carry. An enacting-terms chunk cites the consolidated text as of
@@ -125,29 +149,34 @@ design, schema and the run properties worth knowing are in
 | metric | result | denominator |
 | --- | --- | --- |
 | retrieval hit rate @5 | **37/39** | the 39 answerable questions |
-| citation correctness | **36/39** | same 39, including instrument and date basis |
-| refusal correctness | **10/12** | 4 at the gate, 6 in generation, **2 not refused at all** |
+| citation correctness | **35/39** | same 39, including instrument and date basis |
+| refusal correctness | **12/12** | 4 at the gate, 6 at the pre-flight, 2 in generation — graded by mechanism |
 | verification clean | **47/51** | every question |
 
-Run 2026-08-18 against `deepseek-chat` at temperature 0.
+Run 2026-08-19 against `deepseek-chat` at temperature 0, the deliberate
+re-run after the regime pre-flight shipped
+([D17](docs/decisions.md#d17--m14-the-defining-instrument-pre-flight-ships-and-q44-is-its-price)).
 
-**Read the refusal row first, because it is the one that got worse.**
-Two out-of-corpus questions were answered rather than refused: one about
-the Cyber Resilience Act, answered out of NIS2's vulnerability-disclosure
-recitals, and one about the CER Directive, answered out of NIS2's
-physical-environment provisions. Both answers are `verified True` — every
-quote verbatim, every cited id resolving, the instrument correctly named
-for the text quoted — and both are wrong, because the question named an
-act this corpus does not hold. That failure mode arrives with the third
-instrument and no mechanical check in this pipeline sees it
-([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
+**Read the refusal and citation rows together, because the change that
+fixed one is what moved the other.** In the previous run (2026-08-18)
+two out-of-corpus questions — the Cyber Resilience Act and the CER
+Directive rows — were answered rather than refused, fluently, with
+verbatim verified quotes, out of adjacent NIS2 provisions. The regime
+pre-flight now refuses both before the documents call, and every refusal
+row lands at its expected mechanism. The cost is q44: the pre-flight's
+one measured false refusal (its reply was "ENISA" — an agency, not an
+instrument), which turns a previously correct citation into a refusal
+and accounts for the citation row's 36 → 35. That trade was
+pre-registered as acceptable before the numbers existed; the asymmetry
+argument and the residue it leaves are in
+[D17](docs/decisions.md#d17--m14-the-defining-instrument-pre-flight-ships-and-q44-is-its-price).
 
 The remaining misses are diagnosed rather than rounded off. q22 and q39
 answered correctly from **recitals** while the enacting article never
 entered the top five — twice, in two different instruments; the answer
 keys were **not** widened afterwards to make them pass. q29 is an
 over-refusal. The rest are the verifier catching quotes the model elided
-with an ellipsis, which is the verifier working.
+with an ellipsis or adapted mid-span, which is the verifier working.
 
 **The worked example.** Drafting eval question q01 — before any tuning
 existed — caught a live corpus defect: the converter was treating
@@ -188,6 +217,7 @@ it wrong.
 | [D14](docs/decisions.md#d14--the-audit-the-gate-stays-its-demotion-is-falsified-and-the-blind-spots-get-names) | The audit: the gate stays, its demotion is falsified, and the blind spots get names |
 | [D15](docs/decisions.md#d15--closing-two-blind-spots-the-index-can-be-stale-and-a-real-quote-can-carry-the-wrong-id) | Closing two blind spots: the index can be stale, and a real quote can carry the wrong id |
 | [D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise) | N5: the regime pre-flight, adopted narrowly, and what the measurement cost the premise |
+| [D17](docs/decisions.md#d17--m14-the-defining-instrument-pre-flight-ships-and-q44-is-its-price) | M14: the defining-instrument pre-flight ships, and q44 is its price |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -246,6 +276,7 @@ Export this once per shell, or `uv` will build a `.venv` in the repo:
         "what compute threshold makes a general-purpose AI model presumed to have systemic risk?"
 
 `ask` prints the answer, then the gate's dense score against the floor,
+then the pre-flight's declared regime(s),
 then every chunk the model was given with its scores and rendered
 citation, then one line per quoted span saying whether it verified. Its
 exit code is the verifier's: non-zero if any quote or cited id did not
@@ -253,7 +284,7 @@ check out.
 
 | command | what it does |
 | --- | --- |
-| `ask "…"` | retrieve, gate, answer, verify |
+| `ask "…"` | retrieve, gate, preflight, answer, verify |
 | `show "…"` | retrieval only — scores and chunks, no model call |
 | `repl` | models load once, ask many |
 | `floor` | score the eval set as the gate sees it; say where a floor belongs |
@@ -277,7 +308,7 @@ selftest. All seven pass as of 2026-08-19:
     uv run python tests/seqcheck-corpus.py both  # source text present IN ORDER
     uv run python tests/index-current.py         # the INDEX serves the committed chunks
     uv run bash tests/index-probe.sh             # …and that check can actually fail
-    uv run python -m grc_rag.query.cli selftest  # verifier normalisation, matching, attribution
+    uv run python -m grc_rag.query.cli selftest  # verifier + pre-flight matcher, attribution
 
 `probe-check.sh` drops an unclassified module into the package and
 requires the import check to fail *naming it*, with a clean run either
@@ -382,12 +413,14 @@ them.
   D16 measured: name the absent act ("what does DORA require…") and the
   system refuses 25 times out of 26; carry the regime implicitly in a
   term of art ("a manufacturer of a product with digital elements") and
-  it answers wrongly 5 times out of 15. A regime pre-flight that halves
-  the second figure at no measured cost in false refusals is designed
-  and measured in
-  [D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise),
-  and is **not yet implemented** — the numbers above are the system as
-  it stands.
+  it answers wrongly 5 times out of 15. The regime pre-flight
+  ([D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise) design,
+  [D17](docs/decisions.md#d17--m14-the-defining-instrument-pre-flight-ships-and-q44-is-its-price) shipped)
+  now refuses 12 of those 15 before any documents are sent, at one
+  measured false refusal in 59 in-corpus questions. **It reduces this
+  failure mode; it does not close it.** The residue is attribution the
+  model itself gets wrong — a repealed Directive's term read as its
+  successor's — and no check downstream of that judgement sees it.
 - **The gate is a coarse pre-filter, and the measurement says so.** It
   has caught **exactly four questions in every measurement** while the
   out-of-corpus set grew from four to ten: 4/4 at one instrument, 4/8 at
@@ -396,8 +429,10 @@ them.
   no usable floor catches it. A dense cosine separates questions whose
   vocabulary the corpus does not share at all, and nothing finer. The
   floor sits below every in-corpus question because of the two errors
-  only a false refusal is silent; the rest is the generator's job, which
-  it does imperfectly (above). Fixing this is a redesign, not a re-tune
+  only a false refusal is silent; the rest is now split between the
+  pre-flight and the generator, each imperfect in a different way
+  (above). The redesign D13 called for is the pre-flight; the floor
+  itself stays a coarse pre-filter
   ([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
 - **Nothing automated checks table STRUCTURE.** The coverage table sees a
   multiset of characters and the sequence check sees their order; a cell
@@ -412,11 +447,13 @@ them.
   Quoting is what makes a claim mechanically checkable, which is why the
   prompt demands it — an answer that paraphrases everything is weakly
   checked, and the CLI says so rather than passing it silently.
-- **Seven defect classes have no mechanical check at all**, out of
+- **Four defect classes have no mechanical check at all**, out of
   twenty-four enumerated in
-  [docs/defect-classes.md](docs/defect-classes.md). Four are accepted
-  with eyes open and named elsewhere in this list; the other three are
-  the conversion classes a human catches at Gate A or not at all. The
+  [docs/defect-classes.md](docs/defect-classes.md) — the inventory owns
+  that count. Seven had none when the M11 audit wrote it; M12 closed
+  two (D15) and M14 closed one partially (D17, a rate not a guarantee).
+  Of the four, one is inherent (unquoted paraphrase) and three are the
+  conversion classes a human catches at Gate A or not at all. The
   inventory exists because two of the four real defects this project has
   found passed every automated check, and enumerating the classes was
   cheaper than discovering them one instrument at a time

@@ -53,10 +53,14 @@ relative path.
     export UV_PROJECT_ENVIRONMENT=$HOME/.venvs/grc-rag
     uv run python diagnostics/runners/n5-analyse.py          # no API, no GPU
     uv run python diagnostics/runners/audit-gate-analysis.py # no API, no GPU
+    uv run python diagnostics/runners/n5-matcher-replay.py   # no API, no GPU
 
-Those two recompute their conclusions from committed JSON and are the
-cheap way to check this directory still reproduces. The rest load models
-or call DeepSeek:
+Those three recompute their conclusions from committed JSON and are the
+cheap way to check this directory still reproduces. The replay one is
+also the bridge to production: it feeds every committed pre-flight
+reply through `engine.declared_regimes` and fails if any verdict
+differs from the runner matcher's, other than the intended
+qualified-name flips (D17). The rest load models or call DeepSeek:
 
 | runner | cost | writes |
 |---|---|---|
@@ -66,6 +70,7 @@ or call DeepSeek:
 | `n5-baseline.py` | 26 API calls | `runs/n5-baseline.json` |
 | `n5-preflight.py` | 87 API calls (small) | `runs/n5-preflight.json` |
 | `n5-hardclass-run.py` | 46 API calls | `runs/n5-hardclass.json` |
+| `n5-preflight-defining.py` | 110 API calls (small) | `runs/n5-preflight-defining.json` |
 
 **Redirect with `python -u`** or the log stays empty until the process
 exits.

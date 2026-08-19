@@ -21,6 +21,13 @@ THE PIPELINE, and where each guarantee lives
              refusal test needs). Below the floor: fixed refusal string,
              no request made. An untuned floor is decoration; the tuned
              value and its evidence live in docs/decisions.md.
+  preflight  AFTER the gate, before the documents call: a short model
+             call carrying NO documents names the instrument(s) that
+             define the question's terms, matched against the closed
+             set the corpus holds. No overlap -> refuse without ever
+             sending the documents; GENERAL fails open. This is where
+             world knowledge is allowed in - for "whose law is this?"
+             only, never for content (D16/D17, defect class N5).
   generate   temperature 0, via the plain `openai` client against an
              OpenAI-compatible endpoint (DeepSeek default, D3). The
              grounding prompt orders the model to prefer the documents
@@ -104,6 +111,127 @@ documents provided below. No outside knowledge, no training-data recall.
    not appear in a provided document.
 5. Answer the question that was asked; do not survey the corpus."""
 
+# -- the regime pre-flight (defect-classes.md N5; D16/D17) --------------------
+#
+# The grounding prompt forbids outside knowledge - correct for content,
+# and the reason this system does not fabricate. But regime identity is
+# precisely what parametric memory is good at and the corpus is bad at:
+# "product with digital elements" occurs zero times in the corpus, and
+# any competent model knows whose term it is. So the two questions are
+# split: world knowledge answers "whose law is this?", the corpus alone
+# answers "what does it say?" (D16). This call carries NO documents, and
+# its reply is graded against the closed set of instruments the corpus
+# holds - a membership test, not a judgement, the same move D11 made
+# for citations.
+#
+# This is the DEFINING-INSTRUMENT variant, adopted over D16's
+# every-relevant-instrument prompt on the pre-registered M14 rule:
+# 12/15 hard-class negatives caught vs 10/15, at 1 false refusal in 59
+# in-corpus rows (q44, whose reply was "ENISA" - an agency, not an
+# instrument). Measured, not assumed; the runs are committed under
+# diagnostics/runs/.
+PREFLIGHT_PROMPT = """\
+You identify which body of law a compliance question belongs to. Use
+your general knowledge of legislation - this is NOT a retrieval task and
+there are no documents.
+
+Name the legal instrument(s) whose text DEFINES the concepts and terms
+of art the question uses - the instrument(s) the question is actually
+about. Do NOT add instruments that are merely relevant, related, or
+useful background: a practitioner might read several laws to answer
+properly, but name only the one(s) the question belongs to. Use each
+instrument's common name (for example "GDPR", "NIS2 Directive", "Cyber
+Resilience Act", "ISO/IEC 27001").
+
+Pay attention to TERMS OF ART. A question that never names an act may
+still belong to one: "product with digital elements", "critical entity"
+and "data processing service" are defined terms belonging to specific
+instruments, and the instrument that defines the term is the instrument
+the question is about.
+
+If the question genuinely belongs to more than one instrument - it asks
+how two regimes interact, or its terms are defined in different acts -
+name each of them. If the question is about a subject rather than any
+particular instrument, say GENERAL.
+
+Answer with instrument names on ONE line, separated by semicolons.
+Nothing else - no explanation, no citations."""
+
+# Documented additions to the corpus's own instrument names. The CLOSED
+# SET itself is not listed anywhere in code: Engine derives it from the
+# `instrument` field of the chunks the index actually serves, and an
+# instrument with no entry here fails loudly at load (regime_aliases).
+# A fourth instrument makes this table load-bearing rather than
+# incidental (D16's trigger), and it must not silently match nothing.
+# An alias must be a name for the SAME instrument and nothing else -
+# anything looser turns the membership test back into a judgement.
+REGIME_ALIASES = {
+    "EU AI Act": ["ai act", "artificial intelligence act",
+                  "regulation (eu) 2024/1689", "2024/1689", "aia"],
+    "GDPR": ["general data protection regulation",
+             "regulation (eu) 2016/679", "2016/679"],
+    "NIS2": ["nis 2", "nis2 directive", "nis 2 directive",
+             "directive (eu) 2022/2555", "2022/2555",
+             "network and information security directive"],
+}
+
+
+def regime_aliases(instruments):
+    """The alias table for exactly the instruments the corpus holds.
+
+    Keyed by the corpus's own `instrument` values so the closed set
+    comes from the data, not from a hand-kept list that can drift from
+    it. The canonical name is always its own alias; REGIME_ALIASES
+    carries the documented extras. An instrument this module has no
+    aliases for raises rather than silently matching nothing - for a
+    membership test, matching nothing means refusing everything about
+    that instrument, which is the silent error class (D10).
+    """
+    out = {}
+    for name in instruments:
+        if name not in REGIME_ALIASES:
+            raise KeyError(f"no pre-flight aliases for corpus instrument "
+                           f"{name!r} - add them to REGIME_ALIASES")
+        out[name] = [name.lower()] + REGIME_ALIASES[name]
+    return out
+
+
+def is_general(reply):
+    """The GENERAL sentinel is the WHOLE reply, never a substring:
+    `"GENERAL" in reply` also matches "General-Purpose AI Code of
+    Practice", and that one defect flipped a verdict in M13 (P8)."""
+    return reply.strip().upper().rstrip(".") == "GENERAL"
+
+
+def declared_regimes(reply, regimes):
+    """Which corpus instruments the pre-flight reply names.
+
+    The reply is a semicolon-separated list of instrument names, and a
+    segment must BE one of our names, not merely contain one. Both M13
+    matcher defects were substring tests done sloppily (P8), and the
+    second is the case this rule exists for: the alias `gdpr` matched
+    "UK GDPR", which is a DIFFERENT instrument. Exact segment
+    membership treats any qualified name as distinct without keeping a
+    blocklist of jurisdictions.
+
+    Each segment is tried three ways: as written; with a trailing
+    parenthetical gloss dropped ("GDPR (General Data Protection
+    Regulation)"); and as the gloss alone ("data protection law
+    (GDPR)"). A leading article is noise either way.
+    """
+    hits = set()
+    for raw in reply.split(";"):
+        seg = re.sub(r"\s+", " ", raw).strip().strip(".,:").lower()
+        seg = re.sub(r"^the\s+", "", seg)
+        candidates = {seg}
+        m = re.fullmatch(r"(.+?)\s*\(([^()]*)\)", seg)
+        if m:
+            candidates.update((m.group(1).strip(), m.group(2).strip()))
+        for name, aliases in regimes.items():
+            if candidates & set(aliases):
+                hits.add(name)
+    return sorted(hits)
+
 
 # -- structured results (D1: the core returns objects, never prints) ---------
 
@@ -125,11 +253,14 @@ class Source:
 @dataclass
 class Answer:
     question: str
-    mode: str             # "answered" | "refused-gate" | "refused-generation"
+    # "answered" | "refused-gate" | "refused-preflight" | "refused-generation"
+    mode: str
     text: str
     sources: list = field(default_factory=list)   # the Sources given to the model
     best_dense: float = 0.0
     floor: float = None
+    preflight: str = None      # the pre-flight's raw reply; None if gated
+    declared: list = field(default_factory=list)  # corpus instruments it named
     quotes: list = field(default_factory=list)    # (span, Source-or-None) pairs
     unknown_ids: list = field(default_factory=list)  # cited ids not retrieved
     refined_ids: list = field(default_factory=list)  # over-precise but real
@@ -372,6 +503,15 @@ class Engine:
         self.reranker = CrossEncoder(RERANK_MODEL)
         key = api_key or os.environ.get("DEEPSEEK_API_KEY", "")
         self.client = OpenAI(base_url=base_url, api_key=key or "unset")
+        # The pre-flight's closed set comes from the chunks the index
+        # actually serves, never from a list kept beside them - one
+        # owner per fact, and the index is the owner of what the corpus
+        # holds at query time. Raises at load if an instrument has no
+        # aliases (regime_aliases), which is the fourth-instrument trip
+        # wire D16 asked for.
+        instruments = sorted(set(
+            self.table.to_arrow().column("instrument").to_pylist()))
+        self.regimes = regime_aliases(instruments)
 
     # -- retrieval ----------------------------------------------------------
 
@@ -436,12 +576,34 @@ class Engine:
                             f"Question: {question}"}])
         return r.choices[0].message.content
 
+    def _preflight(self, question):
+        """The regime pre-flight call: no documents, world knowledge only."""
+        r = self.client.chat.completions.create(
+            model=self.chat_model, temperature=0,
+            messages=[{"role": "system", "content": PREFLIGHT_PROMPT},
+                      {"role": "user", "content": question}])
+        return r.choices[0].message.content.strip()
+
     def answer(self, question):
         sources, best = self.retrieve(question)
         if self.floor is not None and best < self.floor:
             return Answer(question=question, mode="refused-gate",
                           text=REFUSAL, sources=sources, best_dense=best,
                           floor=self.floor)
+        # The pre-flight runs AFTER the gate, never before: the gate
+        # refuses at zero API cost, and N5 lives in questions that
+        # survive it (D16). GENERAL fails OPEN - the model failing to
+        # attribute a question is not evidence its regime is outside
+        # the corpus, and the strict reading falsely refused a repealed
+        # row whose refusal must come from generation (P4). Any overlap
+        # with the closed set passes: a cross-instrument question
+        # genuinely belongs to two regimes.
+        reply = self._preflight(question)
+        hits = declared_regimes(reply, self.regimes)
+        if not hits and not is_general(reply):
+            return Answer(question=question, mode="refused-preflight",
+                          text=REFUSAL, sources=sources, best_dense=best,
+                          floor=self.floor, preflight=reply)
         text = self._generate(question, sources)
         quotes = verify(text, sources)
         # A refusal is the whole answer, and it leads (grounding prompt
@@ -483,6 +645,7 @@ class Engine:
                          if not ok and span in placed]
         return Answer(question=question, mode=mode, text=text,
                       sources=sources, best_dense=best, floor=self.floor,
+                      preflight=reply, declared=hits,
                       quotes=quotes, unknown_ids=unknown,
                       refined_ids=refined, misattributed=misattributed,
                       verified=not unknown and not misattributed

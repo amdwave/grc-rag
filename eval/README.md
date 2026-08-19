@@ -26,7 +26,7 @@ only became possible in M7 when a second act arrived:
 | `relocated` | 1 | Regulation (EU) 2026/1744 moved a provision (old 10(5) → new 4a); parametric memory answers with the old number, the corpus with the new — corpus must win |
 | `cross_instrument` | 5 | the same subject, or the same article NUMBER, lives in more than one act. q47/q48 are the pair that matters most: a ransomware incident hitting personal data, where NIS2 wants 24h/72h to the CSIRT and GDPR 72h to the supervisory authority. q31 automated decisions (GDPR 22, decoys AI Act 86/14), q32 fundamental-rights assessment (AI Act 27, decoy GDPR 35), q33 right of access (GDPR 15, decoy AI Act 15 — same number, different provision). Retrieving the right act is the test |
 | `repealed` | 2 | provisions the 2026 consolidation no longer contains (Article 10(5) by number, Annex I point 1); the honest output is a refusal or redirect **from the generator**, because retrieval legitimately succeeds |
-| `unanswerable` | 10 | out-of-corpus (DORA, ePrivacy, Data Act, CRA, CER, Cybersecurity Act, ISO 42001, ISO 27001, ISO 22301, HIPAA), all near-domain on purpose — NIS2's own sister Directive is among them. Four are caught by the gate; six are not, and refuse at generation instead — see the floor section |
+| `unanswerable` | 10 | out-of-corpus (DORA, ePrivacy, Data Act, CRA, CER, Cybersecurity Act, ISO 42001, ISO 27001, ISO 22301, HIPAA), all near-domain on purpose — NIS2's own sister Directive is among them. Four are caught by the gate; six retrieve too well for any usable floor and are expected at the regime pre-flight since M14 (D17) — see the floor section |
 
 ## Fields
 
@@ -45,12 +45,21 @@ only became possible in M7 when a second act arrived:
 - `expected_date_basis` — `consolidation` (current **as of** 2026-07-27) or
   `publication` (the act **as published**, 2024-07-12). A rendered citation
   that shows a date must say which (D4). Recital questions are the live test.
-- `gate_expectation` / `refusal_source` — the load-bearing distinction:
-  - `unanswerable` → gate refuses (dense score below floor, no model call);
-  - `repealed` → gate PASSES (Article 10 / Annex I chunks retrieve well) and
-    the refusal must come from generation honesty. Tuning the floor high
-    enough to "catch" q15/q16 would be tuning the wrong knob — these two are
-    excluded from the floor's out-of-corpus distribution by design.
+- `gate_expectation` / `refusal_source` — the load-bearing distinction,
+  three mechanisms since M14 (D17):
+  - `gate` — dense score below floor, no model call (four far-band rows);
+  - `preflight` — the gate passes, and the regime pre-flight names an
+    instrument outside the closed set the corpus holds (six rows; each
+    row's notes carry the attribution reasoning, written from the
+    mechanism's definition before the M14 run — D13's ordering standard);
+  - `generation` (`repealed` rows) — gate AND pre-flight must PASS
+    (Article 10 / Annex I chunks retrieve well, and the regime IS the AI
+    Act) and the refusal must come from generation honesty. Tuning the
+    floor high enough to "catch" q15/q16 would be tuning the wrong knob —
+    these two are excluded from the floor's out-of-corpus distribution by
+    design — and a pre-flight that refuses them has broken this test
+    (pre-registration P4 disqualified a better-scoring policy on exactly
+    that ground).
 - `distractors` — the neighbouring unit(s) the question is built to pull;
   for error analysis, not scoring.
 - `redirect_ok` — for `repealed` only: a redirect the corpus supports counts
@@ -68,9 +77,10 @@ only became possible in M7 when a second act arrived:
    third clause is not a restatement of the first: the id check passes
    whatever the renderer prints, so only this one fails if the renderer
    stops naming the instrument.
-3. **Refusal correctness** — the 6 `refuse` questions, split by
-   `refusal_source`: 4 must refuse at the gate, 2 must pass the gate and
-   refuse in generation.
+3. **Refusal correctness** — the 12 `refuse` questions, graded BY
+   MECHANISM per `refusal_source`: 4 must refuse at the gate, 6 at the
+   regime pre-flight, and 2 (`repealed`) must pass both and refuse in
+   generation. A refusal from the wrong layer is a miss.
 
 ## Floor tuning, and what three instruments did to it
 
@@ -97,16 +107,20 @@ The trade-off chosen, and why (decisions.md D13, superseding D10): the
 floor sits **below every in-corpus question**, because of the two errors
 only a false refusal is silent — the user is told the corpus does not cover
 something it does, and cannot tell that is wrong. Six unanswerable questions
-therefore reach the generator, whose grounding prompt refuses them.
+therefore pass the gate; since M14 (D17) they are expected at the regime
+pre-flight, which names the instrument the question's terms belong to and
+refuses on no overlap with the corpus's closed set.
 
-Those six carry `refusal_source: generation` on the test q15/q16 use: the
-corpus genuinely holds material bearing on their subject, so retrieval
-succeeding is legitimate. **How that label was arrived at differs between
-them, and each row says which.** The four added in M7 were relabelled after
-their scores were seen — the ordering is the weak part of that argument. The
-two added in M9 had the reason written into their notes at Gate B, before
-any score existed; there the measurement confirmed a prediction instead of
-supplying one. That is the standard the next ones should meet.
+Those six carried `refusal_source: generation` until M14 on the test
+q15/q16 use: the corpus genuinely holds material bearing on their subject,
+so retrieval succeeding is legitimate. **How each label was arrived at
+differs between them, and each row says which.** The four added in M7 were
+relabelled after their scores were seen — the ordering is the weak part of
+that argument. The two added in M9 had the reason written into their notes
+at Gate B, before any score existed. The M14 move to `preflight` was
+derived from the mechanism's definition and written into each row's notes
+before the eval run; the run then confirmed or refuted a prediction rather
+than supplying a label.
 
 Do not quietly raise the floor until q15/q16 refuse at the gate — that masks
 the generation-honesty test rather than passing it.
