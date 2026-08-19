@@ -34,7 +34,7 @@ sees it today.
 | N2 | fabricated *unquoted* claim (paraphrase) | — | grounding prompt + cited-id check only; README names the hole | none (named) |
 | N3 | fabricated citation id | — | cited-id check; unknown id fails the answer | check |
 | N4 | quote attributed to the wrong retrieved chunk | — | `check_attribution()` requires the cited chunk to contain the span; fails the answer. Measured 0/290 attributed spans on 61 real answers — a guard against an unexercised class, not a description of the model (D15) | check |
-| N5 | cross-regime answer — right text, wrong law | **q36/q49 (M9, D13); q35 joins when the gate is off (D14)** | nothing mechanical; eval canaries the known rows. Verifier, citation contract and gate all pass it; the gate currently masks q35's exposure rather than seeing it | none (eval canaries) |
+| N5 | cross-regime answer — right text, wrong law | **q36/q49 (M9, D13); q35 when the gate is off (D14); 5 of 15 hard-class rows (D16)** | nothing mechanical today; eval canaries the known rows. **A regime pre-flight is designed and measured (D16) — halves the hard-class rate, 0 false refusals in 59 — but deliberately not yet implemented.** Rate depends entirely on phrasing: 1/26 when the question names its act, 5/15 when the regime is carried in a term of art | none (design decided, D16) |
 | N6 | context silently truncated | — | `cli sentinel`, on demand | check (on demand) |
 | N7 | run-to-run flip (answer ↔ refusal at temp 0) | q03, q10, q12–q14, M4 | known property, measured, not checkable per run (eval README) | named |
 | T1 | citation more precise than the chunk (refined id) | routine | warned, counted as base chunk — a policy, not a defect (D11) | check |

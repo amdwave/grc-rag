@@ -972,3 +972,174 @@ worth reading closely, because a model that misattributes once will do
 it in patterns. For X1, a second consumer of the index (the voice
 project, D1) would want the manifest read at query time rather than by
 a standing check.
+
+## D16 — N5: the regime pre-flight, adopted narrowly, and what the measurement cost the premise
+
+**Status:** decided 2026-08-19, during M13, the design session D14 named
+as the next question. **Design and measurement only — deliberately not
+implemented**, for the reason in "What happens next" below.
+
+The predictions were pre-registered before each run and are committed
+unedited at [n5-preregistration.md](n5-preregistration.md), including
+the three that were falsified; this entry owns the decision and the
+results. Raw artifacts (run scripts, JSON output, the 23-question
+hard-class set) stay in `/mnt/d/.staging/n5-*` as diagnostics and are
+not folded into the graded eval.
+
+**Context.** D14 recorded N5 — a question about a regime the corpus does
+not hold, answered fluently out of an adjacent one — as the highest-value
+open problem, and constrained its solution: whatever closes it must
+operate on **regime identity**, not on retrieval scores, because D14
+closed the score-threshold direction on measurement.
+
+**Discovery first, and it reframed the problem.** Reading the ten
+`unanswerable` rows shows the failures and the successes splitting on a
+single line: **whether the question names its own regime.**
+
+| | outcome |
+|---|---|
+| q18 DORA, q20 ISO 42001, q34 ePrivacy, q51 ISO 22301 — act named | refused correctly |
+| **q36 CRA, q49 CER, q35 Data Act — regime carried in a term of art** | **answered wrongly** |
+
+The generator already handles a named act. The blind spot is regime
+identity carried implicitly, in a term like "product with digital
+elements", "critical entity" or "data processing service".
+
+**The hypothesis, and why it inverts a standing rule.** The grounding
+prompt forbids outside knowledge — correct for content, and the reason
+this system does not fabricate. But regime identity is precisely what
+parametric memory is good at and the corpus is bad at: any competent
+model knows whose term "product with digital elements" is. **The
+anti-fabrication rule is therefore the cause of the N5 blind spot**,
+because it denies the pipeline the one faculty that resolves it. So
+split the two questions: **world knowledge for "whose law is this?",
+corpus only for "what does it say?"**
+
+**The design.** A short call carrying **no documents**, asking the model
+to name the instruments the question concerns; the reply is then matched
+against the closed set the corpus holds. No overlap → refuse, without
+ever sending the documents. It is a membership test rather than a
+judgement because the corpus holds exactly three instruments — the same
+move D11 made for citations, putting the claim where a check can reach
+it.
+
+**The methodological finding, which is the most transferable thing here.**
+The 26 out-of-corpus questions written during the M11 audit were treated
+as a holdout. **They are not a holdout for this question.** Almost all of
+them name their regime explicitly, because M11 authored them to score a
+*gate* — a similarity threshold, where phrasing hardly matters. Measured:
+the shipped pipeline refuses **25 of 26**. The sharpest evidence is a
+same-regime pair — q36 asks about "a manufacturer of a product with
+digital elements" and is answered wrongly; **n10 asks the Cyber
+Resilience Act by name and is refused.** A test set inherited from a
+different question can look like evidence and measure nothing. Building
+`n5-hardclass.jsonl` — 15 out-of-corpus questions on the q36/q49 recipe
+plus 8 in-corpus rows phrased the same way — was the session's real work.
+
+**Measured.**
+
+| set | shipped pipeline fails | pre-flight catches | combined fails |
+|---|---|---|---|
+| audit negatives, act named (26) | 1 | 1 of that 1 | **0/26** |
+| eval `unanswerable` (10) | 2 (q36, q49) | 4/4 of the hard subset | **0/10** |
+| **hard class, act unnamed (15)** | **5** | 10/15 | **2/15** |
+
+False refusals: **0 out of 59 in-corpus questions** (51 across the eval
+and probes, 8 in the hard class).
+
+All four cases no score threshold can reach — q35, q36, q49, q50 — are
+identified with the correct regime named: Data Act, Cyber Resilience
+Act, Critical Entities Resilience Directive, Cybersecurity Act. q50
+scored 0.7460 on the dense cosine, above thirty-four of the
+forty-five answerable questions, and is not reachable by any floor at
+all.
+
+**Decision: adopt, positioned after the gate, with a narrow claim.**
+
+- **It runs AFTER retrieval and the gate, not before.** The gate refuses
+  12 of 26 negatives at zero API cost on local GPU, and D3's
+  zero-recurring-spend constraint means free refusals are worth keeping.
+  N5 lives specifically in questions that *survive* the gate — q36, q49
+  and q50 all passed it comfortably — so the pre-flight only ever costs
+  money where it can help, and remains far cheaper than the generation
+  call it prevents.
+- **It is a second gate, not a replacement.** It fails differently from
+  everything else: the dense gate sees vocabulary distance, the
+  grounding prompt sees whether documents bear on the question, and this
+  sees whose law the question is. Three independent failure modes is the
+  property this project has valued since D6.
+- **GENERAL fails OPEN.** When the model cannot attribute a question to
+  any instrument, that is not evidence it belongs to one the corpus
+  lacks. Derived from D10's asymmetry — only a false refusal is silent —
+  and **not** from these numbers: the strict reading scores better on
+  negatives (32/36 vs 31/36) and was rejected anyway, because it
+  falsely refuses q16, a `repealed` row whose refusal must come from
+  generation (eval README). Pre-registration P4 disqualified it before
+  the numbers existed.
+- **Multi-label: any overlap passes.** A cross-instrument question
+  genuinely belongs to two regimes; refusing because it *also* touches
+  an absent act would break q47 and every `cross_instrument` row.
+
+**The claim, stated as narrowly as the evidence supports.** The
+pre-flight roughly halves the hard-class failure rate, 5/15 → 2/15, at
+no measured cost in false refusals. **It does not solve N5.** Two
+failures survive, and both are instructive: h04 names "DORA; NIS2
+Directive" — correct regime named, and the any-overlap rule passes it —
+and h15 asks about an "operator of essential services", which the model
+attributes to NIS2 and the generator then answers, silently equating a
+repealed Directive's term with its successor's. Its own answer text
+writes `an operator of essential services (an "essential entity")`.
+Nearly right for a practitioner; wrong as law.
+
+**Predictions, and how they fared** (pre-registered before each run):
+
+- **P1 falsified, informatively.** Predicted 6–12 of 26 audit negatives
+  answered; actual 1, and 1 of 8 individually named rows. That failure
+  is what exposed the holdout problem above.
+- **P2 held.** ≥20/26 caught (22), ≤3/51 false refusals (2 strict,
+  0 fail-open).
+- **P3 falsified.** I predicted the cross-instrument rows would break
+  first. Every one passed, including q47 and q48 where the model named
+  both regimes. The weakness was elsewhere entirely: GENERAL on
+  naturally-phrased questions.
+- **P4 held and did real work** — it disqualified the higher-scoring
+  policy before the scores were known.
+- **P6 held** (5 of 15, bottom of the 5–10 range).
+- **P7 failed.** Predicted 12–15 caught; actual 10. The design is weaker
+  than I expected, and the entry says so rather than quietly widening
+  the range.
+- **P8 held, twice over,** and is the practical warning: both defects
+  found in this session were **mine, in string matching, and each
+  flipped a verdict.** `"GENERAL" in reply` also matches
+  "General-Purpose AI Code of Practice" — that one alone flipped n17,
+  the single shipped failure among the audit negatives, from caught to
+  missed. The alias `gdpr` matches "UK GDPR", a different instrument, so
+  a correct model answer was scored as a miss. Neither is a modelling
+  problem. **A production version will fail at membership testing before
+  it fails at regime identification**, and the alias table must be
+  derived from the corpus's own `instrument` field with qualified names
+  ("UK GDPR", "Swiss FADP") treated as distinct rather than as aliases.
+
+**Cost accepted.** One extra model call per gate-passing question, small
+because it carries no documents. A model judgement enters the critical
+path — mitigated, not eliminated, by grading it against a closed set.
+And the hard class was constructed adversarially, so 5/15 is the failure
+rate under deliberate pressure, not in ordinary use; the named-regime
+measurement (1/26) is much closer to typical.
+
+**What happens next, and why not now.** Implementing this changes
+refusal behaviour, which requires the eval re-run and a decision entry
+of its own — D14's discipline, and the reason this entry stops at a
+design. One experiment should come first, because it is cheap and would
+otherwise cost a second eval run: **ask the pre-flight for the
+instrument that DEFINES the terms the question uses, not every
+instrument that is relevant.** Three of the five hard-class misses (h04,
+h06, h08) name the correct out-of-corpus regime *alongside* an in-corpus
+one, so a primary-instrument rule could recover them. It is not free:
+q44's reply began "ENISA" — not an instrument at all — so a naive
+first-named rule would refuse a good question. Measure it against these
+same 23 rows plus the 51, and only then implement.
+
+**Trigger to revisit:** a fourth instrument, which changes the closed
+set and makes the alias table load-bearing rather than incidental; or
+the primary-instrument experiment above returning a better rule.

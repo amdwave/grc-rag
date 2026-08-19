@@ -187,6 +187,7 @@ it wrong.
 | [D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so) | Three instruments: the gate is a coarse filter, and says so |
 | [D14](docs/decisions.md#d14--the-audit-the-gate-stays-its-demotion-is-falsified-and-the-blind-spots-get-names) | The audit: the gate stays, its demotion is falsified, and the blind spots get names |
 | [D15](docs/decisions.md#d15--closing-two-blind-spots-the-index-can-be-stale-and-a-real-quote-can-carry-the-wrong-id) | Closing two blind spots: the index can be stale, and a real quote can carry the wrong id |
+| [D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise) | N5: the regime pre-flight, adopted narrowly, and what the measurement cost the premise |
 
 If you read two, read
 [D4](docs/decisions.md#d4--the-corpus-is-two-documents-because-the-recitals-are)
@@ -375,6 +376,16 @@ them.
   citation contract and the gate all passed them. Every instrument added
   makes this likelier, because there is always something topically
   adjacent to answer from ([D13](docs/decisions.md#d13--three-instruments-the-gate-is-a-coarse-filter-and-says-so)).
+  **How often depends entirely on how the question is phrased**, which
+  D16 measured: name the absent act ("what does DORA require…") and the
+  system refuses 25 times out of 26; carry the regime implicitly in a
+  term of art ("a manufacturer of a product with digital elements") and
+  it answers wrongly 5 times out of 15. A regime pre-flight that halves
+  the second figure at no measured cost in false refusals is designed
+  and measured in
+  [D16](docs/decisions.md#d16--n5-the-regime-pre-flight-adopted-narrowly-and-what-the-measurement-cost-the-premise),
+  and is **not yet implemented** — the numbers above are the system as
+  it stands.
 - **The gate is a coarse pre-filter, and the measurement says so.** It
   has caught **exactly four questions in every measurement** while the
   out-of-corpus set grew from four to ten: 4/4 at one instrument, 4/8 at
